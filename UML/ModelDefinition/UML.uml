@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="625ca314-552a-4176-ac0e-1316f80aa498"
+  name="UML" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+        name="Utilisateur"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="9d04e222-05bd-49d6-a6ae-2b67d231c529"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="S'inscrire"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="1c30ccc1-82de-4e3e-85ba-dab25accd6c0"
+              LastKnownName="S'inscrire"
+              LastKnownLocation="UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a23adacd-a35e-4541-b429-cbffe73b2882"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6c896119-df5a-4468-afd3-5dd0b2c3cb79"
+                  name="S'inscrire"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="0a0d0a84-264b-46bb-b55b-0834b7ea9ec1"
+            isDerived="false"
+            sourceEndRoleName="Utilisateur"
+            targetEndRoleName="Consulter document"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="f62ee198-5bd6-4372-b0ad-3e5d6279a51a"
+              LastKnownName="Consulter document"
+              LastKnownLocation="UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dd0cf527-1b89-45d1-a009-7e9963b0bf02"
+                  name="Utilisateur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b006725c-3262-4741-a121-da8f54fd8052"
+                  name="Consulter document"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="d9280fc7-2ee9-4900-832b-725f9437390b"
+        name="Auteur"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="99bf0914-93f1-4779-98ff-89967dd0e5f6">
+            <useCaseMoniker
+              Id="005ce700-f7ef-4000-a68c-cd7b799a37fd"
+              LastKnownName="Utiliser favoris"
+              LastKnownLocation="UML.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="7b81b294-6bec-4205-a135-fd5745d1cc0f"
+            isSubstitutable="false">
+            <actorMoniker
+              Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+              LastKnownName="Utilisateur"
+              LastKnownLocation="UML.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="d222eecd-9a59-4ed5-9b69-fa7f474bd84c"
+            isDerived="false"
+            sourceEndRoleName="Auteur"
+            targetEndRoleName="S'identifier"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="384e6be5-d28d-491e-afc2-59953bcf8537"
+              LastKnownName="S'identifier"
+              LastKnownLocation="UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3d389ae9-28c6-4006-bda1-928e8a52f249"
+                  name="Auteur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2a757d38-883d-42e7-8ba2-38e140ba8db0"
+                  name="S'identifier"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+        name="Subsystem1"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="1c30ccc1-82de-4e3e-85ba-dab25accd6c0"
+        name="S'inscrire"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="aa2b9640-2be8-4a82-93e1-926b53cb279c">
+            <useCaseMoniker
+              Id="ce3e49d6-5d72-4a8d-b158-461044ec1181"
+              LastKnownName="Saisir e-mail"
+              LastKnownLocation="UML.uml" />
+          </include>
+          <include
+            Id="2ea987f6-b430-4c2a-9cf3-f87cfb5f6b64">
+            <useCaseMoniker
+              Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098"
+              LastKnownName="Saisir identifiant"
+              LastKnownLocation="UML.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f62ee198-5bd6-4372-b0ad-3e5d6279a51a"
+        name="Consulter document"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="384e6be5-d28d-491e-afc2-59953bcf8537"
+        name="S'identifier"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="75db311e-2fb4-4759-bcd3-3fba961aa6e2">
+            <useCaseMoniker
+              Id="6cbf2b52-be4e-4990-9d74-4c85c3804965"
+              LastKnownName="Saisir mot de passe"
+              LastKnownLocation="UML.uml" />
+          </include>
+          <include
+            Id="ed64affa-2488-41eb-95af-4414d71ecaf3">
+            <useCaseMoniker
+              Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098"
+              LastKnownName="Saisir identifiant"
+              LastKnownLocation="UML.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a476a692-d161-4726-9349-7f18c5d70cbf"
+        name="Naviguer carte"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="25ba75f8-246e-408f-a34b-905979ffb09b">
+            <useCaseMoniker
+              Id="f62ee198-5bd6-4372-b0ad-3e5d6279a51a"
+              LastKnownName="Consulter document"
+              LastKnownLocation="UML.uml" />
+          </extend>
+        </extendedCases>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0d901d3d-e045-47f8-83c7-8bb2c8922562"
+        name="Manipuler carte"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="5480419a-f994-43d9-b578-212a04db12c9">
+            <useCaseMoniker
+              Id="405e0155-52bd-4147-8692-216ea93c065a"
+              LastKnownName="Navigation carte"
+              LastKnownLocation="UML.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="68e1eed9-3a21-4ee7-8682-b57ae4ff2dfe"
+        name="Navigation standard"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="43fd0969-b879-4293-b5bc-f6938527e10a">
+            <useCaseMoniker
+              Id="f62ee198-5bd6-4372-b0ad-3e5d6279a51a"
+              LastKnownName="Consulter document"
+              LastKnownLocation="UML.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="36996b9d-e1d9-4f02-9a25-741ca6aaeac9"
+        name="Anoter document"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="e5073998-8927-46ef-8365-8d370c3065bc">
+            <useCaseMoniker
+              Id="384e6be5-d28d-491e-afc2-59953bcf8537"
+              LastKnownName="S'identifier"
+              LastKnownLocation="UML.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098"
+        name="Saisir identifiant"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ce3e49d6-5d72-4a8d-b158-461044ec1181"
+        name="Saisir e-mail"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="6cbf2b52-be4e-4990-9d74-4c85c3804965"
+        name="Saisir mot de passe"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="22485c60-49ab-43d3-9b81-86787b43f61d"
+        name="Ouvrir POI"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="425df94e-bb02-48ec-9f55-80eb09abbba3">
+            <useCaseMoniker
+              Id="0d901d3d-e045-47f8-83c7-8bb2c8922562"
+              LastKnownName="Manipuler carte"
+              LastKnownLocation="UML.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b93cc0b5-63ef-495c-ad2f-02053fc6c9fa"
+        name="Ouvrir document"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="58ee0477-7c72-410f-8224-3e859f9addd0">
+            <useCaseMoniker
+              Id="22485c60-49ab-43d3-9b81-86787b43f61d"
+              LastKnownName="Ouvrir POI"
+              LastKnownLocation="UML.uml" />
+          </extend>
+          <extend
+            Id="84b039a4-66c5-4e04-bd5b-a527a6a048e6">
+            <useCaseMoniker
+              Id="68e1eed9-3a21-4ee7-8682-b57ae4ff2dfe"
+              LastKnownName="Navigation standard"
+              LastKnownLocation="UML.uml" />
+          </extend>
+          <extend
+            Id="d86b1095-fc03-4eb5-8fbc-182ba7d48c32">
+            <useCaseMoniker
+              Id="005ce700-f7ef-4000-a68c-cd7b799a37fd"
+              LastKnownName="Utiliser favoris"
+              LastKnownLocation="UML.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="405e0155-52bd-4147-8692-216ea93c065a"
+        name="Navigation carte"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="4ddba779-2cd9-4e82-8864-05b4b6dfadd9">
+            <useCaseMoniker
+              Id="f62ee198-5bd6-4372-b0ad-3e5d6279a51a"
+              LastKnownName="Consulter document"
+              LastKnownLocation="UML.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="309366b6-3639-4876-9e2c-6bfd73fda85a"
+        name="Mettre en favoris"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="63a62f67-d206-474e-b246-9897055a9665">
+            <useCaseMoniker
+              Id="384e6be5-d28d-491e-afc2-59953bcf8537"
+              LastKnownName="S'identifier"
+              LastKnownLocation="UML.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="005ce700-f7ef-4000-a68c-cd7b799a37fd"
+        name="Utiliser favoris"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
+            LastKnownName="Subsystem1"
+            LastKnownLocation="UML.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>
