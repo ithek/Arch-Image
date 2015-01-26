@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "UML", "UML\UML.modelproj", "{C2FBC10C-EA43-4C41-8646-15422779C1DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modele-Controleur", "Modele-Controleur\Modele-Controleur.csproj", "{4BEFF181-B02D-4F71-9374-904A73848D1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C2FBC10C-EA43-4C41-8646-15422779C1DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2FBC10C-EA43-4C41-8646-15422779C1DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2FBC10C-EA43-4C41-8646-15422779C1DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BEFF181-B02D-4F71-9374-904A73848D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BEFF181-B02D-4F71-9374-904A73848D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BEFF181-B02D-4F71-9374-904A73848D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BEFF181-B02D-4F71-9374-904A73848D1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

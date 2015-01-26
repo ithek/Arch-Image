@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="1262fb48-34f2-4011-a177-af5c71e5d2b0" name="CasUtilisation" linkedPackageId="6e0dd48c-ff0c-4774-98c0-2bfdb8d1b4fd" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
-  <profileInstances>
-    <packageHasProfileInstances Id="bf4c872b-1c0f-4fb6-8685-85ab4db0934e">
-      <profileInstance Id="a51cd87a-d08b-4208-82e5-01772031784f" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="d4b2b921-37aa-4f38-bffa-4c08e0e54b34">
-      <profileInstance Id="09467758-8240-40ca-b185-70fd157310fb" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <useCaseModelRootHasTypes>
       <actor Id="f4f51fa1-0784-4b64-b7b1-7b2c65f34d3f" name="Utilisateur" isAbstract="false" isLeaf="false">
@@ -57,12 +43,6 @@
     <useCaseModelRootHasTypes>
       <actor Id="57a334c1-a5c0-4c87-86c7-0dbc47f721b7" name="Auteur" isAbstract="false" isLeaf="false">
         <elementDefinition Id="d9280fc7-2ee9-4900-832b-725f9437390b" />
-        <suppliersInternal>
-          <dependency Id="5644b05d-3f4f-4f0a-b97c-bf9fe27942c1">
-            <useCaseMoniker Id="ca14d70b-be2e-4762-90ae-531012427a57" LastKnownName="Utiliser favoris" />
-            <elementDefinition Id="99bf0914-93f1-4779-98ff-89967dd0e5f6" />
-          </dependency>
-        </suppliersInternal>
         <generalsInternal>
           <generalization Id="f6b0022c-adca-467a-9d2a-c49f538cfdd2" isSubstitutable="false">
             <actorMoniker Id="f4f51fa1-0784-4b64-b7b1-7b2c65f34d3f" LastKnownName="Utilisateur" />
@@ -86,6 +66,38 @@
             </relationshipOwnedElementsInternal>
             <elementDefinition Id="d222eecd-9a59-4ed5-9b69-fa7f474bd84c" />
           </association>
+          <association Id="02268587-9967-4faa-bb14-3c4b3562aef7" isDerived="false" sourceEndRoleName="Auteur" targetEndRoleName="Auteur" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="57a334c1-a5c0-4c87-86c7-0dbc47f721b7" LastKnownName="Auteur" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3a2076d5-6201-49ef-90f7-18807496f016" name="Auteur" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ed122afa-edc5-405b-8d93-f2a28ea91b99" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f212d26e-811b-41fb-bdb9-88d1948ebd00" name="Auteur" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="77211a2f-9a0e-4f1e-9521-f1a507ff60bb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="49836a11-8bb6-43d1-9a70-3f424080316c" />
+          </association>
+          <association Id="65fc94c2-6f11-4624-b02b-ac6a9448ca45" isDerived="false" sourceEndRoleName="Auteur" targetEndRoleName="Utiliser favoris" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ca14d70b-be2e-4762-90ae-531012427a57" LastKnownName="Utiliser favoris" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="18831930-fd43-4e45-a06d-92c3acdaf47b" name="Auteur" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cfa363cb-4c9c-4907-b617-e73545239cf7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="57fc6c99-6317-48c9-a9ed-ca04c0ab5fd5" name="Utiliser favoris" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="44992847-c749-41fb-96c4-a88e5e67f9ef" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4286d30d-3eb9-4266-83da-9e6e5de2d945" />
+          </association>
         </targetEnds>
       </actor>
     </useCaseModelRootHasTypes>
@@ -103,7 +115,7 @@
             <elementDefinition Id="aa2b9640-2be8-4a82-93e1-926b53cb279c" />
           </include>
           <include Id="97dde288-3b44-409d-8a75-487048f95365">
-            <useCaseMoniker Id="4636a10e-7ae8-4c9e-b3d6-a485f6a0281a" LastKnownName="Saisir identifiant" />
+            <useCaseMoniker Id="4636a10e-7ae8-4c9e-b3d6-a485f6a0281a" LastKnownName="Saisir identifiant et mdp" />
             <elementDefinition Id="2ea987f6-b430-4c2a-9cf3-f87cfb5f6b64" />
           </include>
         </additions>
@@ -124,13 +136,13 @@
       <useCase Id="bc6f07fb-f6d2-41da-9392-75b709dc7014" name="S'identifier" isAbstract="false" isLeaf="false">
         <elementDefinition Id="384e6be5-d28d-491e-afc2-59953bcf8537" />
         <additions>
-          <include Id="414b20e8-e118-4e84-afc6-8801167fa14f">
-            <useCaseMoniker Id="509ef63c-5cfe-47cb-a7f0-4cce3694dd9b" LastKnownName="Saisir mot de passe" />
-            <elementDefinition Id="75db311e-2fb4-4759-bcd3-3fba961aa6e2" />
-          </include>
           <include Id="7e97031a-ca8f-4f81-8718-61b06d4497b1">
-            <useCaseMoniker Id="4636a10e-7ae8-4c9e-b3d6-a485f6a0281a" LastKnownName="Saisir identifiant" />
+            <useCaseMoniker Id="4636a10e-7ae8-4c9e-b3d6-a485f6a0281a" LastKnownName="Saisir identifiant et mdp" />
             <elementDefinition Id="ed64affa-2488-41eb-95af-4414d71ecaf3" />
+          </include>
+          <include Id="89859893-f275-4e0c-8a5d-15d9f8135ce9">
+            <useCaseMoniker Id="cff4b296-969b-4bfb-99d1-25a57f8de039" LastKnownName="S'inscrire" />
+            <elementDefinition Id="e18d3db3-1a91-4759-ad98-90bf49c0359a" />
           </include>
         </additions>
         <subjects>
@@ -167,7 +179,7 @@
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <useCase Id="c4135f42-c15b-4107-bdd5-e79ab6eaf325" name="Anoter document" isAbstract="false" isLeaf="false">
+      <useCase Id="c4135f42-c15b-4107-bdd5-e79ab6eaf325" name="Annoter document" isAbstract="false" isLeaf="false">
         <elementDefinition Id="36996b9d-e1d9-4f02-9a25-741ca6aaeac9" />
         <additions>
           <include Id="9ff17250-1f20-4a5e-8f26-fa18ef889e1b">
@@ -181,7 +193,7 @@
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <useCase Id="4636a10e-7ae8-4c9e-b3d6-a485f6a0281a" name="Saisir identifiant" isAbstract="false" isLeaf="false">
+      <useCase Id="4636a10e-7ae8-4c9e-b3d6-a485f6a0281a" name="Saisir identifiant et mdp" isAbstract="false" isLeaf="false">
         <elementDefinition Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098" />
         <subjects>
           <subsystemMoniker Id="a8946fde-771c-4718-94be-5823884dad5d" LastKnownName="Subsystem1" />
@@ -191,14 +203,6 @@
     <packageHasNamedElement>
       <useCase Id="71f0081c-5c4f-4ffa-ace6-e84b8066cb29" name="Saisir e-mail" isAbstract="false" isLeaf="false">
         <elementDefinition Id="ce3e49d6-5d72-4a8d-b158-461044ec1181" />
-        <subjects>
-          <subsystemMoniker Id="a8946fde-771c-4718-94be-5823884dad5d" LastKnownName="Subsystem1" />
-        </subjects>
-      </useCase>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <useCase Id="509ef63c-5cfe-47cb-a7f0-4cce3694dd9b" name="Saisir mot de passe" isAbstract="false" isLeaf="false">
-        <elementDefinition Id="6cbf2b52-be4e-4990-9d74-4c85c3804965" />
         <subjects>
           <subsystemMoniker Id="a8946fde-771c-4718-94be-5823884dad5d" LastKnownName="Subsystem1" />
         </subjects>
@@ -271,6 +275,12 @@
     <packageHasNamedElement>
       <useCase Id="ca14d70b-be2e-4762-90ae-531012427a57" name="Utiliser favoris" isAbstract="false" isLeaf="false">
         <elementDefinition Id="005ce700-f7ef-4000-a68c-cd7b799a37fd" />
+        <additions>
+          <include Id="325a916e-cd59-445f-8fe8-4957ebf0ca51">
+            <useCaseMoniker Id="bc6f07fb-f6d2-41da-9392-75b709dc7014" LastKnownName="S'identifier" />
+            <elementDefinition Id="da42ff8f-9713-4000-9b12-2c77ba21c4c8" />
+          </include>
+        </additions>
         <subjects>
           <subsystemMoniker Id="a8946fde-771c-4718-94be-5823884dad5d" LastKnownName="Subsystem1" />
         </subjects>
@@ -279,5 +289,19 @@
   </packagedElements>
   <package Id="6e0dd48c-ff0c-4774-98c0-2bfdb8d1b4fd" name="UML">
     <elementDefinition Id="625ca314-552a-4176-ac0e-1316f80aa498" />
+    <profileInstances>
+      <packageHasProfileInstances Id="bf4c872b-1c0f-4fb6-8685-85ab4db0934e">
+        <profileInstance Id="a51cd87a-d08b-4208-82e5-01772031784f" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="d4b2b921-37aa-4f38-bffa-4c08e0e54b34">
+        <profileInstance Id="09467758-8240-40ca-b185-70fd157310fb" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </useCaseModelRoot>

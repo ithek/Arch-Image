@@ -112,15 +112,6 @@
         name="Auteur"
         isAbstract="false"
         isLeaf="false">
-        <suppliersInternal>
-          <dependency
-            Id="99bf0914-93f1-4779-98ff-89967dd0e5f6">
-            <useCaseMoniker
-              Id="005ce700-f7ef-4000-a68c-cd7b799a37fd"
-              LastKnownName="Utiliser favoris"
-              LastKnownLocation="UML.uml" />
-          </dependency>
-        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="7b81b294-6bec-4205-a135-fd5745d1cc0f"
@@ -171,6 +162,84 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="49836a11-8bb6-43d1-9a70-3f424080316c"
+            isDerived="false"
+            sourceEndRoleName="Auteur"
+            targetEndRoleName="Auteur"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="d9280fc7-2ee9-4900-832b-725f9437390b"
+              LastKnownName="Auteur"
+              LastKnownLocation="UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ed122afa-edc5-405b-8d93-f2a28ea91b99"
+                  name="Auteur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="77211a2f-9a0e-4f1e-9521-f1a507ff60bb"
+                  name="Auteur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="4286d30d-3eb9-4266-83da-9e6e5de2d945"
+            isDerived="false"
+            sourceEndRoleName="Auteur"
+            targetEndRoleName="Utiliser favoris"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="005ce700-f7ef-4000-a68c-cd7b799a37fd"
+              LastKnownName="Utiliser favoris"
+              LastKnownLocation="UML.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cfa363cb-4c9c-4907-b617-e73545239cf7"
+                  name="Auteur"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="44992847-c749-41fb-96c4-a88e5e67f9ef"
+                  name="Utiliser favoris"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </actor>
     </packageHasNamedElement>
@@ -200,7 +269,7 @@
             Id="2ea987f6-b430-4c2a-9cf3-f87cfb5f6b64">
             <useCaseMoniker
               Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098"
-              LastKnownName="Saisir identifiant"
+              LastKnownName="Saisir identifiant et mdp"
               LastKnownLocation="UML.uml" />
           </include>
         </additions>
@@ -244,7 +313,14 @@
             Id="ed64affa-2488-41eb-95af-4414d71ecaf3">
             <useCaseMoniker
               Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098"
-              LastKnownName="Saisir identifiant"
+              LastKnownName="Saisir identifiant et mdp"
+              LastKnownLocation="UML.uml" />
+          </include>
+          <include
+            Id="e18d3db3-1a91-4759-ad98-90bf49c0359a">
+            <useCaseMoniker
+              Id="1c30ccc1-82de-4e3e-85ba-dab25accd6c0"
+              LastKnownName="S'inscrire"
               LastKnownLocation="UML.uml" />
           </include>
         </additions>
@@ -322,7 +398,7 @@
     <packageHasNamedElement>
       <useCase
         Id="36996b9d-e1d9-4f02-9a25-741ca6aaeac9"
-        name="Anoter document"
+        name="Annoter document"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -345,7 +421,7 @@
     <packageHasNamedElement>
       <useCase
         Id="4c76da9b-0c5c-4ab5-bc6e-5ee847222098"
-        name="Saisir identifiant"
+        name="Saisir identifiant et mdp"
         isAbstract="false"
         isLeaf="false">
         <subjects>
@@ -375,14 +451,7 @@
         Id="6cbf2b52-be4e-4990-9d74-4c85c3804965"
         name="Saisir mot de passe"
         isAbstract="false"
-        isLeaf="false">
-        <subjects>
-          <subsystemMoniker
-            Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
-            LastKnownName="Subsystem1"
-            LastKnownLocation="UML.uml" />
-        </subjects>
-      </useCase>
+        isLeaf="false" />
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
@@ -496,6 +565,15 @@
         name="Utiliser favoris"
         isAbstract="false"
         isLeaf="false">
+        <additions>
+          <include
+            Id="da42ff8f-9713-4000-9b12-2c77ba21c4c8">
+            <useCaseMoniker
+              Id="384e6be5-d28d-491e-afc2-59953bcf8537"
+              LastKnownName="S'identifier"
+              LastKnownLocation="UML.uml" />
+          </include>
+        </additions>
         <subjects>
           <subsystemMoniker
             Id="b826cbc5-983f-4cfc-a340-831a51a56e35"
