@@ -22,6 +22,20 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="Annotation.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Annotation.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Annotation.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="OuvertureNouveauDocument.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="OuvertureNouveauDocument.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>OuvertureNouveauDocument.sequencediagram</DependentUpon>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="CasUtilisation.usecasediagram">
       <SubType>Content</SubType>
@@ -29,6 +43,13 @@
     <Content Include="CasUtilisation.usecasediagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>CasUtilisation.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="OuverturePOI.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="OuverturePOI.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>OuverturePOI.sequencediagram</DependentUpon>
     </Content>
     <Content Include="ModelDefinition\UML.uml">
       <SubType>Content</SubType>
