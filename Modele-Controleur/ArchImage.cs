@@ -51,6 +51,12 @@ namespace Modele_Controleur
             }
         }
 
+        public Categorie CategorieCourante
+        {
+            get; 
+            set;
+        }
+
         /**
          * Change le document courant en prenant le prochain dans sa catégorie
          */

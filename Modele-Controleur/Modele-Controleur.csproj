@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ArchImage.cs" />
     <Compile Include="Auteur.cs" />
+    <Compile Include="Categorie.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Favoris.cs" />
     <Compile Include="Historique.cs" />

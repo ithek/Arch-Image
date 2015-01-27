@@ -39,5 +39,27 @@ namespace Modele_Controleur
             {
             }
         }
+
+        public Categorie Categorie
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
+
+        /**
+         * Son emplacement dans sa catégorie
+         * (ex : 5ème registre matricule)
+         */
+
+        public int Position
+        {
+            get; 
+            set;
+        }
     }
 }

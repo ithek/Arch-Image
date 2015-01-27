@@ -2,8 +2,18 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Modele_Controleur.ArchImage">
     <Position X="0.75" Y="1.75" Width="1.5" />
+    <AssociationLine Name="CategorieCourante" Type="Modele_Controleur.Categorie" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.25" Y="2.062" />
+        <Point X="3.062" Y="2.062" />
+        <Point X="3.062" Y="6.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.145" Y="0.152" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAECAAIAAAgAAAAAAAAAAAACAAAAAAAAABAE=</HashCode>
+      <HashCode>AAAEEAAAAEAAAIAAgAAAAAAAAAAAAACCCAAAgAAAAAE=</HashCode>
       <FileName>ArchImage.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -11,6 +21,7 @@
       <Property Name="DocumentCourant" />
       <Property Name="MySQLAccess" />
       <Property Name="SewelisAccess" />
+      <Property Name="CategorieCourante" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Modele_Controleur.Utilisateur">
@@ -47,7 +58,7 @@
   <Class Name="Modele_Controleur.Document">
     <Position X="4.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAgAAEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Document.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -61,7 +72,7 @@
   <Class Name="Modele_Controleur.SewelisAccess">
     <Position X="0.75" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SewelisAccess.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -72,5 +83,12 @@
       <FileName>MySQLAccess.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Enum Name="Modele_Controleur.Categorie">
+    <Position X="1.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAAAACIAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Categorie.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

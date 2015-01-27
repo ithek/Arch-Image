@@ -36,6 +36,13 @@
       <SubType>Content</SubType>
       <DependentUpon>OuvertureNouveauDocument.sequencediagram</DependentUpon>
     </Content>
+    <Content Include="NavigationClassique.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="NavigationClassique.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>NavigationClassique.sequencediagram</DependentUpon>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="CasUtilisation.usecasediagram">
       <SubType>Content</SubType>
