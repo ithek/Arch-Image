@@ -29,6 +29,13 @@
       <SubType>Content</SubType>
       <DependentUpon>Annotation.sequencediagram</DependentUpon>
     </Content>
+    <Content Include="DiagrammeComposant.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="DiagrammeComposant.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>DiagrammeComposant.componentdiagram</DependentUpon>
+    </Content>
     <Content Include="OuvertureNouveauDocument.sequencediagram">
       <SubType>Content</SubType>
     </Content>
