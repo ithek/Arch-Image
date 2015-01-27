@@ -7,5 +7,10 @@ namespace Modele_Controleur
 {
     public class Historique
     {
+        public List<Document> DocumentsRegardes
+        {
+            get; 
+            set;
+        }
     }
 }

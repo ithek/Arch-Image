@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Modele_Controleur.ArchImage">
-    <Position X="0.75" Y="2" Width="1.5" />
+    <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAEAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AAAAEAAAAECAAIAAAgAAAAAAAAAAAACAAAAAAAAABAE=</HashCode>
       <FileName>ArchImage.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -33,14 +33,14 @@
   <Class Name="Modele_Controleur.Historique">
     <Position X="7.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Historique.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.Favoris">
     <Position X="7.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Favoris.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -59,7 +59,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.SewelisAccess">
-    <Position X="0.75" Y="3.5" Width="1.5" />
+    <Position X="0.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SewelisAccess.cs</FileName>

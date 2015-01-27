@@ -50,5 +50,50 @@ namespace Modele_Controleur
             {
             }
         }
+
+        /**
+         * Change le document courant en prenant le prochain dans sa catégorie
+         */
+        public void DocumentSuivant()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /**
+         * Change le document courant en prenant celui d'avant dans sa catégorie
+         */
+        public void DocumentPrecedent()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /**
+         * Change le document courant en prenant la premier de la catégorie précédente
+         */
+        public void CategoriePrecedente()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /**
+         * Change le document courant en prenant la premier de la catégorie suivante
+         */
+        public void CategorieSuivante()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /**
+         * Change le document courant en prenant le numeroDocumentième de sa catégorie
+         * FIXME throw exception si parametre incohérent
+         */ 
+        public void UtiliserDoc(int numeroDocument)
+        {
+            throw new System.NotImplementedException();
+
+            //if (numeroDocument <= 0 || ... (trop élevé) )
+            throw new System.ArgumentException("Il n'y a pas de document n°" + numeroDocument +
+                                               " dans cette catégorie");
+        }
     }
 }

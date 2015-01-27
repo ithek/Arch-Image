@@ -7,5 +7,9 @@ namespace Modele_Controleur
 {
     public class Favoris
     {
+        public List<Document> Documents { 
+            get;
+            set;
+        }
     }
 }
