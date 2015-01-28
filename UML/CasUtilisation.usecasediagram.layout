@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10" name="CasUtilisation">
+<useCaseDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="CasUtilisation">
   <useCaseModelRootMoniker Id="1262fb48-34f2-4011-a177-af5c71e5d2b0" />
   <nestedChildShapes>
     <actorShape Id="7f69bdab-afdc-433d-ad67-85f508a48df5" absoluteBounds="0.75, 1.625, 0.5, 0.5" isReference="false" heightOffset="0">
@@ -26,7 +26,7 @@
         <actorShapeMoniker Id="b242aa56-6ab1-434d-a2e7-8bc303b38a7e" />
       </nodes>
     </useCaseAssociationConnector>
-    <SubsystemShape Id="6ffdd9a2-e206-4229-966b-39c9a8fee111" absoluteBounds="1.5, 0.625, 7.625, 9.125" customColor="White">
+    <SubsystemShape Id="6ffdd9a2-e206-4229-966b-39c9a8fee111" absoluteBounds="1.5, 0.625, 7.625, 7.125" customColor="White">
       <subsystemMoniker Id="a8946fde-771c-4718-94be-5823884dad5d" LastKnownName="Subsystem1" />
       <nestedChildShapes>
         <useCaseShape Id="0fe22876-55e8-438d-8d15-76a3c93a0ae9" absoluteBounds="2.375, 1.875, 1, 0.5" customColor="238, 237, 131" heightOffset="0">

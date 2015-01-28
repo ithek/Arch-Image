@@ -101,5 +101,20 @@ namespace Modele_Controleur
             throw new System.ArgumentException("Il n'y a pas de document n°" + numeroDocument +
                                                " dans cette catégorie");
         }
+
+        public List<Document> documentDuPoi(POIWrapper poi)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void créerPOI()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void POISurDoc(Document doc)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

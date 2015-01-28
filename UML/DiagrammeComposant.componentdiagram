@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="f7c26914-3d41-4411-bbd4-ea489bf475bd" name="DiagrammeComposant" linkedPackageId="4c4ca9c5-3959-4795-a0b6-c4c0ad0c0ebd" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
+<componentModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="f7c26914-3d41-4411-bbd4-ea489bf475bd" name="DiagrammeComposant" linkedPackageId="4c4ca9c5-3959-4795-a0b6-c4c0ad0c0ebd" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner">
   <packagedElements>
     <componentModelHasComponents>
       <component Id="97850d3f-41eb-4ed5-91e1-74ff6024343c" name="ArchImage" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -95,7 +95,7 @@
       </component>
     </componentModelHasComponents>
     <componentModelHasComponents>
-      <component Id="e4724ebb-0861-4b8b-b999-c2fa70143b6b" name="Component3" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <component Id="e4724ebb-0861-4b8b-b999-c2fa70143b6b" name="Sewelis" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="00fb5b16-cbe1-4a7d-9247-19c1f01ce5b9" />
         <ownedAttributesInternal>
           <providedInterface Id="6b3ea0c8-f192-4f81-b8d1-7a41ef5e9618" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
@@ -108,7 +108,7 @@
       </component>
     </componentModelHasComponents>
     <componentModelHasComponents>
-      <component Id="86c47258-1657-4eab-a5b0-3df97d066cdb" name="Component4" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <component Id="86c47258-1657-4eab-a5b0-3df97d066cdb" name="BDD : MySQL" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="c91dc63b-6fa1-4059-9df7-005c6141f48a" />
         <ownedAttributesInternal>
           <providedInterface Id="f5a8e247-b690-493c-aeb3-c37d1ff05a10" name="Port1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isService="false" isBehavior="false">
