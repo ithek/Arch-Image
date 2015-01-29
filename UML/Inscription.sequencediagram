@@ -20,7 +20,7 @@
         <ownedCommentsInternal>
           <comment Id="519f3022-88e3-409f-9d8c-d125924040be">
             <elementDefinition Id="8be146e2-bfbd-49f0-ab2d-8d761f539ba7" />
-            <body>inscrit dans la BDD</body>
+            <body>Inscrit l'utilisateur dans la BDD</body>
           </comment>
         </ownedCommentsInternal>
         <elementDefinition Id="5b09db50-579e-4ce1-906e-808112ebaea5" />

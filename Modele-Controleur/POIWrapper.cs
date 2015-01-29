@@ -61,5 +61,20 @@ namespace Modele_Controleur
             {
             }
         }
+
+        public void créerPOI()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void supprimerPOI()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void modifierPOI()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

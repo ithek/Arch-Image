@@ -75,7 +75,7 @@
   <Class Name="Modele_Controleur.POIWrapper">
     <Position X="5" Y="7.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAACAQAAACACAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAEAAAQAACAQAAAiACAAAAAAAAA=</HashCode>
       <FileName>POIWrapper.cs</FileName>
     </TypeIdentifier>
   </Class>

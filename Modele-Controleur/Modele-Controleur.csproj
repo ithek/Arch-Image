@@ -43,6 +43,8 @@
     <Compile Include="Auteur.cs" />
     <Compile Include="Categorie.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="EtatConnexion.cs" />
+    <Compile Include="EtatInscription.cs" />
     <Compile Include="Favoris.cs" />
     <Compile Include="Historique.cs" />
     <Compile Include="MySQLAccess.cs" />
