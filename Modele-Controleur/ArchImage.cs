@@ -116,5 +116,15 @@ namespace Modele_Controleur
         {
             throw new System.NotImplementedException();
         }
+
+        public void inscription(string nom, string mdp, string email)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void connexion(string nom, string mdp)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,19 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Modele_Controleur.ArchImage">
-    <Position X="0.75" Y="1.75" Width="2" />
+    <Position X="0.75" Y="2.25" Width="3.75" />
+    <AssociationLine Name="DocumentCourant" Type="Modele_Controleur.Document" ManuallyRouted="true">
+      <Path>
+        <Point X="4.5" Y="4.127" />
+        <Point X="4.802" Y="4.127" />
+        <Point X="4.802" Y="5.125" />
+        <Point X="6.375" Y="5.125" />
+        <Point X="6.375" Y="5.5" />
+      </Path>
+    </AssociationLine>
     <AssociationLine Name="CategorieCourante" Type="Modele_Controleur.Categorie" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="2.75" Y="2.158" />
-        <Point X="3.062" Y="2.158" />
-        <Point X="3.062" Y="6.75" />
+        <Point X="4.5" Y="2.722" />
+        <Point X="5" Y="2.722" />
+        <Point X="5" Y="1.25" />
+        <Point X="6.25" Y="1.25" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.145" Y="0.152" />
+        <Position X="0.152" Y="0.145" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAEEAAAAEAAAIQAgAEAAAAAAAAAACCCCAAAgAAAAAE=</HashCode>
+      <HashCode>AAAEkAAAAEAAAIQAgAEAAAAAAAAAACCCCAAAgAAAAAE=</HashCode>
       <FileName>ArchImage.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -25,7 +35,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Modele_Controleur.Utilisateur">
-    <Position X="4.75" Y="2" Width="1.5" />
+    <Position X="5.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utilisateur.cs</FileName>
@@ -35,59 +45,73 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Modele_Controleur.Auteur">
-    <Position X="4.75" Y="3.75" Width="1.5" />
+    <Position X="5.25" Y="3.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Auteur.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.Historique">
-    <Position X="7.75" Y="2" Width="1.5" />
+    <Position X="8.75" Y="2" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Historique.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.Favoris">
-    <Position X="7.75" Y="3.75" Width="1.5" />
+    <Position X="9" Y="3.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Favoris.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.Document">
-    <Position X="4.75" Y="5.5" Width="1.5" />
+    <Position X="5" Y="5.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAACAAAgAAEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Document.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.POIWrapper">
-    <Position X="4.75" Y="7.75" Width="1.5" />
+    <Position X="5" Y="7.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAACAQAAACACAAAAAAAAA=</HashCode>
       <FileName>POIWrapper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.SewelisAccess">
-    <Position X="0.75" Y="5" Width="1.5" />
+    <Position X="0.75" Y="5.75" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SewelisAccess.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modele_Controleur.MySQLAccess">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>MySQLAccess.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="Modele_Controleur.Categorie">
-    <Position X="1.75" Y="6.75" Width="1.5" />
+    <Position X="6.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAEAAAAAAAAAAAAACIAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Categorie.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Modele_Controleur.EtatInscription">
+    <Position X="10.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAgAAAAgAAAAAAAAAACAAAABAAAIAAA=</HashCode>
+      <FileName>EtatInscription.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Modele_Controleur.EtatConnexion">
+    <Position X="12.25" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAgAAgAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>EtatConnexion.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />

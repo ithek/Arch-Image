@@ -29,12 +29,26 @@
       <SubType>Content</SubType>
       <DependentUpon>Annotation.sequencediagram</DependentUpon>
     </Content>
+    <Content Include="Connexion.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Connexion.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Connexion.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="DiagrammeComposant.componentdiagram">
       <SubType>Content</SubType>
     </Content>
     <Content Include="DiagrammeComposant.componentdiagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>DiagrammeComposant.componentdiagram</DependentUpon>
+    </Content>
+    <Content Include="Inscription.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Inscription.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Inscription.sequencediagram</DependentUpon>
     </Content>
     <Content Include="OuvertureNouveauDocument.sequencediagram">
       <SubType>Content</SubType>
