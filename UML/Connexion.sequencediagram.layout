@@ -3,14 +3,14 @@
   <SequenceDesignerModelMoniker Id="c958c7ab-e1b6-47cf-8cc6-09a8f596d664" />
   <nestedChildShapes>
     <lifelineShape Id="f95dc7d4-40b4-4437-98dc-1c08d45db592" absoluteBounds="1.025, 1, 0.15, 7" visible="true" visualStyleMode="Modified">
-      <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Personne" />
+      <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Utilisateur" />
       <relativeChildShapes>
         <umlLifelineHeadShape Id="34f210d3-0872-4466-9a73-408ffae43047" absoluteBounds="0.59999999999999987, 0.6, 1, 0.4" customColor="White" visualStyleMode="Modified">
-          <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Personne" />
+          <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Utilisateur" />
           <relativeChildShapes />
         </umlLifelineHeadShape>
         <lifelineHoverShape Id="5e60bba7-b080-46a8-8fe2-e1be925e4ce0" absoluteBounds="1.025, 1, 0, 7">
-          <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Personne" />
+          <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Utilisateur" />
         </lifelineHoverShape>
       </relativeChildShapes>
     </lifelineShape>

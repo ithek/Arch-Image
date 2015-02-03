@@ -591,6 +591,12 @@
         isAbstract="false"
         isLeaf="false"
         isReentrant="false">
+        <ownedCommentsInternal>
+          <comment
+            Id="b953dadc-c498-4c84-aef1-25fa7ab717bb">
+            <body>Recherche des documents présents dans le POI cliqué, dans la base de donnée de Sewelis.</body>
+          </comment>
+        </ownedCommentsInternal>
         <fragments>
           <behaviorExecutionSpecification
             Id="ed31f741-2080-4602-b4b3-57effa327384"
@@ -672,7 +678,7 @@
             <covered>
               <lifelineMoniker
                 Id="a8499677-bdaa-4989-90b0-a94759ef3396"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -711,14 +717,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="c51fe839-3b3e-45cd-8238-500139e03087"
                 LastKnownName="MessageOccurrenceSpecification16"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="6778fc43-ed94-4bc0-875b-7931e7ea228d"
-                LastKnownName="MessageOccurrenceSpecification19"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="cdf8cf6c-89e3-4551-864d-1f901c60057b"
-                LastKnownName="MessageOccurrenceSpecification22"
                 LastKnownLocation="UML.uml" />
               <messageOccurrenceSpecificationMoniker
                 Id="349a47fa-1067-4650-ad2a-ba78cdb66cdd"
@@ -764,114 +762,6 @@
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="a96ac985-3ebd-46b1-9f42-6d7fa1497678"
-            name="BehaviorExecutionSpecification6">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="aa127868-c73d-4364-b176-c277301dcc53"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="55a902e9-c20b-4898-8a44-5c3e37fc2228"
-                LastKnownName="ExecutionOccurrenceSpecification12"
-                LastKnownLocation="UML.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="7b03c5f1-e603-4231-87f6-07152e2c9418"
-                LastKnownName="ExecutionOccurrenceSpecification11"
-                LastKnownLocation="UML.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="d017a27c-f7fd-407a-86b9-6c1b134c4016"
-                LastKnownName="MessageOccurrenceSpecification20"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="51a05629-d75a-4029-a5cd-44b482cb9da0"
-                LastKnownName="MessageOccurrenceSpecification21"
-                LastKnownLocation="UML.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="7b03c5f1-e603-4231-87f6-07152e2c9418"
-            name="ExecutionOccurrenceSpecification11">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="fb69b720-d53a-41cd-94c7-5457de7ffae3"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UML.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="aa127868-c73d-4364-b176-c277301dcc53"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="6778fc43-ed94-4bc0-875b-7931e7ea228d"
-            name="MessageOccurrenceSpecification19">
-            <covered>
-              <lifelineMoniker
-                Id="13e46347-1c94-4eea-9f21-2469fa241372"
-                LastKnownName="SewelisAccess"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="d017a27c-f7fd-407a-86b9-6c1b134c4016"
-            name="MessageOccurrenceSpecification20">
-            <covered>
-              <lifelineMoniker
-                Id="aa127868-c73d-4364-b176-c277301dcc53"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="51a05629-d75a-4029-a5cd-44b482cb9da0"
-            name="MessageOccurrenceSpecification21">
-            <covered>
-              <lifelineMoniker
-                Id="aa127868-c73d-4364-b176-c277301dcc53"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="cdf8cf6c-89e3-4551-864d-1f901c60057b"
-            name="MessageOccurrenceSpecification22">
-            <covered>
-              <lifelineMoniker
-                Id="13e46347-1c94-4eea-9f21-2469fa241372"
-                LastKnownName="SewelisAccess"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="55a902e9-c20b-4898-8a44-5c3e37fc2228"
-            name="ExecutionOccurrenceSpecification12">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="b399657a-01e2-4d76-bc6a-0ed67d6991d4"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UML.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="aa127868-c73d-4364-b176-c277301dcc53"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
             Id="349a47fa-1067-4650-ad2a-ba78cdb66cdd"
             name="MessageOccurrenceSpecification17">
@@ -1240,9 +1130,14 @@
         <lifelines>
           <lifeline
             Id="a8499677-bdaa-4989-90b0-a94759ef3396"
-            name="Personne"
+            name="Utilisateur"
             isActor="true"
-            lifelineDisplayName="Personne">
+            lifelineDisplayName="Utilisateur">
+            <represents>
+              <propertyMoniker
+                Id="ca4f66f9-1d4e-4393-a1b4-206d69e2a8e4"
+                LastKnownLocation="UML.uml" />
+            </represents>
             <topLevelOccurrences>
               <messageOccurrenceSpecificationMoniker
                 Id="514e3f7f-bf40-43b7-8c6a-b8a9b8100048"
@@ -1295,22 +1190,6 @@
               <executionOccurrenceSpecificationMoniker
                 Id="47041c0f-a1ab-4261-83e0-1836fc391e47"
                 LastKnownName="ExecutionOccurrenceSpecification10"
-                LastKnownLocation="UML.uml" />
-            </topLevelOccurrences>
-          </lifeline>
-          <lifeline
-            Id="aa127868-c73d-4364-b176-c277301dcc53"
-            name="BDD : Sewelis"
-            isActor="false"
-            lifelineDisplayName="BDD : Sewelis">
-            <topLevelOccurrences>
-              <executionOccurrenceSpecificationMoniker
-                Id="7b03c5f1-e603-4231-87f6-07152e2c9418"
-                LastKnownName="ExecutionOccurrenceSpecification11"
-                LastKnownLocation="UML.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="55a902e9-c20b-4898-8a44-5c3e37fc2228"
-                LastKnownName="ExecutionOccurrenceSpecification12"
                 LastKnownLocation="UML.uml" />
             </topLevelOccurrences>
           </lifeline>
@@ -1371,44 +1250,6 @@
             </receiveEvent>
           </message>
           <message
-            Id="cadbbf18-21d1-4859-8fec-ae0220c746a0"
-            name="chercheDocument()"
-            messageKind="Complete"
-            messageSort="SynchCall"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="6778fc43-ed94-4bc0-875b-7931e7ea228d"
-                LastKnownName="MessageOccurrenceSpecification19"
-                LastKnownLocation="UML.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="d017a27c-f7fd-407a-86b9-6c1b134c4016"
-                LastKnownName="MessageOccurrenceSpecification20"
-                LastKnownLocation="UML.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="a50766a5-bb40-4c87-9a17-b2588e81b337"
-            name="retourne les documents"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="51a05629-d75a-4029-a5cd-44b482cb9da0"
-                LastKnownName="MessageOccurrenceSpecification21"
-                LastKnownLocation="UML.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="cdf8cf6c-89e3-4551-864d-1f901c60057b"
-                LastKnownName="MessageOccurrenceSpecification22"
-                LastKnownLocation="UML.uml" />
-            </receiveEvent>
-          </message>
-          <message
             Id="b28dbf6f-d22d-4a6b-8a6b-55f8afcb82f4"
             name="liens vers les documents"
             messageKind="Complete"
@@ -1429,7 +1270,7 @@
           </message>
           <message
             Id="ac2961f5-8040-4d76-9220-19ac52ebc410"
-            name="créerPOI()"
+            name="créerPOI(idDoc)"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -1523,6 +1364,24 @@
             </receiveEvent>
           </message>
         </messages>
+        <ownedAttributesInternal>
+          <property
+            Id="ca4f66f9-1d4e-4393-a1b4-206d69e2a8e4"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <actorMoniker
+                Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+                LastKnownName="Utilisateur"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1543,16 +1402,6 @@
     <packageHasNamedElement>
       <executionEvent
         Id="adfaf8ad-2800-47e3-bed7-a0881b246b2b"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="fb69b720-d53a-41cd-94c7-5457de7ffae3"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="b399657a-01e2-4d76-bc6a-0ed67d6991d4"
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -1594,6 +1443,12 @@
         isAbstract="false"
         isLeaf="false"
         isReentrant="false">
+        <ownedCommentsInternal>
+          <comment
+            Id="a25285b4-0da3-4bc6-be95-fedf7b83a0b0">
+            <body>Vérification des POI présents sur le documents, via Sewelis.</body>
+          </comment>
+        </ownedCommentsInternal>
         <fragments>
           <behaviorExecutionSpecification
             Id="ea9f4154-4402-4fc4-aa58-268977b67d79"
@@ -1705,7 +1560,7 @@
             <covered>
               <lifelineMoniker
                 Id="85efd67f-6f84-40b7-9db5-8510b2eef846"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1780,22 +1635,22 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="a080b773-1b32-41c2-b305-7943256daa2a"
-            name="MessageOccurrenceSpecification10">
-            <covered>
-              <lifelineMoniker
-                Id="fde0db01-11a8-482d-a1ef-ad7429c4d791"
-                LastKnownName="ArchImage"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="724aeacc-4311-41a4-aa35-41061fd84d5b"
             name="MessageOccurrenceSpecification9">
             <covered>
               <lifelineMoniker
                 Id="4d49172a-759c-4234-9e2c-36281406e726"
                 LastKnownName="Document"
+                LastKnownLocation="UML.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a080b773-1b32-41c2-b305-7943256daa2a"
+            name="MessageOccurrenceSpecification10">
+            <covered>
+              <lifelineMoniker
+                Id="fde0db01-11a8-482d-a1ef-ad7429c4d791"
+                LastKnownName="ArchImage"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -1928,14 +1783,6 @@
                 LastKnownName="MessageOccurrenceSpecification16"
                 LastKnownLocation="UML.uml" />
               <messageOccurrenceSpecificationMoniker
-                Id="f6718c23-2351-401c-9813-e64788f0eeb1"
-                LastKnownName="MessageOccurrenceSpecification19"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="2ad9ba1c-7f20-4713-8e9d-c59157484b42"
-                LastKnownName="MessageOccurrenceSpecification22"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
                 Id="d2a8757c-d321-468c-b773-03a61bf25954"
                 LastKnownName="MessageOccurrenceSpecification17"
                 LastKnownLocation="UML.uml" />
@@ -1979,114 +1826,6 @@
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="4a432521-b107-47d5-aab3-139269320592"
-            name="BehaviorExecutionSpecification7">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="acc1c7e9-c73a-48f4-8623-fc58651c9260"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="199abb02-d183-4089-9d5e-488bb726851b"
-                LastKnownName="ExecutionOccurrenceSpecification14"
-                LastKnownLocation="UML.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="c81f66dc-7a4f-4259-9bc0-d69ed4f6d053"
-                LastKnownName="ExecutionOccurrenceSpecification13"
-                LastKnownLocation="UML.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="0a4fa79e-dda8-4949-bada-304bb38c94eb"
-                LastKnownName="MessageOccurrenceSpecification20"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="6c998763-bce3-4c01-b99f-d11c5c5a323f"
-                LastKnownName="MessageOccurrenceSpecification21"
-                LastKnownLocation="UML.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="c81f66dc-7a4f-4259-9bc0-d69ed4f6d053"
-            name="ExecutionOccurrenceSpecification13">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="e27d747f-ea02-4ffc-a992-ae50eb0fa500"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UML.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="acc1c7e9-c73a-48f4-8623-fc58651c9260"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="f6718c23-2351-401c-9813-e64788f0eeb1"
-            name="MessageOccurrenceSpecification19">
-            <covered>
-              <lifelineMoniker
-                Id="0e16960f-39f9-457d-914a-ea4c028a64f8"
-                LastKnownName="SewelisAccess"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="0a4fa79e-dda8-4949-bada-304bb38c94eb"
-            name="MessageOccurrenceSpecification20">
-            <covered>
-              <lifelineMoniker
-                Id="acc1c7e9-c73a-48f4-8623-fc58651c9260"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="6c998763-bce3-4c01-b99f-d11c5c5a323f"
-            name="MessageOccurrenceSpecification21">
-            <covered>
-              <lifelineMoniker
-                Id="acc1c7e9-c73a-48f4-8623-fc58651c9260"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="2ad9ba1c-7f20-4713-8e9d-c59157484b42"
-            name="MessageOccurrenceSpecification22">
-            <covered>
-              <lifelineMoniker
-                Id="0e16960f-39f9-457d-914a-ea4c028a64f8"
-                LastKnownName="SewelisAccess"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="199abb02-d183-4089-9d5e-488bb726851b"
-            name="ExecutionOccurrenceSpecification14">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="81aa3e8d-2a6f-4206-a4ef-3b2a729e1297"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UML.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="acc1c7e9-c73a-48f4-8623-fc58651c9260"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
             Id="73d53eda-c2cd-4fc8-860f-1fb5cb989f87"
             name="MessageOccurrenceSpecification18">
@@ -2176,22 +1915,22 @@
             </covered>
           </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="a8c2fb49-65dd-4306-9c5f-26644844f534"
-            name="MessageOccurrenceSpecification24">
-            <covered>
-              <lifelineMoniker
-                Id="56a57878-d9b3-490c-8288-e018becdf80b"
-                LastKnownName="POIWrapper"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="5d25bb2f-2834-4c7a-8c8e-92b7e0e871e7"
             name="MessageOccurrenceSpecification23">
             <covered>
               <lifelineMoniker
                 Id="fde0db01-11a8-482d-a1ef-ad7429c4d791"
                 LastKnownName="ArchImage"
+                LastKnownLocation="UML.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a8c2fb49-65dd-4306-9c5f-26644844f534"
+            name="MessageOccurrenceSpecification24">
+            <covered>
+              <lifelineMoniker
+                Id="56a57878-d9b3-490c-8288-e018becdf80b"
+                LastKnownName="POIWrapper"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2339,9 +2078,14 @@
         <lifelines>
           <lifeline
             Id="85efd67f-6f84-40b7-9db5-8510b2eef846"
-            name="Personne"
+            name="Utilisateur"
             isActor="true"
-            lifelineDisplayName="Personne">
+            lifelineDisplayName="Utilisateur">
+            <represents>
+              <propertyMoniker
+                Id="0f10c585-fd6b-4367-964c-a12a70334b16"
+                LastKnownLocation="UML.uml" />
+            </represents>
             <topLevelOccurrences>
               <messageOccurrenceSpecificationMoniker
                 Id="cd5f7103-88a0-4d9e-bacd-ec1b731d6ce3"
@@ -2394,22 +2138,6 @@
               <executionOccurrenceSpecificationMoniker
                 Id="6565fce4-7e97-48c1-971d-9c8fd458bfd6"
                 LastKnownName="ExecutionOccurrenceSpecification12"
-                LastKnownLocation="UML.uml" />
-            </topLevelOccurrences>
-          </lifeline>
-          <lifeline
-            Id="acc1c7e9-c73a-48f4-8623-fc58651c9260"
-            name="BDD : Sewelis"
-            isActor="false"
-            lifelineDisplayName="BDD : Sewelis">
-            <topLevelOccurrences>
-              <executionOccurrenceSpecificationMoniker
-                Id="c81f66dc-7a4f-4259-9bc0-d69ed4f6d053"
-                LastKnownName="ExecutionOccurrenceSpecification13"
-                LastKnownLocation="UML.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="199abb02-d183-4089-9d5e-488bb726851b"
-                LastKnownName="ExecutionOccurrenceSpecification14"
                 LastKnownLocation="UML.uml" />
             </topLevelOccurrences>
           </lifeline>
@@ -2509,7 +2237,7 @@
           </message>
           <message
             Id="cc4f1401-6bbf-4451-988c-c3ce6647c4e6"
-            name="POISurDoc()"
+            name="POISurDoc(idDoc)"
             messageKind="Complete"
             messageSort="SynchCall"
             createSelfMessage="false">
@@ -2523,44 +2251,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="ed76cd33-3f0b-45c7-8d50-cb7693d81ec0"
                 LastKnownName="MessageOccurrenceSpecification16"
-                LastKnownLocation="UML.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="ce064cde-8550-472f-ba87-d470fb2eddea"
-            name="POI de la page"
-            messageKind="Complete"
-            messageSort="SynchCall"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="f6718c23-2351-401c-9813-e64788f0eeb1"
-                LastKnownName="MessageOccurrenceSpecification19"
-                LastKnownLocation="UML.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="0a4fa79e-dda8-4949-bada-304bb38c94eb"
-                LastKnownName="MessageOccurrenceSpecification20"
-                LastKnownLocation="UML.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="13648f42-1994-4234-98f6-fcab9b1de0fc"
-            name="le résultat"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="6c998763-bce3-4c01-b99f-d11c5c5a323f"
-                LastKnownName="MessageOccurrenceSpecification21"
-                LastKnownLocation="UML.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="2ad9ba1c-7f20-4713-8e9d-c59157484b42"
-                LastKnownName="MessageOccurrenceSpecification22"
                 LastKnownLocation="UML.uml" />
             </receiveEvent>
           </message>
@@ -2641,6 +2331,24 @@
             </receiveEvent>
           </message>
         </messages>
+        <ownedAttributesInternal>
+          <property
+            Id="0f10c585-fd6b-4367-964c-a12a70334b16"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <actorMoniker
+                Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+                LastKnownName="Utilisateur"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -2685,16 +2393,6 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <executionEvent
-        Id="e27d747f-ea02-4ffc-a992-ae50eb0fa500"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="81aa3e8d-2a6f-4206-a4ef-3b2a729e1297"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
         Id="765d32ef-7afe-4b7b-bed8-c5d2a1594132"
         name="ExecutionEvent" />
     </packageHasNamedElement>
@@ -2722,6 +2420,12 @@
         isAbstract="false"
         isLeaf="false"
         isReentrant="false">
+        <ownedCommentsInternal>
+          <comment
+            Id="b78d082c-0405-4753-9915-f459ae13a081">
+            <body>Création, dans la base de donnée Sewelis, d'une nouvelle entrée POI.</body>
+          </comment>
+        </ownedCommentsInternal>
         <fragments>
           <behaviorExecutionSpecification
             Id="f34415f7-024e-4d1e-a942-08ead8931e98"
@@ -2819,7 +2523,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2839,7 +2543,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </coveredLifelines>
             <finish>
@@ -2891,7 +2595,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -2911,7 +2615,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2921,7 +2625,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2931,7 +2635,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </coveredLifelines>
             <finish>
@@ -2967,7 +2671,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -2977,7 +2681,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -2995,7 +2699,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -3015,7 +2719,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -3033,7 +2737,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -3043,7 +2747,7 @@
             <coveredLifelines>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </coveredLifelines>
             <finish>
@@ -3083,7 +2787,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -3103,17 +2807,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="a9b8e07a-3786-4bb2-afa8-de538a72f916"
-            name="MessageOccurrenceSpecification11">
-            <covered>
-              <lifelineMoniker
-                Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -3124,6 +2818,16 @@
               <lifelineMoniker
                 Id="a7eedbd7-9af5-4152-a7b2-c23e7a33f466"
                 LastKnownName="ArchImage"
+                LastKnownLocation="UML.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="a9b8e07a-3786-4bb2-afa8-de538a72f916"
+            name="MessageOccurrenceSpecification11">
+            <covered>
+              <lifelineMoniker
+                Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -3141,7 +2845,7 @@
             <covered>
               <lifelineMoniker
                 Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </executionOccurrenceSpecification>
@@ -3170,14 +2874,6 @@
               <messageOccurrenceSpecificationMoniker
                 Id="55622876-e4b5-40b5-8e06-506151c6cbf9"
                 LastKnownName="MessageOccurrenceSpecification14"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="759334cb-9ce5-4007-a40a-4318c089d7d8"
-                LastKnownName="MessageOccurrenceSpecification17"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="cf6d06e1-1b61-4194-9427-dbb11b2e19a7"
-                LastKnownName="MessageOccurrenceSpecification20"
                 LastKnownLocation="UML.uml" />
               <messageOccurrenceSpecificationMoniker
                 Id="16009b2e-122c-4493-8655-bf0c85ab6105"
@@ -3223,114 +2919,6 @@
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
-          <behaviorExecutionSpecification
-            Id="f908e338-269a-4816-91a0-6f076a16d67b"
-            name="BehaviorExecutionSpecification6">
-            <coveredLifelines>
-              <lifelineMoniker
-                Id="f615e792-f265-4439-af3c-0f17050bb1e6"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </coveredLifelines>
-            <finish>
-              <executionOccurrenceSpecificationMoniker
-                Id="33ff93fd-9d42-48c8-a96c-170b216601a1"
-                LastKnownName="ExecutionOccurrenceSpecification12"
-                LastKnownLocation="UML.uml" />
-            </finish>
-            <start>
-              <executionOccurrenceSpecificationMoniker
-                Id="16b8c7a5-afcd-4827-88cb-fabc56845e04"
-                LastKnownName="ExecutionOccurrenceSpecification11"
-                LastKnownLocation="UML.uml" />
-            </start>
-            <nestedOccurrences>
-              <messageOccurrenceSpecificationMoniker
-                Id="b7f6d886-1a27-4981-a6e5-67446b5dc063"
-                LastKnownName="MessageOccurrenceSpecification18"
-                LastKnownLocation="UML.uml" />
-              <messageOccurrenceSpecificationMoniker
-                Id="151bf30a-6dbb-4300-9bd6-fae6e1b7793e"
-                LastKnownName="MessageOccurrenceSpecification19"
-                LastKnownLocation="UML.uml" />
-            </nestedOccurrences>
-          </behaviorExecutionSpecification>
-          <executionOccurrenceSpecification
-            Id="16b8c7a5-afcd-4827-88cb-fabc56845e04"
-            name="ExecutionOccurrenceSpecification11">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="d25256af-330b-45af-b52c-76d09fcf9b97"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UML.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="f615e792-f265-4439-af3c-0f17050bb1e6"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="b7f6d886-1a27-4981-a6e5-67446b5dc063"
-            name="MessageOccurrenceSpecification18">
-            <covered>
-              <lifelineMoniker
-                Id="f615e792-f265-4439-af3c-0f17050bb1e6"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="759334cb-9ce5-4007-a40a-4318c089d7d8"
-            name="MessageOccurrenceSpecification17">
-            <covered>
-              <lifelineMoniker
-                Id="95760fb3-053d-463c-8e90-a6f05ab348b4"
-                LastKnownName="SewelisAccess"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="cf6d06e1-1b61-4194-9427-dbb11b2e19a7"
-            name="MessageOccurrenceSpecification20">
-            <covered>
-              <lifelineMoniker
-                Id="95760fb3-053d-463c-8e90-a6f05ab348b4"
-                LastKnownName="SewelisAccess"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
-            Id="151bf30a-6dbb-4300-9bd6-fae6e1b7793e"
-            name="MessageOccurrenceSpecification19">
-            <covered>
-              <lifelineMoniker
-                Id="f615e792-f265-4439-af3c-0f17050bb1e6"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <executionOccurrenceSpecification
-            Id="33ff93fd-9d42-48c8-a96c-170b216601a1"
-            name="ExecutionOccurrenceSpecification12">
-            <event>
-              <executionOccurrenceSpecificationReferencesEvent>
-                <executionEventMoniker
-                  Id="19fe86df-5493-4afb-a443-ba74802daa51"
-                  LastKnownName="ExecutionEvent"
-                  LastKnownLocation="UML.uml" />
-              </executionOccurrenceSpecificationReferencesEvent>
-            </event>
-            <covered>
-              <lifelineMoniker
-                Id="f615e792-f265-4439-af3c-0f17050bb1e6"
-                LastKnownName="BDD : Sewelis"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </executionOccurrenceSpecification>
           <messageOccurrenceSpecification
             Id="16009b2e-122c-4493-8655-bf0c85ab6105"
             name="MessageOccurrenceSpecification15">
@@ -3583,9 +3171,14 @@
         <lifelines>
           <lifeline
             Id="9f847cca-4623-4cd0-956b-9e0c15f5b97a"
-            name="Personne"
+            name="Utilisateur"
             isActor="true"
-            lifelineDisplayName="Personne">
+            lifelineDisplayName="Utilisateur">
+            <represents>
+              <propertyMoniker
+                Id="9831a110-495b-40de-8cc5-84f0b6b7998b"
+                LastKnownLocation="UML.uml" />
+            </represents>
             <topLevelOccurrences>
               <messageOccurrenceSpecificationMoniker
                 Id="0db244f1-1529-446d-b1b6-3a314b1605af"
@@ -3622,22 +3215,6 @@
               <executionOccurrenceSpecificationMoniker
                 Id="3efe1db9-a372-4e65-94d2-ea372c7714fd"
                 LastKnownName="ExecutionOccurrenceSpecification10"
-                LastKnownLocation="UML.uml" />
-            </topLevelOccurrences>
-          </lifeline>
-          <lifeline
-            Id="f615e792-f265-4439-af3c-0f17050bb1e6"
-            name="BDD : Sewelis"
-            isActor="false"
-            lifelineDisplayName="BDD : Sewelis">
-            <topLevelOccurrences>
-              <executionOccurrenceSpecificationMoniker
-                Id="16b8c7a5-afcd-4827-88cb-fabc56845e04"
-                LastKnownName="ExecutionOccurrenceSpecification11"
-                LastKnownLocation="UML.uml" />
-              <executionOccurrenceSpecificationMoniker
-                Id="33ff93fd-9d42-48c8-a96c-170b216601a1"
-                LastKnownName="ExecutionOccurrenceSpecification12"
                 LastKnownLocation="UML.uml" />
             </topLevelOccurrences>
           </lifeline>
@@ -3809,44 +3386,6 @@
             </receiveEvent>
           </message>
           <message
-            Id="5a095dc9-07ad-43e9-b7a2-4f1e8f882317"
-            name="Nouvelle entrée BDD"
-            messageKind="Complete"
-            messageSort="SynchCall"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="759334cb-9ce5-4007-a40a-4318c089d7d8"
-                LastKnownName="MessageOccurrenceSpecification17"
-                LastKnownLocation="UML.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="b7f6d886-1a27-4981-a6e5-67446b5dc063"
-                LastKnownName="MessageOccurrenceSpecification18"
-                LastKnownLocation="UML.uml" />
-            </receiveEvent>
-          </message>
-          <message
-            Id="4427aed5-44fa-4807-afc1-8e37061877d9"
-            name="OK"
-            messageKind="Complete"
-            messageSort="Reply"
-            createSelfMessage="false">
-            <sendEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="151bf30a-6dbb-4300-9bd6-fae6e1b7793e"
-                LastKnownName="MessageOccurrenceSpecification19"
-                LastKnownLocation="UML.uml" />
-            </sendEvent>
-            <receiveEvent>
-              <messageOccurrenceSpecificationMoniker
-                Id="cf6d06e1-1b61-4194-9427-dbb11b2e19a7"
-                LastKnownName="MessageOccurrenceSpecification20"
-                LastKnownLocation="UML.uml" />
-            </receiveEvent>
-          </message>
-          <message
             Id="f72dc7ff-8189-4487-b8a2-f166ce7e3be8"
             name="&lt;&lt;return&gt;&gt;"
             messageKind="Complete"
@@ -3923,6 +3462,24 @@
             </receiveEvent>
           </message>
         </messages>
+        <ownedAttributesInternal>
+          <property
+            Id="9831a110-495b-40de-8cc5-84f0b6b7998b"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <actorMoniker
+                Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+                LastKnownName="Utilisateur"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -3973,16 +3530,6 @@
     <packageHasNamedElement>
       <executionEvent
         Id="5b7b0599-9870-43c9-870b-11c4746b6e4b"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="d25256af-330b-45af-b52c-76d09fcf9b97"
-        name="ExecutionEvent" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <executionEvent
-        Id="19fe86df-5493-4afb-a443-ba74802daa51"
         name="ExecutionEvent" />
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -5979,7 +5526,7 @@
             <covered>
               <lifelineMoniker
                 Id="a77ff924-7c8d-4394-a99b-4d69a1dbf0cb"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -6107,16 +5654,16 @@
             interactionOperator="Alt">
             <coveredLifelines>
               <lifelineMoniker
-                Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
-                LastKnownName="auteur : Auteur"
-                LastKnownLocation="UML.uml" />
-              <lifelineMoniker
                 Id="5e1d67bc-9cb0-437b-a91e-444de57df22f"
                 LastKnownName="ArchImage"
                 LastKnownLocation="UML.uml" />
               <lifelineMoniker
                 Id="044e5269-f2a2-4c52-9de6-933074fe9328"
                 LastKnownName="MySQLAccess"
+                LastKnownLocation="UML.uml" />
+              <lifelineMoniker
+                Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
+                LastKnownName="auteur : Auteur"
                 LastKnownLocation="UML.uml" />
               <lifelineMoniker
                 Id="b5795482-c689-47dc-ac4f-1b642af683f7"
@@ -6129,16 +5676,16 @@
                 name="InteractionOperand1">
                 <coveredLifelines>
                   <lifelineMoniker
-                    Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
-                    LastKnownName="auteur : Auteur"
-                    LastKnownLocation="UML.uml" />
-                  <lifelineMoniker
                     Id="5e1d67bc-9cb0-437b-a91e-444de57df22f"
                     LastKnownName="ArchImage"
                     LastKnownLocation="UML.uml" />
                   <lifelineMoniker
                     Id="044e5269-f2a2-4c52-9de6-933074fe9328"
                     LastKnownName="MySQLAccess"
+                    LastKnownLocation="UML.uml" />
+                  <lifelineMoniker
+                    Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
+                    LastKnownName="auteur : Auteur"
                     LastKnownLocation="UML.uml" />
                   <lifelineMoniker
                     Id="b5795482-c689-47dc-ac4f-1b642af683f7"
@@ -6190,16 +5737,16 @@
                 name="InteractionOperand2">
                 <coveredLifelines>
                   <lifelineMoniker
-                    Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
-                    LastKnownName="auteur : Auteur"
-                    LastKnownLocation="UML.uml" />
-                  <lifelineMoniker
                     Id="5e1d67bc-9cb0-437b-a91e-444de57df22f"
                     LastKnownName="ArchImage"
                     LastKnownLocation="UML.uml" />
                   <lifelineMoniker
                     Id="044e5269-f2a2-4c52-9de6-933074fe9328"
                     LastKnownName="MySQLAccess"
+                    LastKnownLocation="UML.uml" />
+                  <lifelineMoniker
+                    Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
+                    LastKnownName="auteur : Auteur"
                     LastKnownLocation="UML.uml" />
                   <lifelineMoniker
                     Id="b5795482-c689-47dc-ac4f-1b642af683f7"
@@ -6691,22 +6238,22 @@
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification
-            Id="072f3e6e-a12e-40a1-aba4-b6df8a3d0cd5"
-            name="MessageOccurrenceSpecification21">
-            <covered>
-              <lifelineMoniker
-                Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
-                LastKnownName="auteur : Auteur"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification
             Id="24e33268-a301-493e-9eea-5ff6fff41d76"
             name="MessageOccurrenceSpecification22">
             <covered>
               <lifelineMoniker
                 Id="5e1d67bc-9cb0-437b-a91e-444de57df22f"
                 LastKnownName="ArchImage"
+                LastKnownLocation="UML.uml" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification
+            Id="072f3e6e-a12e-40a1-aba4-b6df8a3d0cd5"
+            name="MessageOccurrenceSpecification21">
+            <covered>
+              <lifelineMoniker
+                Id="c1b97641-c7c6-41eb-bac5-4cd14046d633"
+                LastKnownName="auteur : Auteur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -6813,22 +6360,12 @@
             </covered>
           </executionOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="fe9be16a-fa4f-4f1d-90fe-8ac8ef442236"
-            name="OperandOccurrenceSpecification12">
+            Id="de5a34e7-bc5d-4dfa-84cc-d55a2333437d"
+            name="OperandOccurrenceSpecification22">
             <covered>
               <lifelineMoniker
-                Id="5e1d67bc-9cb0-437b-a91e-444de57df22f"
-                LastKnownName="ArchImage"
-                LastKnownLocation="UML.uml" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification
-            Id="1d1e7ea6-e877-427c-a1b0-c0546d655645"
-            name="OperandOccurrenceSpecification18">
-            <covered>
-              <lifelineMoniker
-                Id="044e5269-f2a2-4c52-9de6-933074fe9328"
-                LastKnownName="MySQLAccess"
+                Id="b5795482-c689-47dc-ac4f-1b642af683f7"
+                LastKnownName="historique : Historique"
                 LastKnownLocation="UML.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -6843,12 +6380,22 @@
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification
-            Id="de5a34e7-bc5d-4dfa-84cc-d55a2333437d"
-            name="OperandOccurrenceSpecification22">
+            Id="1d1e7ea6-e877-427c-a1b0-c0546d655645"
+            name="OperandOccurrenceSpecification18">
             <covered>
               <lifelineMoniker
-                Id="b5795482-c689-47dc-ac4f-1b642af683f7"
-                LastKnownName="historique : Historique"
+                Id="044e5269-f2a2-4c52-9de6-933074fe9328"
+                LastKnownName="MySQLAccess"
+                LastKnownLocation="UML.uml" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification
+            Id="fe9be16a-fa4f-4f1d-90fe-8ac8ef442236"
+            name="OperandOccurrenceSpecification12">
+            <covered>
+              <lifelineMoniker
+                Id="5e1d67bc-9cb0-437b-a91e-444de57df22f"
+                LastKnownName="ArchImage"
                 LastKnownLocation="UML.uml" />
             </covered>
           </operandOccurrenceSpecification>
@@ -7038,9 +6585,14 @@
         <lifelines>
           <lifeline
             Id="a77ff924-7c8d-4394-a99b-4d69a1dbf0cb"
-            name="Personne"
+            name="Utilisateur"
             isActor="true"
-            lifelineDisplayName="Personne">
+            lifelineDisplayName="Utilisateur">
+            <represents>
+              <propertyMoniker
+                Id="c54588ca-e6e0-4067-937a-6b17f86cc6f0"
+                LastKnownLocation="UML.uml" />
+            </represents>
             <topLevelOccurrences>
               <messageOccurrenceSpecificationMoniker
                 Id="e42cbd83-bfdc-4d85-8839-b0093f9d4600"
@@ -7468,6 +7020,22 @@
                 LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="c54588ca-e6e0-4067-937a-6b17f86cc6f0"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <actorMoniker
+                Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+                LastKnownName="Utilisateur"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
@@ -7607,7 +7175,7 @@
             <covered>
               <lifelineMoniker
                 Id="f6772f2e-6439-4f26-88d4-425c79a8b03d"
-                LastKnownName="Personne"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </covered>
           </messageOccurrenceSpecification>
@@ -8022,9 +7590,14 @@
         <lifelines>
           <lifeline
             Id="f6772f2e-6439-4f26-88d4-425c79a8b03d"
-            name="Personne"
+            name="Utilisateur"
             isActor="true"
-            lifelineDisplayName="Personne">
+            lifelineDisplayName="Utilisateur">
+            <represents>
+              <propertyMoniker
+                Id="7cb61b19-7860-4e2c-9c96-6c38ae836d98"
+                LastKnownLocation="UML.uml" />
+            </represents>
             <topLevelOccurrences>
               <messageOccurrenceSpecificationMoniker
                 Id="073338dc-1752-45a4-a64d-20ba991bd40c"
@@ -8181,6 +7754,22 @@
               <componentMoniker
                 Id="ea5f9b20-e1c6-4734-9dc1-e001bc3f0399"
                 LastKnownName="ArchImage"
+                LastKnownLocation="UML.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="7cb61b19-7860-4e2c-9c96-6c38ae836d98"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <actorMoniker
+                Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1"
+                LastKnownName="Utilisateur"
                 LastKnownLocation="UML.uml" />
             </type_NamedElement>
           </property>

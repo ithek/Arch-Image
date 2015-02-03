@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="c958c7ab-e1b6-47cf-8cc6-09a8f596d664" name="Connexion" linkedPackageId="65a411b5-2835-4ce8-8bbf-253f48b39e80" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="93fe0eef-f985-4624-9bc1-bab6fa7f9526">
-      <profileInstance Id="4405d717-f0b7-47a1-8de4-ba620b608948" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="fdb5bef9-6d1c-433b-98e7-806e597c0527">
-      <profileInstance Id="b8c8cc7d-84b2-474e-b3cd-3bfecec4aa2d" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <packageHasNamedElement>
       <interaction Id="e661e55f-0ac7-4390-9d93-2da3e9d8a178" name="Connexion" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
@@ -76,7 +62,7 @@
           <messageOccurrenceSpecification Id="7c3c705e-f411-4b73-9c56-bf5f44ddd7a1" name="MessageOccurrenceSpecification1">
             <elementDefinition Id="e42cbd83-bfdc-4d85-8839-b0093f9d4600" />
             <covered>
-              <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Personne" />
+              <lifelineMoniker Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" LastKnownName="Utilisateur" />
             </covered>
           </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="7a9a8ca7-185e-4ee2-8932-1fa23774c55e" name="MessageOccurrenceSpecification2">
@@ -150,18 +136,18 @@
           <combinedFragment Id="70b3af23-9815-4690-a1e5-0b4ee8f81363" name="CombinedFragment1" interactionOperator="Alt">
             <elementDefinition Id="883fd9e5-5ecc-4d86-b0cf-fc7e917e4d27" />
             <coveredLifelines>
-              <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
               <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
               <lifelineMoniker Id="e69b7fd1-beeb-4c88-9130-d580667dd556" LastKnownName="MySQLAccess" />
+              <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
               <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
             </coveredLifelines>
             <operands>
               <interactionOperand Id="a1cfea10-c2ee-4615-8f91-cc8e65aa98bb" name="InteractionOperand1">
                 <elementDefinition Id="133e542d-867b-4af2-8271-6b646bd9ab26" />
                 <coveredLifelines>
-                  <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
                   <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
                   <lifelineMoniker Id="e69b7fd1-beeb-4c88-9130-d580667dd556" LastKnownName="MySQLAccess" />
+                  <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
                   <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
                 </coveredLifelines>
                 <guard>
@@ -183,9 +169,9 @@
               <interactionOperand Id="33cb4bb2-4d12-4dfb-9902-cfde2ac9d0f0" name="InteractionOperand2">
                 <elementDefinition Id="b0e58219-c65f-47c3-bb2c-6a49ba1465e7" />
                 <coveredLifelines>
-                  <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
                   <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
                   <lifelineMoniker Id="e69b7fd1-beeb-4c88-9130-d580667dd556" LastKnownName="MySQLAccess" />
+                  <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
                   <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
                 </coveredLifelines>
                 <guard>
@@ -457,16 +443,16 @@
               <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="65dc9883-9700-4eec-bca5-e790f7495a3f" name="MessageOccurrenceSpecification21">
-            <elementDefinition Id="072f3e6e-a12e-40a1-aba4-b6df8a3d0cd5" />
-            <covered>
-              <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="96b02059-4141-4fbb-bfb2-a504079e3673" name="MessageOccurrenceSpecification22">
             <elementDefinition Id="24e33268-a301-493e-9eea-5ff6fff41d76" />
             <covered>
               <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="65dc9883-9700-4eec-bca5-e790f7495a3f" name="MessageOccurrenceSpecification21">
+            <elementDefinition Id="072f3e6e-a12e-40a1-aba4-b6df8a3d0cd5" />
+            <covered>
+              <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
             </covered>
           </messageOccurrenceSpecification>
           <executionOccurrenceSpecification Id="20461167-77f8-4093-85b4-02ec51a9aa14" name="ExecutionOccurrenceSpecification12">
@@ -529,16 +515,10 @@
               <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </executionOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="fc90c6aa-4dde-492a-a933-542d4fa87d70" name="OperandOccurrenceSpecification12">
-            <elementDefinition Id="fe9be16a-fa4f-4f1d-90fe-8ac8ef442236" />
+          <operandOccurrenceSpecification Id="9c97bfd7-7cb7-4db0-9d7e-26801cc57b6c" name="OperandOccurrenceSpecification22">
+            <elementDefinition Id="de5a34e7-bc5d-4dfa-84cc-d55a2333437d" />
             <covered>
-              <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="aac619af-39dd-4845-8091-e2e9a608549b" name="OperandOccurrenceSpecification18">
-            <elementDefinition Id="1d1e7ea6-e877-427c-a1b0-c0546d655645" />
-            <covered>
-              <lifelineMoniker Id="e69b7fd1-beeb-4c88-9130-d580667dd556" LastKnownName="MySQLAccess" />
+              <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="33b7eec7-8264-4af7-b41e-b8e9bbeb076a" name="OperandOccurrenceSpecification10">
@@ -547,10 +527,16 @@
               <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
             </covered>
           </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="9c97bfd7-7cb7-4db0-9d7e-26801cc57b6c" name="OperandOccurrenceSpecification22">
-            <elementDefinition Id="de5a34e7-bc5d-4dfa-84cc-d55a2333437d" />
+          <operandOccurrenceSpecification Id="aac619af-39dd-4845-8091-e2e9a608549b" name="OperandOccurrenceSpecification18">
+            <elementDefinition Id="1d1e7ea6-e877-427c-a1b0-c0546d655645" />
             <covered>
-              <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
+              <lifelineMoniker Id="e69b7fd1-beeb-4c88-9130-d580667dd556" LastKnownName="MySQLAccess" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="fc90c6aa-4dde-492a-a933-542d4fa87d70" name="OperandOccurrenceSpecification12">
+            <elementDefinition Id="fe9be16a-fa4f-4f1d-90fe-8ac8ef442236" />
+            <covered>
+              <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="f6c50c87-4d76-48cb-8458-83846587734f" name="OperandOccurrenceSpecification15">
@@ -663,8 +649,11 @@
           </executionOccurrenceSpecification>
         </fragments>
         <lifelines>
-          <lifeline Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" name="Personne" isActor="true" lifelineDisplayName="Personne">
+          <lifeline Id="c157a1aa-5da6-43d4-8eef-d1251c7fa82a" name="Utilisateur" isActor="true" lifelineDisplayName="Utilisateur">
             <elementDefinition Id="a77ff924-7c8d-4394-a99b-4d69a1dbf0cb" />
+            <represents>
+              <propertyMoniker Id="b7901648-1e5f-403d-befc-fa28b29e55c8" />
+            </represents>
             <topLevelOccurrences>
               <messageOccurrenceSpecificationMoniker Id="7c3c705e-f411-4b73-9c56-bf5f44ddd7a1" LastKnownName="MessageOccurrenceSpecification1" />
             </topLevelOccurrences>
@@ -852,6 +841,12 @@
               <referencedTypeMoniker Id="930a0616-f68a-4308-a596-6adfdcbeb551" LastKnownName="Auteur" />
             </type_NamedElement>
           </property>
+          <property Id="b7901648-1e5f-403d-befc-fa28b29e55c8" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c54588ca-e6e0-4067-937a-6b17f86cc6f0" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="02f2ec1a-6791-46da-bc3a-bce0369d3463" LastKnownName="Utilisateur" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </interaction>
     </packageHasNamedElement>
@@ -945,8 +940,27 @@
         <elementDefinition Id="38ed41f8-f252-417c-8d5a-45c713cec49c" />
       </executionEvent>
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="02f2ec1a-6791-46da-bc3a-bce0369d3463" name="Utilisateur" isAbstract="false" isLeaf="false" cachedFullName="UML::Utilisateur">
+        <elementDefinition Id="7eb644fe-c517-4dbb-876f-37b53b19e0b1" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="65a411b5-2835-4ce8-8bbf-253f48b39e80" name="UML">
     <elementDefinition Id="625ca314-552a-4176-ac0e-1316f80aa498" />
+    <profileInstances>
+      <packageHasProfileInstances Id="93fe0eef-f985-4624-9bc1-bab6fa7f9526">
+        <profileInstance Id="4405d717-f0b7-47a1-8de4-ba620b608948" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="fdb5bef9-6d1c-433b-98e7-806e597c0527">
+        <profileInstance Id="b8c8cc7d-84b2-474e-b3cd-3bfecec4aa2d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </SequenceDesignerModel>
