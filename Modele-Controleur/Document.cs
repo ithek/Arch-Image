@@ -7,15 +7,13 @@ namespace Modele_Controleur
 {
     public class Document
     {
+        /**
+         * Inclut le nom du document et son extension
+         */
         public string CheminAcces
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public int Id
@@ -52,7 +50,7 @@ namespace Modele_Controleur
         }
 
         /**
-         * Son emplacement dans sa catégorie
+         * Son emplacement dans sa catégorie. Compris entre 1 et N (et non 0 et N-1)
          * (ex : 5ème registre matricule)
          */
 
@@ -60,6 +58,13 @@ namespace Modele_Controleur
         {
             get; 
             set;
+        }
+
+        public Document(Categorie c, string cheminAcces, int position)
+        {
+            this.Categorie = c;
+            this.CheminAcces = cheminAcces;
+            this.Position = position;
         }
     }
 }

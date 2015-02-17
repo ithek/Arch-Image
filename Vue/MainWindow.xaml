@@ -6,10 +6,11 @@
         <TextBlock Height="24" Margin="221,31,221,0" TextWrapping="Wrap" Width="75" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Arch'Image"/><LineBreak/><Run/></TextBlock>
         <Button Name="MapButton" HorizontalAlignment="Left" Height="45" Margin="88,86,0,0" VerticalAlignment="Top" Width="100" Click="MapButton_Click">
             <StackPanel>
-                <Image Source="Resources/trans.png"/>
+                <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-                
+        <Button x:Name="RMButton" Content="Documents" HorizontalAlignment="Center" Margin="367,86,0,0" VerticalAlignment="Top" Width="73" Height="45" Click="RMButton_Click"/>
+
 
     </Grid>
 </Window>

@@ -4,8 +4,8 @@
     <Position X="0.75" Y="2.25" Width="3.75" />
     <AssociationLine Name="DocumentCourant" Type="Modele_Controleur.Document" ManuallyRouted="true">
       <Path>
-        <Point X="4.5" Y="4.127" />
-        <Point X="4.802" Y="4.127" />
+        <Point X="4.5" Y="4.366" />
+        <Point X="4.802" Y="4.366" />
         <Point X="4.802" Y="5.125" />
         <Point X="6.375" Y="5.125" />
         <Point X="6.375" Y="5.5" />
@@ -13,8 +13,8 @@
     </AssociationLine>
     <AssociationLine Name="CategorieCourante" Type="Modele_Controleur.Categorie" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.5" Y="2.722" />
-        <Point X="5" Y="2.722" />
+        <Point X="4.5" Y="2.782" />
+        <Point X="5" Y="2.782" />
         <Point X="5" Y="1.25" />
         <Point X="6.25" Y="1.25" />
       </Path>
@@ -23,7 +23,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAEkAAAAEAAAIQAgAEAAAAAAAAAACCCCAAAgAAAAAE=</HashCode>
+      <HashCode>EAAEkAAAAEAAAIQAgAEAAAAAAAAAACCCCAAAgAAAQAE=</HashCode>
       <FileName>ArchImage.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

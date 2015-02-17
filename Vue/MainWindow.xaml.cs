@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modele_Controleur;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,32 @@ namespace Vue
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ArchImage archimage
+        {
+            get;
+            set;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            this.archimage = new ArchImage();
+
+            //FIXME mettre le contenu de la page principale (bouton map, RM, connexion, favoris, etc) dans une Page et la charger plutot qu'en dur.
+
         }
 
         private void MapButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Not yet implemented :(");
+        }
+
+        private void RMButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
+            this.archimage.Navigation(Categorie.REGISTRE_MATRICULE);
+            main.Content = new NavigationPage(this.archimage);
         }
     }
 }
