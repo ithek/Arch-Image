@@ -114,6 +114,18 @@
     <Resource Include="Resources\RM\2.png" />
     <Resource Include="Resources\RM\3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AM\mariage1.png" />
+    <Resource Include="Resources\AM\mariage2.png" />
+    <Resource Include="Resources\AM\mariage3.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\TRM\TRM1.png" />
+    <Resource Include="Resources\TRM\TRM2.png" />
+    <Resource Include="Resources\TRM\TRM3.png" />
+    <Resource Include="Resources\TRM\TRM4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

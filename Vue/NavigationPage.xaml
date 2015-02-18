@@ -9,7 +9,9 @@
 
     <Grid>
         <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="10,105,0,0" Width="45" Click="PreviousDocButton_Click"/>
-        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="249,105,0,0" Width="45" Height="37" Click="NextDocButton_Click"/>
+        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="249,105,0,0" Width="45" Height="37"   Click="NextDocButton_Click"/>
+        <Button x:Name="PreviousCategoryButton" Content="^" Margin="131,10,0,0" VerticalAlignment="Top" Width="75" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click"/>
+        <Button x:Name="NextCategoryButton" Content="V" Margin="131,0,0,10" Width="75" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Click="NextCategoryButton_Click"/>
 
     </Grid>
 </Page>

@@ -8,9 +8,7 @@ namespace Modele_Controleur
     public enum Categorie
     {
         REGISTRE_MATRICULE,
-        ACTE_NAISSANCE,
         ACTE_MARIAGE,
-        ACTE_DECES,
         TABLE_REGISTRE_MATRICULE,
     }
 }

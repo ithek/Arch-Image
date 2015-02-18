@@ -59,7 +59,7 @@ namespace Modele_Controleur
 
 
         /**
-         * A appeler lorsque l'utilisateur commence la navigation en passant du menu principal à une des categories (via le bouton correspondant)
+         * A appeler lorsque l'utilisateur commence à naviguer dans une categorie (depuis le menu principal ou simplement en ayant changé de catégorie)
          * Le document courant est alors le premier de sa catégorie
          * Le paramètre représente la catégorie choisie
          */
@@ -110,7 +110,19 @@ namespace Modele_Controleur
          */
         public void CategoriePrecedente()
         {
-            throw new System.NotImplementedException();
+            Categorie prevCateg;
+            var t = Enum.GetValues(typeof(Categorie));
+            int i = Array.IndexOf(t, this.CategorieCourante);
+            if (i == 0)
+            {
+                prevCateg = (Categorie) t.GetValue(t.Length - 1);
+            }
+            else
+            {
+                prevCateg = (Categorie) t.GetValue(i - 1);
+            }
+
+            this.Navigation(prevCateg);
         }
 
         /**
@@ -118,7 +130,19 @@ namespace Modele_Controleur
          */
         public void CategorieSuivante()
         {
-            throw new System.NotImplementedException();
+            Categorie nextCateg;
+            var t = Enum.GetValues(typeof(Categorie));
+            int i = Array.IndexOf(t, this.CategorieCourante);
+            if (i == t.Length - 1)
+            {
+                nextCateg = (Categorie) t.GetValue(0);
+            }
+            else
+            {
+                nextCateg = (Categorie) t.GetValue(i + 1);
+            }
+
+            this.Navigation(nextCateg);
         }
 
         /**
@@ -163,13 +187,18 @@ namespace Modele_Controleur
         {
             // TODO les autres catégories et dossiers correspondants
             string res = "RM";
+
             if (c == Categorie.REGISTRE_MATRICULE)
             {
-
+                res = "RM";
             }
             else if (c == Categorie.ACTE_MARIAGE)
             {
-
+                res = "AM";
+            }
+            else if (c == Categorie.TABLE_REGISTRE_MATRICULE)
+            {
+                res = "TRM";
             }
 
             return res;

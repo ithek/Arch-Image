@@ -15,8 +15,8 @@
       <Path>
         <Point X="4.5" Y="2.782" />
         <Point X="5" Y="2.782" />
-        <Point X="5" Y="1.25" />
-        <Point X="6.25" Y="1.25" />
+        <Point X="5" Y="1.072" />
+        <Point X="6.25" Y="1.072" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.152" Y="0.145" />
@@ -96,7 +96,7 @@
   <Enum Name="Modele_Controleur.Categorie">
     <Position X="6.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAAAEAAAAAAAAAAAAACIAAAAAQAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Categorie.cs</FileName>
     </TypeIdentifier>
   </Enum>

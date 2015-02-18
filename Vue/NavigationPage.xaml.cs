@@ -58,5 +58,17 @@ namespace Vue
             this.Archimage.DocumentPrecedent();
             this.UpdateBackground();
         }
+
+        private void PreviousCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Archimage.CategoriePrecedente();
+            this.UpdateBackground();
+        }
+
+        private void NextCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Archimage.CategorieSuivante();
+            this.UpdateBackground();
+        }
     }
 }
