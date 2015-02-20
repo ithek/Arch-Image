@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -74,6 +75,12 @@ namespace Modele_Controleur
             this.DocumentCourant = new Document(CategorieCourante, docs[pos - 1], pos); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
         }
 
+        public int GetNbDocInCurrentCategory()
+        {
+            /* FIXME Utiliser EnumerateFiles qui est moins couteux (acces par indice toujours possible ?), surtout pour une fonction pareille */
+            var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
+            return docs.Length;
+        }
 
         /**
          * Change le document courant en prenant le prochain dans sa catégorie
@@ -146,16 +153,22 @@ namespace Modele_Controleur
         }
 
         /**
-         * Change le document courant en prenant le numeroDocumentième de sa catégorie
-         * FIXME throw exception si parametre incohérent
-         */ 
+         * Change le document courant en prenant le numeroDocumentième de sa catégorie (donc de 1 à N)
+         * Lance System.ArgumentException si parametre incohérent
+         */
         public void UtiliserDoc(int numeroDocument)
         {
-            throw new System.NotImplementedException();
-
-            //if (numeroDocument <= 0 || ... (trop élevé) )
-            throw new System.ArgumentException("Il n'y a pas de document n°" + numeroDocument +
+            if (numeroDocument <= 0 || numeroDocument > GetNbDocInCurrentCategory())
+            {
+                throw new System.ArgumentException("Il n'y a pas de document n°" + numeroDocument +
                                                " dans cette catégorie");
+            }
+            else
+            {
+                //FIXME pas tres efficace
+                var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
+                this.DocumentCourant = new Document(CategorieCourante, docs[numeroDocument - 1], numeroDocument);
+            }
         }
 
         public List<Document> documentDuPoi(POIWrapper poi)

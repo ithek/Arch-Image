@@ -1,6 +1,7 @@
 ﻿using Modele_Controleur;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,13 @@ namespace Vue
 
             this.Archimage = a;
 
-            this.UpdateBackground();
+            this.UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            UpdateBackground();
+            UpdateSlider();//TODO use binding instead
         }
 
         private void UpdateBackground()
@@ -46,29 +53,43 @@ namespace Vue
             background.Stretch = Stretch.UniformToFill;
             mainWindow.Background = background;
         }
+        private void UpdateSlider()
+        {
+            DocSlider.Maximum = this.Archimage.GetNbDocInCurrentCategory();
+            DocSlider.Value = this.Archimage.DocumentCourant.Position;
+        }
 
         private void NextDocButton_Click(object sender, RoutedEventArgs e)
         {
             this.Archimage.DocumentSuivant();
-            this.UpdateBackground();
+            this.UpdateUI();
         }
 
         private void PreviousDocButton_Click(object sender, RoutedEventArgs e)
         {
             this.Archimage.DocumentPrecedent();
-            this.UpdateBackground();
+            this.UpdateUI();
         }
 
         private void PreviousCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             this.Archimage.CategoriePrecedente();
-            this.UpdateBackground();
+            this.UpdateUI();
         }
 
         private void NextCategoryButton_Click(object sender, RoutedEventArgs e)
         {
             this.Archimage.CategorieSuivante();
-            this.UpdateBackground();
+            this.UpdateUI();
+        }
+
+        private void DocSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (this.Archimage != null && this.Archimage.DocumentCourant.Position != (int)DocSlider.Value)
+            {
+                this.Archimage.UtiliserDoc((int)DocSlider.Value);
+                this.UpdateUI();
+            }
         }
     }
 }
