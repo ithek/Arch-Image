@@ -37,7 +37,8 @@ namespace Vue
 
         }
 
-        private void MapButton_Click(object sender, RoutedEventArgs e)
+
+        private void Todo(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Not yet implemented :(");
         }
@@ -47,6 +48,16 @@ namespace Vue
             MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
             this.archimage.Navigation(Categorie.REGISTRE_MATRICULE);
             main.Content = new NavigationPage(this.archimage);
+        }
+
+        private void ConnexionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Todo(sender, e);
+        }
+
+        private void InscriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Todo(sender, e);
         }
     }
 }
