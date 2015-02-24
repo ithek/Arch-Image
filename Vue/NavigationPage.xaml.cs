@@ -24,6 +24,9 @@ namespace Vue
     public partial class NavigationPage : Page
     {
 
+        private bool drawingRectangleForNewPOI;
+        private Point rectanglePOIStart;
+        
         private ArchImage Archimage
         {
             get;
@@ -35,6 +38,7 @@ namespace Vue
             InitializeComponent();
 
             this.Archimage = a;
+            this.drawingRectangleForNewPOI = false;
 
             this.UpdateUI();
         }
@@ -91,5 +95,93 @@ namespace Vue
                 this.UpdateUI();
             }
         }
-    }
+		
+        private async void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            bool isHold = await this.TouchHold(TimeSpan.FromSeconds(1));
+            if (isHold)
+            {
+                this.startRectangle(e);
+            }
+        }
+
+        private void startRectangle(MouseButtonEventArgs e)
+        {
+            // Capture and track the mouse.
+            this.drawingRectangleForNewPOI = true;
+            rectanglePOIStart = e.GetPosition(theGrid);
+            theGrid.CaptureMouse();
+
+            // Initial placement of the drag selection box.         
+            Canvas.SetLeft(newPOISelectionRectangle, rectanglePOIStart.X);
+            Canvas.SetTop(newPOISelectionRectangle, rectanglePOIStart.Y);
+            newPOISelectionRectangle.Width = 0;
+            newPOISelectionRectangle.Height = 0;
+
+            // Make the drag selection box visible.
+            newPOISelectionRectangle.Visibility = Visibility.Visible;
+        }
+
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (this.drawingRectangleForNewPOI)
+            {
+                this.endRectangle(e);
+            }
+        }
+
+        private void endRectangle(MouseButtonEventArgs e)
+        {
+            this.drawingRectangleForNewPOI = false;
+            theGrid.ReleaseMouseCapture();
+
+            // Hide the drag selection box.
+            newPOISelectionRectangle.Visibility = Visibility.Collapsed;
+
+            Point rectanglePOIEnd = e.GetPosition(theGrid);
+
+            //TODO formulaire, puis POI entre rectanglePOIStart et rectanglePOIEnd 
+
+            double left = ((rectanglePOIStart.X + rectanglePOIEnd.X)/2);
+            double top =  ((rectanglePOIStart.Y + rectanglePOIEnd.Y)/2);
+
+            MessageBox.Show("Ajout d'un POI en " + left + " ; " + top);
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+           if (drawingRectangleForNewPOI)
+            {
+                // When the mouse is held down, reposition the drag selection box.
+
+                Point mousePos = e.GetPosition(theGrid);
+
+                if (rectanglePOIStart.X < mousePos.X)
+                {
+                    Canvas.SetLeft(newPOISelectionRectangle, rectanglePOIStart.X);
+                    newPOISelectionRectangle.Width = mousePos.X - rectanglePOIStart.X;
+                }
+                else
+                {
+                    Canvas.SetLeft(newPOISelectionRectangle, mousePos.X);
+                    newPOISelectionRectangle.Width = rectanglePOIStart.X - mousePos.X;
+                }
+
+                if (rectanglePOIStart.Y < mousePos.Y)
+                {
+                    Canvas.SetTop(newPOISelectionRectangle, rectanglePOIStart.Y);
+                    newPOISelectionRectangle.Height = mousePos.Y - rectanglePOIStart.Y;
+                }
+                else
+                {
+                    Canvas.SetTop(newPOISelectionRectangle, mousePos.Y);
+                    newPOISelectionRectangle.Height = rectanglePOIStart.Y - mousePos.Y;
+                }
+            }
+        }
+
+
+	}
 }
