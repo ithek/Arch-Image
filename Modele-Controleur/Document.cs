@@ -40,18 +40,25 @@ namespace Modele_Controleur
 
         public Categorie Categorie
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
+        }
+
+
+        /**
+         * L'emplacement du livre de ce document, à l'intérieur de sa catégorie.
+         * Compris entre 1 et N (et non 0 et N-1)
+         * (ex : 5ème livre de registres matricules)
+         */
+        public int PositionLivre
+        {
+            get;
+            set;
         }
 
         /**
-         * Son emplacement dans sa catégorie. Compris entre 1 et N (et non 0 et N-1)
-         * (ex : 5ème registre matricule)
+         * Son emplacement dans son livre. Compris entre 1 et N (et non 0 et N-1)
+         * (ex : 5ème registre matricule (d'un certain livre))
          */
 
         public int Position
@@ -60,10 +67,11 @@ namespace Modele_Controleur
             set;
         }
 
-        public Document(Categorie c, string cheminAcces, int position)
+        public Document(Categorie c, string cheminAcces, int posLivre, int position)
         {
             this.Categorie = c;
             this.CheminAcces = cheminAcces;
+            this.PositionLivre = posLivre;
             this.Position = position;
         }
     }

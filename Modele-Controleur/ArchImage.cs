@@ -9,6 +9,8 @@ namespace Modele_Controleur
 {
     public class ArchImage
     {
+
+        private const string PATH_TO_ARCHIVE_DOCS = "../../Resources/Archives_departementales/";
         public Utilisateur Utilisateur
         {
             get
@@ -48,11 +50,6 @@ namespace Modele_Controleur
             }
         }
 
-        public Categorie CategorieCourante
-        {
-            get; 
-            set;
-        }
 
         public ArchImage()
         {
@@ -61,65 +58,105 @@ namespace Modele_Controleur
 
         /**
          * A appeler lorsque l'utilisateur commence à naviguer dans une categorie (depuis le menu principal ou simplement en ayant changé de catégorie)
-         * Le document courant est alors le premier de sa catégorie
-         * Le paramètre représente la catégorie choisie
+         * Le document courant est alors le premier du premier livre de la catégorie
+         * Le paramètre représente la catégorie dans laquelle l'utilisateur va naviguer
          */
         public void Navigation(Categorie categorie)
         {
-            const int pos = 1;
-            this.CategorieCourante = categorie;
+            const int FIRST_BOOK = 1;
+            var filenames = getFileNamesIn(categorie, FIRST_BOOK);
 
-            /* FIXME Utiliser EnumerateFiles qui est moins couteux (acces par indice toujours possible ?) */
-            var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
-
-            this.DocumentCourant = new Document(CategorieCourante, docs[pos - 1], pos); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
+            this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
         }
 
-        public int GetNbDocInCurrentCategory()
+        public int GetNbDocInCurrentBook()
         {
-            /* FIXME Utiliser EnumerateFiles qui est moins couteux (acces par indice toujours possible ?), surtout pour une fonction pareille */
-            var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
-            return docs.Length;
-        }
+            return getFileNamesOfCurrentBook().Length;
+        }   
 
         /**
-         * Change le document courant en prenant le prochain dans sa catégorie
+         * Change le document courant en prenant le prochain dans son livre s'il en reste, ou le premier du livre suivant sinon.
+         * Ne fait rien s'il n'y a plus de livres ensuite.
          */
         public void DocumentSuivant()
         {
-            //FIXME pas tres efficace, on charge tous les fichiers avant même de tester
-            var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
-            int pos = DocumentCourant.Position;
+            bool lastOfItsBook = (DocumentCourant.Position == getFileNamesOfCurrentBook().Length);
+            bool lastBookOfCategory = (DocumentCourant.PositionLivre == getBookNamesIn(DocumentCourant.Categorie).Length);
+            string nouvCheminAcces;
+            int nouvPosLivre;
+            int nouvPosDansLivre;
 
-            if (pos < docs.Length)
+            if (lastOfItsBook)
             {
-                this.DocumentCourant = new Document(CategorieCourante, docs[pos], pos + 1); // Document.Position et les tableaux c# n'utilisent pas le même indiçage  
+                if (! lastBookOfCategory) 
+                {
+                    // Use first doc of next book
+                    nouvPosLivre = DocumentCourant.PositionLivre + 1;
+                    nouvCheminAcces = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre)[0];
+                    nouvPosDansLivre = 1;
+
+                    this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
+                }
+            }
+            else
+            {
+                // Use next doc from this book 
+                nouvPosLivre = DocumentCourant.PositionLivre;
+                nouvCheminAcces = getFileNamesOfCurrentBook()[DocumentCourant.Position];
+                nouvPosDansLivre = DocumentCourant.Position + 1;
+
+                this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
             }
         }
 
         /**
-         * Change le document courant en prenant celui d'avant dans sa catégorie
+         * Change le document courant en prenant le précédent de son livre. 
+         * S'il était le premier, on prend le dernier document du livre précédent.
+         * S'il n'y a pas de livre précédent, on ne fait rien.
          */
         public void DocumentPrecedent()
         {
-            // FIXME pas tres efficace, on charge tous les fichiers avant même de tester
-            var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
-            int pos = DocumentCourant.Position;
+            bool firstOfItsBook = (DocumentCourant.Position == 1);
+            bool firstBookOfCategory = (DocumentCourant.PositionLivre == 1);
+            string nouvCheminAcces;
+            int nouvPosLivre;
+            int nouvPosDansLivre;
 
-            if (pos > 1)
+            if (firstOfItsBook)
             {
-                this.DocumentCourant = new Document(CategorieCourante, docs[pos - 2], pos - 1); // Document.Position et les tableaux c# n'utilisent pas le même indiçage  
+                if (!firstBookOfCategory)
+                {
+                    // Use last doc of previous 
+                    nouvPosLivre = DocumentCourant.PositionLivre - 1;
+
+                    var docsDansLivrePrec = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre);
+                    int nombreDocDansLivrePrec = docsDansLivrePrec.Length;
+
+                    nouvCheminAcces = docsDansLivrePrec[nombreDocDansLivrePrec - 1];
+                    nouvPosDansLivre = nombreDocDansLivrePrec;
+
+                    this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
+                }
+            }
+            else
+            {
+                // Use previous doc from this book 
+                nouvPosLivre = DocumentCourant.PositionLivre;
+                nouvCheminAcces = getFileNamesOfCurrentBook()[DocumentCourant.Position - 2];
+                nouvPosDansLivre = DocumentCourant.Position - 1;
+
+                this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
             }
         }
 
         /**
-         * Change le document courant en prenant la premier de la catégorie précédente
+         * Change le document courant en prenant le premier document du premier livre de la catégorie précédente
          */
         public void CategoriePrecedente()
         {
             Categorie prevCateg;
             var t = Enum.GetValues(typeof(Categorie));
-            int i = Array.IndexOf(t, this.CategorieCourante);
+            int i = Array.IndexOf(t, this.DocumentCourant.Categorie);
             if (i == 0)
             {
                 prevCateg = (Categorie) t.GetValue(t.Length - 1);
@@ -133,13 +170,13 @@ namespace Modele_Controleur
         }
 
         /**
-         * Change le document courant en prenant la premier de la catégorie suivante
+         * Change le document courant en prenant le premier document du premier livre de la catégorie suivante
          */
         public void CategorieSuivante()
         {
             Categorie nextCateg;
             var t = Enum.GetValues(typeof(Categorie));
-            int i = Array.IndexOf(t, this.CategorieCourante);
+            int i = Array.IndexOf(t, this.DocumentCourant.Categorie);
             if (i == t.Length - 1)
             {
                 nextCateg = (Categorie) t.GetValue(0);
@@ -153,21 +190,22 @@ namespace Modele_Controleur
         }
 
         /**
-         * Change le document courant en prenant le numeroDocumentième de sa catégorie (donc de 1 à N)
+         * Change le document courant en prenant le numeroDocumentième de son livre (donc de 1 à N)
          * Lance System.ArgumentException si parametre incohérent
          */
         public void UtiliserDoc(int numeroDocument)
         {
-            if (numeroDocument <= 0 || numeroDocument > GetNbDocInCurrentCategory())
+            if (numeroDocument <= 0 || numeroDocument > GetNbDocInCurrentBook())
             {
                 throw new System.ArgumentException("Il n'y a pas de document n°" + numeroDocument +
-                                               " dans cette catégorie");
+                                               " dans ce livre (categorie " + DocumentCourant.Categorie + 
+                                               ", livre n°" + DocumentCourant.PositionLivre + ")");
             }
             else
             {
                 //FIXME pas tres efficace
-                var docs = Directory.GetFiles("../../Resources/" + CategorieToFolderName(CategorieCourante));
-                this.DocumentCourant = new Document(CategorieCourante, docs[numeroDocument - 1], numeroDocument);
+                var docs = getFileNamesOfCurrentBook();
+                this.DocumentCourant = new Document(DocumentCourant.Categorie, docs[numeroDocument - 1], DocumentCourant.PositionLivre, numeroDocument);
             }
         }
 
@@ -199,22 +237,47 @@ namespace Modele_Controleur
         private static string CategorieToFolderName(Categorie c)
         {
             // TODO les autres catégories et dossiers correspondants
-            string res = "RM";
+            string res = "DUDE_FIXME";
 
             if (c == Categorie.REGISTRE_MATRICULE)
             {
-                res = "RM";
+                res = "REGITRES_MILITAIRES";
             }
-            else if (c == Categorie.ACTE_MARIAGE)
+            else if (c == Categorie.NAISSANCE_MARIAGE_DECES)
             {
-                res = "AM";
+                res = "NMD";
             }
             else if (c == Categorie.TABLE_REGISTRE_MATRICULE)
             {
-                res = "TRM";
+                res = "TABLES_RMM";
+            }
+            else
+            {
+                Console.WriteLine("ERREUR : Cas non traité dans CategorieToFolderName (" + c + ")");
             }
 
             return res;
+        }
+
+        private string[] getFileNamesOfCurrentBook() 
+        {
+            return getFileNamesIn(DocumentCourant.Categorie, DocumentCourant.PositionLivre);
+        }
+
+        /**
+         * Returns the files in the directory 'category', in sub-directory n°'posLivre'
+         * 0 < posLivre <= N,    N being the number of books (sub-directories) in category
+         */
+        private string[] getFileNamesIn(Categorie category, int posLivre)
+        {
+            /* FIXME Utiliser EnumerateFiles qui est moins couteux ? */
+            var dirs = getBookNamesIn(category);
+            return Directory.GetFiles(dirs[posLivre - 1]);
+        }
+
+        private string[] getBookNamesIn(Categorie category)
+        {
+            return Directory.GetDirectories(PATH_TO_ARCHIVE_DOCS + CategorieToFolderName(category));
         }
     }
 }

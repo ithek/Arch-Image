@@ -59,7 +59,7 @@ namespace Vue
         }
         private void UpdateSlider()
         {
-            DocSlider.Maximum = this.Archimage.GetNbDocInCurrentCategory();
+            DocSlider.Maximum = this.Archimage.GetNbDocInCurrentBook();
             DocSlider.Value = this.Archimage.DocumentCourant.Position;
         }
 
