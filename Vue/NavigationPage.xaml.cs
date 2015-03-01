@@ -91,7 +91,7 @@ namespace Vue
         {
             if (this.Archimage != null && this.Archimage.DocumentCourant.Position != (int)DocSlider.Value)
             {
-                this.Archimage.UtiliserDoc((int)DocSlider.Value);
+                //this.Archimage.UtiliserDoc((int)DocSlider.Value);
                 this.UpdateUI();
             }
         }

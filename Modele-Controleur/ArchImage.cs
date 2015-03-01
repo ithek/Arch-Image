@@ -10,7 +10,7 @@ namespace Modele_Controleur
     public class ArchImage
     {
 
-        private const string PATH_TO_ARCHIVE_DOCS = "../../Resources/Archives_departementales/";
+        private const string PATH_TO_ARCHIVE_DOCS = "../../Resources/";
         public Utilisateur Utilisateur
         {
             get
@@ -30,29 +30,33 @@ namespace Modele_Controleur
 
         public MySQLAccess MySQLAccess
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public SewelisAccess SewelisAccess
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
+        }
+
+        public List<Document> Documents
+        {
+            get;
+            set;
+        }
+
+        public int IndiceDoc
+        {
+            get;
+            set;
         }
 
 
         public ArchImage()
         {
+            SewelisAccess = new SewelisAccess();
+            Documents = new List<Document>();
         }
 
 
@@ -63,15 +67,19 @@ namespace Modele_Controleur
          */
         public void Navigation(Categorie categorie)
         {
-            const int FIRST_BOOK = 1;
+            /*const int FIRST_BOOK = 1;
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
             
             this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
+            */
+            Documents = SewelisAccess.GetListDocs(categorie);
+            this.DocumentCourant = Documents[0];
         }
 
         public int GetNbDocInCurrentBook()
         {
-            return getFileNamesOfCurrentBook().Length;
+            return Documents.Count;
+            //return getFileNamesOfCurrentBook().Length;
         }   
 
         /**
@@ -80,19 +88,21 @@ namespace Modele_Controleur
          */
         public void DocumentSuivant()
         {
-            bool lastOfItsBook = (DocumentCourant.Position == getFileNamesOfCurrentBook().Length);
+           /* bool lastOfItsBook = (DocumentCourant.Position == getFileNamesOfCurrentBook().Length);
             bool lastBookOfCategory = (DocumentCourant.PositionLivre == getBookNamesIn(DocumentCourant.Categorie).Length);
             string nouvCheminAcces;
             int nouvPosLivre;
-            int nouvPosDansLivre;
+            int nouvPosDansLivre;*/
 
-            if (lastOfItsBook)
+            DocumentCourant = Documents[++IndiceDoc];
+
+           /* if (lastOfItsBook)
             {
                 if (! lastBookOfCategory) 
                 {
                     // Use first doc of next book
                     nouvPosLivre = DocumentCourant.PositionLivre + 1;
-                    nouvCheminAcces = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre)[0];
+                    //nouvCheminAcces = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre)[0];
                     nouvPosDansLivre = 1;
 
                     this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
@@ -106,7 +116,7 @@ namespace Modele_Controleur
                 nouvPosDansLivre = DocumentCourant.Position + 1;
 
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
-            }
+            }*/
         }
 
         /**
@@ -116,13 +126,15 @@ namespace Modele_Controleur
          */
         public void DocumentPrecedent()
         {
-            bool firstOfItsBook = (DocumentCourant.Position == 1);
+            /*bool firstOfItsBook = (DocumentCourant.Position == 1);
             bool firstBookOfCategory = (DocumentCourant.PositionLivre == 1);
             string nouvCheminAcces;
             int nouvPosLivre;
-            int nouvPosDansLivre;
+            int nouvPosDansLivre;*/
 
-            if (firstOfItsBook)
+            DocumentCourant = Documents[--IndiceDoc];
+
+            /*if (firstOfItsBook)
             {
                 if (!firstBookOfCategory)
                 {
@@ -146,7 +158,7 @@ namespace Modele_Controleur
                 nouvPosDansLivre = DocumentCourant.Position - 1;
 
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
-            }
+            }*/
         }
 
         /**
@@ -237,31 +249,31 @@ namespace Modele_Controleur
         private static string CategorieToFolderName(Categorie c)
         {
             // TODO les autres catégories et dossiers correspondants
-            string res = "DUDE_FIXME";
+            string res = "DUDE_FIXME/";
 
             if (c == Categorie.REGISTRE_MATRICULE)
             {
-                res = "REGITRES_MILITAIRES";
+                res = "REGISTRES_MILITAIRES/";
             }
             else if (c == Categorie.NAISSANCE_MARIAGE_DECES)
             {
-                res = "NMD";
+                res = "NMD/";
             }
             else if (c == Categorie.TABLE_REGISTRE_MATRICULE)
             {
-                res = "TABLES_RMM";
+                res = "TABLES_RMM/";
             }
             else if (c == Categorie.RECENSEMENT)
             {
-                res = "RECENSEMENT";
+                res = "RECENSEMENT/";
             }
             else if (c == Categorie.TABLES_DECENNALES)
             {
-                res = "TABLES-DECENNALES";
+                res = "TABLES-DECENNALES/";
             }
             else if (c == Categorie.TSA)
             {
-                res = "TSA";
+                res = "TSA/";
             }
             else
             {
@@ -284,7 +296,8 @@ namespace Modele_Controleur
         {
             /* FIXME Utiliser EnumerateFiles qui est moins couteux ? */
             var dirs = getBookNamesIn(category);
-            return Directory.GetFiles(dirs[posLivre - 1]);
+            return null;
+            //return Directory.GetFiles(dirs[posLivre - 1]);
         }
 
         private string[] getBookNamesIn(Categorie category)
