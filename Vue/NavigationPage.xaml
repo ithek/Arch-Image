@@ -19,7 +19,7 @@
         <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center"/>
         <Button x:Name="PreviousCategoryButton" Content="^" Margin="0" VerticalAlignment="Top" Width="75" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click"/>
         <Button x:Name="NextCategoryButton" Content="V" Margin="0,0,0,32" Width="75" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center"/>
-        <Slider Minimum="1" Height="27" Margin="0" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" ValueChanged="DocSlider_ValueChanged"/>
+        <Slider  Minimum="1" Height="27" Margin="0" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" ValueChanged="DocSlider_ValueChanged"/>
 
         <Canvas>
             <Rectangle

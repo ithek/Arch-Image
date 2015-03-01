@@ -10,5 +10,8 @@ namespace Modele_Controleur
         REGISTRE_MATRICULE,
         NAISSANCE_MARIAGE_DECES,
         TABLE_REGISTRE_MATRICULE,
+        RECENSEMENT,
+        TABLES_DECENNALES,
+        TSA
     }
 }

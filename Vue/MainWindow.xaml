@@ -22,12 +22,12 @@
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button x:Name="NMDButton" Content="NMD" Margin="54,222,0,148" Width="120" Height="50" Click="Todo" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Button x:Name="NMDButton" Content="NMD" Margin="54,222,0,148" Width="120" Height="50" Click="NMDButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button x:Name="RecensementButton" Content="Recensement" Margin="256,222,0,148" Width="120" Height="50" Click="Todo" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Button x:Name="RecensementButton" Content="Recensement" Margin="256,222,0,148" Width="120" Height="50" Click="RecensementButton_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>

@@ -65,7 +65,7 @@ namespace Modele_Controleur
         {
             const int FIRST_BOOK = 1;
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
-
+            
             this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
         }
 
@@ -214,9 +214,9 @@ namespace Modele_Controleur
             throw new System.NotImplementedException();
         }
 
-        public void créerPOI()
+        public void creerPOI(POICreationData poi)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("Ajout d'un POI concernant " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
         }
 
         public void POISurDoc(Document doc)
@@ -250,6 +250,18 @@ namespace Modele_Controleur
             else if (c == Categorie.TABLE_REGISTRE_MATRICULE)
             {
                 res = "TABLES_RMM";
+            }
+            else if (c == Categorie.RECENSEMENT)
+            {
+                res = "RECENSEMENT";
+            }
+            else if (c == Categorie.TABLES_DECENNALES)
+            {
+                res = "TABLES-DECENNALES";
+            }
+            else if (c == Categorie.TSA)
+            {
+                res = "TSA";
             }
             else
             {

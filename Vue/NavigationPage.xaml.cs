@@ -59,8 +59,8 @@ namespace Vue
         }
         private void UpdateSlider()
         {
+            DocSlider.Value = this.Archimage.DocumentCourant.Position; 
             DocSlider.Maximum = this.Archimage.GetNbDocInCurrentBook();
-            DocSlider.Value = this.Archimage.DocumentCourant.Position;
         }
 
         private void NextDocButton_Click(object sender, RoutedEventArgs e)
@@ -144,10 +144,11 @@ namespace Vue
 
             //TODO formulaire, puis POI entre rectanglePOIStart et rectanglePOIEnd 
 
+            //TODO corriger (peut-être) les valeurs
             double left = ((rectanglePOIStart.X + rectanglePOIEnd.X)/2);
             double top =  ((rectanglePOIStart.Y + rectanglePOIEnd.Y)/2);
 
-            MessageBox.Show("Ajout d'un POI en " + left + " ; " + top);
+            new POICreationForm(left, top, Archimage).Show();
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)

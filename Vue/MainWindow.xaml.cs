@@ -46,8 +46,23 @@ namespace Vue
 
         private void RMButton_Click(object sender, RoutedEventArgs e)
         {
+            StartNavigation(Categorie.REGISTRE_MATRICULE);
+        }
+
+        private void NMDButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartNavigation(Categorie.NAISSANCE_MARIAGE_DECES);
+        }
+
+        private void RecensementButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartNavigation(Categorie.RECENSEMENT);
+        }
+
+        private void StartNavigation(Categorie c)
+        {
             MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
-            this.archimage.Navigation(Categorie.REGISTRE_MATRICULE);
+            this.archimage.Navigation(c);
             main.Content = new NavigationPage(this.archimage);
         }
 
@@ -60,5 +75,6 @@ namespace Vue
         {
             Todo(sender, e);
         }
+
     }
 }
