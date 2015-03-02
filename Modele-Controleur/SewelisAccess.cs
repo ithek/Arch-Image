@@ -12,9 +12,8 @@ namespace Modele_Controleur
     {
         public SewelisAccess()
         {
-            var client = new WebClient();
-            string response = client.DownloadString("http://172.16.1.2:9999/createStore?userKey=123&filename=plop");
-            response = client.DownloadString("http://172.16.1.2:9999/importRdf?userKey=123&storeId=1&base=foo&filename=archimage_img.rdf");
+            var request = (HttpWebRequest)WebRequest.Create("http://172.16.1.2:9999/createStore?userKey=123&filename=plop");
+            var request2 = (HttpWebRequest)WebRequest.Create("http://172.16.1.2:9999/importRdf?userKey=123&storeId=1&base=foo&filename=archimage_img.rdf");
         }
         
         /**
