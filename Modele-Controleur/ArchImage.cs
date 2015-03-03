@@ -242,7 +242,7 @@ namespace Modele_Controleur
 
             if (c == Categorie.REGISTRE_MATRICULE)
             {
-                res = "REGITRES_MILITAIRES";
+                res = "REGISTRES_MILITAIRES";
             }
             else if (c == Categorie.NAISSANCE_MARIAGE_DECES)
             {
@@ -258,7 +258,7 @@ namespace Modele_Controleur
             }
             else if (c == Categorie.TABLES_DECENNALES)
             {
-                res = "TABLES-DECENNALES";
+                res = "TABLES_DECENNALES";
             }
             else if (c == Categorie.TSA)
             {
@@ -279,7 +279,7 @@ namespace Modele_Controleur
 
         /**
          * Returns the files in the directory 'category', in sub-directory n°'posLivre'
-         * 0 < posLivre <= N,    N being the number of books (sub-directories) in category
+         * 1 <= posLivre <= N,    N being the number of books (sub-directories) in category
          */
         private string[] getFileNamesIn(Categorie category, int posLivre)
         {

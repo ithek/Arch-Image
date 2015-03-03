@@ -23,7 +23,6 @@ namespace Vue
     /// </summary>
     public partial class NavigationPage : Page
     {
-
         private bool drawingRectangleForNewPOI;
         private Point rectanglePOIStart;
         
@@ -39,6 +38,7 @@ namespace Vue
 
             this.Archimage = a;
             this.drawingRectangleForNewPOI = false;
+            
 
             this.UpdateUI();
         }
@@ -61,6 +61,7 @@ namespace Vue
         {
             DocSlider.Value = this.Archimage.DocumentCourant.Position; 
             DocSlider.Maximum = this.Archimage.GetNbDocInCurrentBook();
+            SliderInfoTextBlock.Text = Archimage.DocumentCourant.Position + "/" + Archimage.GetNbDocInCurrentBook();
         }
 
         private void NextDocButton_Click(object sender, RoutedEventArgs e)
@@ -87,15 +88,6 @@ namespace Vue
             this.UpdateUI();
         }
 
-        private void DocSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (this.Archimage != null && this.Archimage.DocumentCourant.Position != (int)DocSlider.Value)
-            {
-                this.Archimage.UtiliserDoc((int)DocSlider.Value);
-                this.UpdateUI();
-            }
-        }
-		
         private async void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
@@ -183,6 +175,20 @@ namespace Vue
             }
         }
 
+        private void DocSlider_UserModif()
+        {
+            this.Archimage.UtiliserDoc((int)DocSlider.Value);
+            this.UpdateUI();
+        }
 
+        private void DocSlider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            DocSlider_UserModif();
+        }
+
+        private void DocSlider_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            DocSlider_UserModif();
+        }
 	}
 }

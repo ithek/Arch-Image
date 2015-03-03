@@ -37,12 +37,12 @@
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button x:Name="ConnexionButton" Content="Connexion" HorizontalAlignment="Left" Height="20" Margin="10,397,0,0" VerticalAlignment="Top" Width="88" Click="ConnexionButton_Click">
+        <Button x:Name="ConnexionButton" Content="Connexion" HorizontalAlignment="Left" Height="20" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="88" Click="ConnexionButton_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <Button x:Name="InscriptionButton" Content="Inscription" HorizontalAlignment="Left" Height="20" Margin="110,397,0,0" VerticalAlignment="Top" Width="88" Click="InscriptionButton_Click">
+        <Button x:Name="InscriptionButton" Content="Inscription" HorizontalAlignment="Left" Height="20" Margin="103,0,0,10" VerticalAlignment="Bottom" Width="88" Click="InscriptionButton_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
