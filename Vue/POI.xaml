@@ -1,0 +1,87 @@
+﻿<Viewbox x:Class="Vue.Poi"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:TextOnAPath="clr-namespace:TextOnAPath;assembly=TextOnAPath"
+             xmlns:table="clr-namespace:Vue"
+             mc:Ignorable="d"
+             IsManipulationEnabled="False"
+             Height="{Binding WidthPoi, Mode=OneWay}" Width="{Binding HeightPoi, Mode=OneWay}"
+             MaxHeight="150" MaxWidth="150">
+
+    <Grid Name="Conteneur" Visibility="{Binding poiVisible, Mode=OneWay}" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <RotateTransform Angle="{Binding RotationText}"/>
+        </Grid.RenderTransform>
+        <Grid.Resources>
+            <EllipseGeometry x:Key="EllipseGeometry" Center="0,0" RadiusX="27" RadiusY="27"/>
+        </Grid.Resources>
+        <Ellipse Height="1" Name="ellipse1" Stroke="#1E555B" Width="1" Fill="#55ffffff" StrokeThickness="5"/>
+        <Ellipse Height="1" Name="ellipse2" Stroke="#1E555B" Width="1" Fill="{Binding BrushCouleur}"  StrokeThickness="5"/>
+        <Ellipse Height="150" Name="invisible" Stroke="{x:Null}" Width="150" Fill="#00000000"  StrokeThickness="5"/>
+        <!-- derniere ellipse pour garder constante la taille de la grid pendant l'animation -->
+        <TextOnAPath:TextOnAPath Text="{Binding Nom}"
+                                 DrawPath="False"
+                                 ScaleTextPath="False"
+                                 TextPath="{StaticResource EllipseGeometry}"
+                                 Margin="30,30,0,0" FontSize="18">
+        </TextOnAPath:TextOnAPath>
+    </Grid>
+
+
+    <Viewbox.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="AnimationChargement">
+                    <DoubleAnimation 
+                    Storyboard.TargetName="Conteneur" Storyboard.TargetProperty="Opacity"
+                    BeginTime="0:0:0" From="0" To="1" Duration="0:0:0.1"  FillBehavior="HoldEnd" />
+
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse2" Storyboard.TargetProperty="Width"
+                    BeginTime="0:0:0" From="1" To="45" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse2" Storyboard.TargetProperty="Height"
+                    BeginTime="0:0:0" From="1" To="45" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="Width"
+                    BeginTime="0:0:0" From="1" To="120" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="Height"
+                    BeginTime="0:0:0" From="1" To="120" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="TouchDown">
+            <BeginStoryboard>
+                <Storyboard  Name="AnimationDisparition">
+                    <DoubleAnimation 
+                    Storyboard.TargetName="Conteneur" Storyboard.TargetProperty="Opacity"
+                    BeginTime="0:0:0" From="1" To="0" Duration="0:0:0.1"  FillBehavior="HoldEnd" />
+
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse2" Storyboard.TargetProperty="Width"
+                    BeginTime="0:0:0" From="45" To="0" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse2" Storyboard.TargetProperty="Height"
+                    BeginTime="0:0:0" From="45" To="0" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="Width"
+                    BeginTime="0:0:0" From="120" To="0" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                    <DoubleAnimation 
+                    Storyboard.TargetName="ellipse1" Storyboard.TargetProperty="Height"
+                    BeginTime="0:0:0" From="120" To="0" Duration="0:0:0.2"  FillBehavior="HoldEnd" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Viewbox.Triggers>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Completed" SourceName="AnimationDisparition" >
+            <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Viewbox}}, Path=DataContext.LancementCommande}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</Viewbox>

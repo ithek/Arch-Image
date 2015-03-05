@@ -66,14 +66,14 @@ namespace Modele_Controleur
         {
             const int FIRST_BOOK = 1;
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
-            
+
             this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
         }
 
         public int GetNbDocInCurrentBook()
         {
             return getFileNamesOfCurrentBook().Length;
-        }   
+        }
 
         /**
          * Change le document courant en prenant le prochain dans son livre s'il en reste, ou le premier du livre suivant sinon.
@@ -89,7 +89,7 @@ namespace Modele_Controleur
 
             if (lastOfItsBook)
             {
-                if (! lastBookOfCategory) 
+                if (!lastBookOfCategory)
                 {
                     // Use first doc of next book
                     nouvPosLivre = DocumentCourant.PositionLivre + 1;
@@ -160,11 +160,11 @@ namespace Modele_Controleur
             int i = Array.IndexOf(t, this.DocumentCourant.Categorie);
             if (i == 0)
             {
-                prevCateg = (Categorie) t.GetValue(t.Length - 1);
+                prevCateg = (Categorie)t.GetValue(t.Length - 1);
             }
             else
             {
-                prevCateg = (Categorie) t.GetValue(i - 1);
+                prevCateg = (Categorie)t.GetValue(i - 1);
             }
 
             this.Navigation(prevCateg);
@@ -180,11 +180,11 @@ namespace Modele_Controleur
             int i = Array.IndexOf(t, this.DocumentCourant.Categorie);
             if (i == t.Length - 1)
             {
-                nextCateg = (Categorie) t.GetValue(0);
+                nextCateg = (Categorie)t.GetValue(0);
             }
             else
             {
-                nextCateg = (Categorie) t.GetValue(i + 1);
+                nextCateg = (Categorie)t.GetValue(i + 1);
             }
 
             this.Navigation(nextCateg);
@@ -199,7 +199,7 @@ namespace Modele_Controleur
             if (numeroDocument <= 0 || numeroDocument > GetNbDocInCurrentBook())
             {
                 throw new System.ArgumentException("Il n'y a pas de document n°" + numeroDocument +
-                                               " dans ce livre (categorie " + DocumentCourant.Categorie + 
+                                               " dans ce livre (categorie " + DocumentCourant.Categorie +
                                                ", livre n°" + DocumentCourant.PositionLivre + ")");
             }
             else
@@ -272,7 +272,7 @@ namespace Modele_Controleur
             return res;
         }
 
-        private string[] getFileNamesOfCurrentBook() 
+        private string[] getFileNamesOfCurrentBook()
         {
             return getFileNamesIn(DocumentCourant.Categorie, DocumentCourant.PositionLivre);
         }

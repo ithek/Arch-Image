@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="c958c7ab-e1b6-47cf-8cc6-09a8f596d664" name="Connexion" linkedPackageId="65a411b5-2835-4ce8-8bbf-253f48b39e80" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="c958c7ab-e1b6-47cf-8cc6-09a8f596d664" name="Connexion" linkedPackageId="65a411b5-2835-4ce8-8bbf-253f48b39e80" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
   <packagedElements>
     <packageHasNamedElement>
       <interaction Id="e661e55f-0ac7-4390-9d93-2da3e9d8a178" name="Connexion" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
@@ -443,16 +443,16 @@
               <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </messageOccurrenceSpecification>
-          <messageOccurrenceSpecification Id="96b02059-4141-4fbb-bfb2-a504079e3673" name="MessageOccurrenceSpecification22">
-            <elementDefinition Id="24e33268-a301-493e-9eea-5ff6fff41d76" />
-            <covered>
-              <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
-            </covered>
-          </messageOccurrenceSpecification>
           <messageOccurrenceSpecification Id="65dc9883-9700-4eec-bca5-e790f7495a3f" name="MessageOccurrenceSpecification21">
             <elementDefinition Id="072f3e6e-a12e-40a1-aba4-b6df8a3d0cd5" />
             <covered>
               <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="96b02059-4141-4fbb-bfb2-a504079e3673" name="MessageOccurrenceSpecification22">
+            <elementDefinition Id="24e33268-a301-493e-9eea-5ff6fff41d76" />
+            <covered>
+              <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </messageOccurrenceSpecification>
           <executionOccurrenceSpecification Id="20461167-77f8-4093-85b4-02ec51a9aa14" name="ExecutionOccurrenceSpecification12">
@@ -515,16 +515,10 @@
               <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </executionOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="9c97bfd7-7cb7-4db0-9d7e-26801cc57b6c" name="OperandOccurrenceSpecification22">
-            <elementDefinition Id="de5a34e7-bc5d-4dfa-84cc-d55a2333437d" />
+          <operandOccurrenceSpecification Id="fc90c6aa-4dde-492a-a933-542d4fa87d70" name="OperandOccurrenceSpecification12">
+            <elementDefinition Id="fe9be16a-fa4f-4f1d-90fe-8ac8ef442236" />
             <covered>
-              <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
-            </covered>
-          </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="33b7eec7-8264-4af7-b41e-b8e9bbeb076a" name="OperandOccurrenceSpecification10">
-            <elementDefinition Id="a4ae7cb4-ba1c-4257-947d-ebb1a9baa7c8" />
-            <covered>
-              <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
+              <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="aac619af-39dd-4845-8091-e2e9a608549b" name="OperandOccurrenceSpecification18">
@@ -533,10 +527,16 @@
               <lifelineMoniker Id="e69b7fd1-beeb-4c88-9130-d580667dd556" LastKnownName="MySQLAccess" />
             </covered>
           </operandOccurrenceSpecification>
-          <operandOccurrenceSpecification Id="fc90c6aa-4dde-492a-a933-542d4fa87d70" name="OperandOccurrenceSpecification12">
-            <elementDefinition Id="fe9be16a-fa4f-4f1d-90fe-8ac8ef442236" />
+          <operandOccurrenceSpecification Id="33b7eec7-8264-4af7-b41e-b8e9bbeb076a" name="OperandOccurrenceSpecification10">
+            <elementDefinition Id="a4ae7cb4-ba1c-4257-947d-ebb1a9baa7c8" />
             <covered>
-              <lifelineMoniker Id="a21b010a-4147-42ee-8ef5-b7fbccd3898d" LastKnownName="ArchImage" />
+              <lifelineMoniker Id="8ceda953-245b-44e4-b62b-5d9bb0fd0df4" LastKnownName="auteur : Auteur" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="9c97bfd7-7cb7-4db0-9d7e-26801cc57b6c" name="OperandOccurrenceSpecification22">
+            <elementDefinition Id="de5a34e7-bc5d-4dfa-84cc-d55a2333437d" />
+            <covered>
+              <lifelineMoniker Id="badb3dbe-6516-4084-970a-faf145f8fc97" LastKnownName="historique : Historique" />
             </covered>
           </operandOccurrenceSpecification>
           <operandOccurrenceSpecification Id="f6c50c87-4d76-48cb-8458-83846587734f" name="OperandOccurrenceSpecification15">
