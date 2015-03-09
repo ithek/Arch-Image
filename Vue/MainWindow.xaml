@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Vue="clr-namespace:Vue" x:Class="Vue.MainWindow"
-        Title="MainWindow" Height="470" Width="645">
+        Title="Archimage" Height="470" Width="645">
     <Grid>
         <TextBlock Height="24" Margin="221,31,221,0" TextWrapping="Wrap" Width="75" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Arch'Image"/><LineBreak/><Run/></TextBlock>
         <Button x:Name="MapButton" Height="50" Margin="54,82,0,288" Width="120" Click="Todo" HorizontalAlignment="Left" VerticalAlignment="Center">

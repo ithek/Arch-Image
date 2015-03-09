@@ -47,6 +47,13 @@ namespace Vue
         {
             UpdateBackground();
             UpdateSlider();//TODO use binding instead
+            UpdateButtons();
+        }
+
+        private void UpdateButtons()
+        {
+            this.NextCategoryName.Text = GetDisplayableName(Archimage.getPrev(Archimage.DocumentCourant.Categorie));
+            this.PrevCategoryName.Text = GetDisplayableName(Archimage.GetNext(Archimage.DocumentCourant.Categorie));        
         }
 
         private void UpdateBackground()
@@ -62,6 +69,46 @@ namespace Vue
             DocSlider.Value = this.Archimage.DocumentCourant.Position; 
             DocSlider.Maximum = this.Archimage.GetNbDocInCurrentBook();
             SliderInfoTextBlock.Text = Archimage.DocumentCourant.Position + "/" + Archimage.GetNbDocInCurrentBook();
+        }
+
+        /**
+         * Returns the name of the Categorie c that will be displayed to the user
+         */
+        private string GetDisplayableName(Categorie c)
+        {
+            string res;
+
+            switch (c)
+            {
+                case Categorie.NAISSANCE_MARIAGE_DECES :
+                    res = "NMD";
+                    break;
+
+                case Categorie.RECENSEMENT:
+                    res = "Recensement";
+                    break;
+
+                case Categorie.REGISTRE_MATRICULE :
+                    res = "Registres matricules";
+                    break;
+
+                case Categorie.TABLE_REGISTRE_MATRICULE :
+                    res = "Tables RM";
+                    break;
+
+                case Categorie.TABLES_DECENNALES :
+                    res = "Décès";
+                    break;
+
+                case Categorie.TSA :
+                    res = "TSA";
+                    break;
+
+                default :
+                    res = "Unkown category";
+                    break;
+            }
+            return res; 
         }
 
         private void NextDocButton_Click(object sender, RoutedEventArgs e)

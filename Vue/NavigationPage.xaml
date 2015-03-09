@@ -17,8 +17,18 @@
 
         <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center"/>
         <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center"/>
-        <Button x:Name="PreviousCategoryButton" Content="^" Margin="0" VerticalAlignment="Top" Width="75" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click"/>
-        <Button x:Name="NextCategoryButton" Content="V" Margin="0,0,0,53" Width="75" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center"/>
+        <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" Width="Auto" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click">
+            <StackPanel>
+                <TextBlock Text="^" HorizontalAlignment="Center"/>
+                <TextBlock Name="PrevCategoryName" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="NextCategoryButton" Margin="0,0,0,53" Width="Auto" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Name="NextCategoryName" HorizontalAlignment="Center"/>
+                <TextBlock Text="V" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Button>
         <Slider Minimum="1" Height="27" Margin="0" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" Focusable="False" PreviewMouseUp="DocSlider_PreviewMouseUp" Thumb.DragCompleted="DocSlider_DragCompleted"/>
         <TextBlock x:Name="SliderInfoTextBlock" Background="#FFEEEEB5" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" TextAlignment="Center" Margin="0,0,0,32" FontWeight="Bold">
             <TextBlock.Effect>

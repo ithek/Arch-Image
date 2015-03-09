@@ -155,9 +155,25 @@ namespace Modele_Controleur
          */
         public void CategoriePrecedente()
         {
+            this.Navigation(getPrev(this.DocumentCourant.Categorie));
+        }
+
+        /**
+         * Change le document courant en prenant le premier document du premier livre de la catégorie suivante
+         */
+        public void CategorieSuivante()
+        {
+            this.Navigation(GetNext(this.DocumentCourant.Categorie));
+        }
+
+        /**
+         * Returns the Categorie before c
+         */
+        public Categorie getPrev(Categorie c)
+        {
             Categorie prevCateg;
             var t = Enum.GetValues(typeof(Categorie));
-            int i = Array.IndexOf(t, this.DocumentCourant.Categorie);
+            int i = Array.IndexOf(t, c);
             if (i == 0)
             {
                 prevCateg = (Categorie)t.GetValue(t.Length - 1);
@@ -167,17 +183,17 @@ namespace Modele_Controleur
                 prevCateg = (Categorie)t.GetValue(i - 1);
             }
 
-            this.Navigation(prevCateg);
+            return prevCateg;
         }
 
         /**
-         * Change le document courant en prenant le premier document du premier livre de la catégorie suivante
+         * Returns the Categorie after c
          */
-        public void CategorieSuivante()
+        public Categorie GetNext(Categorie c)
         {
             Categorie nextCateg;
             var t = Enum.GetValues(typeof(Categorie));
-            int i = Array.IndexOf(t, this.DocumentCourant.Categorie);
+            int i = Array.IndexOf(t, c);
             if (i == t.Length - 1)
             {
                 nextCateg = (Categorie)t.GetValue(0);
@@ -187,9 +203,8 @@ namespace Modele_Controleur
                 nextCateg = (Categorie)t.GetValue(i + 1);
             }
 
-            this.Navigation(nextCateg);
+            return nextCateg;
         }
-
         /**
          * Change le document courant en prenant le numeroDocumentième de son livre (donc de 1 à N)
          * Lance System.ArgumentException si parametre incohérent
