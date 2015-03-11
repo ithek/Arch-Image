@@ -8,6 +8,21 @@
       x:Name="navPage"
 	Title="NavigationPage">
 
+    <Page.Resources>
+        <Style
+            x:Key="NavButtonStyle"
+            BasedOn="{StaticResource {x:Type Button}}"
+            TargetType="Button">
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+
+    
     <Grid
         Name="theGrid"
         MouseDown="OnMouseDown"
@@ -15,15 +30,15 @@
         MouseMove="OnMouseMove"
         Background="Transparent">
 
-        <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center"/>
-        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center"/>
-        <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" Width="Auto" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click">
+        <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
+        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
+        <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click" Style="{StaticResource NavButtonStyle}">
             <StackPanel>
                 <TextBlock Text="^" HorizontalAlignment="Center"/>
                 <TextBlock Name="PrevCategoryName" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="NextCategoryButton" Margin="0,0,0,53" Width="Auto" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center">
+        <Button x:Name="NextCategoryButton" Margin="0,0,0,53" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center" Style="{StaticResource NavButtonStyle}">
             <StackPanel>
                 <TextBlock Name="NextCategoryName" HorizontalAlignment="Center"/>
                 <TextBlock Text="V" HorizontalAlignment="Center"/>
@@ -40,9 +55,7 @@
                 x:Name="newPOISelectionRectangle"
                 Visibility="Visible"
                 Stroke="Black"
-                StrokeThickness="1"
-                />
+                StrokeThickness="1"/>
         </Canvas>
-        
     </Grid>
 </Page>

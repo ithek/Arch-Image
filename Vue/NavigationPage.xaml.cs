@@ -61,7 +61,7 @@ namespace Vue
             MainWindow mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
             var background = new ImageBrush();
             background.ImageSource = new BitmapImage(new Uri(this.Archimage.DocumentCourant.CheminAcces, UriKind.Relative));
-            background.Stretch = Stretch.UniformToFill;
+            background.Stretch = Stretch.Uniform;
             mainWindow.Background = background;
         }
         private void UpdateSlider()
@@ -105,7 +105,7 @@ namespace Vue
                     break;
 
                 default :
-                    res = "Unkown category";
+                    res = "Unknown category";
                     break;
             }
             return res; 
