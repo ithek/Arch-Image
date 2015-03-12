@@ -18,24 +18,14 @@ namespace Modele_Controleur
 
         public int Id
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public List<POIWrapper> POIs
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public Categorie Categorie

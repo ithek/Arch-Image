@@ -41,19 +41,14 @@ namespace Modele_Controleur
 
         public SewelisAccess SewelisAccess
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
 
         public ArchImage()
         {
-
+            SewelisAccess = new SewelisAccess();
         }
 
 
@@ -68,6 +63,10 @@ namespace Modele_Controleur
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
 
             this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
+
+            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            foreach (POICreationData poi in listePOIs)
+                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
         }
 
         public int GetNbDocInCurrentBook()
@@ -108,6 +107,10 @@ namespace Modele_Controleur
 
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
             }
+
+            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            foreach(POICreationData poi in listePOIs)
+                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
         }
 
         /**
@@ -148,6 +151,10 @@ namespace Modele_Controleur
 
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
             }
+
+            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            foreach (POICreationData poi in listePOIs)
+                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
         }
 
         /**
@@ -223,6 +230,10 @@ namespace Modele_Controleur
                 var docs = getFileNamesOfCurrentBook();
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, docs[numeroDocument - 1], DocumentCourant.PositionLivre, numeroDocument);
             }
+
+            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            foreach (POICreationData poi in listePOIs)
+                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
         }
 
         public List<Document> documentDuPoi(POIWrapper poi)
@@ -233,6 +244,7 @@ namespace Modele_Controleur
         public void creerPOI(POICreationData poi)
         {
             Console.WriteLine("Ajout d'un POI concernant " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
+            SewelisAccess.ajouterPOI(poi, DocumentCourant);
         }
 
         public void POISurDoc(Document doc)

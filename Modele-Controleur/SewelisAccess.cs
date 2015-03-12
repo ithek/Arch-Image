@@ -8,12 +8,24 @@ namespace Modele_Controleur
 {
     public class SewelisAccess
     {
-        private WebClient webClient;
         private const String sewelisURL = "http://149.91.83.183/";
-
+        private WebClient webClient;
+        private XMLParser parser;
+       
         public SewelisAccess()
         {
             webClient = new WebClient();
+            parser = new XMLParser();
+
+            //Teste si la base existe
+            String reponse = webClient.DownloadString(sewelisURL + "storeBase?userKey=123&storeId=1");
+
+            if (!parser.baseExiste(reponse))
+            {
+                creerStore("archimage");
+                chargerRdf("base_personnes.rdf");
+                chargerRdf("base_images.rdf");
+            }
         }
 
         public void creerStore(String nom)
@@ -26,30 +38,39 @@ namespace Modele_Controleur
             webClient.DownloadString(sewelisURL + "importRdf?userKey=123&storeId=1&base=archimage&filename=" + chemin);
         }
 
-        public void ajouterPOI(POICreationData poi)
+        /**
+         * Ajoute un poi pour le document concerné et la personne.
+         */
+        public void ajouterPOI(POICreationData poi, Document doc)
         {
+            String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <POI>]");
+            int nbPoi = parser.getLastIndexOf(reponse);
+            string idPoi = "poi_id" + nbPoi;
+            string chemin = doc.CheminAcces.Substring(16, doc.CheminAcces.Length - 16).Replace(@"\", @"/");
 
+            webClient.DownloadString(sewelisURL + "runStatement?userKey=123&storeId=1&statement=<" + idPoi + "> [a <POI>]");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=X&o=<URI>" + poi.posX + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=Y&o=<URI>" + poi.posY + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=PossedePOI&o=<URI>" + idPoi + "</URI>");       
+          
+            //webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=<poi_id"+ nbPois + ">&p=Concerne&o=<URI>" + doc.CheminAcces + "</URI>";
         }
 
-        public List<Document> GetListDocs(Categorie categorie)
+        /**
+         * Récupère le doc associé au document doc.
+         */
+        public List<POICreationData> getPOI(Document doc)
+        {
+            string chemin = doc.CheminAcces.Substring(16, doc.CheminAcces.Length - 16).Replace(@"\", @"/");
+            string reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + chemin);
+            return parser.getPOI(reponse);
+        }
+
+        public List<Document> getListDocs(Categorie categorie)
         {
             string response = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <file:///home/kevin/sewelis/img/FRAD035_1R_01901/FRAD035_1R_01901a/RegistreMatricule>]");
             List<Document> documents = new List<Document>();
-            /*XmlDocument doc = new XmlDocument();
-            doc.LoadXml(response);
-
-            XmlNodeList nodes = doc.GetElementsByTagName("URI");
-
-           
-
-            foreach (XmlNode node in nodes)
-            {
-                string url = node.InnerText;
-                string[] tokens = url.Split(new string[] { "/" }, StringSplitOptions.None);
-
-                Document document = new Document(Categorie.REGISTRE_MATRICULE, tokens[tokens.Length - 1], 0, 0);
-                documents.Add(document);
-            }*/
+            
 
             return documents;
         }
