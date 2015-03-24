@@ -2,7 +2,7 @@
 
 html 
 {
-	margin: 0;
+	margin: 10px 0 0 0;
 	padding: 0;
 }
 
@@ -45,12 +45,11 @@ p
 
 #partenaires
 {
-	background: white;
 	text-align: center;
 	width: 100%;
 }
 
 #partenaires img
 {
-	margin: 5px;
+	margin: 10px;
 }
