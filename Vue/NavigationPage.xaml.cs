@@ -32,18 +32,27 @@ namespace Vue
             set;
         }
 
+        private SwipeManager Swipe
+        {
+            get;
+            set;
+        }
+
         public NavigationPage(ArchImage a)
         {
             InitializeComponent();
 
             this.Archimage = a;
             this.drawingRectangleForNewPOI = false;
-            
+            this.Swipe = new SwipeManager(a, this);
+
+            this.TouchDown += new EventHandler<TouchEventArgs>(Swipe.TouchDown);
+            this.TouchMove += new EventHandler<TouchEventArgs>(Swipe.TouchMove); 
 
             this.UpdateUI();
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
             UpdateBackground();
             UpdateSlider();//TODO use binding instead
@@ -169,6 +178,8 @@ namespace Vue
             {
                 this.endRectangle(e);
             }
+
+            this.Swipe.HasRealeasedTouch();
         }
 
         private void endRectangle(MouseButtonEventArgs e)
