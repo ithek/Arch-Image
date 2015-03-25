@@ -248,5 +248,11 @@ namespace Vue
         {
             DocSlider_UserModif();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
+            main.Content = new MainMenuPage(this.Archimage);
+        }
 	}
 }

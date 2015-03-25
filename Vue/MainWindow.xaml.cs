@@ -24,59 +24,13 @@ namespace Vue
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private ArchImage archimage
-        {
-            get;
-            set;
-        }
-
         public MainWindow()
         {
             InitializeComponent();
 
-            this.archimage = new ArchImage();
+            this.Content = new MainMenuPage(new ArchImage());
 
             //FIXME mettre le contenu de la page principale (bouton map, RM, connexion, favoris, etc) dans une Page et la charger plutot qu'en dur.
-
         }
-
-
-        private void Todo(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Not yet implemented :(");
-        }
-
-        private void RMButton_Click(object sender, RoutedEventArgs e)
-        {
-            StartNavigation(Categorie.REGISTRE_MATRICULE);
-        }
-
-        private void NMDButton_Click(object sender, RoutedEventArgs e)
-        {
-            StartNavigation(Categorie.NAISSANCE_MARIAGE_DECES);
-        }
-
-        private void RecensementButton_Click(object sender, RoutedEventArgs e)
-        {
-            StartNavigation(Categorie.RECENSEMENT);
-        }
-
-        private void StartNavigation(Categorie c)
-        {
-            MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
-            this.archimage.Navigation(c);
-            main.Content = new NavigationPage(this.archimage);
-        }
-
-        private void ConnexionButton_Click(object sender, RoutedEventArgs e)
-        {
-            Todo(sender, e);
-        }
-
-        private void InscriptionButton_Click(object sender, RoutedEventArgs e)
-        {
-            Todo(sender, e);
-        }
-
     }
 }
