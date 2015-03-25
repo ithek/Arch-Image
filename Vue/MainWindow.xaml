@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Vue="clr-namespace:Vue" x:Class="Vue.MainWindow"
-        Title="Archimage" Height="470" Width="645">
-    
+        Title="Archimage" WindowState="Maximized">
+
     <Window.Resources>
         <Style
             x:Key="MainButtonStyle"
@@ -20,7 +20,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <Style
             x:Key="AccountButtonsStyle"
             BasedOn="{StaticResource MainButtonStyle}"
@@ -30,23 +30,23 @@
             <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
     </Window.Resources>
-    
-    
-    
+
+
+
     <Grid>
         <TextBlock Height="24" Margin="221,31,221,0" TextWrapping="Wrap" Width="75" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Arch'Image"/><LineBreak/><Run/></TextBlock>
-        <Button x:Name="MapButton" Margin="54,82,0,288" Click="Todo" Style="{StaticResource MainButtonStyle}">
+        <Button x:Name="MapButton" Margin="10,92,0,298" Click="Todo" Style="{StaticResource MainButtonStyle}">
             <StackPanel>
                 <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="RMButton" Content="Registres matricules" Margin="256,82,0,288" Click="RMButton_Click" Style="{StaticResource MainButtonStyle}"/>
-        <Button x:Name="FavorisButton" Content="Favoris" Margin="473,82,0,288" Click="Todo" Style="{StaticResource MainButtonStyle}"/>
-        <Button x:Name="NMDButton" Content="NMD" Margin="54,222,0,148" Click="NMDButton_Click" Style="{StaticResource MainButtonStyle}"/>
-        <Button x:Name="RecensementButton" Content="Recensement" Margin="256,222,0,148" Click="RecensementButton_Click" Style="{StaticResource MainButtonStyle}"/>
-        <Button x:Name="ParametresButton" Content="Paramètres" Margin="473,222,0,148" Click="Todo" Style="{StaticResource MainButtonStyle}"/>
+        <Button x:Name="RMButton" Content="Registres matricules" Margin="0,92,0,298" Click="RMButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
+        <Button x:Name="FavorisButton" Content="Favoris" Margin="507,92,10,298" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
+        <Button x:Name="NMDButton" Content="NMD" Margin="10,232,0,158" Click="NMDButton_Click" Style="{StaticResource MainButtonStyle}"/>
+        <Button x:Name="RecensementButton" Content="Recensement" Margin="0,232,0,158" Click="RecensementButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
+        <Button x:Name="ParametresButton" Content="Paramètres" Margin="507,232,10,158" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
 
-        <Button x:Name="ConnexionButton" Content="Connexion" Margin="10,0,0,10" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>        
+        <Button x:Name="ConnexionButton" Content="Connexion" Margin="10,0,0,10" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
         <Button x:Name="InscriptionButton" Content="Inscription" Margin="103,0,0,10" Click="InscriptionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
     </Grid>
 </Controls:MetroWindow>
