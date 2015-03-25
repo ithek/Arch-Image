@@ -36,20 +36,37 @@
 
 
     <Grid>
-        <TextBlock Height="24" Margin="221,31,221,0" TextWrapping="Wrap" Width="75" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Arch'Image"/><LineBreak/><Run/></TextBlock>
-        <Button x:Name="MapButton" Margin="10,92,0,298" Click="Todo" Style="{StaticResource MainButtonStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="2" Height="24" TextWrapping="Wrap" Width="75" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Arch'Image"/><LineBreak/><Run/></TextBlock>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="MapButton" Click="Todo" Style="{StaticResource MainButtonStyle}">
             <StackPanel>
                 <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="RMButton" Content="Registres matricules" Margin="0,92,0,298" Click="RMButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
-        <Button x:Name="FavorisButton" Content="Favoris" Margin="507,92,10,298" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
-        <Button x:Name="NMDButton" Content="NMD" Margin="10,232,0,158" Click="NMDButton_Click" Style="{StaticResource MainButtonStyle}"/>
-        <Button x:Name="RecensementButton" Content="Recensement" Margin="0,232,0,158" Click="RecensementButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
-        <Button x:Name="ParametresButton" Content="Paramètres" Margin="507,232,10,158" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
+        <Button Grid.Row="1" Grid.Column="2" x:Name="RMButton" Content="Registres matricules" Click="RMButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
+        <Button Grid.Row="1" Grid.Column="3" x:Name="FavorisButton" Content="Favoris" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
+        <Button Grid.Row="2" Grid.Column="1" x:Name="NMDButton" Content="NMD" Click="NMDButton_Click" Style="{StaticResource MainButtonStyle}"/>
+        <Button Grid.Row="2" Grid.Column="2" x:Name="RecensementButton" Content="Recensement" Click="RecensementButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
+        <Button Grid.Row="2" Grid.Column="3" x:Name="ParametresButton" Content="Paramètres" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
 
-        <Button x:Name="ConnexionButton" Content="Connexion" Margin="10,0,0,10" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
-        <Button x:Name="InscriptionButton" Content="Inscription" Margin="103,0,0,10" Click="InscriptionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <Button x:Name="ConnexionButton" Margin="0,0,10,0" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
+            <Button x:Name="InscriptionButton" Content="Inscription" Click="InscriptionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
+        </StackPanel>     
     </Grid>
 
 </Page>

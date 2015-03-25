@@ -2,7 +2,7 @@
 
 html 
 {
-	margin: 10px 0 0 0;
+	margin: 0;
 	padding: 0;
 }
 
@@ -11,7 +11,7 @@ body
 	color: #325050;
 	background: rgb(224,224,224);
 	font-family: 'Libre Baskerville', sans-serif;
-	width: 70%;
+	width: 80%;
 	margin: auto;
 	padding: 0;
 }
@@ -35,12 +35,16 @@ p
 
 #header
 {
+	height: 15em;
 	text-align: center;
+	background-image:url(img/poilus.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 
 #contenu
 {
-	padding: 10px;
+
 }
 
 #partenaires
@@ -52,4 +56,15 @@ p
 #partenaires img
 {
 	margin: 10px;
+}
+
+.imagesProgramme
+{
+	text-align: center;
+}
+
+.imagesProgramme img
+{
+	width: 40%;
+	height: auto;
 }
