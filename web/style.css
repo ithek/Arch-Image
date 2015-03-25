@@ -11,7 +11,7 @@ body
 	color: #325050;
 	background: rgb(224,224,224);
 	font-family: 'Libre Baskerville', sans-serif;
-	width: 80%;
+	width: 75%;
 	margin: auto;
 	padding: 0;
 }
@@ -29,17 +29,23 @@ h1
 p 
 { 
 	margin-top: 0;
-	font-size: 16px; 
+	font-size: 15px; 
 	text-align: justify;
 }
 
 #header
 {
-	height: 15em;
+	height: 12em;
 	text-align: center;
 	background-image:url(img/poilus.jpg);
+	background-position: center; 
 	background-repeat: no-repeat;
-	background-size: 100%;
+}
+
+#header img
+{
+	width: 350px;
+	height: auto;
 }
 
 #contenu
@@ -56,6 +62,8 @@ p
 #partenaires img
 {
 	margin: 10px;
+	width: 200px;
+	height: auto;
 }
 
 .imagesProgramme
@@ -65,6 +73,6 @@ p
 
 .imagesProgramme img
 {
-	width: 40%;
+	width: 500px;
 	height: auto;
 }
