@@ -39,6 +39,25 @@ namespace Modele_Controleur
         }
 
         /**
+         * Recherche la liste des personnes correspondant au motif de recherche
+         */
+        public List<Personne> recherchePersonnes(String motif)
+        {
+            List<Personne> listePersonnes = null;
+            try
+            {
+                String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=5&matchingKey=" + motif);
+                listePersonnes = parser.getRecherchePersonnes(reponse);
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return listePersonnes;
+        }
+
+        /**
          * Ajoute un poi pour le document concerné et la personne.
          */
         public void ajouterPOI(POICreationData poi, Document doc)
@@ -73,7 +92,6 @@ namespace Modele_Controleur
             string response = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <file:///home/kevin/sewelis/img/FRAD035_1R_01901/FRAD035_1R_01901a/RegistreMatricule>]");
             List<Document> documents = new List<Document>();
             
-
             return documents;
         }
 

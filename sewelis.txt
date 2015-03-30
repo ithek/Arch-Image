@@ -1,0 +1,11 @@
+Proposition des noms
+
+> Saisie "Bar"
+getCompletions?userKey=123&placeId=5&matchingKey=Bar
+
+> Récupère Barbot
+resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]
+	>> Cherche Barbot
+	
+> Récupère info
+uriDescription?userKey=123&storeId=1&uri=p_id3

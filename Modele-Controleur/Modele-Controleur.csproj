@@ -48,6 +48,7 @@
     <Compile Include="Favoris.cs" />
     <Compile Include="Historique.cs" />
     <Compile Include="MySQLAccess.cs" />
+    <Compile Include="Personne.cs" />
     <Compile Include="POICreationData.cs" />
     <Compile Include="POIWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

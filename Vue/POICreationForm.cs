@@ -25,6 +25,8 @@ namespace Vue
             set;
         }
 
+        private List<Personne> listePersonnes;
+
         public POICreationForm(double x, double y, ArchImage arch)
         {
             InitializeComponent();
@@ -50,6 +52,31 @@ namespace Vue
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<String> listeNoms = new List<String>();
+            listePersonnes = this.archimage.SewelisAccess.recherchePersonnes(this.nameTextBox.Text);
+
+            if (listePersonnes != null)
+            {
+                foreach (Personne personne in listePersonnes)
+                {
+
+                    listeNoms.Add(personne.Nom);
+                }
+                listeBoxPersonnes.DataSource = listeNoms;
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Personne personne = listePersonnes[this.listeBoxPersonnes.SelectedIndex];
+
+            this.nameLabel.Text += personne.Nom;
+            this.prenomLabel.Text += personne.Prenom;
+            this.dateNaissanceLabel.Text += personne.DateNaissance;
         }
     }
 }

@@ -51,7 +51,6 @@ namespace Modele_Controleur
             SewelisAccess = new SewelisAccess();
         }
 
-
         /**
          * A appeler lorsque l'utilisateur commence à naviguer dans une categorie (depuis le menu principal ou simplement en ayant changé de catégorie)
          * Le document courant est alors le premier du premier livre de la catégorie
@@ -319,5 +318,6 @@ namespace Modele_Controleur
         {
             return Directory.GetDirectories(PATH_TO_ARCHIVE_DOCS + CategorieToFolderName(category));
         }
+
     }
 }
