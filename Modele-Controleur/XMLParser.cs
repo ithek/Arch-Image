@@ -12,6 +12,7 @@ namespace Modele_Controleur
     {
         private const String sewelisURL = "http://149.91.83.183/";
         private XmlDocument doc;
+        private XmlNodeList nodesPersonnes;
 
         public bool baseExiste(String reponse)
         {
@@ -84,32 +85,41 @@ namespace Modele_Controleur
         {
             WebClient webClient = new WebClient();
             List<Personne> listePersonnes = new List<Personne>();
-            String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]");
-            doc.LoadXml(reponse);
-            XmlNodeList nodesPersonnes = doc.GetElementsByTagName("Literal");
+            String nom = "", prenom = "", ddn = "", id = "", reponse = "";
 
             foreach (XmlNode node in nodesPersonnes)
             {
-                if(listeNomsPersonnes.Contains(node.InnerText))
+                if (listeNomsPersonnes.Contains(node.InnerText))
                 {
-                    String nom, prenom, ddn;
-                    String id = node.NextSibling.InnerText;
+                    id = node.NextSibling.InnerText;
                     reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + id);
                     doc.LoadXml(reponse);
 
                     XmlNodeList nodesList = doc.SelectNodes("//node()[@uri='nom']");
-                    nom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    if(nodesList.Count > 0)
+                        nom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
                     nodesList = doc.SelectNodes("//node()[@uri='prenom']");
-                    prenom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    if (nodesList.Count > 0)
+                        prenom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
                     nodesList = doc.SelectNodes("//node()[@uri='dateNaissance']");
-                    ddn = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    if (nodesList.Count > 0)
+                        ddn = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
                     listePersonnes.Add(new Personne(nom, prenom, ddn));
                 }
             }
             return listePersonnes;
+        }
+
+        public void getListeNomsPersonnes()
+        {
+            WebClient webClient = new WebClient();
+            String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]");
+            doc = new XmlDocument();
+            doc.LoadXml(reponse);
+            nodesPersonnes = doc.GetElementsByTagName("Literal");
         }
     }
 }

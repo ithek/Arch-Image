@@ -44,17 +44,16 @@ namespace Modele_Controleur
         public List<Personne> recherchePersonnes(String motif)
         {
             List<Personne> listePersonnes = null;
-            try
-            {
-                String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=5&matchingKey=" + motif);
-                listePersonnes = parser.getRecherchePersonnes(reponse);
-            }
-            catch(Exception e)
-            {
 
-            }
-
+            String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=5&matchingKey=" + motif);
+            listePersonnes = parser.getRecherchePersonnes(reponse);
+ 
             return listePersonnes;
+        }
+
+        public void chargerListePersonnes()
+        {
+            parser.getListeNomsPersonnes();
         }
 
         /**

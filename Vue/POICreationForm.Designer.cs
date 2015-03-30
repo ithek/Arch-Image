@@ -36,7 +36,6 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.prenomLabel = new System.Windows.Forms.Label();
             this.dateNaissanceLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // okButton
@@ -59,7 +58,7 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // nameLabel
+            // findNameLabel
             // 
             this.findNameLabel.AutoSize = true;
             this.findNameLabel.Location = new System.Drawing.Point(18, 9);
@@ -72,13 +71,15 @@
             // 
             this.nameTextBox.Location = new System.Drawing.Point(110, 6);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(120, 20);
+            this.nameTextBox.Size = new System.Drawing.Size(152, 20);
             this.nameTextBox.TabIndex = 3;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // listeBoxPersonnes
             // 
             this.listeBoxPersonnes.FormattingEnabled = true;
-            this.listeBoxPersonnes.Location = new System.Drawing.Point(349, 6);
+            this.listeBoxPersonnes.Location = new System.Drawing.Point(299, 6);
+            this.listeBoxPersonnes.Name = "listeBoxPersonnes";
             this.listeBoxPersonnes.Size = new System.Drawing.Size(165, 212);
             this.listeBoxPersonnes.TabIndex = 4;
             this.listeBoxPersonnes.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -110,22 +111,11 @@
             this.dateNaissanceLabel.TabIndex = 7;
             this.dateNaissanceLabel.Text = "Date de naissance : ";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(246, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Chercher";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // POICreationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 262);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(486, 262);
             this.Controls.Add(this.dateNaissanceLabel);
             this.Controls.Add(this.prenomLabel);
             this.Controls.Add(this.nameLabel);
@@ -151,6 +141,5 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label prenomLabel;
         private System.Windows.Forms.Label dateNaissanceLabel;
-        private System.Windows.Forms.Button button1;
     }
 }

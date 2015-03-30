@@ -33,6 +33,7 @@ namespace Vue
             this.data = new POICreationData(x, y);
             
             this.archimage = arch;
+            this.archimage.SewelisAccess.chargerListePersonnes();
         }
 
         private void parseUserInput()
@@ -74,9 +75,29 @@ namespace Vue
         {
             Personne personne = listePersonnes[this.listeBoxPersonnes.SelectedIndex];
 
-            this.nameLabel.Text += personne.Nom;
-            this.prenomLabel.Text += personne.Prenom;
-            this.dateNaissanceLabel.Text += personne.DateNaissance;
+            this.nameLabel.Text = "Nom : " + personne.Nom;
+            this.prenomLabel.Text = "Prénom : " + personne.Prenom;
+            this.dateNaissanceLabel.Text = "Date de naissance : " + personne.DateNaissance;
+        }
+
+        private void nameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            this.nameLabel.Text = "Nom : ";
+            this.prenomLabel.Text = "Prénom : ";
+            this.dateNaissanceLabel.Text = "Date de naissance : ";
+
+            List<String> listeNoms = new List<String>();
+            listePersonnes = this.archimage.SewelisAccess.recherchePersonnes(this.nameTextBox.Text);
+
+            if (listePersonnes != null)
+            {
+                foreach (Personne personne in listePersonnes)
+                {
+
+                    listeNoms.Add(personne.Nom);
+                }
+                listeBoxPersonnes.DataSource = listeNoms;
+            }
         }
     }
 }
