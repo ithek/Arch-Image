@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{257BDE20-2DCF-404F-BF79-8C770DB468DC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Modele</RootNamespace>
+    <AssemblyName>Modele</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientPeriph.cs" />
+    <Compile Include="CommandeEventArgs.cs" />
+    <Compile Include="CouronneModele.cs" />
+    <Compile Include="DiaporamaModele.cs" />
+    <Compile Include="ImageModele.cs" />
+    <Compile Include="MediaModele.cs" />
+    <Compile Include="MsvipModele.cs" />
+    <Compile Include="PoiModele.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoteServicePxS.cs" />
+    <Compile Include="Services.cs" />
+    <Compile Include="VideoModele.cs" />
+    <Compile Include="VitrineLightModele.cs" />
+    <Compile Include="VitrineModele.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Prototype1Connexion\msvipConnexionDLL\msvipConnexionDLL.csproj">
+      <Project>{F9597C22-D406-4EEF-8A08-67C36025AEB5}</Project>
+      <Name>msvipConnexionDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototype1Connexion\src\Mono.Zeroconf\Mono.Zeroconf.csproj">
+      <Project>{5CF88E3A-13DD-4114-BAD9-DA826946516F}</Project>
+      <Name>Mono.Zeroconf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VueModeleCommun\Commun.csproj">
+      <Project>{8329faa9-364c-4604-ac2f-86b90e7ca68d}</Project>
+      <Name>Commun</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

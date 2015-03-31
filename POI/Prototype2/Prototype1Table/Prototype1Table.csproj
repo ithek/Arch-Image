@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75C17A13-457E-486D-AD31-ACED778A7E77}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Prototype1Table</RootNamespace>
+    <AssemblyName>Prototype1Table</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\..\..\Ressources\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\..\..\Ressources\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Surface\v2.0\Reference Assemblies\Microsoft.Surface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.Presentation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Surface\v2.0\Reference Assemblies\Microsoft.Surface.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.Simulation.Framework">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Surface\v2.0\Tools\Microsoft.Surface.Simulation.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Surface.Simulation.SurfaceInput">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Surface\v2.0\Tools\Microsoft.Surface.Simulation.SurfaceInput.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.0\Libraries\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TextOnAPath">
+      <HintPath>..\..\..\Ressources\TextOnAPath.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="SizeObserver.cs" />
+    <Compile Include="SurfaceFingerFilter.cs" />
+    <Compile Include="Transition.cs" />
+    <Compile Include="VueModele\ApercuVM.cs" />
+    <Compile Include="VueModele\ConsultationVM.cs" />
+    <Compile Include="VueModele\ConteneurPoiVM.cs" />
+    <Compile Include="VueModele\CouronneVM.cs" />
+    <Compile Include="VueModele\CreationVM.cs" />
+    <Compile Include="VueModele\DiaporamaVM.cs" />
+    <Compile Include="VueModele\ImageVM.cs" />
+    <Compile Include="VueModele\MainWindowVM.cs" />
+    <Compile Include="VueModele\MediaVM.cs" />
+    <Compile Include="VueModele\MenuVM.cs" />
+    <Compile Include="VueModele\MsvipVM.cs" />
+    <Compile Include="VueModele\PoiConsultationVM.cs" />
+    <Compile Include="VueModele\PoiCreationVM.cs" />
+    <Compile Include="VueModele\VideoVM.cs" />
+    <Compile Include="VueModele\VitrineVM.cs" />
+    <Compile Include="Vue\Consultation.xaml.cs">
+      <DependentUpon>Consultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Couronne.xaml.cs">
+      <DependentUpon>Couronne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Creation.xaml.cs">
+      <DependentUpon>Creation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Diaporama.xaml.cs">
+      <DependentUpon>Diaporama.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Poi.xaml.cs">
+      <DependentUpon>Poi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\PoiCreation.xaml.cs">
+      <DependentUpon>PoiCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Video.xaml.cs">
+      <DependentUpon>Video.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vue\Consultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\Creation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\Diaporama.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Vue\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Vue\Couronne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\Poi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\PoiCreation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\Video.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vue\Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Prototype1Table.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\icon.png" />
+    <Content Include="Resources\son.wav" />
+    <Resource Include="Resources\niv3Gy.png" />
+    <Resource Include="Resources\niv2Gy.png" />
+    <Resource Include="Resources\niv1Gy.png" />
+    <Resource Include="Resources\closeB.png" />
+    <Resource Include="Resources\deleteB.png" />
+    <Resource Include="Resources\renameB.png" />
+    <Resource Include="Resources\helpD.png" />
+    <Resource Include="Resources\author.png" />
+    <Resource Include="Resources\cancelGD.png" />
+    <Resource Include="Resources\closeGD.png" />
+    <Resource Include="Resources\consult.png" />
+    <Resource Include="Resources\helpGD.png" />
+    <Resource Include="Resources\newFile.png" />
+    <Resource Include="Resources\newPoi.png" />
+    <Resource Include="Resources\niv1G.png" />
+    <Resource Include="Resources\niv2G.png" />
+    <Resource Include="Resources\niv3G.png" />
+    <Resource Include="Resources\help.png" />
+    <Resource Include="Resources\helpG.png" />
+    <Resource Include="Resources\homeG.png" />
+    <Resource Include="Resources\niv1.png" />
+    <Resource Include="Resources\niv2.png" />
+    <Resource Include="Resources\niv3.png" />
+    <Resource Include="Resources\saveG.png" />
+    <Resource Include="Resources\vitrineParDefaut.png" />
+    <Resource Include="Resources\arrowLeft.png" />
+    <Resource Include="Resources\arrowRight.png" />
+    <Resource Include="Resources\diaporama.png" />
+    <Resource Include="Resources\image.png" />
+    <Resource Include="Resources\video.png" />
+    <Resource Include="Resources\TabletteCarre.png" />
+    <Resource Include="Resources\TbiCarre.png" />
+    <Resource Include="Resources\TabletteRond.png" />
+    <Resource Include="Resources\TbiRond.png" />
+    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\home.png" />
+    <Resource Include="Resources\reload.png" />
+    <Resource Include="Resources\settings.png" />
+    <Resource Include="Resources\video\video_frame.png" />
+    <Resource Include="Resources\video\video_overlay.png" />
+    <Resource Include="Resources\video\video_pausebutton.png" />
+    <Resource Include="Resources\video\video_playbutton_large.png" />
+    <Resource Include="Resources\video\video_playbutton_large_down.png" />
+    <Resource Include="Resources\video\video_playbutton_small.png" />
+    <Resource Include="Resources\video\video_rewindbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modele\Modele.csproj">
+      <Project>{257bde20-2dcf-404f-bf79-8c770db468dc}</Project>
+      <Name>Modele</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototype1Connexion\msvipConnexionDLL\msvipConnexionDLL.csproj">
+      <Project>{f9597c22-d406-4eef-8a08-67c36025aeb5}</Project>
+      <Name>msvipConnexionDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototype1Connexion\src\Mono.Zeroconf.Providers.Bonjour\Mono.Zeroconf.Providers.Bonjour.csproj">
+      <Project>{623325E2-5821-4701-A40C-3759097008DD}</Project>
+      <Name>Mono.Zeroconf.Providers.Bonjour</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototype1Connexion\src\Mono.Zeroconf\Mono.Zeroconf.csproj">
+      <Project>{5CF88E3A-13DD-4114-BAD9-DA826946516F}</Project>
+      <Name>Mono.Zeroconf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VueModeleCommun\Commun.csproj">
+      <Project>{8329faa9-364c-4604-ac2f-86b90e7ca68d}</Project>
+      <Name>Commun</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

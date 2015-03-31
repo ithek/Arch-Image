@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Prototype1TBI.Vue.Diaporama"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <extToolkit:Zoombox Grid.Column="0" Grid.ColumnSpan="2"
+                    Grid.Row="0" Grid.RowSpan="1"
+                    Margin="20"
+                    Focusable="True"
+                    IsTabStop="True" 
+                    AutoWrapContentWithViewbox="False"
+                    DragModifiers="None"
+                    ZoomModifiers="None"
+                    Width="800" Height="500"
+                    >
+            <extToolkit:Zoombox.ViewStack>
+                <extToolkit:ZoomboxView>Fit</extToolkit:ZoomboxView>
+            </extToolkit:Zoombox.ViewStack>
+            <Image x:Name="Img" Source="{Binding DiapoCourante}"/>
+        </extToolkit:Zoombox>
+        <Button Name="suiv" Command="{Binding SuivantCommande}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/Prototype1TBI;component/Images/suivant.png" Width="50" Height="50"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Name="prec" Command="{Binding PrecedentCommande}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/Prototype1TBI;component/Images/precedent.png" Width="50" Height="50"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>

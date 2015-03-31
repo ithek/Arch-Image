@@ -1,0 +1,102 @@
+﻿<Window x:Class="Prototype1TBI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:my="http://schemas.microsoft.com/surface/2008"
+        xmlns:vueModele="clr-namespace:Prototype1TBI.VueModeles"
+        xmlns:vue="clr-namespace:Prototype1TBI.Vue" 
+        Title="Msvip Ordinateur"
+        Background="#FFB7B3B3"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Name="main"
+        Height="600" Width="800"
+        Loaded="Window_Loaded"
+        >
+
+    <xctk:BusyIndicator IsBusy="{Binding AttenteConnexion}">
+        <xctk:BusyIndicator.BusyContentTemplate>
+            <DataTemplate>
+                <StackPanel Margin="4">
+                    <TextBlock Text="En attente de connexion..." FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <Button Content="Fermer" HorizontalAlignment="Stretch" Margin="0,5,0,5" Command="{Binding ElementName=environnement, Path=DataContext.FermetureAttente}"/>
+                </StackPanel>
+            </DataTemplate>
+        </xctk:BusyIndicator.BusyContentTemplate>
+        
+        <Grid Name="environnement">
+            <my:ScatterView HorizontalAlignment="Center" VerticalAlignment="Top">
+                <!-- Style du scatterViewItem -->
+                <my:ScatterView.ItemContainerStyle>
+                    <Style TargetType="{x:Type my:ScatterViewItem}">
+                        <Setter Property="Width" Value="{Binding largeurMedia, Mode=TwoWay}"/>
+                        <Setter Property="Height" Value="{Binding hauteurMedia, Mode=TwoWay}"/>
+                        <Setter Property="Orientation" Value="{Binding orientationMedia, Mode=TwoWay}"/>
+                        <Setter Property="MinWidth" Value="200"/>
+                        <Setter Property="CanMove" Value="False"/>
+                        <Setter Property="CanRotate" Value="False"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type my:ScatterViewItem}">
+                                    <Grid>
+                                        <Viewbox>
+                                            <Grid>
+                                                <Grid.Resources>
+                                                    <!--Si le Datacontext est une Image-->
+                                                    <DataTemplate DataType="{x:Type vueModele:ImageVM}">
+                                                        <vue:Image/>
+                                                    </DataTemplate>
+                                                    <!--Si le Datacontext est une Video-->
+                                                    <DataTemplate DataType="{x:Type vueModele:VideoVM}">
+                                                        <vue:Video/>
+                                                    </DataTemplate>
+                                                    <!--Si le Datacontext est un Diaporama-->
+                                                    <DataTemplate DataType="{x:Type vueModele:DiaporamaVM}">
+                                                        <vue:Diaporama/>
+                                                    </DataTemplate>
+                                                </Grid.Resources>
+
+                                                <ContentPresenter Content="{Binding}" Grid.Column="0" Grid.Row="1"/>
+                                            </Grid>
+                                        </Viewbox>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </my:ScatterView.ItemContainerStyle>
+
+                <!-- Le scatterViewItem contenant le media a ouvrir -->
+                <my:ScatterViewItem DataContext="{Binding mediaCourant}" Name="scatterView" 
+                                Visibility="{Binding mediaVisible}" Background="Transparent">
+                </my:ScatterViewItem>
+
+            </my:ScatterView>
+
+            <Canvas Background="#ff009BAD" Width="190" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Label Foreground="White" FontSize="13" Canvas.Left="6" Canvas.Top="-1">
+                    <Label.Style>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Content" Value="MSVIP Ordinateur" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding AttenteConnexion}" Value="false">
+                                    <Setter Property="Content" Value="MSVIP Ordinateur - Connecte" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+            </Canvas>
+
+            <Button Margin="205,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding Fermeture}" Background="{x:Null}" Padding="0" MinWidth="0" MinHeight="0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Canvas Background="#ff009BAD" Width="70" Height="25">
+                            <Label Content="Fermer" Foreground="White" FontSize="13" Canvas.Left="8" Canvas.Top="-1"></Label>
+                        </Canvas>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </xctk:BusyIndicator>
+</Window>

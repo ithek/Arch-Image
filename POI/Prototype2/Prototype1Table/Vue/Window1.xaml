@@ -1,0 +1,10 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vueModele="clr-namespace:Prototype1Table.VueModele"
+        xmlns:local="clr-namespace:Prototype1Table.Vue" x:Class="Prototype1Table.Vue.Window1"
+        Title="Window1" Height="300" Width="300">
+    <Window.DataContext>
+        <vueModele:MainWindowVM/>
+    </Window.DataContext>
+</Window>
