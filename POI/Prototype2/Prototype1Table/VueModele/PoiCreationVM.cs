@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Prototype1Table.VueModele
 {
-    class PoiCreationVM : VueModeleBase
+    public class PoiCreationVM : VueModeleBase
     {
         /*
          * Modéle du Poi

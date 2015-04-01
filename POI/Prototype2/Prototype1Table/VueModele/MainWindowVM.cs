@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace Prototype1Table.VueModele
 {
-    class MainWindowVM : VueModeleBase
+    public class MainWindowVM : VueModeleBase
     {
         VueModeleBase vueCourante;
         public VueModeleBase VueCourante

@@ -150,6 +150,20 @@
   <ItemGroup>
     <Resource Include="Resources\Video\video_frame.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modele\Modele.csproj">
+      <Project>{257bde20-2dcf-404f-bf79-8c770db468dc}</Project>
+      <Name>Modele</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Prototype1Connexion\msvipConnexionDLL\msvipConnexionDLL.csproj">
+      <Project>{f9597c22-d406-4eef-8a08-67c36025aeb5}</Project>
+      <Name>msvipConnexionDLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VueModeleCommun\Commun.csproj">
+      <Project>{8329faa9-364c-4604-ac2f-86b90e7ca68d}</Project>
+      <Name>Commun</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

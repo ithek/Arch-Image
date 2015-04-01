@@ -14,7 +14,7 @@ using System.IO;
 
 namespace Prototype1Table.VueModele
 {
-    class DiaporamaVM : MediaVM
+    public class DiaporamaVM : MediaVM
     {
         public DiaporamaVM(MediaModele m, Point p, double o, ConsultationVM c) : base(m, p, o, c) 
         {

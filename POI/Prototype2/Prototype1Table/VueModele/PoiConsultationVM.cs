@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Prototype1Table.VueModele
 {
-    class PoiConsultationVM : VueModeleBase
+    public class PoiConsultationVM : VueModeleBase
     {
 
         private PoiModele modele;

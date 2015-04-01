@@ -12,7 +12,7 @@ using System.IO;
 
 namespace Prototype1Table.VueModele
 {
-    class CreationVM : VueModeleBase
+    public class CreationVM : VueModeleBase
     {
         private MainWindowVM mainWindow;
 

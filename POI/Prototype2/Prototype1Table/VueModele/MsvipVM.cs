@@ -7,7 +7,7 @@ using Commun;
 
 namespace Prototype1Table.VueModele
 {
-    class MsvipVM : VueModeleBase
+    public class MsvipVM : VueModeleBase
     {
         private MsvipModele modele;
         private VitrineVM vitrineCourante;

@@ -13,7 +13,7 @@ using Microsoft.Surface;
 
 namespace Prototype1Table.VueModele
 {
-    class ConsultationVM : VueModeleBase
+    public class ConsultationVM : VueModeleBase
     {
         //La Vue-Modèle de la fenêtre principale
         private MainWindowVM mainWindow;
@@ -300,6 +300,45 @@ namespace Prototype1Table.VueModele
             RemoteServicePxS.NombreClientsChanged += new EventHandler(connexion_NombreClientsChanged);
             PresenceTablette = (MainWindowVM.connexion.nombreTablette > 0);
             PresenceTbi = (MainWindowVM.connexion.nombreTbi > 0);
+        }
+
+        private void basicConstultationVM(string chemin)
+        {
+            //initialisation des compteurs
+            counterActualWidthChanged = 0;
+            counterActualHeightChanged = 0;
+
+            //initialisation du modèle
+            modele = new VitrineModele(chemin);
+
+            //On ne met que la premiere carte de visible
+            VisibiliteCarte1 = System.Windows.Visibility.Visible;
+            Ratio = 1;
+
+            //On commence au niveau 1 donc on initialise l'indicateur en conséquence
+            AffichageNiveau = new Uri("/Prototype1Table;component/Resources/niv1.png", UriKind.Relative);
+
+            // La liste des médias
+            mediasOuverts = new ObservableCollection<MediaVM>();
+
+            // La liste des POI de la vitrine
+            listePois = new ObservableCollection<ConteneurPoiVM>();
+
+            RetourMenuCommande = new RelaiCommande(new Action(retourMenu));
+            RetourInitialCommande = new RelaiCommande(new Action(retourInitial));
+            FermetureMedia = new RelaiCommande<MediaVM>(new Action<MediaVM>(fermerMedia));
+            DemandeAideDroite = new RelaiCommande(new Action(demandeAideDroite));
+            DemandeAideGauche = new RelaiCommande(new Action(demandeAideGauche));
+
+            //Initiliasation de presenceTablette.Tbi
+            RemoteServicePxS.NombreClientsChanged += new EventHandler(connexion_NombreClientsChanged);
+            PresenceTablette = (MainWindowVM.connexion.nombreTablette > 0);
+            PresenceTbi = (MainWindowVM.connexion.nombreTbi > 0);
+        }
+
+        public ConsultationVM(string chemin)
+        {
+            basicConstultationVM(chemin);
         }
 
         //Constructeur classique

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Commun;
 using Modele;
+using Commun;
 using System.Windows;
 
 namespace Prototype1TBI.VueModeles

@@ -11,7 +11,7 @@ using Microsoft.Surface.Presentation.Controls;
 
 namespace Prototype1Table.VueModele
 {
-    class CouronneVM : VueModeleBase
+    public class CouronneVM : VueModeleBase
     {
         public bool finInitialisation;//permet d'attendre la fin de l'initialisation pour activer le comportement des apercus
         public List<ApercuVM> apercus { get; set; }//liste des apercus de la couronne

@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Prototype1Table.VueModele
 {
-    class MenuVM : VueModeleBase
+    public class MenuVM : VueModeleBase
     {
         private MainWindowVM mainWindow;
         private MsvipModele modele;

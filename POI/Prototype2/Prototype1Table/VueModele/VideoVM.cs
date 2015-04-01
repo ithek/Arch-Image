@@ -19,7 +19,7 @@ namespace Prototype1Table.VueModele
 {
     public delegate void ChangedEventHandler(object sender, EventArgs e);
 
-    class VideoVM : MediaVM
+    public class VideoVM : MediaVM
     {
         private MediaElement videoPlayer;
         public MediaElement VideoPlayer

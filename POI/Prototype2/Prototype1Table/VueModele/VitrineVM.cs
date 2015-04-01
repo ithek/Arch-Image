@@ -7,7 +7,7 @@ using Modele;
 using System.Text.RegularExpressions;
 namespace Prototype1Table.VueModele
 {
-    class VitrineVM : VueModeleBase
+    public class VitrineVM : VueModeleBase
     {
         private VitrineLightModele modele;
         public string Chemin { get { return modele.Chemin; } }

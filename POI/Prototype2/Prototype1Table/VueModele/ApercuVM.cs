@@ -17,7 +17,7 @@ using Microsoft.Surface;
 
 namespace Prototype1Table.VueModele
 {
-    class ApercuVM : VueModeleBase
+    public class ApercuVM : VueModeleBase
     {
         private Modele.MediaModele modele;
         private CouronneVM couronneParent;

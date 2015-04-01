@@ -10,7 +10,7 @@ using msvipConnexionDLL.implementations;
 
 namespace Prototype1Table.VueModele
 {
-    class MediaVM : VueModeleBase
+    public class MediaVM : VueModeleBase
     {
         //private String nom;
         //private CouronneVM couronne;
