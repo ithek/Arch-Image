@@ -69,10 +69,6 @@
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SwipeManager.cs" />
-    <Page Include="CreationPOI.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,9 +82,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppuiLong.cs" />
-    <Compile Include="CreationPOI.xaml.cs">
-      <DependentUpon>CreationPOI.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -97,17 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="POI.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NavigationPage.xaml.cs">
       <DependentUpon>NavigationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="POI.xaml.cs">
-      <DependentUpon>POI.xaml</DependentUpon>
     </Compile>
     <Compile Include="POICreationForm.cs">
       <SubType>Form</SubType>
