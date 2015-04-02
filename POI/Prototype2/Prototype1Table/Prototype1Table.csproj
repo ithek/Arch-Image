@@ -50,10 +50,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
-      <HintPath>..\..\..\Ressources\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+      <HintPath>..\..\..\DLL\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4">
-      <HintPath>..\..\..\Ressources\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+      <HintPath>..\..\..\DLL\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Surface, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -86,7 +86,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="TextOnAPath">
-      <HintPath>..\..\..\Ressources\TextOnAPath.dll</HintPath>
+      <HintPath>..\..\..\DLL\TextOnAPath.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
