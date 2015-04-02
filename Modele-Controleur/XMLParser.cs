@@ -44,7 +44,7 @@ namespace Modele_Controleur
 
             foreach (XmlNode node in nodes)
             {
-                int x, y;
+                double x, y;
                 XmlNodeList nodesPOI;
                 String poiURL;
                 poiURL = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
@@ -54,10 +54,10 @@ namespace Modele_Controleur
                 doc.LoadXml(reponsePOI);
 
                 nodesPOI = doc.SelectNodes("//node()[@uri='X']");             
-                x = Int32.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
+                x = Double.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
 
-                nodesPOI = doc.SelectNodes("//node()[@uri='Y']");           
-                y = Int32.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
+                nodesPOI = doc.SelectNodes("//node()[@uri='Y']");
+                y = Double.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
 
                 listePois.Add(new POICreationData(x, y));
             }
