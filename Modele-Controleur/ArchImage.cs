@@ -329,7 +329,7 @@ namespace Modele_Controleur
         {
             /* FIXME Utiliser EnumerateFiles qui est moins couteux ? */
             var dirs = getBookNamesIn(category);
-            return Directory.GetFiles(dirs[posLivre - 1]);
+            return Directory.GetFiles(dirs[posLivre - 1]); 
         }
 
         private string[] getBookNamesIn(Categorie category)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
+using System.Collections.Specialized;
+using System.IO;
 
 namespace Modele_Controleur
 {
@@ -10,6 +12,7 @@ namespace Modele_Controleur
     {
         private const String sewelisURL = "http://149.91.83.183/";
         private WebClient webClient;
+        private HttpWebRequest webRequest;
         private XMLParser parser;
        
         public SewelisAccess()
@@ -53,7 +56,27 @@ namespace Modele_Controleur
 
         public void chargerListePersonnes()
         {
-            parser.getListeNomsPersonnes();
+            //webClient = new WebClient();
+            //String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]");
+
+            webRequest = (HttpWebRequest)WebRequest.Create(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]"); ;
+            webRequest.BeginGetResponse(new AsyncCallback(FinishChargerListePersonnes), webRequest);
+            //parser.getListeNomsPersonnes(reponse);
+        }
+
+        public void FinishChargerListePersonnes(IAsyncResult result)
+        {
+            HttpWebResponse webResponse = (result.AsyncState as HttpWebRequest).EndGetResponse(result) as HttpWebResponse;
+            Encoding enc = System.Text.Encoding.GetEncoding(1252);
+            StreamReader loResponseStream = new
+            StreamReader(webResponse.GetResponseStream(), enc);
+
+            string reponse = loResponseStream.ReadToEnd();
+
+            loResponseStream.Close();
+            webResponse.Close();
+
+            parser.getListeNomsPersonnes(reponse);
         }
 
         /**

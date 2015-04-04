@@ -113,10 +113,8 @@ namespace Modele_Controleur
             return listePersonnes;
         }
 
-        public void getListeNomsPersonnes()
+        public void getListeNomsPersonnes(String reponse)
         {
-            WebClient webClient = new WebClient();
-            String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]");
             doc = new XmlDocument();
             doc.LoadXml(reponse);
             nodesPersonnes = doc.GetElementsByTagName("Literal");
