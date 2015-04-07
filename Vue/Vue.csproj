@@ -68,6 +68,7 @@
     <Compile Include="MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScreenTouchManager.cs" />
     <Compile Include="SwipeManager.cs" />
     <Page Include="MainMenuPage.xaml">
       <SubType>Designer</SubType>

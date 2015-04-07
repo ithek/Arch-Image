@@ -31,25 +31,25 @@ namespace Vue
             get;
             set;
         }
-
-        private SwipeManager Swipe
-        {
-            get;
-            set;
-        }
-
+        
         public NavigationPage(ArchImage a)
         {
             InitializeComponent();
 
+            this.initTouchManagement();
+
             this.Archimage = a;
             this.drawingRectangleForNewPOI = false;
-            this.Swipe = new SwipeManager(a, this);
-
-            this.TouchDown += new EventHandler<TouchEventArgs>(Swipe.TouchDown);
-            this.TouchMove += new EventHandler<TouchEventArgs>(Swipe.TouchMove); 
 
             this.UpdateUI();
+        }
+
+        private void initTouchManagement()
+        {
+            ScreenTouchManager touchManager = new ScreenTouchManager(this.theGrid);
+            this.RectangleContainingBackgroundImage.ManipulationStarting += touchManager.Image_ManipulationStarting;
+            this.RectangleContainingBackgroundImage.ManipulationDelta += touchManager.Image_ManipulationDelta;
+            this.DataContext = touchManager;
         }
 
         public void UpdateUI()
@@ -67,11 +67,8 @@ namespace Vue
 
         private void UpdateBackground()
         {
-            MainWindow mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
-            var background = new ImageBrush();
-            background.ImageSource = new BitmapImage(new Uri(this.Archimage.DocumentCourant.CheminAcces, UriKind.Relative));
-            background.Stretch = Stretch.Uniform;
-            mainWindow.Background = background;
+            ImageSource source = new BitmapImage(new Uri(this.Archimage.DocumentCourant.CheminAcces, UriKind.Relative));
+            BackgroundImage.ImageSource = source;
         }
         private void UpdateSlider()
         {
@@ -178,8 +175,6 @@ namespace Vue
             {
                 this.endRectangle(e);
             }
-
-            this.Swipe.HasRealeasedTouch();
         }
 
         private void endRectangle(MouseButtonEventArgs e)
