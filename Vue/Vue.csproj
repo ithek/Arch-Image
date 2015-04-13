@@ -140,6 +140,18 @@
       <Project>{4beff181-b02d-4f71-9374-904a73848d1d}</Project>
       <Name>Modele-Controleur</Name>
     </ProjectReference>
+    <ProjectReference Include="..\POI\Prototype2\Modele\Modele.csproj">
+      <Project>{257bde20-2dcf-404f-bf79-8c770db468dc}</Project>
+      <Name>Modele</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POI\Prototype2\Prototype1Table\Prototype1Table.csproj">
+      <Project>{75c17a13-457e-486d-ad31-aced778a7e77}</Project>
+      <Name>Prototype1Table</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\POI\Prototype2\VueModeleCommun\Commun.csproj">
+      <Project>{8329faa9-364c-4604-ac2f-86b90e7ca68d}</Project>
+      <Name>Commun</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -67,23 +67,24 @@ namespace Modele_Controleur
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
 
             this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
-
-            List<MediaModele> l = new List<MediaModele>();
-            l.Add(new MediaModele(Commun.Types.image, "C:\\Users\\Cedric\\Source\\Repos\\Arch-Image2\\Vue\\Resources\\Archives_departementales\\RECENSEMENT\\TRANS_LA_FORET_1846\\FRAD035_31_6M_33903_0001_P"));
-            l.Add(new MediaModele(Commun.Types.image, "C:\\Users\\Cedric\\Source\\Repos\\Arch-Image2\\Vue\\Resources\\Archives_departementales\\RECENSEMENT\\TRANS_LA_FORET_1846\\FRAD035_31_6M_33903_0001_P"));
-            PoiModele poi1 = new PoiModele(560, 500, l, " ");
-
-            Console.WriteLine(poi1);
             
-            //ConsultationVM vue = new ConsultationVM(" ");
-            //ConteneurPoiVM cont = new ConteneurPoiVM(poi1, vue);
-            //vue.ListePois.Add(cont);
-
-            //PoiConsultationVM poiVM = new PoiConsultationVM(cont, poi1, 1);
-
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            DocumentCourant.POIs = listePOIs;
+            ConsultationVM vue = new ConsultationVM(" ");
+            PoiModele poiMod;
+            List<MediaModele> listMedia = new List<MediaModele>();
+
             foreach (POICreationData poi in listePOIs)
+            {
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
                 Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
+                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                vue.ListePois.Add(cont);
+                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
+                
+            }
+
+
         }
 
         public int GetNbDocInCurrentBook()

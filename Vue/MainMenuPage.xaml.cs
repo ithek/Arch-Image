@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Modele_Controleur;
+using Prototype1Table.VueModele;
+using Modele;
 
 namespace Vue
 {
@@ -60,7 +62,22 @@ namespace Vue
         {
             MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
             this.archimage.Navigation(c);
+
+            List<POICreationData> listePOIs = archimage.DocumentCourant.POIs;
+            ConsultationVM vue = new ConsultationVM(" ");
+            PoiModele poiMod;
+            List<MediaModele> listMedia = new List<MediaModele>();
+
+            foreach (POICreationData poi in listePOIs)
+            {
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
+                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                vue.ListePois.Add(cont);
+                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
+            }
+            Console.WriteLine("Création POI logiques OK");
             main.Content = new NavigationPage(this.archimage);
+            
         }
 
         private void ConnexionButton_Click(object sender, RoutedEventArgs e)

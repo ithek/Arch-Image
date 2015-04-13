@@ -79,7 +79,7 @@ namespace Prototype1Table.VueModele
                 
                 modelePoi = p;
                 consultation = c;
-                VueCourante = new PoiConsultationVM(this, modelePoi);
+                VueCourante = new PoiConsultationVM(this, modelePoi, " ");
 
                 // Initialisation des coordonnées initiales
                 initialX = modelePoi.Position.X;

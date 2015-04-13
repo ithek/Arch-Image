@@ -22,7 +22,7 @@ namespace Modele_Controleur
             set;
         }
 
-        public List<POIWrapper> POIs
+        public List<POICreationData> POIs
         {
             get;
             set;
@@ -59,10 +59,15 @@ namespace Modele_Controleur
 
         public Document(Categorie c, string cheminAcces, int posLivre, int position)
         {
+            this.POIs = new List<POICreationData>();
             this.Categorie = c;
             this.CheminAcces = cheminAcces;
             this.PositionLivre = posLivre;
             this.Position = position;
+        }
+
+        public void addDocPoi(POICreationData poi){
+            POIs.Add(poi);
         }
     }
 }
