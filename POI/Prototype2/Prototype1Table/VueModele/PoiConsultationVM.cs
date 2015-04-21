@@ -163,7 +163,7 @@ namespace Prototype1Table.VueModele
             LancementCommande = new RelaiCommande(new Action(lancement));
         }
 
-        public PoiConsultationVM(ConteneurPoiVM c, PoiModele pm,int i)
+        public PoiConsultationVM(ConteneurPoiVM c, PoiModele pm,string n)
         {
             modele = pm;
             conteneur = c;
@@ -171,10 +171,8 @@ namespace Prototype1Table.VueModele
             HeightPoi = initialHeight * ratio;
             WidthPoi = initialWidth * ratio;
             MargePoi = initialMargePoi * ratio;
-
-            string nomPoi = "_";
-            
-            _Nom = nomPoi;
+                        
+            _Nom = n;
 
             poiVisible = System.Windows.Visibility.Visible;
             BrushCouleur = c1;

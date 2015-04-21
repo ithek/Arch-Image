@@ -332,8 +332,8 @@ namespace Prototype1Table.VueModele
 
             //Initiliasation de presenceTablette.Tbi
             RemoteServicePxS.NombreClientsChanged += new EventHandler(connexion_NombreClientsChanged);
-            PresenceTablette = (MainWindowVM.connexion.nombreTablette > 0);
-            PresenceTbi = (MainWindowVM.connexion.nombreTbi > 0);
+            //PresenceTablette = (MainWindowVM.connexion.nombreTablette > 0);
+            //PresenceTbi = (MainWindowVM.connexion.nombreTbi > 0);
         }
 
         public ConsultationVM(string chemin)

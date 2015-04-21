@@ -67,7 +67,7 @@ namespace Modele
         {
             chemin = p;
             listePois = new List<PoiModele>();
-            String[] carte;
+            /*String[] carte;
             string adresseCourante;
             string combinaison;
 
@@ -154,7 +154,7 @@ namespace Modele
                 combinaison = System.IO.Path.Combine(adresseCourante, carte[0]);
                 _uriMapLvl3 = new Uri(System.IO.Path.GetFullPath((new Uri(combinaison)).LocalPath));
                 _pathlvl3 = carte[0];
-            }
+            }*/
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Prototype1Table.VueModele
             ConteneurPoiVM cont = new ConteneurPoiVM(poi, vue);
             vue.ListePois.Add(cont);
 
-            PoiConsultationVM poiVM = new PoiConsultationVM(cont, poi, 1);
+            PoiConsultationVM poiVM = new PoiConsultationVM(cont, poi, " ");
 
             VueCourante = vue;
             Vue.Consultation view = new Vue.Consultation();
