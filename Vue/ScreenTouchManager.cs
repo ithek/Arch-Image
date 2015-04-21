@@ -12,7 +12,6 @@ namespace Vue
 {
     class ScreenTouchManager
     {
-
         public MatrixTransform ImageTransform
         {
             get;

@@ -6,6 +6,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="470" d:DesignWidth="645"
       x:Name="navPage"
+      MouseMove="OnMouseMove"
+      MouseRightButtonUp="theGrid_MouseRightButtonUp"
+      MouseRightButtonDown="theGrid_MouseRightButtonDown"
 	  Title="NavigationPage">
 
     <Page.Resources>
@@ -25,9 +28,7 @@
     
     <Grid
         Name="theGrid"
-        MouseDown="OnMouseDown"
-        MouseUp="OnMouseUp"
-        MouseMove="OnMouseMove"
+
         Background="Black">
         
         <Rectangle Name="RectangleContainingBackgroundImage"

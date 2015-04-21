@@ -141,17 +141,6 @@ namespace Vue
             this.UpdateUI();
         }
 
-        private async void OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            base.OnMouseDown(e);
-
-            bool isHold = await this.TouchHold(TimeSpan.FromSeconds(1));
-            if (isHold)
-            {
-                this.startRectangle(e);
-            }
-        }
-
         private void startRectangle(MouseButtonEventArgs e)
         {
             // Capture and track the mouse.
@@ -167,14 +156,6 @@ namespace Vue
 
             // Make the drag selection box visible.
             newPOISelectionRectangle.Visibility = Visibility.Visible;
-        }
-
-        private void OnMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (this.drawingRectangleForNewPOI)
-            {
-                this.endRectangle(e);
-            }
         }
 
         private void endRectangle(MouseButtonEventArgs e)
@@ -198,6 +179,7 @@ namespace Vue
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
+           e.Handled = true;
            if (drawingRectangleForNewPOI)
             {
                 // When the mouse is held down, reposition the drag selection box.
@@ -226,6 +208,18 @@ namespace Vue
                     newPOISelectionRectangle.Height = rectanglePOIStart.Y - mousePos.Y;
                 }
             }
+        }
+
+        private void theGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            this.endRectangle(e);
+        }
+
+        private void theGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            this.startRectangle(e);
         }
 
         private void DocSlider_UserModif()
