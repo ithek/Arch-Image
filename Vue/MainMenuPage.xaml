@@ -13,7 +13,7 @@
             x:Key="MainButtonStyle"
             BasedOn="{StaticResource {x:Type Button}}"
             TargetType="Button">
-            <Setter Property="Width" Value="120"/>
+            <Setter Property="Width" Value="125"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>

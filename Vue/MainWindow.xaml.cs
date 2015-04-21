@@ -27,10 +27,7 @@ namespace Vue
         public MainWindow()
         {
             InitializeComponent();
-
             this.Content = new MainMenuPage(new ArchImage());
-
-            //FIXME mettre le contenu de la page principale (bouton map, RM, connexion, favoris, etc) dans une Page et la charger plutot qu'en dur.
         }
     }
 }

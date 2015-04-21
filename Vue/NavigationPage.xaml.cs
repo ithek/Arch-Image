@@ -15,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-
 namespace Vue
 {
     /// <summary>
@@ -37,6 +36,7 @@ namespace Vue
             InitializeComponent();
 
             this.initTouchManagement();
+            
 
             this.Archimage = a;
             this.drawingRectangleForNewPOI = false;
@@ -242,6 +242,11 @@ namespace Vue
         {
             MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
             main.Content = new MainMenuPage(this.Archimage);
+        }
+
+        private void SwitchModeButton_Click(object sender, RoutedEventArgs e)
+        {
+            RectangleContainingBackgroundImage.IsManipulationEnabled = ! RectangleContainingBackgroundImage.IsManipulationEnabled;
         }
 	}
 }
