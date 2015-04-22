@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Modele_Controleur;
 using Prototype1Table.VueModele;
 using Modele;
+using System.IO;
 
 namespace Vue
 {
@@ -61,23 +62,33 @@ namespace Vue
         private void StartNavigation(Categorie c)
         {
             MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
-            this.archimage.Navigation(c);
-
-            List<POICreationData> listePOIs = archimage.DocumentCourant.POIs;
-            ConsultationVM vue = new ConsultationVM(" ");
-            PoiModele poiMod;
-            List<MediaModele> listMedia = new List<MediaModele>();
-
-            foreach (POICreationData poi in listePOIs)
+            try
             {
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
-                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
-                vue.ListePois.Add(cont);
-                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
+                this.archimage.Navigation(c);
+
+                List<POICreationData> listePOIs = archimage.DocumentCourant.POIs;
+                ConsultationVM vue = new ConsultationVM(" ");
+                PoiModele poiMod;
+                List<MediaModele> listMedia = new List<MediaModele>();
+
+                foreach (POICreationData poi in listePOIs)
+                {
+                    poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
+                    ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                    vue.ListePois.Add(cont);
+                    PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
+                }
+                Console.WriteLine("Création POI logiques OK");
+                main.Content = new NavigationPage(this.archimage);
             }
-            Console.WriteLine("Création POI logiques OK");
-            main.Content = new NavigationPage(this.archimage);
-            
+            catch (DirectoryNotFoundException ex)
+            {
+                ExceptionManager.DirectoryNotFound(ex);
+            }
+            catch (FileNotFoundException ex)
+            {
+                ExceptionManager.EmptyBook(ex);
+            }
         }
 
         private void ConnexionButton_Click(object sender, RoutedEventArgs e)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,16 @@ namespace Vue
     /// </summary>
     public partial class NavigationPage : Page
     {
+        /**
+         * The string to display on the switch-mode button when it's possible to move/zoom the image, but impossible to create POI.
+         */
+        private const string SWITCH_BUTTON_TEXT_MANIP = "Indiquer zones";
+
+        /**
+         * The string to display on the switch-mode button when it's possible to create POI, but impossible to move/zoom the image.
+         */
+        private const string SWITCH_BUTTON_TEXT_POI = "Naviguer";
+
         private bool drawingRectangleForNewPOI;
         private Point rectanglePOIStart;
         
@@ -61,8 +72,15 @@ namespace Vue
 
         private void UpdateButtons()
         {
-            this.NextCategoryName.Text = GetDisplayableName(Archimage.getPrev(Archimage.DocumentCourant.Categorie));
-            this.PrevCategoryName.Text = GetDisplayableName(Archimage.GetNext(Archimage.DocumentCourant.Categorie));        
+            this.NextCategoryName.Text = GetDisplayableName(Archimage.GetNext(Archimage.DocumentCourant.Categorie));
+            this.PrevCategoryName.Text = GetDisplayableName(Archimage.GetPrev(Archimage.DocumentCourant.Categorie));
+            this.UpdateSwitchModeButton();
+        }
+
+        private void UpdateSwitchModeButton()
+        {
+            this.SwitchModeButton.Content = RectangleContainingBackgroundImage.IsManipulationEnabled ?
+                SWITCH_BUTTON_TEXT_MANIP : SWITCH_BUTTON_TEXT_POI;
         }
 
         private void UpdateBackground()
@@ -119,25 +137,61 @@ namespace Vue
 
         private void NextDocButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Archimage.DocumentSuivant();
-            this.UpdateUI();
+            try
+            {
+                this.Archimage.DocumentSuivant();
+                this.UpdateUI();
+            }
+            catch (FileNotFoundException ex)
+            {
+                ExceptionManager.EmptyBook(ex);
+            }
         }
 
         private void PreviousDocButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Archimage.DocumentPrecedent();
-            this.UpdateUI();
+            try
+            {
+                this.Archimage.DocumentPrecedent();
+                this.UpdateUI();
+            }
+            catch (FileNotFoundException ex)
+            {
+                ExceptionManager.EmptyBook(ex);
+            }
         }
 
         private void PreviousCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Archimage.CategoriePrecedente();
+            try
+            {
+                this.Archimage.CategoriePrecedente();
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                ExceptionManager.DirectoryNotFound(ex);
+            }
+            catch (FileNotFoundException ex)
+            {
+                ExceptionManager.EmptyBook(ex);
+            }
             this.UpdateUI();
         }
 
         private void NextCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Archimage.CategorieSuivante();
+            try
+            {
+                this.Archimage.CategorieSuivante();
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                ExceptionManager.DirectoryNotFound(ex);
+            }
+            catch (FileNotFoundException ex)
+            {
+                ExceptionManager.EmptyBook(ex);
+            }
             this.UpdateUI();
         }
 
@@ -247,6 +301,7 @@ namespace Vue
         private void SwitchModeButton_Click(object sender, RoutedEventArgs e)
         {
             RectangleContainingBackgroundImage.IsManipulationEnabled = ! RectangleContainingBackgroundImage.IsManipulationEnabled;
+            this.UpdateSwitchModeButton();
         }
 	}
 }

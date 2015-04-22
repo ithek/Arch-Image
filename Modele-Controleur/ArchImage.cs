@@ -60,13 +60,20 @@ namespace Modele_Controleur
          * A appeler lorsque l'utilisateur commence à naviguer dans une categorie (depuis le menu principal ou simplement en ayant changé de catégorie)
          * Le document courant est alors le premier du premier livre de la catégorie
          * Le paramètre représente la catégorie dans laquelle l'utilisateur va naviguer
+         * Lance System.IO.DirectoryNotFoundException si le dossier correspondant n'existe pas, n'est pas à sa place ou qu'aucun livre (sous-dossier) n'est trouvé 
+         * Lance System.IO.FileNotFoundException si le livre parcouru ne contient pas de fichiers.
          */
         public void Navigation(Categorie categorie)
         {
             const int FIRST_BOOK = 1;
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
 
-            this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //FIXME les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
+            if (filenames.Length == 0)
+            {
+                throw new FileNotFoundException("Aucune image trouvée");
+            }
+
+            this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //TODO les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
             
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
             DocumentCourant.POIs = listePOIs;
@@ -81,10 +88,7 @@ namespace Modele_Controleur
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 vue.ListePois.Add(cont);
                 PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
-                
             }
-
-
         }
 
         public int GetNbDocInCurrentBook()
@@ -94,6 +98,7 @@ namespace Modele_Controleur
 
         /**
          * Change le document courant en prenant le prochain dans son livre s'il en reste, ou le premier du livre suivant sinon.
+         * Lance System.IO.FileNotFoundException si le nouveau livre parcouru ne contient pas de fichiers.
          * Ne fait rien s'il n'y a plus de livres ensuite.
          */
         public void DocumentSuivant()
@@ -134,6 +139,7 @@ namespace Modele_Controleur
         /**
          * Change le document courant en prenant le précédent de son livre. 
          * S'il était le premier, on prend le dernier document du livre précédent.
+         * Lance System.IO.FileNotFoundException si le nouveau livre parcouru ne contient pas de fichiers.
          * S'il n'y a pas de livre précédent, on ne fait rien.
          */
         public void DocumentPrecedent()
@@ -180,7 +186,7 @@ namespace Modele_Controleur
          */
         public void CategoriePrecedente()
         {
-            this.Navigation(getPrev(this.DocumentCourant.Categorie));
+            this.Navigation(GetPrev(this.DocumentCourant.Categorie));
         }
 
         /**
@@ -194,7 +200,7 @@ namespace Modele_Controleur
         /**
          * Returns the Categorie before c
          */
-        public Categorie getPrev(Categorie c)
+        public Categorie GetPrev(Categorie c)
         {
             Categorie prevCateg;
             var t = Enum.GetValues(typeof(Categorie));
@@ -244,7 +250,7 @@ namespace Modele_Controleur
             }
             else
             {
-                //FIXME pas tres efficace
+                //TODO pas tres efficace
                 var docs = getFileNamesOfCurrentBook();
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, docs[numeroDocument - 1], DocumentCourant.PositionLivre, numeroDocument);
             }
@@ -280,10 +286,10 @@ namespace Modele_Controleur
             throw new System.NotImplementedException();
         }
 
-        private static string CategorieToFolderName(Categorie c)
+        public static string CategorieToFolderName(Categorie c)
         {
             // TODO les autres catégories et dossiers correspondants
-            string res = "DUDE_FIXME";
+            string res = "DUDE_TODO";
 
             if (c == Categorie.REGISTRE_MATRICULE)
             {
@@ -328,14 +334,34 @@ namespace Modele_Controleur
          */
         private string[] getFileNamesIn(Categorie category, int posLivre)
         {
-            /* FIXME Utiliser EnumerateFiles qui est moins couteux ? */
+            /* TODO Utiliser EnumerateFiles qui est moins couteux ? */
             var dirs = getBookNamesIn(category);
-            return Directory.GetFiles(dirs[posLivre - 1]); 
+            if (dirs.Length == 0)
+            {
+                throw new DirectoryNotFoundException("Chaque dossier de catégorie (ici " + CategorieToFolderName(category) +
+                    ") doit contenir des sous-dossiers correspondants aux différents volumes à parcourir, ces sous-dossiers contenant eux-mêmes les images d'archives et rien d'autre. Aucun sous-dossier trouvé dans " + CategorieToFolderName(category) + ".");
+            }
+            string bookPath = dirs[posLivre - 1];
+            string[] res = Directory.GetFiles(bookPath);;
+
+            if (res.Length == 0)
+            {
+                throw new FileNotFoundException("Aucune image d'archives dans le dossier demandé " + bookPath + "/."); 
+            }
+            
+            return res;
         }
 
         private string[] getBookNamesIn(Categorie category)
         {
-            return Directory.GetDirectories(PATH_TO_ARCHIVE_DOCS + CategorieToFolderName(category));
+            try
+            {
+                return Directory.GetDirectories(PATH_TO_ARCHIVE_DOCS + CategorieToFolderName(category));
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                throw new DirectoryNotFoundException("Impossible de trouver les dossiers de la catégorie " + category.ToString() + " (vérifiez que le dossier Resources\\Archives_departementales\\" + ArchImage.CategorieToFolderName(category) + " existe bien)");
+            }
         }
 
     }

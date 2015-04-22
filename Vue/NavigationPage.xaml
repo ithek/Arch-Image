@@ -22,6 +22,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Page.Resources>
     
 
@@ -38,7 +39,7 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Button x:Name="SwitchModeButton" Content="Switch mode" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>
+        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>
         <Button x:Name="MenuButton" Content="Menu" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="MenuButton_Click"/>
         <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
         <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
@@ -55,6 +56,7 @@
             </StackPanel>
         </Button>
         <Slider Minimum="1" Height="27" Margin="0" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" Focusable="False" PreviewMouseUp="DocSlider_PreviewMouseUp" Thumb.DragCompleted="DocSlider_DragCompleted"/>
+
         <TextBlock x:Name="SliderInfoTextBlock" Background="#FFEEEEB5" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" TextAlignment="Center" Margin="0,0,0,32" FontWeight="Bold">
             <TextBlock.Effect>
                 <DropShadowEffect/>
