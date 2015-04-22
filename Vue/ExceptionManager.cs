@@ -19,5 +19,9 @@ namespace Vue
         {
             MessageBox.Show(ex.Message);
         }
+        public static void SaveNotFound(FileNotFoundException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 }

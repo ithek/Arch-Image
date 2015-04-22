@@ -16,6 +16,7 @@ using Modele_Controleur;
 using Prototype1Table.VueModele;
 using Modele;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Vue
 {
@@ -66,19 +67,8 @@ namespace Vue
             {
                 this.archimage.Navigation(c);
 
-                List<POICreationData> listePOIs = archimage.DocumentCourant.POIs;
-                ConsultationVM vue = new ConsultationVM(" ");
-                PoiModele poiMod;
-                List<MediaModele> listMedia = new List<MediaModele>();
-
-                foreach (POICreationData poi in listePOIs)
-                {
-                    poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
-                    ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
-                    vue.ListePois.Add(cont);
-                    PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
-                }
-                Console.WriteLine("Création POI logiques OK");
+                doStuffWithPOI();
+                
                 main.Content = new NavigationPage(this.archimage);
             }
             catch (DirectoryNotFoundException ex)
@@ -90,6 +80,23 @@ namespace Vue
                 ExceptionManager.EmptyBook(ex);
             }
         }
+        //TODO !!! Changer le nom une fois que le code POI est fonctionnel et clair. Appeler cette fonction où nécessaire et faire attention aux redondances.
+        private void doStuffWithPOI()
+        {
+            List<POICreationData> listePOIs = archimage.DocumentCourant.POIs;
+            ConsultationVM vue = new ConsultationVM(" ");
+            PoiModele poiMod;
+            List<MediaModele> listMedia = new List<MediaModele>();
+
+            foreach (POICreationData poi in listePOIs)
+            {
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
+                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                vue.ListePois.Add(cont);
+                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
+            }
+            Console.WriteLine("Création POI logiques OK");
+        }
 
         private void ConnexionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -99,6 +106,36 @@ namespace Vue
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
             Todo(sender, e);
+        }
+
+        private void RestoreSessionButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
+
+                loadLastSessionDoc();
+
+                doStuffWithPOI();
+                main.Content = new NavigationPage(this.archimage);
+            }
+            catch (FileNotFoundException ex)
+            {
+                ExceptionManager.SaveNotFound(ex);
+            }
+        }
+
+        private void loadLastSessionDoc()
+        {
+            //Opens file and deserializes the object from it.
+            Stream stream = File.Open(ArchImage.PATH_TO_SESSION_SAVE, FileMode.Open);
+            
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            Document docSessionPrecedente = (Document)formatter.Deserialize(stream);
+
+            this.archimage.DocumentCourant = docSessionPrecedente;  
+            stream.Close();
         }
     }
 }

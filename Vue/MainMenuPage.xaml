@@ -67,6 +67,10 @@
             <Button x:Name="ConnexionButton" Margin="0,0,10,0" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
             <Button x:Name="InscriptionButton" Content="Inscription" Click="InscriptionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
         </StackPanel>     
+        
+        <Button Grid.Row="3" Grid.Column="3" x:Name="RestoreSessionButton" Content="Restaurer la session" Click="RestoreSessionButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+
+
     </Grid>
 
 </Page>

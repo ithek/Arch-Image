@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Modele_Controleur
 {
+    [Serializable()]
     public class Document
     {
         /**
@@ -16,11 +18,9 @@ namespace Modele_Controleur
             set;
         }
 
-        public int Id
-        {
-            get;
-            set;
-        }
+        public int Id;
+
+
 
         public List<POICreationData> POIs
         {

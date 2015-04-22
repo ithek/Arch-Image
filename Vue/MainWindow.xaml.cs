@@ -15,7 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
-
+using System.Runtime.Serialization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Vue
 {
@@ -24,10 +26,31 @@ namespace Vue
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private ArchImage archimage;
+
         public MainWindow()
         {
             InitializeComponent();
-            this.Content = new MainMenuPage(new ArchImage());
+            this.archimage = new ArchImage();
+            this.Content = new MainMenuPage(this.archimage);
+        }
+
+        private void MetroWindow_Closed(object sender, EventArgs e)
+        {
+            //Opens a file and serializes the object into it in binary format.
+            Stream stream = File.Open(ArchImage.PATH_TO_SESSION_SAVE, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            try
+            {
+                formatter.Serialize(stream, archimage.DocumentCourant);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            stream.Close();
         }
     }
 }

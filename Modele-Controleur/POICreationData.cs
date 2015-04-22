@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modele_Controleur
 {
+    [Serializable()]
     public class POICreationData
     {
         public double posX
