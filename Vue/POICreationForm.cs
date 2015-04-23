@@ -45,14 +45,15 @@ namespace Vue
         {
             this.parseUserInput();   
 
-            this.Hide();
+            
             this.archimage.creerPOI(this.data);
             //TODO mettre à jour la vue ?
+            this.Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

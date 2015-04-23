@@ -17,16 +17,8 @@ namespace Modele_Controleur
         public const string PATH_TO_SESSION_SAVE = "archimage.save";
 
         private const string PATH_TO_ARCHIVE_DOCS = "../../Resources/Archives_departementales/";
-        public Utilisateur Utilisateur
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
+        
+        public Utilisateur Utilisateur;
 
         public Document DocumentCourant
         {

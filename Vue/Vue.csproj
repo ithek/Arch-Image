@@ -65,7 +65,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConnexionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnexionForm.Designer.cs">
+      <DependentUpon>ConnexionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExceptionManager.cs" />
+    <Compile Include="InscriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InscriptionForm.Designer.cs">
+      <DependentUpon>InscriptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuPage.xaml.cs">
       <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
@@ -115,6 +127,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="ConnexionForm.resx">
+      <DependentUpon>ConnexionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InscriptionForm.resx">
+      <DependentUpon>InscriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="POICreationForm.resx">
       <DependentUpon>POICreationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,7 +171,6 @@
       <Name>Commun</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

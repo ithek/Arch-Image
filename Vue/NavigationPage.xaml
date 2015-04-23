@@ -7,8 +7,8 @@
       d:DesignHeight="470" d:DesignWidth="645"
       x:Name="navPage"
       MouseMove="OnMouseMove"
-      MouseRightButtonUp="theGrid_MouseRightButtonUp"
-      MouseRightButtonDown="theGrid_MouseRightButtonDown"
+      MouseRightButtonUp="OnMouseRightButtonUp"
+      MouseRightButtonDown="OnMouseRightButtonDown"
 	  Title="NavigationPage">
 
     <Page.Resources>
@@ -40,7 +40,28 @@
         </Rectangle>
 
         <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>
-        <Button x:Name="MenuButton" Content="Menu" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="MenuButton_Click"/>
+        <Button x:Name="MenuButton" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="MenuButton_Click">
+            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                <Canvas Name="svg2" Width="512" Height="512">
+                    <Canvas.Resources/>
+                    <!--Unknown tag: metadata-->
+                    <!--Unknown tag: sodipodi:namedview-->
+                    <Canvas Name="g3">
+                        <Canvas.RenderTransform>
+                            <TranslateTransform X="0" Y="448"/>
+                        </Canvas.RenderTransform>
+                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5" Fill="#FF000000" StrokeThickness="12" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+                            <Path.Data>
+                                <PathGeometry Figures="m 16 256 240 -192 96 72 0 -32 48 0 0 72 96 80 -48 0 0 192 -120 0 0 -160 -96 0 0 160 -168 0 0 -192 z" FillRule="NonZero"/>
+                            </Path.Data>
+                            <Path.RenderTransform>
+                                <TranslateTransform X="0" Y="-448"/>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Canvas>
+                </Canvas>
+            </Viewbox>
+        </Button>
         <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
         <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
         <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click" Style="{StaticResource NavButtonStyle}">

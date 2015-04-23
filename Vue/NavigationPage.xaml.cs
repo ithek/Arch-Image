@@ -48,11 +48,30 @@ namespace Vue
 
             this.initTouchManagement();
             
-
             this.Archimage = a;
             this.drawingRectangleForNewPOI = false;
 
             this.UpdateUI();
+        }
+
+        private void updateAuthorPrivileges()
+        {
+            bool modeAuteur = this.Archimage.Utilisateur is Auteur;
+
+            this.SwitchModeButton.Visibility = modeAuteur ? Visibility.Visible : Visibility.Hidden;
+            if (modeAuteur)
+            {
+                //TODO est-ce qu'on ne cumulerait pas les handlers (1 fois par update) avec += ? s'il était possible de se déconnecter, faudrait-il faire autant de fois les -= pour perdre à nouveau les privilèges ?
+                this.MouseMove += this.OnMouseMove;
+                this.MouseRightButtonDown += this.OnMouseRightButtonDown;
+                this.MouseRightButtonUp += this.OnMouseRightButtonUp;
+            }
+            else
+            {
+                this.MouseMove -= this.OnMouseMove;
+                this.MouseRightButtonDown -= this.OnMouseRightButtonDown;
+                this.MouseRightButtonUp -= this.OnMouseRightButtonUp;
+            }
         }
 
         private void initTouchManagement()
@@ -68,6 +87,7 @@ namespace Vue
             UpdateBackground();
             UpdateSlider();//TODO use binding instead
             UpdateButtons();
+            this.updateAuthorPrivileges();
         }
 
         private void UpdateButtons()
@@ -264,13 +284,13 @@ namespace Vue
             }
         }
 
-        private void theGrid_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        private void OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
             this.endRectangle(e);
         }
 
-        private void theGrid_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void OnMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
             this.startRectangle(e);

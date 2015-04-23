@@ -24,8 +24,7 @@ namespace Vue
     /// Logique d'interaction pour MainMenuPage.xaml
     /// </summary>
     public partial class MainMenuPage : Page
-    {
-        
+    {        
         private ArchImage archimage
         {
             get;
@@ -37,6 +36,19 @@ namespace Vue
             InitializeComponent();
 
             this.archimage = arch;
+
+            this.updateUI();
+        }
+
+        public void updateUI()
+        {
+            this.updateButtonVisibility();
+        }
+
+        public void updateButtonVisibility()
+        {
+            //TODO le premier couillon qui voudrait plutôt faire ça par Binding comme j'en avais l'intention au début est le bienvenu.
+            this.FavorisButton.Visibility = (this.archimage.Utilisateur is Auteur) ? Visibility.Visible : Visibility.Hidden;
         }
 
 
@@ -100,12 +112,12 @@ namespace Vue
 
         private void ConnexionButton_Click(object sender, RoutedEventArgs e)
         {
-            Todo(sender, e);
+            new ConnexionForm(this.archimage, this).Show();
         }
 
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            Todo(sender, e);
+            new InscriptionForm().Show();
         }
 
         private void RestoreSessionButton_Click(object sender, RoutedEventArgs e)
