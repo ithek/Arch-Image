@@ -37,20 +37,23 @@ namespace Vue
 
         private void MetroWindow_Closed(object sender, EventArgs e)
         {
-            //Opens a file and serializes the object into it in binary format.
-            Stream stream = File.Open(ArchImage.PATH_TO_SESSION_SAVE, FileMode.Create);
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            try
+            if (archimage.DocumentCourant != null)
             {
-                formatter.Serialize(stream, archimage.DocumentCourant);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                //Opens a file and serializes the object into it in binary format.
+                Stream stream = File.Open(ArchImage.PATH_TO_SESSION_SAVE, FileMode.Create);
+                BinaryFormatter formatter = new BinaryFormatter();
 
-            stream.Close();
+                try
+                {
+                    formatter.Serialize(stream, archimage.DocumentCourant);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                stream.Close();
+            }
         }
     }
 }

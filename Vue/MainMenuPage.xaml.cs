@@ -133,9 +133,9 @@ namespace Vue
             BinaryFormatter formatter = new BinaryFormatter();
 
             Document docSessionPrecedente = (Document)formatter.Deserialize(stream);
-
-            this.archimage.DocumentCourant = docSessionPrecedente;  
             stream.Close();
+
+            this.archimage.Navigation(docSessionPrecedente);  
         }
     }
 }

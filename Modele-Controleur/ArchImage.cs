@@ -51,10 +51,26 @@ namespace Modele_Controleur
             set;
         }
 
+        private IEnumerable<string> filenamesOfCurrentBook;
 
         public ArchImage()
         {
             SewelisAccess = new SewelisAccess();
+        }
+
+
+        /**
+         * Commence la navigation directement sur le document fourni
+         * Lance ArgumentException si l'objet ou ses attributs ne sont pas correctement initialisés 
+         */
+        public void Navigation(Document d)
+        {
+            if (d == null || !File.Exists(d.CheminAcces) || d.Position < 1 || d.PositionLivre < 1) {  //TODO check d.POI and check pos/posLivre to be existing and correlating with cheminAcces
+                throw new ArgumentException();
+            } else {
+                this.DocumentCourant = d;
+                this.filenamesOfCurrentBook = getFileNamesIn(d.Categorie, d.PositionLivre);
+            }
         }
 
         /**
@@ -69,12 +85,13 @@ namespace Modele_Controleur
             const int FIRST_BOOK = 1;
             var filenames = getFileNamesIn(categorie, FIRST_BOOK);
 
-            if (filenames.Length == 0)
+            if (filenames.Count() == 0)
             {
                 throw new FileNotFoundException("Aucune image trouvée");
             }
 
-            this.DocumentCourant = new Document(categorie, filenames[0], FIRST_BOOK, 1); //TODO les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
+            this.filenamesOfCurrentBook = filenames;
+            this.DocumentCourant = new Document(categorie, filenames.ElementAt(0), FIRST_BOOK, 1); //TODO les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
             
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
             DocumentCourant.POIs = listePOIs;
@@ -94,7 +111,7 @@ namespace Modele_Controleur
 
         public int GetNbDocInCurrentBook()
         {
-            return getFileNamesOfCurrentBook().Length;
+            return this.filenamesOfCurrentBook.Count();
         }
 
         /**
@@ -104,19 +121,19 @@ namespace Modele_Controleur
          */
         public void DocumentSuivant()
         {
-            bool lastOfItsBook = (DocumentCourant.Position == getFileNamesOfCurrentBook().Length);
-            bool lastBookOfCategory = (DocumentCourant.PositionLivre == getBookNamesIn(DocumentCourant.Categorie).Length);
+            bool lastOfItsBook = (DocumentCourant.Position == this.filenamesOfCurrentBook.Count());
             string nouvCheminAcces;
-            int nouvPosLivre;
-            int nouvPosDansLivre;
+            int nouvPosLivre, nouvPosDansLivre;
 
             if (lastOfItsBook)
             {
+                bool lastBookOfCategory = (DocumentCourant.PositionLivre == getBookNamesIn(DocumentCourant.Categorie).Length);
                 if (!lastBookOfCategory)
                 {
                     // Use first doc of next book
                     nouvPosLivre = DocumentCourant.PositionLivre + 1;
-                    nouvCheminAcces = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre)[0];
+                    this.filenamesOfCurrentBook = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre);
+                    nouvCheminAcces = this.filenamesOfCurrentBook.ElementAt(0);
                     nouvPosDansLivre = 1;
 
                     this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
@@ -126,7 +143,7 @@ namespace Modele_Controleur
             {
                 // Use next doc from this book 
                 nouvPosLivre = DocumentCourant.PositionLivre;
-                nouvCheminAcces = getFileNamesOfCurrentBook()[DocumentCourant.Position];
+                nouvCheminAcces = this.filenamesOfCurrentBook.ElementAt(DocumentCourant.Position);
                 nouvPosDansLivre = DocumentCourant.Position + 1;
 
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
@@ -158,11 +175,12 @@ namespace Modele_Controleur
                     // Use last doc of previous 
                     nouvPosLivre = DocumentCourant.PositionLivre - 1;
 
-                    var docsDansLivrePrec = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre);
-                    int nombreDocDansLivrePrec = docsDansLivrePrec.Length;
+                    IEnumerable<string> docsDansLivrePrec = getFileNamesIn(DocumentCourant.Categorie, nouvPosLivre);
 
-                    nouvCheminAcces = docsDansLivrePrec[nombreDocDansLivrePrec - 1];
-                    nouvPosDansLivre = nombreDocDansLivrePrec;
+                    nouvCheminAcces = docsDansLivrePrec.Last();
+                    nouvPosDansLivre = docsDansLivrePrec.Count();
+
+                    this.filenamesOfCurrentBook = docsDansLivrePrec;
 
                     this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
                 }
@@ -171,7 +189,7 @@ namespace Modele_Controleur
             {
                 // Use previous doc from this book 
                 nouvPosLivre = DocumentCourant.PositionLivre;
-                nouvCheminAcces = getFileNamesOfCurrentBook()[DocumentCourant.Position - 2];
+                nouvCheminAcces = this.filenamesOfCurrentBook.ElementAt(DocumentCourant.Position - 2);
                 nouvPosDansLivre = DocumentCourant.Position - 1;
 
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
@@ -251,9 +269,7 @@ namespace Modele_Controleur
             }
             else
             {
-                //TODO pas tres efficace
-                var docs = getFileNamesOfCurrentBook();
-                this.DocumentCourant = new Document(DocumentCourant.Categorie, docs[numeroDocument - 1], DocumentCourant.PositionLivre, numeroDocument);
+                this.DocumentCourant = new Document(DocumentCourant.Categorie, this.filenamesOfCurrentBook.ElementAt(numeroDocument - 1), DocumentCourant.PositionLivre, numeroDocument);
             }
 
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
@@ -324,18 +340,12 @@ namespace Modele_Controleur
             return res;
         }
 
-        private string[] getFileNamesOfCurrentBook()
-        {
-            return getFileNamesIn(DocumentCourant.Categorie, DocumentCourant.PositionLivre);
-        }
-
         /**
-         * Returns the files in the directory 'category', in sub-directory n°'posLivre'
+         * Search for and returns the files in the directory 'category', in sub-directory n°'posLivre'
          * 1 <= posLivre <= N,    N being the number of books (sub-directories) in category
          */
-        private string[] getFileNamesIn(Categorie category, int posLivre)
+        private IEnumerable<string> getFileNamesIn(Categorie category, int posLivre)
         {
-            /* TODO Utiliser EnumerateFiles qui est moins couteux ? */
             var dirs = getBookNamesIn(category);
             if (dirs.Length == 0)
             {
@@ -343,9 +353,9 @@ namespace Modele_Controleur
                     ") doit contenir des sous-dossiers correspondants aux différents volumes à parcourir, ces sous-dossiers contenant eux-mêmes les images d'archives et rien d'autre. Aucun sous-dossier trouvé dans " + CategorieToFolderName(category) + ".");
             }
             string bookPath = dirs[posLivre - 1];
-            string[] res = Directory.GetFiles(bookPath);;
+            IEnumerable<string> res = Directory.EnumerateFiles(bookPath);
 
-            if (res.Length == 0)
+            if (res.Count() == 0)
             {
                 throw new FileNotFoundException("Aucune image d'archives dans le dossier demandé " + bookPath + "/."); 
             }
@@ -359,11 +369,10 @@ namespace Modele_Controleur
             {
                 return Directory.GetDirectories(PATH_TO_ARCHIVE_DOCS + CategorieToFolderName(category));
             }
-            catch (DirectoryNotFoundException ex)
+            catch (DirectoryNotFoundException)
             {
                 throw new DirectoryNotFoundException("Impossible de trouver les dossiers de la catégorie " + category.ToString() + " (vérifiez que le dossier Resources\\Archives_departementales\\" + ArchImage.CategorieToFolderName(category) + " existe bien)");
             }
         }
-
     }
 }
