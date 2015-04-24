@@ -57,6 +57,11 @@ namespace Vue
             MessageBox.Show("Not yet implemented :(");
         }
 
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
+            getMainWindow().Content = new MapPage(this.archimage);
+        }
+
         private void RMButton_Click(object sender, RoutedEventArgs e)
         {
             StartNavigation(Categorie.REGISTRE_MATRICULE);
@@ -74,7 +79,7 @@ namespace Vue
 
         private void StartNavigation(Categorie c)
         {
-            MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
+            MainWindow main = getMainWindow();
             try
             {
                 this.archimage.Navigation(c);
@@ -124,7 +129,7 @@ namespace Vue
         {
             try
             {
-                MainWindow main = ((MainWindow)System.Windows.Application.Current.MainWindow);
+                MainWindow main = getMainWindow();
 
                 loadLastSessionDoc();
 
@@ -148,6 +153,10 @@ namespace Vue
             stream.Close();
 
             this.archimage.Navigation(docSessionPrecedente);  
+        }
+
+        private MainWindow getMainWindow() {
+            return ((MainWindow)System.Windows.Application.Current.MainWindow);
         }
     }
 }
