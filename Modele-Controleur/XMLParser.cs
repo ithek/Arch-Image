@@ -45,6 +45,7 @@ namespace Modele_Controleur
             foreach (XmlNode node in nodes)
             {
                 double x, y;
+                string poiId;
                 XmlNodeList nodesPOI;
                 String poiURL;
                 poiURL = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
@@ -59,7 +60,10 @@ namespace Modele_Controleur
                 nodesPOI = doc.SelectNodes("//node()[@uri='Y']");
                 y = Double.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
 
-                listePois.Add(new POICreationData(x, y));
+                nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
+                poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+
+                listePois.Add(new POICreationData(x, y, poiId));
             }
 
             return listePois;
@@ -107,7 +111,7 @@ namespace Modele_Controleur
                     if (nodesList.Count > 0)
                         ddn = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
-                    listePersonnes.Add(new Personne(nom, prenom, ddn));
+                    listePersonnes.Add(new Personne(nom, prenom, ddn, id));
                 }
             }
             return listePersonnes;
@@ -118,6 +122,29 @@ namespace Modele_Controleur
             doc = new XmlDocument();
             doc.LoadXml(reponse);
             nodesPersonnes = doc.GetElementsByTagName("Literal");
+        }
+
+        public string getIdPersonne(String reponse)
+        {
+            XmlNodeList nodesPOI;
+            doc.LoadXml(reponse);
+            nodesPOI = doc.SelectNodes("//node()[@uri='Concerne']");
+            return nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+        }
+
+        //TODO: rajouter catégorie
+        public List<Document> getListDocs(String reponse)
+        {
+            XmlNodeList nodesPOI;
+            List<Document> listeDocs = new List<Document>();
+            doc.LoadXml(reponse); 
+            nodesPOI = doc.SelectNodes("//node()[@uri='EstLie']");
+
+            foreach (XmlNode node in nodesPOI)
+            {
+                listeDocs.Add(new Document(node.InnerText));
+            }
+            return listeDocs;
         }
     }
 }

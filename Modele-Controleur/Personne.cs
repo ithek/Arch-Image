@@ -8,6 +8,12 @@ namespace Modele_Controleur
 {
     public class Personne
     {
+        public String Id
+        {
+            get;
+            set;
+        }
+
         public String Nom
         {
             get;
@@ -32,11 +38,12 @@ namespace Modele_Controleur
             set;
         }
 
-        public Personne(String nom, String prenom, String ddn)
+        public Personne(String nom, String prenom, String ddn, String id)
         {
             Nom = nom;
             Prenom = prenom;
             DateNaissance = ddn;
+            Id = id;
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Modele_Controleur
         {
             List<Personne> listePersonnes = null;
 
-            String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=5&matchingKey=" + motif);
+            String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=2&matchingKey=" + motif);
             listePersonnes = parser.getRecherchePersonnes(reponse);
  
             return listePersonnes;
@@ -92,9 +92,9 @@ namespace Modele_Controleur
             webClient.DownloadString(sewelisURL + "runStatement?userKey=123&storeId=1&statement=<" + idPoi + "> [a <POI>]");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=X&o=<URI>" + poi.posX + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=Y&o=<URI>" + poi.posY + "</URI>");
-            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=PossedePOI&o=<URI>" + idPoi + "</URI>");       
-          
-            //webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=<poi_id"+ nbPois + ">&p=Concerne&o=<URI>" + doc.CheminAcces + "</URI>";
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=PossedePOI&o=<URI>" + idPoi + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=Concerne&o=<URI>" + poi.IdPersonne + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + poi.IdPersonne + "&p=EstLie&o=<URI>" + idPoi + "</URI>");
         }
 
         /**
@@ -107,20 +107,15 @@ namespace Modele_Controleur
             return parser.getPOI(reponse);
         }
 
-        public List<Document> getListDocs(Categorie categorie)
-        {
-            string response = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <file:///home/kevin/sewelis/img/FRAD035_1R_01901/FRAD035_1R_01901a/RegistreMatricule>]");
-            List<Document> documents = new List<Document>();
-            
-            return documents;
-        }
-
         /**
-         * Renvoie le document n°position
+         * Récupère la liste des docs associés à un POI
          */
-        public Document GetDoc(int position, Categorie categorie)
+        public List<Document> getListDocs(POICreationData poi)
         {
-            throw new System.NotImplementedException();
+            String reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + poi.Id);
+            String idPersonne = parser.getIdPersonne(reponse);
+            reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + idPersonne);
+            return parser.getListDocs(reponse);
         }
     }
 }

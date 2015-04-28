@@ -21,7 +21,13 @@ namespace Modele_Controleur
             set;
         }
 
-        public string name
+        public string Id
+        {
+            get;
+            set;
+        }
+
+        public string IdPersonne
         {
             get;
             set;
@@ -31,6 +37,13 @@ namespace Modele_Controleur
         {
             this.posX = x;
             this.posY = y;
+        }
+
+        public POICreationData(double x, double y, string poiId)
+        {
+            this.posX = x;
+            this.posY = y;
+            this.Id = poiId;
         }
     }
 }
