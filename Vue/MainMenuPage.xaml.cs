@@ -83,8 +83,6 @@ namespace Vue
             try
             {
                 this.archimage.Navigation(c);
-
-                doStuffWithPOI();
                 
                 main.Content = new NavigationPage(this.archimage);
             }
@@ -98,22 +96,6 @@ namespace Vue
             }
         }
         //TODO !!! Changer le nom une fois que le code POI est fonctionnel et clair. Appeler cette fonction où nécessaire et faire attention aux redondances.
-        private void doStuffWithPOI()
-        {
-            List<POICreationData> listePOIs = archimage.DocumentCourant.POIs;
-            ConsultationVM vue = new ConsultationVM(" ");
-            PoiModele poiMod;
-            List<MediaModele> listMedia = new List<MediaModele>();
-
-            foreach (POICreationData poi in listePOIs)
-            {
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
-                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
-                vue.ListePois.Add(cont);
-                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
-            }
-            Console.WriteLine("Création POI logiques OK");
-        }
 
         private void ConnexionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -133,7 +115,6 @@ namespace Vue
 
                 loadLastSessionDoc();
 
-                doStuffWithPOI();
                 main.Content = new NavigationPage(this.archimage);
             }
             catch (FileNotFoundException ex)

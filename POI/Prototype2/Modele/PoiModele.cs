@@ -15,6 +15,13 @@ namespace Modele
             set { position = value; }
         }
 
+        private String nom;
+        public String Nom
+        {
+            get { return nom; }
+            set { nom = value; }
+        }
+
         public String chemin { get; set; }
 
         private CouronneModele couronne;
@@ -48,12 +55,13 @@ namespace Modele
             couronne = new CouronneModele(c);
         }
 
-        public PoiModele(int x, int y,List<MediaModele> media, string c)
+        public PoiModele(int x, int y,List<MediaModele> media, string c,String name)
         {
             chemin = c;
             Niveau = 1;
             position = new Point(x, y); ;
             couronne = new CouronneModele(media);
+            nom = name;
         }
 
         public void enregistrerPosition(double ratio)

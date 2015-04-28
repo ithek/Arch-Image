@@ -50,18 +50,6 @@ namespace Prototype1Table.VueModele
 
         public void lancementConsultation(string chemin)
         {
-            List<MediaModele> l = new List<MediaModele>();
-            l.Add(new MediaModele(Commun.Types.image, "C:\\Users\\Cedric\\Source\\Repos\\Arch-Image2\\Vue\\Resources\\Archives_departementales\\RECENSEMENT\\TRANS_LA_FORET_1846\\FRAD035_31_6M_33903_0001_P"));
-            l.Add(new MediaModele(Commun.Types.image, "C:\\Users\\Cedric\\Source\\Repos\\Arch-Image2\\Vue\\Resources\\Archives_departementales\\RECENSEMENT\\TRANS_LA_FORET_1846\\FRAD035_31_6M_33903_0001_P"));
-            PoiModele poi = new PoiModele(560, 500, l, " ");
-
-            ConsultationVM vue = new ConsultationVM(this, chemin);
-            ConteneurPoiVM cont = new ConteneurPoiVM(poi, vue);
-            vue.ListePois.Add(cont);
-
-            PoiConsultationVM poiVM = new PoiConsultationVM(cont, poi, " ");
-
-            VueCourante = vue;
             Vue.Consultation view = new Vue.Consultation();
             view.DataContext = VueCourante;
             App.Current.MainWindow.Content = view;

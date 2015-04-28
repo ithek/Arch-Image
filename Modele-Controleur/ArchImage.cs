@@ -87,18 +87,6 @@ namespace Modele_Controleur
             
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
             DocumentCourant.POIs = listePOIs;
-            ConsultationVM vue = new ConsultationVM(" ");
-            PoiModele poiMod;
-            List<MediaModele> listMedia = new List<MediaModele>();
-
-            foreach (POICreationData poi in listePOIs)
-            {
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name);
-                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
-                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
-                vue.ListePois.Add(cont);
-                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
-            }
         }
 
         public int GetNbDocInCurrentBook()
@@ -142,8 +130,7 @@ namespace Modele_Controleur
             }
 
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            foreach(POICreationData poi in listePOIs)
-                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
+            this.DocumentCourant.POIs = listePOIs;
         }
 
         /**
@@ -188,8 +175,7 @@ namespace Modele_Controleur
             }
 
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            foreach (POICreationData poi in listePOIs)
-                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
+            this.DocumentCourant.POIs = listePOIs;
         }
 
         /**
@@ -265,8 +251,7 @@ namespace Modele_Controleur
             }
 
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            foreach (POICreationData poi in listePOIs)
-                Console.WriteLine("POI sur l'image " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
+            this.DocumentCourant.POIs = listePOIs;
         }
 
         public List<Document> documentDuPoi(POIWrapper poi)
@@ -278,6 +263,8 @@ namespace Modele_Controleur
         {
             Console.WriteLine("Ajout d'un POI concernant " + poi.name + " en (" + poi.posX + " ; " + poi.posY + ")");
             SewelisAccess.ajouterPOI(poi, DocumentCourant);
+            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            this.DocumentCourant.POIs = listePOIs;
         }
 
         public void POISurDoc(Document doc)

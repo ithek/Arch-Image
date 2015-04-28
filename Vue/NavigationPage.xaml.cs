@@ -15,6 +15,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Prototype1Table.VueModele;
+using Modele;
+using Commun;
+using Prototype1Table.Vue;
+
 
 namespace Vue
 {
@@ -49,6 +54,7 @@ namespace Vue
             this.initTouchManagement();
             
             this.Archimage = a;
+
             this.drawingRectangleForNewPOI = false;
 
             this.UpdateUI();
@@ -87,7 +93,26 @@ namespace Vue
             UpdateBackground();
             UpdateSlider();//TODO use binding instead
             UpdateButtons();
+            doStuffWithPOI();
             this.updateAuthorPrivileges();
+        }
+
+        private void doStuffWithPOI()
+        {
+            List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
+            ConsultationVM vue = new ConsultationVM(" ");
+            PoiModele poiMod;
+            List<MediaModele> listMedia = new List<MediaModele>();
+
+            PoisItemControl.DataContext = vue;
+
+            foreach (POICreationData poi in listePOIs)
+            {
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.name, "abc"); // TO DO : a modifier lorsque les noms seront implémentés
+                ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                vue.ListePois.Add(cont);
+                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.name);
+            }
         }
 
         private void UpdateButtons()

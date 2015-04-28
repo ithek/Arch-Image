@@ -99,7 +99,7 @@ namespace Prototype1Table.VueModele
 
         public void fermeturePoi()
         {
-            VueCourante = new PoiConsultationVM(this, modelePoi);
+            VueCourante = new PoiConsultationVM(this, modelePoi,modelePoi.Nom);
         }
 
         public void ouvrirMedia(MediaVM m)
