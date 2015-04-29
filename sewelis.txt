@@ -1,5 +1,9 @@
 Proposition des noms
 
+http://149.91.83.183/getPlaceRoot?userKey=123&storeId=1
+http://149.91.83.183/insertIncrement?userKey=123&storeId=1&placeId=1&incrementId=34
+
+
 > Saisie "Bar"
 getCompletions?userKey=123&placeId=5&matchingKey=Bar
 

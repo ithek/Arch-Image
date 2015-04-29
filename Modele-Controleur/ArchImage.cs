@@ -28,13 +28,8 @@ namespace Modele_Controleur
 
         public MySQLAccess MySQLAccess
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
+            get;
+            set;
         }
 
         public SewelisAccess SewelisAccess
@@ -48,6 +43,7 @@ namespace Modele_Controleur
         public ArchImage()
         {
             SewelisAccess = new SewelisAccess();
+            MySQLAccess = new MySQLAccess();
         }
 
 

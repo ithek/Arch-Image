@@ -2,66 +2,74 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace Modele_Controleur
 {
     public class MySQLAccess
     {
+        private static string conn = "Server=149.91.83.183;Database=archimage;Uid=remote;Pwd=archimage35;";
+        private MySqlConnection connect;
+
+        public MySQLAccess()
+        {
+            //inscription("toto", "tata", "tototata");
+            //EtatConnexion e = connexion("toto", "tata");
+        }
+
+        private void db_connection()
+        {
+            try
+            {
+                connect = new MySqlConnection(conn);
+                connect.Open();
+            }
+            catch (MySqlException e)
+            {
+                throw;
+            }
+        }
+
         public Modele_Controleur.EtatConnexion connexion(string nom, string mdp)
         {
-            //Established a connection with the database
-            using (SqlConnection myLoginConnection = new SqlConnection(@"Data Source=USER-PC\;Initial Catalog=TestDB;Integrated Security=True"))
+            db_connection();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = "Select * from Table_Utilisateurs where username=@user and password=@pass";
+            cmd.Parameters.AddWithValue("@user", nom);
+            cmd.Parameters.AddWithValue("@pass", mdp);
+            cmd.Connection = connect;
+            MySqlDataReader login = cmd.ExecuteReader();
+            if (login.Read())
             {
-                //Open the connection
-                myLoginConnection.Open();
-
-
-                using (SqlCommand myLoginCommand = new SqlCommand("SELECT * FROM Table_Utilisateurs WHERE UserName = @UserName AND Password = @Password", myLoginConnection))
-                {
-                    myLoginCommand.Parameters.AddWithValue("UserName", nom);
-                    myLoginCommand.Parameters.AddWithValue("Password", mdp);
-
-                    SqlDataReader myLoginReader = myLoginCommand.ExecuteReader();
-
-                    //if the data matches the rows (username, password), then you enter to the page
-                    if (myLoginReader.Read())
-                    {
-                        myLoginConnection.Close();
-                        myLoginReader.Close();
-                        return Modele_Controleur.EtatConnexion.OK;
-                    }
-                    else
-                    {
-                        myLoginConnection.Close();
-                        myLoginReader.Close();
-                        return Modele_Controleur.EtatConnexion.ERREUR_MDP;
-                    }
-                }
+                connect.Close();
+                return EtatConnexion.OK;
+            }
+            else
+            {
+                connect.Close();
+                return EtatConnexion.ERREUR_MDP;
             }
         }
 
         public EtatInscription inscription(string nom, string mdp, string email)
         {
-            //Established a connection with the database
-            using (SqlConnection myRegisterConnection = new SqlConnection(@"Data Source=USER-PC\;Initial Catalog=TestDB;Integrated Security=True"))
+            db_connection();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.CommandText = "INSERT INTO Table_Utilisateurs (username,password,email) values (@user,@pass,@email)";
+            cmd.Parameters.AddWithValue("@user", nom);
+            cmd.Parameters.AddWithValue("@pass", mdp);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Connection = connect;
+            MySqlDataReader login = cmd.ExecuteReader();
+            if (login.Read())
             {
-                //Open the connection
-                myRegisterConnection.Open();
-
-                //Create a command where each control is equal to the values in the table
-                using (SqlCommand myRegisterCommand = new SqlCommand("INSERT INTO [Table_Utilisateurs] values (@UserName, @Email, @Password)", myRegisterConnection))
-                {
-                    myRegisterCommand.Parameters.AddWithValue("UserName", nom);
-                    myRegisterCommand.Parameters.AddWithValue("Email", email);
-                    myRegisterCommand.Parameters.AddWithValue("Password", mdp);
-
-                    myRegisterCommand.ExecuteNonQuery();
-                }
-                //Close connection 
-                myRegisterConnection.Close();
-
+                connect.Close();
                 return EtatInscription.OK;
+            }
+            else
+            {
+                connect.Close();
+                return EtatInscription.ERREUR_MDP;
             }
         }
     }
