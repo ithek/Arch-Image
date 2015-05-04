@@ -58,7 +58,7 @@
             </StackPanel>
         </Button>
         <Button Grid.Row="1" Grid.Column="2" x:Name="RMButton" Content="Registres matricules" Click="RMButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="3" x:Name="FavorisButton" Content="Favoris" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
+        <Button Grid.Row="1" Grid.Column="3" x:Name="RestoreSessionButton" Content="Restaurer la session" Click="RestoreSessionButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
         <Button Grid.Row="2" Grid.Column="1" x:Name="NMDButton" Content="NMD" Click="NMDButton_Click" Style="{StaticResource MainButtonStyle}"/>
         <Button Grid.Row="2" Grid.Column="2" x:Name="RecensementButton" Content="Recensement" Click="RecensementButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
         <Button Grid.Row="2" Grid.Column="3" x:Name="ParametresButton" Content="Paramètres" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
@@ -66,9 +66,9 @@
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <Button x:Name="ConnexionButton" Margin="0,0,10,0" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
             <Button x:Name="InscriptionButton" Content="Inscription" Click="InscriptionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
-        </StackPanel>     
-        
-        <Button Grid.Row="3" Grid.Column="3" x:Name="RestoreSessionButton" Content="Restaurer la session" Click="RestoreSessionButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        </StackPanel>
+
+        <Button Grid.Row="3" Grid.Column="3" x:Name="FavorisButton" Content="Favoris" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
 
     </Grid>
