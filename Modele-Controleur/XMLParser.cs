@@ -129,7 +129,8 @@ namespace Modele_Controleur
         
         public string getNomPersonne(String reponse)
         {
-            String res;
+            String res = "Robert";
+            /* TODO Plante 
             XmlNodeList nodesPOI;
             doc.LoadXml(reponse);
             
@@ -139,7 +140,7 @@ namespace Modele_Controleur
             
             nodesPOI = doc.SelectNodes("//node()[@uri='Nom']");
             res += nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-            
+            */
             return res;
         }
 

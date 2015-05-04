@@ -112,10 +112,8 @@ namespace Vue
             {
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Id); // TODO : a modifier lorsque les noms seront implémentés
 
-            Console.WriteLine("Nom des personnes sur les POI");
+                Console.WriteLine("Nom des personnes sur les POI");
 
-            foreach (POICreationData poi in listePOIs)
-            {
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                 foreach (Document doc in listDoc)
                 {
@@ -124,13 +122,14 @@ namespace Vue
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.IdPersonne); // TO DO : a modifier lorsque les noms seront implémentés
 
-                
+
                 Console.WriteLine(poi.Id);
-                
+
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 cont.fermeturePoi(); //Pour afficher les noms sur les POI
                 vue.ListePois.Add(cont);
                 PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.IdPersonne);
+                
             }
         }
 
