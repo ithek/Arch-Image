@@ -40,12 +40,14 @@ namespace Vue
             this.archimage.SewelisAccess.chargerListePersonnes();
         }
 
-        public POICreationForm(double left, double top, ArchImage Archimage, NavigationPage navigationPage)
+        public POICreationForm(double left, double top, ArchImage archimage, NavigationPage navigationPage)
         {
             InitializeComponent();
+            this.data = new POICreationData(left, top);
             this.left = left;
             this.top = top;
-            this.Archimage = Archimage;
+            this.archimage = archimage;
+            this.archimage.SewelisAccess.chargerListePersonnes();
             this.navigationPage = navigationPage;
         }
 
@@ -64,6 +66,7 @@ namespace Vue
 
             //TODO mettre à jour la vue ?
             this.Close();
+            this.navigationPage.UpdateUI();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -96,7 +99,6 @@ namespace Vue
             {
                 foreach (Personne personne in listePersonnes)
                 {
-
                     listeNoms.Add(personne.Nom);
                 }
                 listeBoxPersonnes.DataSource = listeNoms;

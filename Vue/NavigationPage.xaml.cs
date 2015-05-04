@@ -106,8 +106,6 @@ namespace Vue
 
             PoisItemControl.DataContext = vue;
 
-            Console.WriteLine("Nom des personnes sur les POI");
-
             foreach (POICreationData poi in listePOIs)
             {
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
@@ -117,9 +115,6 @@ namespace Vue
                 }
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.IdPersonne); // TO DO : a modifier lorsque les noms seront implémentés
-
-                
-                Console.WriteLine(poi.Id);
                 
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 cont.fermeturePoi(); //Pour afficher les noms sur les POI
@@ -286,7 +281,7 @@ namespace Vue
             double left = ((rectanglePOIStart.X + rectanglePOIEnd.X)/2);
             double top =  ((rectanglePOIStart.Y + rectanglePOIEnd.Y)/2);
 
-            new POICreationForm(left, top, Archimage).Show();
+            new POICreationForm(left, top, Archimage, this).Show();
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
