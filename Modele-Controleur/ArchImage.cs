@@ -81,6 +81,7 @@ namespace Modele_Controleur
             this.filenamesOfCurrentBook = filenames;
             this.DocumentCourant = new Document(categorie, filenames.ElementAt(0), FIRST_BOOK, 1); //TODO les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
             
+            //TODO a faire aussi pour Navigation(Document), UtiliserDoc et d'éventuels autres (doc/cat suiv/prev !), a priori ?
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
             DocumentCourant.POIs = listePOIs;
         }

@@ -30,10 +30,18 @@ namespace Vue
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            this.archimage.Utilisateur = new Auteur();
-            this.Close();
-            this.menu.updateUI();
-            System.Windows.MessageBox.Show("Vous êtes maintenant connecté et pouvez modifier les documents !");
+            EtatConnexion etat = this.archimage.MySQLAccess.connexion(identifiantTextBox.Text, passwordTextBox.Text);
+            if (etat == EtatConnexion.OK)
+            {
+                this.archimage.Utilisateur = new Auteur();
+                this.Close();
+                this.menu.updateUI();
+                System.Windows.MessageBox.Show("Vous êtes maintenant connecté et pouvez modifier les documents !");
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Impossible d'effectuer la connexion");
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

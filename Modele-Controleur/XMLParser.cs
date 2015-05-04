@@ -62,10 +62,11 @@ namespace Modele_Controleur
 
                 nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
                 poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+                
+                String reponsePOIid = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + poiId);      
+                nom = this.getNomPersonne(reponsePOIid);
 
-                nom = this.getIdPersonne(reponse);
-
-                listePois.Add(new POICreationData(x, y, poiId,nom));
+                listePois.Add(new POICreationData(x, y, poiId, nom));
             }
 
             return listePois;
@@ -124,6 +125,23 @@ namespace Modele_Controleur
             doc = new XmlDocument();
             doc.LoadXml(reponse);
             nodesPersonnes = doc.GetElementsByTagName("Literal");
+        }
+        
+        public string getNomPersonne(String reponse)
+        {
+            String res = "Robert";
+            /* TODO Plante 
+            XmlNodeList nodesPOI;
+            doc.LoadXml(reponse);
+            
+            nodesPOI = doc.SelectNodes("//node()[@uri='Initiale']");
+            if(nodesPOI != null)
+                res = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+            
+            nodesPOI = doc.SelectNodes("//node()[@uri='Nom']");
+            res += nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+            */
+            return res;
         }
 
         public string getIdPersonne(String reponse)
