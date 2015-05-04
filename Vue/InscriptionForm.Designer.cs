@@ -33,7 +33,7 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.identifiantTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -46,7 +46,6 @@
             this.identifiantLabel.Size = new System.Drawing.Size(53, 13);
             this.identifiantLabel.TabIndex = 0;
             this.identifiantLabel.Text = "Identifiant";
-            this.identifiantLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // mailLabel
             // 
@@ -81,12 +80,12 @@
             this.passwordTextBox.Size = new System.Drawing.Size(166, 20);
             this.passwordTextBox.TabIndex = 4;
             // 
-            // textBox2
+            // emailTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(110, 91);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(166, 20);
-            this.textBox2.TabIndex = 5;
+            this.emailTextBox.Location = new System.Drawing.Point(110, 91);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(166, 20);
+            this.emailTextBox.TabIndex = 5;
             // 
             // okButton
             // 
@@ -115,7 +114,7 @@
             this.ClientSize = new System.Drawing.Size(299, 174);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.emailTextBox);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.identifiantTextBox);
             this.Controls.Add(this.passwordLabel);
@@ -135,7 +134,7 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox identifiantTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
     }

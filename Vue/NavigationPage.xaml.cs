@@ -106,9 +106,10 @@ namespace Vue
 
             PoisItemControl.DataContext = vue;
 
+            //this.Archimage.SewelisAccess.getPOI(this.Archimage.DocumentCourant)
             foreach (POICreationData poi in listePOIs)
             {
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Id); // TO DO : a modifier lorsque les noms seront implémentés
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Id); // TODO : a modifier lorsque les noms seront implémentés
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 vue.ListePois.Add(cont);
                 PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Id);

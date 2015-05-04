@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modele_Controleur;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,25 @@ namespace Vue
 {
     public partial class InscriptionForm : Form
     {
-        public InscriptionForm()
+        private ArchImage arch;
+        public InscriptionForm(ArchImage a)
         {
+            this.arch = a;
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            EtatInscription etat = this.arch.MySQLAccess.inscription(identifiantTextBox.Text, passwordTextBox.Text, emailTextBox.Text);
+            if (etat == EtatInscription.OK)
+            {
+                MessageBox.Show("Inscription effectuée");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Impossible de créer le compte (identifiant déjà choisi ?)");
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

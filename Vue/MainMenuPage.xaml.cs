@@ -104,7 +104,7 @@ namespace Vue
 
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            new InscriptionForm().Show();
+            new InscriptionForm(this.archimage).Show();
         }
 
         private void RestoreSessionButton_Click(object sender, RoutedEventArgs e)
