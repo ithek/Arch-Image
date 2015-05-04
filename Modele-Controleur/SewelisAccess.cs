@@ -92,6 +92,7 @@ namespace Modele_Controleur
             webClient.DownloadString(sewelisURL + "runStatement?userKey=123&storeId=1&statement=<" + idPoi + "> [a <POI>]");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=X&o=<URI>" + poi.posX + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=Y&o=<URI>" + poi.posY + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=NomPOI&o=<URI>" + poi.nom + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=PossedePOI&o=<URI>" + idPoi + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=Concerne&o=<URI>" + poi.IdPersonne + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + poi.IdPersonne + "&p=EstLie&o=<URI>" + idPoi + "</URI>");
