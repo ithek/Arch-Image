@@ -45,7 +45,7 @@ namespace Modele_Controleur
             foreach (XmlNode node in nodes)
             {
                 double x, y;
-                string poiId;
+                string poiId,nom;
                 XmlNodeList nodesPOI;
                 String poiURL;
                 poiURL = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
@@ -63,7 +63,9 @@ namespace Modele_Controleur
                 nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
                 poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
 
-                listePois.Add(new POICreationData(x, y, poiId));
+                nom = this.getIdPersonne(reponse);
+
+                listePois.Add(new POICreationData(x, y, poiId,nom));
             }
 
             return listePois;

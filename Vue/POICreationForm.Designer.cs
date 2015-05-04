@@ -142,4 +142,5 @@
         private System.Windows.Forms.Label prenomLabel;
         private System.Windows.Forms.Label dateNaissanceLabel;
     }
+
 }
