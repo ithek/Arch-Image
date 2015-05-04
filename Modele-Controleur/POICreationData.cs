@@ -45,5 +45,13 @@ namespace Modele_Controleur
             this.posY = y;
             this.Id = poiId;
         }
+
+        public POICreationData(double x, double y, string poiId, string nom)
+        {
+            this.posX = x;
+            this.posY = y;
+            this.Id = poiId;
+            this.IdPersonne = nom;
+        }
     }
 }

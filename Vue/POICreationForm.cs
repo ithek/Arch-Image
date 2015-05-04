@@ -26,6 +26,10 @@ namespace Vue
         }
 
         private List<Personne> listePersonnes;
+        private double left;
+        private double top;
+        private ArchImage Archimage;
+        private NavigationPage navigationPage;
 
         public POICreationForm(double x, double y, ArchImage arch)
         {
@@ -34,6 +38,15 @@ namespace Vue
             
             this.archimage = arch;
             this.archimage.SewelisAccess.chargerListePersonnes();
+        }
+
+        public POICreationForm(double left, double top, ArchImage Archimage, NavigationPage navigationPage)
+        {
+            InitializeComponent();
+            this.left = left;
+            this.top = top;
+            this.Archimage = Archimage;
+            this.navigationPage = navigationPage;
         }
 
         private void parseUserInput()
