@@ -105,13 +105,14 @@ namespace Vue
             List<MediaModele> listMedia = new List<MediaModele>();
 
             PoisItemControl.DataContext = vue;
+            ScatterMedias.DataContext = vue;
 
             foreach (POICreationData poi in listePOIs)
             {
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                 foreach (Document doc in listDoc)
                 {
-                    listMedia.Add(new MediaModele(Types.image, doc.CheminAcces));
+                    listMedia.Add(new MediaModele(Types.image, "C:/Users/Cedric/Source/Repos/Arch-Image2/POI/Prototype2/Vitrines/Insa.vitrine/niveau3/Salle_Mac.poi/PicToShare.diaporama/affichage.jpg")); // TO DO : rajouter les véritables chemin d'accès.
                 }
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.IdPersonne); // TO DO : a modifier lorsque les noms seront implémentés

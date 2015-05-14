@@ -144,7 +144,7 @@
         <!--Medias-->
         <my:ScatterView Name="ScatterMedias" 
                         ItemContainerStyle="{StaticResource ScatterViewItemStyleMedias}"
-                        Width="{Binding ElementName=environnement, Path=Width}" Height="{Binding ElementName=environnement, Path=Height}"
+                        Width="{Binding ElementName=theGrid, Path=Width}" Height="{Binding ElementName=theGrid, Path=Height}"
                         ItemsSource="{Binding mediasOuverts}">
             <my:ScatterView.ItemTemplate>
 
@@ -228,7 +228,7 @@
                                 <Style TargetType="{x:Type Button}">
                                     <Setter Property="Visibility" Value="Hidden"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=environnement, Path=DataContext.PresenceTablette}" Value="True">
+                                        <DataTrigger Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTablette}" Value="True">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -256,12 +256,12 @@
                                     <Style.Triggers>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding ElementName=environnement, Path=DataContext.PresenceTablette}" Value="False"/>
-                                                <Condition Binding="{Binding ElementName=environnement, Path=DataContext.PresenceTbi}" Value="True"/>
+                                                <Condition Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTablette}" Value="False"/>
+                                                <Condition Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTbi}" Value="True"/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Margin" Value="0,-10,50,0"/>
                                         </MultiDataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=environnement, Path=DataContext.PresenceTbi}" Value="True">
+                                        <DataTrigger Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTbi}" Value="True">
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </DataTrigger>
                                     </Style.Triggers>
