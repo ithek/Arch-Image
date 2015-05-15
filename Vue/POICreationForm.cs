@@ -83,6 +83,7 @@ namespace Vue
             this.dateNaissanceLabel.Text = "Date de naissance : " + personne.DateNaissance;
 
             data.IdPersonne = personne.Id;
+            data.Nom = personne.Nom;
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
@@ -91,6 +92,7 @@ namespace Vue
             this.prenomLabel.Text = "Prénom : ";
             this.dateNaissanceLabel.Text = "Date de naissance : ";
             data.IdPersonne = null;
+            data.Nom = null;
 
             List<String> listeNoms = new List<String>();
             listePersonnes = this.archimage.SewelisAccess.recherchePersonnes(this.nameTextBox.Text);

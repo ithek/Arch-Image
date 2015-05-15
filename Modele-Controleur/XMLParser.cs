@@ -45,7 +45,7 @@ namespace Modele_Controleur
             foreach (XmlNode node in nodes)
             {
                 double x, y;
-                string poiId,nom;
+                string poiId, nom;
                 XmlNodeList nodesPOI;
                 String poiURL;
                 poiURL = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
@@ -62,9 +62,12 @@ namespace Modele_Controleur
 
                 nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
                 poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-                
-                String reponsePOIid = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + poiId);      
-                nom = this.getNomPersonne(reponsePOIid);
+
+                nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
+                poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+                          
+                nodesPOI = doc.SelectNodes("//node()[@uri='NomPOI']");
+                nom = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
 
                 listePois.Add(new POICreationData(x, y, poiId, nom));
             }
@@ -127,22 +130,6 @@ namespace Modele_Controleur
             nodesPersonnes = doc.GetElementsByTagName("Literal");
         }
         
-        public string getNomPersonne(String reponse)
-        {
-            String res = "Robert";
-            /* TODO Plante 
-            XmlNodeList nodesPOI;
-            doc.LoadXml(reponse);
-            
-            nodesPOI = doc.SelectNodes("//node()[@uri='Initiale']");
-            if(nodesPOI != null)
-                res = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-            
-            nodesPOI = doc.SelectNodes("//node()[@uri='Nom']");
-            res += nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-            */
-            return res;
-        }
 
         public string getIdPersonne(String reponse)
         {

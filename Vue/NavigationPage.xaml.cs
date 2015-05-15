@@ -115,12 +115,12 @@ namespace Vue
                     listMedia.Add(new MediaModele(Types.image, "../../Resources/Archives_departementales/REGISTRES_MILITAIRES/FRAD035_1R_01570/FRAD035_47_1R_01570_0001.jpg")); // TO DO : rajouter les véritables chemin d'accès.
                 }
 
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.IdPersonne); // TO DO : a modifier lorsque les noms seront implémentés
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom); // TO DO : a modifier lorsque les noms seront implémentés
                 
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 cont.fermeturePoi(); //Pour afficher les noms sur les POI
                 vue.ListePois.Add(cont);
-                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.IdPersonne);
+                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
             }
         }
 

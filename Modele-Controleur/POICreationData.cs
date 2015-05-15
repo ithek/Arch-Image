@@ -33,6 +33,12 @@ namespace Modele_Controleur
             set;
         }
 
+        public string Nom
+        {
+            get;
+            set;
+        }
+
         public POICreationData(double x, double y)
         {
             this.posX = x;
@@ -51,7 +57,16 @@ namespace Modele_Controleur
             this.posX = x;
             this.posY = y;
             this.Id = poiId;
-            this.IdPersonne = nom;
+            this.Nom = nom;
+        }
+
+        public POICreationData(double x, double y, string poiId, string idPersonne, string nom)
+        {
+            this.posX = x;
+            this.posY = y;
+            this.Id = poiId;
+            this.IdPersonne = idPersonne;
+            this.Nom = nom;
         }
     }
 }
