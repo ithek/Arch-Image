@@ -163,7 +163,7 @@ namespace Prototype1Table.VueModele
             LancementCommande = new RelaiCommande(new Action(lancement));
         }
 
-        public PoiConsultationVM(ConteneurPoiVM c, PoiModele pm,string n)
+        public PoiConsultationVM(ConteneurPoiVM c, PoiModele pm, string n)
         {
             modele = pm;
             conteneur = c;

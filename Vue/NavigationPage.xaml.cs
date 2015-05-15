@@ -115,12 +115,12 @@ namespace Vue
                     listMedia.Add(new MediaModele(Types.image, "C:/Users/Cedric/Source/Repos/Arch-Image2/POI/Prototype2/Vitrines/Insa.vitrine/niveau3/Salle_Mac.poi/PicToShare.diaporama/affichage.jpg")); // TO DO : rajouter les véritables chemin d'accès.
                 }
 
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.IdPersonne); // TO DO : a modifier lorsque les noms seront implémentés
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom); // TO DO : a modifier lorsque les noms seront implémentés
                 
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 cont.fermeturePoi(); //Pour afficher les noms sur les POI
                 vue.ListePois.Add(cont);
-                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.IdPersonne);
+                PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
             }
         }
 

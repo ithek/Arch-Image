@@ -55,7 +55,7 @@ namespace Modele
             couronne = new CouronneModele(c);
         }
 
-        public PoiModele(int x, int y,List<MediaModele> media, string c,String name)
+        public PoiModele(int x, int y,List<MediaModele> media, string c, String name)
         {
             chemin = c;
             Niveau = 1;

@@ -258,7 +258,7 @@ namespace Modele_Controleur
 
         public void creerPOI(POICreationData poi)
         {
-            Console.WriteLine("Ajout d'un POI concernant " + poi.IdPersonne + " en (" + poi.posX + " ; " + poi.posY + ")");
+            Console.WriteLine("Ajout d'un POI concernant " + poi.Nom + " en (" + poi.posX + " ; " + poi.posY + ")");
             SewelisAccess.ajouterPOI(poi, DocumentCourant);
             List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
             this.DocumentCourant.POIs = listePOIs;
