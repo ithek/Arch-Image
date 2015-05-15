@@ -112,7 +112,7 @@ namespace Vue
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                 foreach (Document doc in listDoc)
                 {
-                    listMedia.Add(new MediaModele(Types.image, "C:/Users/Cedric/Source/Repos/Arch-Image2/POI/Prototype2/Vitrines/Insa.vitrine/niveau3/Salle_Mac.poi/PicToShare.diaporama/affichage.jpg")); // TO DO : rajouter les véritables chemin d'accès.
+                    listMedia.Add(new MediaModele(Types.image, "../../Resources/Archives_departementales/REGISTRES_MILITAIRES/FRAD035_1R_01570/FRAD035_47_1R_01570_0001.jpg")); // TO DO : rajouter les véritables chemin d'accès.
                 }
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.IdPersonne); // TO DO : a modifier lorsque les noms seront implémentés
