@@ -40,6 +40,8 @@ namespace Vue
 
         private bool drawingRectangleForNewPOI;
         private Point rectanglePOIStart;
+
+        private ConsultationVM vue;
         
         private ArchImage Archimage
         {
@@ -100,7 +102,7 @@ namespace Vue
         private void doStuffWithPOI()
         {
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
-            ConsultationVM vue = new ConsultationVM(" ");
+            vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
             
 
@@ -111,12 +113,9 @@ namespace Vue
             {
                 List<MediaModele> listMedia = new List<MediaModele>();
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
-                int i = 0;
                 foreach (Document doc in listDoc)
                 {
-                    Console.WriteLine(i);
                     listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces));
-                    i++;
                 }
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom);
@@ -360,6 +359,82 @@ namespace Vue
         {
             RectangleContainingBackgroundImage.IsManipulationEnabled = ! RectangleContainingBackgroundImage.IsManipulationEnabled;
             this.UpdateSwitchModeButton();
+        }
+
+        //Récupère le type des documents
+        private string categoryName(String path)
+        {
+            System.Text.RegularExpressions.Regex rMat = new System.Text.RegularExpressions.Regex("^.*REGISTRES_MILITAIRES.*$");
+            System.Text.RegularExpressions.Regex nmd = new System.Text.RegularExpressions.Regex("^.*NMD.*$");
+            System.Text.RegularExpressions.Regex tRMat = new System.Text.RegularExpressions.Regex("^.*TABLES_RMM.*$");
+            System.Text.RegularExpressions.Regex recensement = new System.Text.RegularExpressions.Regex("^.*RECENSEMENT.*$");
+            System.Text.RegularExpressions.Regex tDecen = new System.Text.RegularExpressions.Regex("^.*TABLES_DECENNALES.*$");
+            System.Text.RegularExpressions.Regex tsa = new System.Text.RegularExpressions.Regex("^.*TSA.*$");
+
+            if (rMat.IsMatch(path))
+                return "REGISTRE_MATRICULE";
+            if(nmd.IsMatch(path))
+                return "NAISSANCE_MARIAGE_DECES";
+            if (nmd.IsMatch(path))
+                return "TABLE_REGISTRE_MATRICULE";
+            if (nmd.IsMatch(path))
+                return "RECENSEMENT";
+            if (nmd.IsMatch(path))
+                return "TABLES_DECENNALES";
+            if (nmd.IsMatch(path))
+                return "TSA";
+            else
+                return "ERREUR";
+        }
+
+        private string[] Splitter(String chaine)
+        {
+            System.Text.RegularExpressions.Regex myRegex = new System.Text.RegularExpressions.Regex(@"\\");
+            return myRegex.Split(chaine);
+        }
+
+        private string SMS(string chaine)
+        {
+            System.Text.RegularExpressions.Regex myRegex = new System.Text.RegularExpressions.Regex(@"/");
+            return myRegex.Replace(chaine, "\\"); //renvoi la chaine modifiée
+        }
+
+        private void newBackgroundButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource.GetType() == typeof(System.Windows.Shapes.Rectangle))
+            {
+                MediaVM media = this.vue.mediasOuverts.ElementAt(0);
+
+                //Pour récupérer les types des documents.
+                String chemin = media.cheminMedia.OriginalString;
+                String res = categoryName(chemin);
+
+                Console.WriteLine(chemin);
+
+                //Expression régulière correspondant aux noms de fichiers et dossiers
+                System.Text.RegularExpressions.Regex livre = new System.Text.RegularExpressions.Regex("^.*/[A-Z0-9]*$");
+
+                //Pour récupérer le numéro de la page
+                String cheminLivre = System.IO.Path.GetDirectoryName(chemin);
+
+                //On remplace les / par des \
+                chemin = SMS(chemin);
+
+                int noPage = System.IO.Directory.EnumerateFiles(cheminLivre).ToList().IndexOf(chemin)+1;
+
+                Console.WriteLine(noPage);
+
+                //Pour récupérer le numéro du livre
+                String type = System.IO.Path.GetDirectoryName(cheminLivre);
+                cheminLivre = SMS(cheminLivre);
+
+                int noLivre = System.IO.Directory.EnumerateDirectories(type).ToList().IndexOf(cheminLivre)+1;
+
+                Console.WriteLine(noLivre);
+                
+                this.Archimage.DocumentCourant = new Document(chemin);
+                this.UpdateUI();
+            }
         }
 	}
 }

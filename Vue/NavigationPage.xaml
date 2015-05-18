@@ -109,9 +109,9 @@
         </Canvas>
 
         <!--Affichage des Pois-->
-        
-        <ItemsControl Name="PoisItemControl" ItemsSource="{Binding ListePois}">
-            
+
+        <ItemsControl Name="PoisItemControl" ItemsSource="{Binding ListePois}" MouseDown="newBackgroundButton_Click">
+
             <ItemsControl.ItemContainerStyle>
                 <Style>
                     <Setter Property="FrameworkElement.DataContext" Value="{Binding RelativeSource={RelativeSource Self}}"/>
@@ -284,5 +284,6 @@
                 </DataTemplate>
             </my:ScatterView.ItemTemplate>
         </my:ScatterView>
+
     </Grid>
 </Page>
