@@ -45,7 +45,7 @@ namespace Modele_Controleur
             foreach (XmlNode node in nodes)
             {
                 double x, y;
-                string poiId, nom;
+                String nom;
                 XmlNodeList nodesPOI;
                 String poiURL;
                 poiURL = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
@@ -60,16 +60,10 @@ namespace Modele_Controleur
                 nodesPOI = doc.SelectNodes("//node()[@uri='Y']");
                 y = Double.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
 
-                nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
-                poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-
-                nodesPOI = doc.SelectNodes("//node()[@uri='PossedePOI']");
-                poiId = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-                          
                 nodesPOI = doc.SelectNodes("//node()[@uri='NomPOI']");
                 nom = nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
 
-                listePois.Add(new POICreationData(x, y, poiId, nom));
+                listePois.Add(new POICreationData(x, y, poiURL, nom));
             }
 
             return listePois;
@@ -135,7 +129,7 @@ namespace Modele_Controleur
         {
             XmlNodeList nodesPOI;
             doc.LoadXml(reponse);
-            nodesPOI = doc.SelectNodes("//node()[@uri='Concerne']");
+            nodesPOI = doc.SelectNodes("//node()[@uri='EstLie']");
             return nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
         }
 
@@ -144,12 +138,12 @@ namespace Modele_Controleur
         {
             XmlNodeList nodesPOI;
             List<Document> listeDocs = new List<Document>();
-            doc.LoadXml(reponse); 
-            nodesPOI = doc.SelectNodes("//node()[@uri='EstLie']");
+            doc.LoadXml(reponse);
+            nodesPOI = doc.SelectNodes("//node()[@uri='Concerne']");
 
             foreach (XmlNode node in nodesPOI)
             {
-                listeDocs.Add(new Document(node.InnerText));
+                listeDocs.Add(new Document(node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value));
             }
             return listeDocs;
         }
