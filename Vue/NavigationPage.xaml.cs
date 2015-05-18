@@ -102,20 +102,24 @@ namespace Vue
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
             ConsultationVM vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
-            List<MediaModele> listMedia = new List<MediaModele>();
+            
 
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
 
             foreach (POICreationData poi in listePOIs)
             {
+                List<MediaModele> listMedia = new List<MediaModele>();
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
+                int i = 0;
                 foreach (Document doc in listDoc)
                 {
-                    listMedia.Add(new MediaModele(Types.image, "../../Resources/Archives_departementales/REGISTRES_MILITAIRES/FRAD035_1R_01570/FRAD035_47_1R_01570_0001.jpg")); // TO DO : rajouter les véritables chemin d'accès.
+                    Console.WriteLine(i);
+                    listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces));
+                    i++;
                 }
 
-                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom); // TO DO : a modifier lorsque les noms seront implémentés
+                poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom);
                 
                 ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                 cont.fermeturePoi(); //Pour afficher les noms sur les POI
