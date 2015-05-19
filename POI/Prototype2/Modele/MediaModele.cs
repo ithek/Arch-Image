@@ -20,6 +20,14 @@ namespace Modele
             set { chemin = value; }
         }
 
+        //On rajoute le chemin vers les miniatures
+        private String cheminMiniature;
+        public String CheminMiniature
+        {
+            get { return cheminMiniature; }
+            set { cheminMiniature = value; }
+        }
+
         private String nom;
 
         public MediaModele(Types t, String c)
@@ -29,12 +37,11 @@ namespace Modele
             //initialisation du nom
         }
 
-        public MediaModele(Types t, String c, String nom)
+        public MediaModele(Types t, String c, String cMiniature)
         {
             type = t;
             chemin = c;
-            this.nom = nom;
-            //initialisation du nom
+            this.CheminMiniature = cMiniature;
         }
 
         public String getInfos()

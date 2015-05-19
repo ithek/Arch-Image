@@ -232,8 +232,10 @@ namespace Prototype1Table.VueModele
                     cheminMin = "..\\..\\Resources\\video.png";
                     break;
             }
-
-            cheminMiniature = new Uri(cheminMin, UriKind.Relative);
+            String finalCheminMiniature = m.CheminMiniature;
+            System.Text.RegularExpressions.Regex myRegex = new System.Text.RegularExpressions.Regex(@"/");
+            finalCheminMiniature = myRegex.Replace(finalCheminMiniature, "\\");
+            cheminMiniature = new Uri(finalCheminMiniature,UriKind.Relative);
             
             sortiCouronne = false;
             saveAngle = 0;

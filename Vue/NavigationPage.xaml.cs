@@ -101,21 +101,26 @@ namespace Vue
 
         private void loadCurrentPOI()
         {
+            //Initialisation
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
             vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
 
+            //Binding
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
 
             foreach (POICreationData poi in listePOIs)
             {
+                //On initialise les Documents présents dans les caroussels
                 List<MediaModele> listMedia = new List<MediaModele>();
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                 foreach (Document doc in listDoc)
                 {
                     Console.WriteLine(doc.Categorie.ToString());
-                    listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces, doc.Categorie.ToString()));
+                    String cMiniature = findMiniature(doc.Categorie.ToString());
+                    Console.WriteLine(cMiniature);
+                    listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces, cMiniature));
                 }
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom);
@@ -124,6 +129,27 @@ namespace Vue
                 cont.fermeturePoi(); //Pour afficher les noms sur les POI
                 vue.ListePois.Add(cont);
                 PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
+            }
+        }
+
+        private string findMiniature(string categorie)
+        {
+            switch (categorie)
+            {
+                case "REGISTRE_MATRICULE" : 
+                    return "../../Resources/Miniatures/RM.jpg";
+                case "NAISSANCE_MARIAGE_DECES" :
+                    return "../../Resources/Miniatures/NMD.jpg";
+                case "TABLE_REGISTRE_MATRICULE" :
+                    return "../../Resources/Miniatures/TRM.jpg";
+                case "RECENSEMENT" :
+                    return "../../Resources/Miniatures/REC.jpg";
+                case "TABLES_DECENNALES" :
+                    return "../../Resources/Miniatures/TD.jpg";
+                case "TSA" :
+                    return "../../Resources/Miniatures/TD.jpg";
+                default :
+                    return "../../Resources/Miniatures/TD.jpg";
             }
         }
 
@@ -364,12 +390,12 @@ namespace Vue
         //Récupère le type des documents
         private int categoryName(String path)
         {
-            System.Text.RegularExpressions.Regex rMat = new System.Text.RegularExpressions.Regex("^.*REGISTRES_MILITAIRES.*$");
-            System.Text.RegularExpressions.Regex nmd = new System.Text.RegularExpressions.Regex("^.*NMD.*$");
-            System.Text.RegularExpressions.Regex tRMat = new System.Text.RegularExpressions.Regex("^.*TABLES_RMM.*$");
-            System.Text.RegularExpressions.Regex recensement = new System.Text.RegularExpressions.Regex("^.*RECENSEMENT.*$");
-            System.Text.RegularExpressions.Regex tDecen = new System.Text.RegularExpressions.Regex("^.*TABLES_DECENNALES.*$");
-            System.Text.RegularExpressions.Regex tsa = new System.Text.RegularExpressions.Regex("^.*TSA.*$");
+            System.Text.RegularExpressions.Regex rMat = new System.Text.RegularExpressions.Regex("REGISTRES_MILITAIRES");
+            System.Text.RegularExpressions.Regex nmd = new System.Text.RegularExpressions.Regex("NMD");
+            System.Text.RegularExpressions.Regex tRMat = new System.Text.RegularExpressions.Regex("TABLES_RMM");
+            System.Text.RegularExpressions.Regex recensement = new System.Text.RegularExpressions.Regex("RECENSEMENT");
+            System.Text.RegularExpressions.Regex tDecen = new System.Text.RegularExpressions.Regex("TABLES_DECENNALES");
+            System.Text.RegularExpressions.Regex tsa = new System.Text.RegularExpressions.Regex("TSA");
 
             if (rMat.IsMatch(path))
                 return 0;
@@ -397,13 +423,16 @@ namespace Vue
         //Fonction de remplacement d'image de fond lors d'un clic sur un apercu du caroussel
         private void newBackgroundButton_Click(object sender, MouseButtonEventArgs e)
         {
-            if (e.OriginalSource.GetType() == typeof(System.Windows.Shapes.Rectangle))
+            Console.WriteLine(e.OriginalSource.GetType());
+            if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
             {
                 MediaVM media = this.vue.mediasOuverts.ElementAt(0);
 
                 //Pour récupérer les types des documents.
                 String chemin = media.cheminMedia.OriginalString;
                 int categorie = categoryName(chemin);
+
+                
 
                 //Pour récupérer le numéro de la page
                 String cheminLivre = System.IO.Path.GetDirectoryName(chemin);
@@ -422,6 +451,7 @@ namespace Vue
                 //Créer un nouveau document en rappelant Sewelis pour connaitre les POI sur le doc.
                 Document d = new Document((Categorie)categorie, chemin, noLivre, noPage);
                 d.POIs = this.Archimage.SewelisAccess.getPOI(d);
+                Console.WriteLine(d.Categorie);
                 this.Archimage.Navigation(d);
 
                 this.UpdateUI();
