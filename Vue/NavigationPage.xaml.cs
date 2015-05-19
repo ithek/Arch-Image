@@ -362,7 +362,7 @@ namespace Vue
         }
 
         //Récupère le type des documents
-        private string categoryName(String path)
+        private int categoryName(String path)
         {
             System.Text.RegularExpressions.Regex rMat = new System.Text.RegularExpressions.Regex("^.*REGISTRES_MILITAIRES.*$");
             System.Text.RegularExpressions.Regex nmd = new System.Text.RegularExpressions.Regex("^.*NMD.*$");
@@ -372,19 +372,19 @@ namespace Vue
             System.Text.RegularExpressions.Regex tsa = new System.Text.RegularExpressions.Regex("^.*TSA.*$");
 
             if (rMat.IsMatch(path))
-                return "REGISTRE_MATRICULE";
+                return 0;
             if(nmd.IsMatch(path))
-                return "NAISSANCE_MARIAGE_DECES";
-            if (nmd.IsMatch(path))
-                return "TABLE_REGISTRE_MATRICULE";
-            if (nmd.IsMatch(path))
-                return "RECENSEMENT";
-            if (nmd.IsMatch(path))
-                return "TABLES_DECENNALES";
-            if (nmd.IsMatch(path))
-                return "TSA";
+                return 1;
+            if (tRMat.IsMatch(path))
+                return 2;
+            if (recensement.IsMatch(path))
+                return 3;
+            if (tDecen.IsMatch(path))
+                return 4;
+            if (tsa.IsMatch(path))
+                return 5;
             else
-                return "ERREUR";
+                return -1;
         }
 
         private string[] Splitter(String chaine)
@@ -407,7 +407,7 @@ namespace Vue
 
                 //Pour récupérer les types des documents.
                 String chemin = media.cheminMedia.OriginalString;
-                String res = categoryName(chemin);
+                int categorie = categoryName(chemin);
 
                 Console.WriteLine(chemin);
 
@@ -431,8 +431,8 @@ namespace Vue
                 int noLivre = System.IO.Directory.EnumerateDirectories(type).ToList().IndexOf(cheminLivre)+1;
 
                 Console.WriteLine(noLivre);
-                
-                this.Archimage.DocumentCourant = new Document(chemin);
+
+                this.Archimage.Navigation(new Document((Categorie) categorie, chemin, noLivre, noPage));
                 this.UpdateUI();
             }
         }
