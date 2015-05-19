@@ -66,10 +66,11 @@ namespace Modele_Controleur
             this.Position = position;
         }
 
-        public Document(string cheminAcces)
+        public Document(string cheminAcces, Categorie c)
         {
             this.POIs = new List<POICreationData>();
             this.CheminAcces = cheminAcces;
+            this.Categorie = c;
         }
 
         public void addDocPoi(POICreationData poi){

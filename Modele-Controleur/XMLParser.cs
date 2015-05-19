@@ -143,9 +143,38 @@ namespace Modele_Controleur
 
             foreach (XmlNode node in nodesPOI)
             {
-                listeDocs.Add(new Document(node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value));
+                string chemin = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
+                Categorie categorie = categoryName(chemin);
+                listeDocs.Add(new Document(chemin, categorie));
             }
             return listeDocs;
+        }
+
+        //Récupère le type des documents
+        //TODO: Duplication de celle dans NavigationPage
+        private Categorie categoryName(String path)
+        {
+            System.Text.RegularExpressions.Regex rMat = new System.Text.RegularExpressions.Regex("REGISTRES_MILITAIRES");
+            System.Text.RegularExpressions.Regex nmd = new System.Text.RegularExpressions.Regex("NMD");
+            System.Text.RegularExpressions.Regex tRMat = new System.Text.RegularExpressions.Regex("TABLES_RMM");
+            System.Text.RegularExpressions.Regex recensement = new System.Text.RegularExpressions.Regex("RECENSEMENT");
+            System.Text.RegularExpressions.Regex tDecen = new System.Text.RegularExpressions.Regex("TABLES_DECENNALES");
+            System.Text.RegularExpressions.Regex tsa = new System.Text.RegularExpressions.Regex("TSA");
+
+            if (rMat.IsMatch(path))
+                return Categorie.REGISTRE_MATRICULE;
+            if (nmd.IsMatch(path))
+                return Categorie.NAISSANCE_MARIAGE_DECES;
+            if (tRMat.IsMatch(path))
+                return Categorie.TABLE_REGISTRE_MATRICULE;
+            if (recensement.IsMatch(path))
+                return Categorie.RECENSEMENT;
+            if (tDecen.IsMatch(path))
+                return Categorie.TABLES_DECENNALES;
+            if (tsa.IsMatch(path))
+                return Categorie.TSA;
+            else
+                return Categorie.REGISTRE_MATRICULE;
         }
     }
 }
