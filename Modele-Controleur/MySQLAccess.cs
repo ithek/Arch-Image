@@ -8,7 +8,7 @@ namespace Modele_Controleur
 {
     public class MySQLAccess
     {
-        private static string conn = "Server=149.91.83.183;Port=3306;Database=archimage;Uid=remote;Pwd=archimage35;";
+        private static string conn = "Server=149.91.83.183;Port=443;Database=archimage;Uid=remote;Pwd=archimage35;";
         private MySqlConnection connect;
 
         public MySQLAccess()
