@@ -114,6 +114,7 @@ namespace Vue
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                 foreach (Document doc in listDoc)
                 {
+                    Console.WriteLine(doc.Categorie.ToString());
                     listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces, doc.Categorie.ToString()));
                 }
 
@@ -418,9 +419,12 @@ namespace Vue
 
                 int noLivre = System.IO.Directory.EnumerateDirectories(type).ToList().IndexOf(cheminLivre)+1;
 
-                this.Archimage.Navigation(new Document((Categorie) categorie, chemin, noLivre, noPage));
+                //Créer un nouveau document en rappelant Sewelis pour connaitre les POI sur le doc.
+                Document d = new Document((Categorie)categorie, chemin, noLivre, noPage);
+                d.POIs = this.Archimage.SewelisAccess.getPOI(d);
+                this.Archimage.Navigation(d);
+
                 this.UpdateUI();
-                this.loadCurrentPOI();
             }
         }
 	}
