@@ -29,6 +29,14 @@ namespace Modele
             //initialisation du nom
         }
 
+        public MediaModele(Types t, String c, String nom)
+        {
+            type = t;
+            chemin = c;
+            this.nom = nom;
+            //initialisation du nom
+        }
+
         public String getInfos()
         {
             throw new NotImplementedException();

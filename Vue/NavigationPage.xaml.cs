@@ -95,16 +95,15 @@ namespace Vue
             UpdateBackground();
             UpdateSlider();//TODO use binding instead
             UpdateButtons();
-            doStuffWithPOI();
+            loadCurrentPOI();
             this.updateAuthorPrivileges();
         }
 
-        private void doStuffWithPOI()//TODO !!! Changer le nom une fois que le code POI est fonctionnel et clair. Appeler cette fonction où nécessaire et faire attention aux redondances.
+        private void loadCurrentPOI()
         {
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
             vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
-            
 
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
@@ -115,7 +114,7 @@ namespace Vue
                 List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                 foreach (Document doc in listDoc)
                 {
-                    listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces));
+                    listMedia.Add(new MediaModele(Types.image, "../../Resources/"+doc.CheminAcces, doc.Categorie.ToString()));
                 }
 
                 poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom);
@@ -387,18 +386,14 @@ namespace Vue
                 return -1;
         }
 
-        private string[] Splitter(String chaine)
-        {
-            System.Text.RegularExpressions.Regex myRegex = new System.Text.RegularExpressions.Regex(@"\\");
-            return myRegex.Split(chaine);
-        }
-
-        private string SMS(string chaine)
+        //Remplace le caractère "/" par "\" pour les comparaisons de chemin d'accès
+        private string changeChar(string chaine)
         {
             System.Text.RegularExpressions.Regex myRegex = new System.Text.RegularExpressions.Regex(@"/");
             return myRegex.Replace(chaine, "\\"); //renvoi la chaine modifiée
         }
 
+        //Fonction de remplacement d'image de fond lors d'un clic sur un apercu du caroussel
         private void newBackgroundButton_Click(object sender, MouseButtonEventArgs e)
         {
             if (e.OriginalSource.GetType() == typeof(System.Windows.Shapes.Rectangle))
@@ -409,31 +404,23 @@ namespace Vue
                 String chemin = media.cheminMedia.OriginalString;
                 int categorie = categoryName(chemin);
 
-                Console.WriteLine(chemin);
-
-                //Expression régulière correspondant aux noms de fichiers et dossiers
-                System.Text.RegularExpressions.Regex livre = new System.Text.RegularExpressions.Regex("^.*/[A-Z0-9]*$");
-
                 //Pour récupérer le numéro de la page
                 String cheminLivre = System.IO.Path.GetDirectoryName(chemin);
 
                 //On remplace les / par des \
-                chemin = SMS(chemin);
+                chemin = changeChar(chemin);
 
                 int noPage = System.IO.Directory.EnumerateFiles(cheminLivre).ToList().IndexOf(chemin)+1;
 
-                Console.WriteLine(noPage);
-
                 //Pour récupérer le numéro du livre
                 String type = System.IO.Path.GetDirectoryName(cheminLivre);
-                cheminLivre = SMS(cheminLivre);
+                cheminLivre = changeChar(cheminLivre);
 
                 int noLivre = System.IO.Directory.EnumerateDirectories(type).ToList().IndexOf(cheminLivre)+1;
 
-                Console.WriteLine(noLivre);
-
                 this.Archimage.Navigation(new Document((Categorie) categorie, chemin, noLivre, noPage));
                 this.UpdateUI();
+                this.loadCurrentPOI();
             }
         }
 	}
