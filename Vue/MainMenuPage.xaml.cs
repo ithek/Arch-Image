@@ -95,8 +95,7 @@ namespace Vue
                 ExceptionManager.EmptyBook(ex);
             }
         }
-        //TODO !!! Changer le nom une fois que le code POI est fonctionnel et clair. Appeler cette fonction où nécessaire et faire attention aux redondances.
-
+        
         private void ConnexionButton_Click(object sender, RoutedEventArgs e)
         {
             new ConnexionForm(this.archimage, this).Show();

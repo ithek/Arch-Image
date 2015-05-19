@@ -17,6 +17,7 @@ namespace Vue
         public InscriptionForm(ArchImage a)
         {
             this.arch = a;
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
         }
 

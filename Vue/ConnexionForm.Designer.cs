@@ -41,7 +41,7 @@
             this.cancelButton.Location = new System.Drawing.Point(178, 82);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(98, 25);
-            this.cancelButton.TabIndex = 15;
+            this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Annuler";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -51,7 +51,7 @@
             this.okButton.Location = new System.Drawing.Point(32, 82);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(98, 25);
-            this.okButton.TabIndex = 14;
+            this.okButton.TabIndex = 2;
             this.okButton.Text = "Se connecter";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
@@ -62,14 +62,14 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(166, 20);
-            this.passwordTextBox.TabIndex = 12;
+            this.passwordTextBox.TabIndex = 1;
             // 
             // identifiantTextBox
             // 
             this.identifiantTextBox.Location = new System.Drawing.Point(110, 12);
             this.identifiantTextBox.Name = "identifiantTextBox";
             this.identifiantTextBox.Size = new System.Drawing.Size(166, 20);
-            this.identifiantTextBox.TabIndex = 11;
+            this.identifiantTextBox.TabIndex = 0;
             // 
             // passwordLabel
             // 

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 
 using System.Windows;
+using System.Windows.Input;
 
 
 namespace Vue
@@ -26,6 +27,7 @@ namespace Vue
             InitializeComponent();
             this.archimage = a;
             this.menu = m;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void okButton_Click(object sender, EventArgs e)

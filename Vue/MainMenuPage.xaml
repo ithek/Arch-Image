@@ -13,10 +13,11 @@
             x:Key="MainButtonStyle"
             BasedOn="{StaticResource {x:Type Button}}"
             TargetType="Button">
-            <Setter Property="Width" Value="125"/>
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="75"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect/>
@@ -28,8 +29,8 @@
             x:Key="AccountButtonsStyle"
             BasedOn="{StaticResource MainButtonStyle}"
             TargetType="Button">
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Width" Value="88"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="100"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
     </Page.Resources>
@@ -51,7 +52,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="2" Height="24" TextWrapping="Wrap" Width="75" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Arch'Image"/><LineBreak/><Run/></TextBlock>
+        <Image Grid.Row="0" Grid.Column="2" Source="Resources/logo_archimage.png" VerticalAlignment="Top" Margin="0,50,0,0" />
         <Button Grid.Row="1" Grid.Column="1" x:Name="MapButton" Click="MapButton_Click" Style="{StaticResource MainButtonStyle}">
             <StackPanel>
                 <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>

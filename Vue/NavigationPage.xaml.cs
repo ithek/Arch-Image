@@ -99,7 +99,7 @@ namespace Vue
             this.updateAuthorPrivileges();
         }
 
-        private void doStuffWithPOI()
+        private void doStuffWithPOI()//TODO !!! Changer le nom une fois que le code POI est fonctionnel et clair. Appeler cette fonction où nécessaire et faire attention aux redondances.
         {
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
             vue = new ConsultationVM(" ");
