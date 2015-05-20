@@ -52,9 +52,6 @@
         <Canvas Name="RectangleContainingBackgroundImage"
                    IsManipulationEnabled="True"
                    RenderTransform="{Binding Path=ImageTransform}">
-            <Canvas.Background>
-                <ImageBrush x:Name="BackgroundImage" Stretch="Uniform"/>
-            </Canvas.Background>
         </Canvas>
 
         <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>

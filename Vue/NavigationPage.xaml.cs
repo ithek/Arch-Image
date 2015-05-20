@@ -19,6 +19,7 @@ using Prototype1Table.VueModele;
 using Modele;
 using Commun;
 using Prototype1Table.Vue;
+using System.Text.RegularExpressions;
 
 
 namespace Vue
@@ -169,7 +170,10 @@ namespace Vue
         private void UpdateBackground()
         {
             ImageSource source = new BitmapImage(new Uri(this.Archimage.DocumentCourant.CheminAcces, UriKind.Relative));
-            BackgroundImage.ImageSource = source;
+            
+            var img = new ImageBrush(source);
+            img.Stretch = Stretch.Uniform;
+            RectangleContainingBackgroundImage.Background = img;
         }
         private void UpdateSlider()
         {
@@ -390,12 +394,12 @@ namespace Vue
         //Récupère le type des documents
         private int categoryName(String path)
         {
-            System.Text.RegularExpressions.Regex rMat = new System.Text.RegularExpressions.Regex("REGISTRES_MILITAIRES");
-            System.Text.RegularExpressions.Regex nmd = new System.Text.RegularExpressions.Regex("NMD");
-            System.Text.RegularExpressions.Regex tRMat = new System.Text.RegularExpressions.Regex("TABLES_RMM");
-            System.Text.RegularExpressions.Regex recensement = new System.Text.RegularExpressions.Regex("RECENSEMENT");
-            System.Text.RegularExpressions.Regex tDecen = new System.Text.RegularExpressions.Regex("TABLES_DECENNALES");
-            System.Text.RegularExpressions.Regex tsa = new System.Text.RegularExpressions.Regex("TSA");
+            Regex rMat = new System.Text.RegularExpressions.Regex("REGISTRES_MILITAIRES");
+            Regex nmd = new System.Text.RegularExpressions.Regex("NMD");
+            Regex tRMat = new System.Text.RegularExpressions.Regex("TABLES_RMM");
+            Regex recensement = new System.Text.RegularExpressions.Regex("RECENSEMENT");
+            Regex tDecen = new System.Text.RegularExpressions.Regex("TABLES_DECENNALES");
+            Regex tsa = new System.Text.RegularExpressions.Regex("TSA");
 
             if (rMat.IsMatch(path))
                 return 0;
@@ -416,7 +420,7 @@ namespace Vue
         //Remplace le caractère "/" par "\" pour les comparaisons de chemin d'accès
         private string changeChar(string chaine)
         {
-            System.Text.RegularExpressions.Regex myRegex = new System.Text.RegularExpressions.Regex(@"/");
+            Regex myRegex = new System.Text.RegularExpressions.Regex(@"/");
             return myRegex.Replace(chaine, "\\"); //renvoi la chaine modifiée
         }
 
