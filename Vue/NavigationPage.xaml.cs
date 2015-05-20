@@ -138,19 +138,19 @@ namespace Vue
             switch (categorie)
             {
                 case "REGISTRE_MATRICULE" : 
-                    return "../../Resources/Miniatures/RM.jpg";
+                    return "../../Resources/Miniatures/RM.png";
                 case "NAISSANCE_MARIAGE_DECES" :
                     return "../../Resources/Miniatures/NMD.png";
                 case "TABLE_REGISTRE_MATRICULE" :
-                    return "../../Resources/Miniatures/TRM.jpg";
+                    return "../../Resources/Miniatures/TRM.png";
                 case "RECENSEMENT" :
-                    return "../../Resources/Miniatures/REC.jpg";
+                    return "../../Resources/Miniatures/REC.png";
                 case "TABLES_DECENNALES" :
-                    return "../../Resources/Miniatures/TD.jpg";
+                    return "../../Resources/Miniatures/TD.png";
                 case "TSA" :
-                    return "../../Resources/Miniatures/TD.jpg";
+                    return "../../Resources/Miniatures/TSA.png";
                 default :
-                    return "../../Resources/Miniatures/TD.jpg";
+                    return "../../Resources/Miniatures/TSA.png";
             }
         }
 
