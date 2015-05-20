@@ -33,6 +33,8 @@ namespace Vue
         private void initTouchManagement()
         {
             ScreenTouchManager touch = new ScreenTouchManager(mapGrid);
+            this.MapRectangle.ManipulationStarting += touch.Image_ManipulationStarting;
+            this.MapRectangle.ManipulationDelta += touch.Image_ManipulationDelta;
             this.DataContext = touch;
         }
 
