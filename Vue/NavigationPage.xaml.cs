@@ -140,7 +140,7 @@ namespace Vue
                 case "REGISTRE_MATRICULE" : 
                     return "../../Resources/Miniatures/RM.jpg";
                 case "NAISSANCE_MARIAGE_DECES" :
-                    return "../../Resources/Miniatures/NMD.jpg";
+                    return "../../Resources/Miniatures/NMD.png";
                 case "TABLE_REGISTRE_MATRICULE" :
                     return "../../Resources/Miniatures/TRM.jpg";
                 case "RECENSEMENT" :
