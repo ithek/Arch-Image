@@ -82,8 +82,8 @@ namespace Modele_Controleur
             this.DocumentCourant = new Document(categorie, filenames.ElementAt(0), FIRST_BOOK, 1); //TODO les autres attributs de Document ne sont pas initialisés : problème ? Où et quand le faire ?
             
             //TODO a faire aussi pour Navigation(Document), UtiliserDoc et d'éventuels autres (doc/cat suiv/prev !), a priori ?
-            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            DocumentCourant.POIs = listePOIs;
+            //List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            //DocumentCourant.POIs = listePOIs;
         }
 
         public int GetNbDocInCurrentBook()
@@ -126,8 +126,8 @@ namespace Modele_Controleur
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
             }
 
-            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            this.DocumentCourant.POIs = listePOIs;
+            //List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            //this.DocumentCourant.POIs = listePOIs;
         }
 
         /**
@@ -171,8 +171,8 @@ namespace Modele_Controleur
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, nouvCheminAcces, nouvPosLivre, nouvPosDansLivre);
             }
 
-            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            this.DocumentCourant.POIs = listePOIs;
+            //List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            //this.DocumentCourant.POIs = listePOIs;
         }
 
         /**
@@ -247,8 +247,8 @@ namespace Modele_Controleur
                 this.DocumentCourant = new Document(DocumentCourant.Categorie, this.filenamesOfCurrentBook.ElementAt(numeroDocument - 1), DocumentCourant.PositionLivre, numeroDocument);
             }
 
-            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            this.DocumentCourant.POIs = listePOIs;
+            //List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            //this.DocumentCourant.POIs = listePOIs;
         }
 
         public List<Document> documentDuPoi(POIWrapper poi)
@@ -260,8 +260,8 @@ namespace Modele_Controleur
         {
             Console.WriteLine("Ajout d'un POI concernant " + poi.Nom + " en (" + poi.posX + " ; " + poi.posY + ")");
             SewelisAccess.ajouterPOI(poi, DocumentCourant);
-            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
-            this.DocumentCourant.POIs = listePOIs;
+            //List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            //this.DocumentCourant.POIs = listePOIs;
         }
 
         public void POISurDoc(Document doc)
@@ -349,6 +349,12 @@ namespace Modele_Controleur
             {
                 throw new DirectoryNotFoundException("Impossible de trouver les dossiers de la catégorie " + category.ToString() + " (vérifiez que le dossier Resources\\Archives_departementales\\" + ArchImage.CategorieToFolderName(category) + " existe bien)");
             }
+        }
+
+        public void getPOI()
+        {
+            List<POICreationData> listePOIs = SewelisAccess.getPOI(DocumentCourant);
+            this.DocumentCourant.POIs = listePOIs;
         }
     }
 }
