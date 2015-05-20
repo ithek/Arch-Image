@@ -10,7 +10,7 @@ namespace Modele_Controleur
 {
     public class SewelisAccess
     {
-        private const String sewelisURL = "http://149.91.83.183/";
+        private const String sewelisURL = "http://37.59.103.120/";
         private WebClient webClient;
         private HttpWebRequest webRequest;
         private XMLParser parser;
@@ -28,6 +28,8 @@ namespace Modele_Controleur
                 creerStore("archimage");
                 chargerRdf("base_personnes.rdf");
                 chargerRdf("base_images.rdf");
+                webClient.DownloadString(sewelisURL + "getPlaceRoot?userKey=123&storeId=1");
+                webClient.DownloadString(sewelisURL + "insertIncrement?userKey=123&storeId=1&placeId=1&incrementId=34");
             }
         }
 
