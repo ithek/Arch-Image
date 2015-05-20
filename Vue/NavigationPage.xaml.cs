@@ -421,18 +421,22 @@ namespace Vue
         }
 
         //Fonction de remplacement d'image de fond lors d'un clic sur un apercu du caroussel
-        private void newBackgroundButton_Click(object sender, MouseButtonEventArgs e)
+        private void newBackgroundButton_Click(object sender, MouseEventArgs e)
         {
-            Console.WriteLine(e.OriginalSource.GetType());
             if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
             {
+                //Console.WriteLine("Nouveau");
+                if (this.vue.mediasOuverts.Count == 0)
+                {
+                    //Console.WriteLine("=============ok============");
+                    return;
+                }
+                   
                 MediaVM media = this.vue.mediasOuverts.ElementAt(0);
 
                 //Pour récupérer les types des documents.
                 String chemin = media.cheminMedia.OriginalString;
-                int categorie = categoryName(chemin);
-
-                
+                int categorie = categoryName(chemin);                
 
                 //Pour récupérer le numéro de la page
                 String cheminLivre = System.IO.Path.GetDirectoryName(chemin);
