@@ -10,7 +10,7 @@ namespace Modele_Controleur
 {
     public class XMLParser
     {
-        private const String sewelisURL = "http://149.91.83.183/";
+        private const String sewelisURL = "http://37.59.103.120/";
         private XmlDocument doc;
         private XmlNodeList nodesPersonnes;
 

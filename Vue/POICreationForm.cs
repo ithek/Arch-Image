@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modele_Controleur;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace Vue
 {
@@ -88,14 +90,27 @@ namespace Vue
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            this.nameLabel.Text = "Nom : ";
-            this.prenomLabel.Text = "Prénom : ";
-            this.dateNaissanceLabel.Text = "Date de naissance : ";
-            data.IdPersonne = null;
-            data.Nom = null;
+            if (this.archimage.SewelisAccess.CanSearch)
+            {
+                this.nameLabel.Text = "Nom : ";
+                this.prenomLabel.Text = "Prénom : ";
+                this.dateNaissanceLabel.Text = "Date de naissance : ";
+                data.IdPersonne = null;
+                data.Nom = null;
+
+                rechercherPersonne_Delegate d = null;
+                d = new rechercherPersonne_Delegate(rechercherPersonne);
+ 
+                IAsyncResult R = null;
+                R = d.BeginInvoke(this.nameTextBox.Text, new AsyncCallback(finRecherchePersonne), null); //invoking the method
+            }
+        }
+
+        public void rechercherPersonne(string nom)
+        {
+            listePersonnes = this.archimage.SewelisAccess.recherchePersonnes(this.nameTextBox.Text);
 
             List<String> listeNoms = new List<String>();
-            listePersonnes = this.archimage.SewelisAccess.recherchePersonnes(this.nameTextBox.Text);
 
             if (listePersonnes != null)
             {
@@ -106,5 +121,37 @@ namespace Vue
                 listeBoxPersonnes.DataSource = listeNoms;
             }
         }
+
+        public void finRecherchePersonne(IAsyncResult R)
+        {
+            List<String> listeNoms = new List<String>();
+
+            if (listePersonnes != null)
+            {
+                foreach (Personne personne in listePersonnes)
+                {
+                    listeNoms.Add(personne.Nom);
+                }
+                //listeBoxPersonnes.DataSource = listeNoms;
+            }
+
+            DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,        
+                (Action)delegate()         
+                {
+                    listeBoxPersonnes.DataSource = listeNoms;
+                }
+                );
+            DispatcherOperationStatus status = op.Status;
+            while (status != DispatcherOperationStatus.Completed)
+            {
+                status = op.Wait(TimeSpan.FromMilliseconds(1000));
+                if (status == DispatcherOperationStatus.Aborted)
+                {
+                    // Alert Someone 
+                }
+            }
+        }
+
+        public delegate void rechercherPersonne_Delegate(string s);
     }
 }

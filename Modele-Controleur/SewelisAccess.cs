@@ -14,11 +14,18 @@ namespace Modele_Controleur
         private WebClient webClient;
         private HttpWebRequest webRequest;
         private XMLParser parser;
+
+        public bool CanSearch
+        {
+            get;
+            set;
+        }
        
         public SewelisAccess()
         {
             webClient = new WebClient();
             parser = new XMLParser();
+            CanSearch = true;
 
             //Teste si la base existe
             String reponse = webClient.DownloadString(sewelisURL + "storeBase?userKey=123&storeId=1");
@@ -48,11 +55,12 @@ namespace Modele_Controleur
          */
         public List<Personne> recherchePersonnes(String motif)
         {
+            CanSearch = false;
             List<Personne> listePersonnes = null;
 
             String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=2&matchingKey=" + motif);
             listePersonnes = parser.getRecherchePersonnes(reponse);
- 
+            CanSearch = true;
             return listePersonnes;
         }
 
