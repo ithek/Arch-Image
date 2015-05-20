@@ -10,7 +10,7 @@
              mc:Ignorable="d"
              IsManipulationEnabled="False"
              Height="{Binding WidthPoi, Mode=OneWay}" Width="{Binding HeightPoi, Mode=OneWay}"
-             MaxHeight="150" MaxWidth="150">
+             MaxHeight="110" MaxWidth="110">
 
     <Grid Name="Conteneur" Visibility="{Binding poiVisible, Mode=OneWay}" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>

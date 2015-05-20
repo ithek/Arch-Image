@@ -29,7 +29,7 @@ namespace Prototype1Table.Vue
         }
 
 
-        private void apercu_TapGesture(object sender, MouseButtonEventArgs e)
+        public void apercu_TapGesture(object sender, MouseEventArgs e)
         {
             //Point pRelatif = e.TouchDevice.GetTouchPoint(this).Position;
             Point pRelatif = e.GetPosition(ScatterV);

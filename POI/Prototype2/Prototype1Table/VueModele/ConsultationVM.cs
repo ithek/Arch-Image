@@ -263,6 +263,7 @@ namespace Prototype1Table.VueModele
             }
         }
 
+
         // code partagé par les 2 constructeurs
         private void baseCommuneConstructeur(MainWindowVM mw, string chemin)
         {
@@ -441,6 +442,7 @@ namespace Prototype1Table.VueModele
         {
             //On ajoute le média à la liste des médias ouverts
             mediasOuverts.Add(m);
+            Console.WriteLine("Media Ajouté avec succès");
             //On signale l'ouverture d'un nouveau média
             RaisePropertyChanged("mediasOuverts");
         }

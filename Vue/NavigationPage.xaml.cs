@@ -425,10 +425,11 @@ namespace Vue
         {
             if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
             {
-                //Console.WriteLine("Nouveau");
+                Console.WriteLine(sender.GetType());
                 if (this.vue.mediasOuverts.Count == 0)
                 {
-                    //Console.WriteLine("=============ok============");
+                    Console.WriteLine("=============ok============");
+                    e.Handled = false;
                     return;
                 }
                    

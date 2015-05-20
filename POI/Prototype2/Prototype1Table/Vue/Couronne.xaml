@@ -110,7 +110,7 @@
             <Ellipse Name="ellipse" StrokeThickness="0" Fill="#60FFFFFF"/>
             
             <!--Menu d'envoi-->
-            <Grid Height="120" Width="120">
+            <!--<Grid Height="120" Width="120">
                 <Grid.Style>
                     <Style TargetType="{x:Type Grid}">
                         <Style.Triggers >
@@ -125,12 +125,12 @@
                 </Grid.Style>
                 <Image HorizontalAlignment="Left" Width="60" Height="120" Source="/Prototype1Table;component/Resources/TbiRond.png"/>
                 <Image HorizontalAlignment="Right" Width="60" Height="120" Source="/Prototype1Table;component/Resources/TabletteRond.png"/>
-            </Grid>
+            </Grid>-->
 
             <!--fermeture du poi-->
             <Button Name="BoutonFermeture" Height="30" Width="30" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0" UseLayoutRounding="True">
                 <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate TargetType="Button">
                         <Grid>
                             <Ellipse Fill="#009BAD"/>
                             <Path Stroke="#FFFFFFFF" StrokeThickness="2.0" StrokeLineJoin="Round" Fill="{x:Null}"
