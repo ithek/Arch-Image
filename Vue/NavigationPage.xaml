@@ -10,9 +10,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="470" d:DesignWidth="645"
       x:Name="navPage"
-      MouseMove="OnMouseMove"
-      MouseRightButtonUp="OnMouseRightButtonUp"
-      MouseRightButtonDown="OnMouseRightButtonDown"
 	  Title="NavigationPage">
 
     <Page.Resources>
@@ -50,8 +47,8 @@
         Background="Black">
 
         <Canvas Name="RectangleContainingBackgroundImage"
-                   IsManipulationEnabled="True"
-                   RenderTransform="{Binding Path=ImageTransform}">
+                IsManipulationEnabled="True"
+                RenderTransform="{Binding Path=ImageTransform}">
         </Canvas>
 
         <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>

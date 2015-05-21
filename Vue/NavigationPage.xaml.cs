@@ -69,18 +69,23 @@ namespace Vue
             bool modeAuteur = this.Archimage.Utilisateur is Auteur;
 
             this.SwitchModeButton.Visibility = modeAuteur ? Visibility.Visible : Visibility.Hidden;
+
+            var mouseRightButtonUPListener = this;
+            var mouseRightButtonDOWNListener = this.RectangleContainingBackgroundImage;
+            var mouseMoveListener = this;
+
             if (modeAuteur)
             {
                 //TODO est-ce qu'on ne cumulerait pas les handlers (1 fois par update) avec += ? s'il était possible de se déconnecter, faudrait-il faire autant de fois les -= pour perdre à nouveau les privilèges ?
-                this.MouseMove += this.OnMouseMove;
-                this.MouseRightButtonDown += this.OnMouseRightButtonDown;
-                this.MouseRightButtonUp += this.OnMouseRightButtonUp;
+                mouseMoveListener.MouseMove += this.OnMouseMove;
+                mouseRightButtonDOWNListener.MouseRightButtonDown += this.OnMouseRightButtonDown;
+                mouseRightButtonUPListener.MouseRightButtonUp += this.OnMouseRightButtonUp;
             }
             else
             {
-                this.MouseMove -= this.OnMouseMove;
-                this.MouseRightButtonDown -= this.OnMouseRightButtonDown;
-                this.MouseRightButtonUp -= this.OnMouseRightButtonUp;
+                mouseMoveListener.MouseMove -= this.OnMouseMove;
+                mouseRightButtonDOWNListener.MouseRightButtonDown -= this.OnMouseRightButtonDown;
+                mouseRightButtonUPListener.MouseRightButtonUp -= this.OnMouseRightButtonUp;
             }
         }
 
@@ -168,7 +173,7 @@ namespace Vue
             R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method          
         }
 
-        private string findMiniature(string categorie)
+        private string findMiniature(string categorie)  //TODO clean
         {
             switch (categorie)
             {
@@ -319,38 +324,47 @@ namespace Vue
 
         private void startRectangle(MouseButtonEventArgs e)
         {
-            // Capture and track the mouse.
-            this.drawingRectangleForNewPOI = true;
-            rectanglePOIStart = e.GetPosition(theGrid);
-            theGrid.CaptureMouse();
+            if (!this.drawingRectangleForNewPOI)
+            {
+                // Capture and track the mouse.
+                this.drawingRectangleForNewPOI = true;
+                rectanglePOIStart = e.GetPosition(theGrid);
+                theGrid.CaptureMouse();
 
-            // Initial placement of the drag selection box.         
-            Canvas.SetLeft(newPOISelectionRectangle, rectanglePOIStart.X);
-            Canvas.SetTop(newPOISelectionRectangle, rectanglePOIStart.Y);
-            newPOISelectionRectangle.Width = 0;
-            newPOISelectionRectangle.Height = 0;
+                // Initial placement of the drag selection box.         
+                Canvas.SetLeft(newPOISelectionRectangle, rectanglePOIStart.X);
+                Canvas.SetTop(newPOISelectionRectangle, rectanglePOIStart.Y);
+                newPOISelectionRectangle.Width = 0;
+                newPOISelectionRectangle.Height = 0;
 
-            // Make the drag selection box visible.
-            newPOISelectionRectangle.Visibility = Visibility.Visible;
+                // Make the drag selection box visible.
+                newPOISelectionRectangle.Visibility = Visibility.Visible;
+            }
         }
 
         private void endRectangle(MouseButtonEventArgs e)
         {
-            this.drawingRectangleForNewPOI = false;
-            theGrid.ReleaseMouseCapture();
+            Console.WriteLine("EndRectangle");//TODO
+            if (this.drawingRectangleForNewPOI)
+            {
 
-            // Hide the drag selection box.
-            newPOISelectionRectangle.Visibility = Visibility.Collapsed;
+                Console.WriteLine("EndRectangle + if");//TODO
 
-            Point rectanglePOIEnd = e.GetPosition(theGrid);
+                this.drawingRectangleForNewPOI = false;
+                theGrid.ReleaseMouseCapture();
 
-            //TODO formulaire, puis POI entre rectanglePOIStart et rectanglePOIEnd 
+                // Hide the drag selection box.
+                newPOISelectionRectangle.Visibility = Visibility.Collapsed;
 
-            //TODO corriger (peut-être) les valeurs
-            double left = ((rectanglePOIStart.X + rectanglePOIEnd.X)/2);
-            double top =  ((rectanglePOIStart.Y + rectanglePOIEnd.Y)/2);
+                Point rectanglePOIEnd = e.GetPosition(theGrid);
 
-            new POICreationForm(left, top, Archimage, this).Show();
+
+                //TODO corriger (peut-être) les valeurs
+                double left = ((rectanglePOIStart.X + rectanglePOIEnd.X) / 2);
+                double top = ((rectanglePOIStart.Y + rectanglePOIEnd.Y) / 2);
+
+                new POICreationForm(left, top, Archimage, this).Show();
+            }
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -389,6 +403,7 @@ namespace Vue
         private void OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
+            Console.WriteLine("Event Mouse Right button UP");//TODO
             this.endRectangle(e);
         }
 
