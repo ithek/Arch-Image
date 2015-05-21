@@ -130,7 +130,7 @@
             <!--fermeture du poi-->
             <Button Name="BoutonFermeture" Height="30" Width="30" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0" UseLayoutRounding="True">
                 <Button.Template>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
                             <Ellipse Fill="#009BAD"/>
                             <Path Stroke="#FFFFFFFF" StrokeThickness="2.0" StrokeLineJoin="Round" Fill="{x:Null}"
@@ -154,7 +154,7 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
-                    <EventTrigger RoutedEvent= "MouseUp">
+                    <EventTrigger RoutedEvent= "Button.Click">
                         <BeginStoryboard>
                             <Storyboard  Name="AnimationDisparition">
                                 <DoubleAnimation Storyboard.TargetName="couronne" Storyboard.TargetProperty="Opacity"

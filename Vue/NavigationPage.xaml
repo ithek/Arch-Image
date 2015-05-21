@@ -107,7 +107,7 @@
 
         <!--Affichage des Pois-->
 
-        <ItemsControl Name="PoisItemControl" ItemsSource="{Binding ListePois}" MouseUp="newBackgroundButton_Click">
+        <ItemsControl Name="PoisItemControl" ItemsSource="{Binding ListePois}" MouseDown="newBackgroundButton_Click">
 
             <ItemsControl.ItemContainerStyle>
                 <Style>
