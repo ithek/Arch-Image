@@ -442,7 +442,6 @@ namespace Prototype1Table.VueModele
         {
             //On ajoute le média à la liste des médias ouverts
             mediasOuverts.Add(m);
-            Console.WriteLine("Media Ajouté avec succès");
             //On signale l'ouverture d'un nouveau média
             RaisePropertyChanged("mediasOuverts");
         }
@@ -452,7 +451,6 @@ namespace Prototype1Table.VueModele
         {
             //On ferme le média
             m.fermeture();
-            Console.WriteLine("Media fermé");
             //On le retire de la liste des médias ouverts
             mediasOuverts.Remove(m);
         }

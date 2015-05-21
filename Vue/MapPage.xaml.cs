@@ -79,10 +79,9 @@ namespace Vue
                         List<Document> listDoc = arch.SewelisAccess.getListDocs(poi);
                         foreach (Document doc in listDoc)
                         {
-                            Console.WriteLine(doc.Categorie.ToString());
-                            String cMiniature = doc.CheminAcces;
+                            String cMiniature = findMiniature(doc.CheminAcces);
                             Console.WriteLine(cMiniature);
-                            listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, cMiniature));
+                            listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, "../../Resources/"+cMiniature));
                         }
 
                         poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.Id, poi.Nom);
@@ -103,6 +102,16 @@ namespace Vue
                     // Alert Someone 
                 }
             }
+        }
+
+        private string findMiniature(string path)
+        {
+            Regex myRegex1 = new System.Text.RegularExpressions.Regex(@"/[A-Z]*_[0-9]*\.JPG$");
+            String nomFichier = System.IO.Path.GetFileName(path);
+            String pathAModif =  myRegex1.Replace(path, "/Miniatures/"+nomFichier);
+
+            Regex myRegex2 = new System.Text.RegularExpressions.Regex(@"/");
+            return myRegex2.Replace(pathAModif, "\\");
         }
 
         private void loadCurrentPOI()
