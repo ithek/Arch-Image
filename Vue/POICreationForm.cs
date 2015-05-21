@@ -53,24 +53,32 @@ namespace Vue
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            this.parseUserInput();   
+            this.parseUserInput();
 
             if (data.Personne != null)
-                this.archimage.creerPOI(this.data);
-            else if(this.nameTextBox.Text != null)
+            {
+                creerPOI_Delegate d = new creerPOI_Delegate(creerPOI);
+
+                IAsyncResult R = null;
+                R = d.BeginInvoke(new AsyncCallback(finCreerPOI), null); //invoking the method
+            }
+            else if (this.nameTextBox.Text != null)
             {
                 string nom = this.nameTextBox.Text;
                 string prenom = this.prenomTextBox.Text;
                 string initiale = this.initialeTextBox.Text;
                 string ddn = this.dateNaissanceTextBox.Text;
                 Personne p = new Personne(nom, prenom, initiale, ddn);
-                
+
                 this.data.Personne = this.archimage.SewelisAccess.ajouterPersonne(p);
-                this.archimage.creerPOI(this.data);
+
+                creerPOI_Delegate d = new creerPOI_Delegate(creerPOI);
+
+                IAsyncResult R = null;
+                R = d.BeginInvoke(new AsyncCallback(finCreerPOI), null); //invoking the method
             }
 
             this.Close();
-            this.navigationPage.UpdateUI();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -112,8 +120,7 @@ namespace Vue
 
                 this.chargementPictureBox.Visible = true;
 
-                rechercherPersonne_Delegate d = null;
-                d = new rechercherPersonne_Delegate(rechercherPersonne);
+                rechercherPersonne_Delegate d = new rechercherPersonne_Delegate(rechercherPersonne);
  
                 IAsyncResult R = null;
                 R = d.BeginInvoke(this.nameSearchTextBox.Text, new AsyncCallback(finRecherchePersonne), null); //invoking the method
@@ -168,5 +175,32 @@ namespace Vue
         }
 
         public delegate void rechercherPersonne_Delegate(string s);
+
+
+        public void creerPOI()
+        {
+            this.archimage.creerPOI(this.data);
+        }
+
+        public void finCreerPOI(IAsyncResult R)
+        {
+            DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (Action)delegate()
+                {
+                    this.navigationPage.UpdateUI();
+                }
+                );
+            DispatcherOperationStatus status = op.Status;
+            while (status != DispatcherOperationStatus.Completed)
+            {
+                status = op.Wait(TimeSpan.FromMilliseconds(1000));
+                if (status == DispatcherOperationStatus.Aborted)
+                {
+                    // Alert Someone 
+                }
+            }
+        }
+
+        public delegate void creerPOI_Delegate();
     }
 }
