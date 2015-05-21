@@ -30,6 +30,7 @@ namespace Vue
         {
             // Ask for manipulations to be reported relative to the grid
             e.ManipulationContainer = this.ManipContainer;
+            e.Handled = false;
         }
 
         public void Image_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
@@ -50,7 +51,7 @@ namespace Vue
             m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
             ImageTransform.Matrix = m;
 
-            e.Handled = true;
+            e.Handled = false;
         }
     }
 }
