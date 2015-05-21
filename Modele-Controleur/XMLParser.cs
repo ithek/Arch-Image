@@ -11,8 +11,8 @@ namespace Modele_Controleur
     public class XMLParser
     {
         private const String sewelisURL = "http://37.59.103.120/";
-        private XmlDocument doc;
-        private XmlNodeList nodesPersonnes;
+        private List<Tuple<string, string>> listeTuplesPersonnes = new List<Tuple<string, string>>();
+        
 
         public bool baseExiste(String reponse)
         {
@@ -27,7 +27,7 @@ namespace Modele_Controleur
 
         public int getLastIndexOf(String reponse)
         {
-            doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             doc.LoadXml(reponse);
             XmlNodeList nodes = doc.GetElementsByTagName("URI");
 
@@ -38,7 +38,7 @@ namespace Modele_Controleur
         {         
             WebClient webClient = new WebClient();
             List<POICreationData> listePois = new List<POICreationData>();
-            doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             doc.LoadXml(reponse);
             XmlNodeList nodes = doc.SelectNodes("//node()[@uri='PossedePOI']");
 
@@ -69,51 +69,37 @@ namespace Modele_Controleur
             return listePois;
         }
 
-        public List<Personne> getRecherchePersonnes(String reponse)
-        {
-
-            List<String> listeNomsPersonnes = new List<String>();
-            doc = new XmlDocument();
-            doc.LoadXml(reponse);
-
-            XmlNodeList nodesPersonnes = doc.GetElementsByTagName("Literal");
-            foreach (XmlNode node in nodesPersonnes)
-            {
-                listeNomsPersonnes.Add(node.InnerText);
-            }
-
-            return getInfosPersonnes(listeNomsPersonnes);
-        }
-
-        public List<Personne> getInfosPersonnes(List<String> listeNomsPersonnes)
+        public List<Personne> getInfosPersonnes(string motif)
         {
             WebClient webClient = new WebClient();
             List<Personne> listePersonnes = new List<Personne>();
-            String nom = "", prenom = "", initiale = "", ddn = "", id = "", reponse = "";
-
-            foreach (XmlNode node in nodesPersonnes)
+            String nom = "", prenom = "", initiale = "", ddn = "", id = "", reponse = "", p;
+            motif = motif.ToLower();
+            foreach (Tuple<string,string> tuple in listeTuplesPersonnes)
             {
-                if (listeNomsPersonnes.Contains(node.InnerText))
+                p = tuple.Item1;
+                if (p.StartsWith(motif))
                 {
-                    id = node.NextSibling.InnerText;
+                    id = tuple.Item2;
+                    XmlDocument doc = new XmlDocument();
                     reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + id);
                     doc.LoadXml(reponse);
 
-                    XmlNodeList nodesList = doc.SelectNodes("//node()[@uri='nom']");
-                    if(nodesList.Count > 0)
-                        nom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    XmlNodeList nodes = doc.SelectNodes("//node()[@uri='nom']");
+                    if (nodes.Count > 0)
+                        nom = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
-                    nodesList = doc.SelectNodes("//node()[@uri='initiale']");
-                    if (nodesList.Count > 0)
-                        initiale = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    nodes = doc.SelectNodes("//node()[@uri='initiale']");
+                    if (nodes.Count > 0)
+                        initiale = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
-                    nodesList = doc.SelectNodes("//node()[@uri='prenom']");
-                    if (nodesList.Count > 0)
-                        prenom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    nodes = doc.SelectNodes("//node()[@uri='prenom']");
+                    if (nodes.Count > 0)
+                        prenom = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
-                    nodesList = doc.SelectNodes("//node()[@uri='dateNaissance']");
-                    if (nodesList.Count > 0)
-                        ddn = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+                    nodes = doc.SelectNodes("//node()[@uri='dateNaissance']");
+                    if (nodes.Count > 0)
+                        ddn = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
                     listePersonnes.Add(new Personne(nom, prenom, initiale, ddn, id));
                 }
@@ -123,15 +109,24 @@ namespace Modele_Controleur
 
         public void getListeNomsPersonnes(String reponse)
         {
-            doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             doc.LoadXml(reponse);
-            nodesPersonnes = doc.GetElementsByTagName("Literal");
+            XmlNodeList nodesPersonnes = doc.GetElementsByTagName("Literal");
+            foreach (XmlNode node in nodesPersonnes)
+            {
+                string nom = node.InnerText.ToLower();
+                string id = node.NextSibling.InnerText;
+
+                if(!nom.Equals("stele") && !nom.Equals("monument aux morts"))
+                    listeTuplesPersonnes.Add(new Tuple<string, string>(nom, id));
+            }
         }
         
 
         public string getIdPersonne(String reponse)
         {
             XmlNodeList nodesPOI;
+            XmlDocument doc = new XmlDocument();
             doc.LoadXml(reponse);
             nodesPOI = doc.SelectNodes("//node()[@uri='EstLie']");
             return nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
@@ -141,6 +136,7 @@ namespace Modele_Controleur
         public List<Document> getListDocs(String reponse)
         {
             XmlNodeList nodesPOI;
+            XmlDocument doc = new XmlDocument();
             List<Document> listeDocs = new List<Document>();
             doc.LoadXml(reponse);
             nodesPOI = doc.SelectNodes("//node()[@uri='Concerne']");

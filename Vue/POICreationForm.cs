@@ -64,7 +64,7 @@ namespace Vue
                 IAsyncResult R = null;
                 R = d.BeginInvoke(new AsyncCallback(finCreerPOI), null); //invoking the method
             }
-            else if (this.nameTextBox.Text != null)
+            else if (!this.nameTextBox.Text.Equals(""))
             {
                 string nom = this.nameTextBox.Text;
                 string prenom = this.prenomTextBox.Text;
@@ -111,21 +111,33 @@ namespace Vue
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (this.archimage.SewelisAccess.CanSearch)
-            {
-                this.nameTextBox.Text = "";
-                this.prenomTextBox.Text = "";
-                this.initialeTextBox.Text = "";
-                this.dateNaissanceTextBox.Text = "";
-                this.listeBoxPersonnes.DataSource = null;
-                data.Personne = null;
+            this.nameTextBox.Text = "";
+            this.prenomTextBox.Text = "";
+            this.initialeTextBox.Text = "";
+            this.dateNaissanceTextBox.Text = "";
+            this.listeBoxPersonnes.DataSource = null;
+            data.Personne = null;
 
-                this.chargementPictureBox.Visible = true;
+            if (!this.nameSearchTextBox.Text.Equals(""))
+            {
+                lock (chargementPictureBox)
+                {
+                    this.chargementPictureBox.Visible = true;
+                }
 
                 rechercherPersonne_Delegate d = new rechercherPersonne_Delegate(rechercherPersonne);
- 
+
                 IAsyncResult R = null;
                 R = d.BeginInvoke(this.nameSearchTextBox.Text, new AsyncCallback(finRecherchePersonne), null); //invoking the method
+            }
+            else
+            {
+                List<String> listeNoms = new List<String>();
+                listeNoms.Insert(0, "<Nouvelle personne>");
+                lock (listeBoxPersonnes)
+                {
+                    listeBoxPersonnes.DataSource = listeNoms;
+                }
             }
         }
 
@@ -160,9 +172,15 @@ namespace Vue
             DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,        
                 (Action)delegate()         
                 {
-                    this.chargementPictureBox.Visible = false;
-                    listeNoms.Insert(0, "<Nouvelle personne>");
-                    listeBoxPersonnes.DataSource = listeNoms;
+                    lock (chargementPictureBox)
+                    {
+                        this.chargementPictureBox.Visible = false;
+                    }
+                    lock (listeBoxPersonnes)
+                    {
+                        listeNoms.Insert(0, "<Nouvelle personne>");
+                        listeBoxPersonnes.DataSource = listeNoms;
+                    }
                 }
                 );
             DispatcherOperationStatus status = op.Status;
