@@ -27,16 +27,27 @@ namespace Modele_Controleur
             set;
         }
 
-        public string IdPersonne
+        public string Nom
         {
             get;
             set;
         }
 
-        public string Nom
+        private Personne personne;
+        public Personne Personne
         {
-            get;
-            set;
+            get
+            {
+                return personne;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    personne = value;
+                    Nom = personne.Prenom + " " + personne.Nom;
+                }
+            }
         }
 
         public POICreationData(double x, double y)
@@ -45,27 +56,11 @@ namespace Modele_Controleur
             this.posY = y;
         }
 
-        public POICreationData(double x, double y, string poiId)
-        {
-            this.posX = x;
-            this.posY = y;
-            this.Id = poiId;
-        }
-
         public POICreationData(double x, double y, string poiId, string nom)
         {
             this.posX = x;
             this.posY = y;
             this.Id = poiId;
-            this.Nom = nom;
-        }
-
-        public POICreationData(double x, double y, string poiId, string idPersonne, string nom)
-        {
-            this.posX = x;
-            this.posY = y;
-            this.Id = poiId;
-            this.IdPersonne = idPersonne;
             this.Nom = nom;
         }
     }

@@ -67,12 +67,8 @@ namespace Modele_Controleur
 
         public void chargerListePersonnes()
         {
-            //webClient = new WebClient();
-            //String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]");
-
             webRequest = (HttpWebRequest)WebRequest.Create(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]"); ;
             webRequest.BeginGetResponse(new AsyncCallback(FinishChargerListePersonnes), webRequest);
-            //parser.getListeNomsPersonnes(reponse);
         }
 
         public void FinishChargerListePersonnes(IAsyncResult result)
@@ -105,8 +101,26 @@ namespace Modele_Controleur
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=Y&o=<URI>" + poi.posY + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idPoi + "&p=NomPOI&o=<URI>" + poi.Nom + "</URI>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=PossedePOI&o=<URI>" + idPoi + "</URI>");
-            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=Concerne&o=<URI>" + poi.IdPersonne + "</URI>");
-            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + poi.IdPersonne + "&p=EstLie&o=<URI>" + idPoi + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + chemin + "&p=Concerne&o=<URI>" + poi.Personne.Id + "</URI>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + poi.Personne.Id + "&p=EstLie&o=<URI>" + idPoi + "</URI>");
+        }
+
+        /**
+         * Ajoute une personne
+         */
+         public Personne ajouterPersonne(Personne p)
+        {
+            String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <Personne>]");
+            int nbP = parser.getLastIndexOf(reponse);
+            string idP = "p_id" + nbP;
+
+            webClient.DownloadString(sewelisURL + "runStatement?userKey=123&storeId=1&statement=<" + idP + "> [a <Personne>]");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=nom&o=<Literal>" + p.Nom + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=prenom&o=<Literal>" + p.Prenom + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=initiale&o=<Literal>" + p.Initiale + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=dateNaissance&o=<Literal>" + p.DateNaissance + "</Literal>");
+
+            return new Personne(p.Nom, p.Prenom, p.Initiale, p.DateNaissance, idP); 
         }
 
         /**
