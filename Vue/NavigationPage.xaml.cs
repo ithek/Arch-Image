@@ -132,9 +132,7 @@ namespace Vue
                         List<Document> listDoc = Archimage.SewelisAccess.getListDocs(poi);
                         foreach (Document doc in listDoc)
                         {
-                            Console.WriteLine(doc.Categorie.ToString());
                             String cMiniature = findMiniature(doc.Categorie.ToString());
-                            Console.WriteLine(cMiniature);
                             listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, cMiniature));
                         }
 
@@ -475,7 +473,6 @@ namespace Vue
         {
             if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
             {
-                Console.WriteLine(sender.GetType());
                 if (this.vue.mediasOuverts.Count == 0)
                 {
                     Console.WriteLine("=============ok============");

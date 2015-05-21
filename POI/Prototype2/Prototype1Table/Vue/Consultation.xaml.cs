@@ -30,13 +30,5 @@ namespace Prototype1Table.Vue
             ((ConsultationVM)(DataContext)).tailleFenetre(this.ActualWidth, this.ActualHeight);
             item.Center = new Point(this.ActualWidth / 2, (this.ActualHeight / 2));
         }
-
-        private void onClickClose(object sender, MouseEventArgs e)
-        {
-            if (e.OriginalSource.GetType() == typeof(System.Windows.Shapes.Path))
-            {
-                
-            }
-        }
     }
 }

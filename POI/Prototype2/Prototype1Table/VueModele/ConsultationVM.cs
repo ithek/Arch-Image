@@ -452,6 +452,7 @@ namespace Prototype1Table.VueModele
         {
             //On ferme le média
             m.fermeture();
+            Console.WriteLine("Media fermé");
             //On le retire de la liste des médias ouverts
             mediasOuverts.Remove(m);
         }

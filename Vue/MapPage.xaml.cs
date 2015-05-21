@@ -70,6 +70,7 @@ namespace Vue
                 {
                     PoisItemControl.DataContext = vue;
                     ScatterMedias.DataContext = vue;
+                    MapRectangle.DataContext = vue;
                     
                     foreach (POICreationData poi in listePOIs)
                     {
@@ -124,7 +125,11 @@ namespace Vue
 
         private void mapGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(e.OriginalSource);
+            if (e.OriginalSource.GetType() == typeof(System.Windows.Shapes.Path))
+            {
+                
+                //vue.fermerMedia(i);
+            }
         }
     }
 }
