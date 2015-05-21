@@ -35,6 +35,7 @@ namespace Modele_Controleur
                 creerStore("archimage");
                 chargerRdf("base_personnes.rdf");
                 chargerRdf("base_images.rdf");
+                chargerRdf("base_images_stele_monument.rdf");
                 webClient.DownloadString(sewelisURL + "getPlaceRoot?userKey=123&storeId=1");
                 webClient.DownloadString(sewelisURL + "insertIncrement?userKey=123&storeId=1&placeId=1&incrementId=34");
             }
