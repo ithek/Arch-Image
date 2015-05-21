@@ -33,7 +33,7 @@ namespace Vue
         /**
          * The string to display on the switch-mode button when it's possible to move/zoom the image, but impossible to create POI.
          */
-        private const string SWITCH_BUTTON_TEXT_MANIP = "Indiquer zones";
+        private const string SWITCH_BUTTON_TEXT_MANIP = "Utiliser points d'intérêts";
 
         /**
          * The string to display on the switch-mode button when it's possible to create POI, but impossible to move/zoom the image.
@@ -344,12 +344,8 @@ namespace Vue
 
         private void endRectangle(MouseButtonEventArgs e)
         {
-            Console.WriteLine("EndRectangle");//TODO
             if (this.drawingRectangleForNewPOI)
             {
-
-                Console.WriteLine("EndRectangle + if");//TODO
-
                 this.drawingRectangleForNewPOI = false;
                 theGrid.ReleaseMouseCapture();
 

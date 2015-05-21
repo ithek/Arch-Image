@@ -3,6 +3,5 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Vue="clr-namespace:Vue" x:Class="Vue.MainWindow"
-        Title="Archimage" WindowState="Maximized" Closed="MetroWindow_Closed">
-
-</Controls:MetroWindow>
+        
+        Title="Archimage" Closed="MetroWindow_Closed" WindowState="Maximized" Icon="Resources/icon.png"/>
