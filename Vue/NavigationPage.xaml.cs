@@ -138,7 +138,7 @@ namespace Vue
                             listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, cMiniature));
                         }
 
-                        poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.IdPersonne, poi.Nom);
+                        poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.Id, poi.Nom);
 
                         ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                         cont.fermeturePoi(); //Pour afficher les noms sur les POI

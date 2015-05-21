@@ -89,7 +89,7 @@ namespace Modele_Controleur
         {
             WebClient webClient = new WebClient();
             List<Personne> listePersonnes = new List<Personne>();
-            String nom = "", prenom = "", ddn = "", id = "", reponse = "";
+            String nom = "", prenom = "", initiale = "", ddn = "", id = "", reponse = "";
 
             foreach (XmlNode node in nodesPersonnes)
             {
@@ -103,6 +103,10 @@ namespace Modele_Controleur
                     if(nodesList.Count > 0)
                         nom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
+                    nodesList = doc.SelectNodes("//node()[@uri='initiale']");
+                    if (nodesList.Count > 0)
+                        initiale = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
                     nodesList = doc.SelectNodes("//node()[@uri='prenom']");
                     if (nodesList.Count > 0)
                         prenom = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
@@ -111,7 +115,7 @@ namespace Modele_Controleur
                     if (nodesList.Count > 0)
                         ddn = nodesList[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
-                    listePersonnes.Add(new Personne(nom, prenom, ddn, id));
+                    listePersonnes.Add(new Personne(nom, prenom, initiale, ddn, id));
                 }
             }
             return listePersonnes;

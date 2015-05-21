@@ -31,13 +31,18 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.findNameLabel = new System.Windows.Forms.Label();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.nameSearchTextBox = new System.Windows.Forms.TextBox();
             this.listeBoxPersonnes = new System.Windows.Forms.ListBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.prenomLabel = new System.Windows.Forms.Label();
             this.dateNaissanceLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.chargementPictureBox = new System.Windows.Forms.PictureBox();
+            this.initialeLabel = new System.Windows.Forms.Label();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.prenomTextBox = new System.Windows.Forms.TextBox();
+            this.initialeTextBox = new System.Windows.Forms.TextBox();
+            this.dateNaissanceTextBox = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.chargementPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -71,11 +76,11 @@
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(110, 6);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(152, 20);
-            this.nameTextBox.TabIndex = 3;
-            this.nameTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
+            this.nameSearchTextBox.Location = new System.Drawing.Point(110, 6);
+            this.nameSearchTextBox.Name = "nameTextBox";
+            this.nameSearchTextBox.Size = new System.Drawing.Size(152, 20);
+            this.nameSearchTextBox.TabIndex = 3;
+            this.nameSearchTextBox.TextChanged += new System.EventHandler(this.nameTextBox_TextChanged);
             // 
             // listeBoxPersonnes
             // 
@@ -89,7 +94,7 @@
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(21, 50);
+            this.nameLabel.Location = new System.Drawing.Point(18, 54);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(38, 13);
             this.nameLabel.TabIndex = 5;
@@ -98,7 +103,7 @@
             // prenomLabel
             // 
             this.prenomLabel.AutoSize = true;
-            this.prenomLabel.Location = new System.Drawing.Point(21, 67);
+            this.prenomLabel.Location = new System.Drawing.Point(18, 88);
             this.prenomLabel.Name = "prenomLabel";
             this.prenomLabel.Size = new System.Drawing.Size(52, 13);
             this.prenomLabel.TabIndex = 6;
@@ -107,7 +112,7 @@
             // dateNaissanceLabel
             // 
             this.dateNaissanceLabel.AutoSize = true;
-            this.dateNaissanceLabel.Location = new System.Drawing.Point(21, 84);
+            this.dateNaissanceLabel.Location = new System.Drawing.Point(18, 154);
             this.dateNaissanceLabel.Name = "dateNaissanceLabel";
             this.dateNaissanceLabel.Size = new System.Drawing.Size(105, 13);
             this.dateNaissanceLabel.TabIndex = 7;
@@ -115,31 +120,73 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Vue.Properties.Resources.loading;
-            this.pictureBox1.Location = new System.Drawing.Point(354, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
+            this.chargementPictureBox.Image = global::Vue.Properties.Resources.loading;
+            this.chargementPictureBox.Location = new System.Drawing.Point(354, 67);
+            this.chargementPictureBox.Name = "pictureBox1";
+            this.chargementPictureBox.Size = new System.Drawing.Size(64, 64);
+            this.chargementPictureBox.TabIndex = 8;
+            this.chargementPictureBox.TabStop = false;
+            this.chargementPictureBox.Visible = false;
+            // 
+            // initialeLabel
+            // 
+            this.initialeLabel.AutoSize = true;
+            this.initialeLabel.Location = new System.Drawing.Point(18, 122);
+            this.initialeLabel.Name = "initialeLabel";
+            this.initialeLabel.Size = new System.Drawing.Size(81, 13);
+            this.initialeLabel.TabIndex = 9;
+            this.initialeLabel.Text = "Initiale prénom :";
+            // 
+            // textBox1
+            // 
+            this.nameTextBox.Location = new System.Drawing.Point(132, 51);
+            this.nameTextBox.Name = "textBox1";
+            this.nameTextBox.Size = new System.Drawing.Size(130, 20);
+            this.nameTextBox.TabIndex = 10;
+            // 
+            // textBox2
+            // 
+            this.prenomTextBox.Location = new System.Drawing.Point(132, 85);
+            this.prenomTextBox.Name = "textBox2";
+            this.prenomTextBox.Size = new System.Drawing.Size(130, 20);
+            this.prenomTextBox.TabIndex = 11;
+            // 
+            // textBox3
+            // 
+            this.initialeTextBox.Location = new System.Drawing.Point(132, 119);
+            this.initialeTextBox.Name = "textBox3";
+            this.initialeTextBox.Size = new System.Drawing.Size(130, 20);
+            this.initialeTextBox.TabIndex = 12;
+            // 
+            // textBox4
+            // 
+            this.dateNaissanceTextBox.Location = new System.Drawing.Point(132, 151);
+            this.dateNaissanceTextBox.Name = "textBox4";
+            this.dateNaissanceTextBox.Size = new System.Drawing.Size(130, 20);
+            this.dateNaissanceTextBox.TabIndex = 13;
             // 
             // POICreationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(486, 262);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.dateNaissanceTextBox);
+            this.Controls.Add(this.initialeTextBox);
+            this.Controls.Add(this.prenomTextBox);
+            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.initialeLabel);
+            this.Controls.Add(this.chargementPictureBox);
             this.Controls.Add(this.dateNaissanceLabel);
             this.Controls.Add(this.prenomLabel);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.listeBoxPersonnes);
-            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.nameSearchTextBox);
             this.Controls.Add(this.findNameLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Name = "POICreationForm";
             this.Text = "Ajout d\'un lien";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chargementPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,12 +197,17 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label findNameLabel;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox nameSearchTextBox;
         private System.Windows.Forms.ListBox listeBoxPersonnes;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label prenomLabel;
         private System.Windows.Forms.Label dateNaissanceLabel;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox chargementPictureBox;
+        private System.Windows.Forms.Label initialeLabel;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox prenomTextBox;
+        private System.Windows.Forms.TextBox initialeTextBox;
+        private System.Windows.Forms.TextBox dateNaissanceTextBox;
     }
 
 }

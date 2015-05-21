@@ -38,12 +38,21 @@ namespace Modele_Controleur
             set;
         }
 
-        public Personne(String nom, String prenom, String ddn, String id)
+        public Personne(String nom, String prenom, String initiale, String ddn, String id)
         {
             Nom = nom;
+            Initiale = initiale;
             Prenom = prenom;
             DateNaissance = ddn;
             Id = id;
+        }
+
+        public Personne(String nom, String prenom, String initiale, String ddn)
+        {
+            Nom = nom;
+            Initiale = initiale;
+            Prenom = prenom;
+            DateNaissance = ddn;
         }
     }
 }
