@@ -44,6 +44,8 @@ namespace Vue
             List<String> l = new List<String>();
             l.Add("<Nouvelle personne>");
             this.listeBoxPersonnes.DataSource = l;
+
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void parseUserInput()
