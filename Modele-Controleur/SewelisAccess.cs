@@ -11,21 +11,12 @@ namespace Modele_Controleur
     public class SewelisAccess
     {
         private const String sewelisURL = "http://37.59.103.120/";
-        private WebClient webClient;
-        private HttpWebRequest webRequest;
         private XMLParser parser;
-
-        public bool CanSearch
-        {
-            get;
-            set;
-        }
        
         public SewelisAccess()
         {
-            webClient = new WebClient();
+            WebClient webClient = new WebClient();
             parser = new XMLParser();
-            CanSearch = true;
 
             //Teste si la base existe
             String reponse = webClient.DownloadString(sewelisURL + "storeBase?userKey=123&storeId=1");
@@ -37,17 +28,19 @@ namespace Modele_Controleur
                 chargerRdf("base_images.rdf");
                 chargerRdf("base_images_stele_monument.rdf");
                 webClient.DownloadString(sewelisURL + "getPlaceRoot?userKey=123&storeId=1");
-                webClient.DownloadString(sewelisURL + "insertIncrement?userKey=123&storeId=1&placeId=1&incrementId=34");
+                webClient.DownloadString(sewelisURL + "insertIncrement?userKey=123&storeId=1&placeId=1&incrementId=45");
             }
         }
 
         public void creerStore(String nom)
         {
+            WebClient webClient = new WebClient();
             webClient.DownloadString(sewelisURL + "createStore?userKey=123&filename=" + nom);
         }
 
         public void chargerRdf(String chemin)
         {
+            WebClient webClient = new WebClient();
             webClient.DownloadString(sewelisURL + "importRdf?userKey=123&storeId=1&base=archimage&filename=" + chemin);
         }
 
@@ -56,18 +49,13 @@ namespace Modele_Controleur
          */
         public List<Personne> recherchePersonnes(String motif)
         {
-            CanSearch = false;
-            List<Personne> listePersonnes = null;
-
-            String reponse = webClient.DownloadString(sewelisURL + "getCompletions?userKey=123&placeId=2&matchingKey=" + motif);
-            listePersonnes = parser.getRecherchePersonnes(reponse);
-            CanSearch = true;
-            return listePersonnes;
+            return parser.getInfosPersonnes(motif);
         }
 
         public void chargerListePersonnes()
         {
-            webRequest = (HttpWebRequest)WebRequest.Create(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]"); ;
+            WebRequest webRequest;
+            webRequest = (HttpWebRequest)WebRequest.Create(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=get [ a <Personne>; <nom> [] ]");   
             webRequest.BeginGetResponse(new AsyncCallback(FinishChargerListePersonnes), webRequest);
         }
 
@@ -91,6 +79,7 @@ namespace Modele_Controleur
          */
         public void ajouterPOI(POICreationData poi, Document doc)
         {
+            WebClient webClient = new WebClient();
             String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <POI>]");
             int nbPoi = parser.getLastIndexOf(reponse);
             string idPoi = "poi_id" + nbPoi;
@@ -110,6 +99,7 @@ namespace Modele_Controleur
          */
          public Personne ajouterPersonne(Personne p)
         {
+            WebClient webClient = new WebClient();
             String reponse = webClient.DownloadString(sewelisURL + "resultsOfStatement?userKey=123&storeId=1&statement=[a <Personne>]");
             int nbP = parser.getLastIndexOf(reponse);
             string idP = "p_id" + nbP;
@@ -128,6 +118,7 @@ namespace Modele_Controleur
          */
         public List<POICreationData> getPOI(Document doc)
         {
+            WebClient webClient = new WebClient();
             string chemin = doc.CheminAcces.Substring(16, doc.CheminAcces.Length - 16).Replace(@"\", @"/");
             string reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + chemin);
             return parser.getPOI(reponse);
@@ -138,6 +129,7 @@ namespace Modele_Controleur
          */
         public List<Document> getListDocs(POICreationData poi)
         {
+            WebClient webClient = new WebClient();
             String reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + poi.Id);
             String idPersonne = parser.getIdPersonne(reponse);
             reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + idPersonne);
