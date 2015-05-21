@@ -27,10 +27,188 @@
         </Style>
     </Page.Resources>
 
-    <Grid Name="mapGrid">
+    <Grid Name="mapGrid" MouseDown="mapGrid_MouseDown">
         <Canvas Name="MapRectangle"
                    IsManipulationEnabled="True"
                    RenderTransform="{Binding Path=ImageTransform}">
+            
+            <!--Affichage des Pois-->
+
+            <ItemsControl Name="PoisItemControl" ItemsSource="{Binding ListePois}">
+
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.DataContext" Value="{Binding RelativeSource={RelativeSource Self}}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y, Mode=OneWay}"/>
+                        <Setter Property="Canvas.Left" Value="{Binding X, Mode=OneWay}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Canvas>
+                            <Canvas.Resources>
+                                <DataTemplate DataType="{x:Type vueModele:CouronneVM}">
+                                    <vue:Couronne Margin="{Binding MargeCouronne, Mode=OneWay}"/>
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type vueModele:PoiConsultationVM}">
+                                    <vue:Poi Margin="{Binding MargePoi, Mode=OneWay}"/>
+                                </DataTemplate>
+                            </Canvas.Resources>
+                            <ContentControl Content="{Binding VueCourante}" />
+                        </Canvas>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!--Medias-->
+            <my:ScatterView Name="ScatterMedias" 
+                        ItemContainerStyle="{StaticResource ScatterViewItemStyleMedias}"
+                        Width="{Binding ElementName=theGrid, Path=Width}" Height="{Binding ElementName=theGrid, Path=Height}"
+                        ItemsSource="{Binding mediasOuverts}">
+                <my:ScatterView.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid>
+                            <Viewbox Name="grid" VerticalAlignment="Top" HorizontalAlignment="Right">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <!--Images-->
+                                        <DataTemplate DataType="{x:Type vueModele:ImageVM}">
+                                            <MediaElement Source="{Binding cheminMedia}" />
+                                        </DataTemplate>
+
+                                        <!--Videos-->
+                                        <DataTemplate DataType="{x:Type vueModele:VideoVM}">
+                                            <vue:Video/>
+                                        </DataTemplate>
+
+                                        <!--Diaporamas-->
+                                        <DataTemplate DataType="{x:Type vueModele:DiaporamaVM}">
+                                            <vue:Diaporama/>
+                                        </DataTemplate>
+                                    </Grid.Resources>
+
+                                    <Canvas Name="ChargementConteneur" Width="400" Height="250" Grid.ZIndex="1" Grid.Column="0" Grid.Row="1">
+                                        <Grid Name="ChargementCercle" Margin="200,125,0,0" >
+                                            <Path  StrokeThickness="10" StrokeLineJoin="Round" Fill="{x:Null}"
+                                            Data="M -50,0 A 33,33 45 0 1 50,0" UseLayoutRounding="False" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
+                                                <Path.Stroke>
+                                                    <LinearGradientBrush>
+                                                        <LinearGradientBrush.GradientStops>
+                                                            <GradientStop Offset="0.25" Color="#00009BAD" />
+                                                            <GradientStop Offset="0.9" Color="#FF009BAD" />
+                                                        </LinearGradientBrush.GradientStops>
+                                                    </LinearGradientBrush>
+                                                </Path.Stroke>
+                                            </Path>
+                                            <Path Stroke="#FF009BAD" StrokeThickness="10" StrokeLineJoin="Round" Fill="{x:Null}" 
+                                              Data="M -50,0 A 33,33 45 0 0 50,0" UseLayoutRounding="False" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                            </Path>
+                                            <Grid.RenderTransform>
+                                                <RotateTransform/>
+                                            </Grid.RenderTransform>
+                                            <Grid.Triggers>
+                                                <EventTrigger RoutedEvent="Loaded">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)" To="-360" Duration="0:0:1" RepeatBehavior="Forever"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Grid.Triggers>
+                                        </Grid>
+                                    </Canvas>
+
+                                    <ContentPresenter Name="test" Content="{Binding}" Grid.ZIndex="2" />
+
+                                </Grid>
+                            </Viewbox>
+                            <Button Grid.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,-10,-10,0"  Height="50" Width="50" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Rectangle Fill="#009BAD"/>
+                                            <Path Stroke="#FFFFFFFF" StrokeThickness="4.0" StrokeLineJoin="Round" Fill="{x:Null}"
+                                                        Data="M 10,10 L 40,40" UseLayoutRounding="False" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" />
+                                            <Path Stroke="#FFFFFFFF" StrokeThickness="4.0" StrokeLineJoin="Round" Fill="{x:Null}"
+                                                        Data="M 40,10 L 10,40" UseLayoutRounding="False" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" />
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding ElementName=test, Path=DataContext.FermetureMedia}" CommandParameter="{Binding}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+
+                            <Button Grid.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,-10,50,0" Height="50" Width="50" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTablette}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Image Source="/Prototype1Table;component/Resources/TabletteCarre.png"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding EnvoiTablettes}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+
+                            <Button Grid.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="50" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Margin" Value="0,-10,110,0"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTablette}" Value="False"/>
+                                                    <Condition Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTbi}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Margin" Value="0,-10,50,0"/>
+                                            </MultiDataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTbi}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Grid>
+                                            <Image Source="/Prototype1Table;component/Resources/TbiCarre.png"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding EnvoiTbi}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </my:ScatterView.ItemTemplate>
+            </my:ScatterView>
+
             <Canvas.Background>
                 <ImageBrush ImageSource="Resources/map.png" Stretch="Uniform"/>
             </Canvas.Background>
@@ -58,181 +236,5 @@
                 </Canvas>
             </Viewbox>
         </Button>
-        <!--Affichage des Pois-->
-
-        <ItemsControl Name="PoisItemControl" ItemsSource="{Binding ListePois}">
-
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="FrameworkElement.DataContext" Value="{Binding RelativeSource={RelativeSource Self}}"/>
-                    <Setter Property="Canvas.Top" Value="{Binding Y, Mode=OneWay}"/>
-                    <Setter Property="Canvas.Left" Value="{Binding X, Mode=OneWay}"/>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Canvas>
-                        <Canvas.Resources>
-                            <DataTemplate DataType="{x:Type vueModele:CouronneVM}">
-                                <vue:Couronne Margin="{Binding MargeCouronne, Mode=OneWay}"/>
-                            </DataTemplate>
-                            <DataTemplate DataType="{x:Type vueModele:PoiConsultationVM}">
-                                <vue:Poi Margin="{Binding MargePoi, Mode=OneWay}"/>
-                            </DataTemplate>
-                        </Canvas.Resources>
-                        <ContentControl Content="{Binding VueCourante}" />
-                    </Canvas>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!--Medias-->
-        <my:ScatterView Name="ScatterMedias" 
-                        ItemContainerStyle="{StaticResource ScatterViewItemStyleMedias}"
-                        Width="{Binding ElementName=theGrid, Path=Width}" Height="{Binding ElementName=theGrid, Path=Height}"
-                        ItemsSource="{Binding mediasOuverts}">
-            <my:ScatterView.ItemTemplate>
-
-                <DataTemplate>
-                    <Grid>
-                        <Viewbox Name="grid" VerticalAlignment="Top" HorizontalAlignment="Right">
-                            <Grid>
-                                <Grid.Resources>
-                                    <!--Images-->
-                                    <DataTemplate DataType="{x:Type vueModele:ImageVM}">
-                                        <MediaElement Source="{Binding cheminMedia}" />
-                                    </DataTemplate>
-
-                                    <!--Videos-->
-                                    <DataTemplate DataType="{x:Type vueModele:VideoVM}">
-                                        <vue:Video/>
-                                    </DataTemplate>
-
-                                    <!--Diaporamas-->
-                                    <DataTemplate DataType="{x:Type vueModele:DiaporamaVM}">
-                                        <vue:Diaporama/>
-                                    </DataTemplate>
-                                </Grid.Resources>
-
-                                <Canvas Name="ChargementConteneur" Width="400" Height="250" Grid.ZIndex="1" Grid.Column="0" Grid.Row="1">
-                                    <Grid Name="ChargementCercle" Margin="200,125,0,0" >
-                                        <Path  StrokeThickness="10" StrokeLineJoin="Round" Fill="{x:Null}"
-                                            Data="M -50,0 A 33,33 45 0 1 50,0" UseLayoutRounding="False" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
-                                            <Path.Stroke>
-                                                <LinearGradientBrush>
-                                                    <LinearGradientBrush.GradientStops>
-                                                        <GradientStop Offset="0.25" Color="#00009BAD" />
-                                                        <GradientStop Offset="0.9" Color="#FF009BAD" />
-                                                    </LinearGradientBrush.GradientStops>
-                                                </LinearGradientBrush>
-                                            </Path.Stroke>
-                                        </Path>
-                                        <Path Stroke="#FF009BAD" StrokeThickness="10" StrokeLineJoin="Round" Fill="{x:Null}" 
-                                              Data="M -50,0 A 33,33 45 0 0 50,0" UseLayoutRounding="False" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
-                                        </Path>
-                                        <Grid.RenderTransform>
-                                            <RotateTransform/>
-                                        </Grid.RenderTransform>
-                                        <Grid.Triggers>
-                                            <EventTrigger RoutedEvent="Loaded">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)" To="-360" Duration="0:0:1" RepeatBehavior="Forever"/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                        </Grid.Triggers>
-                                    </Grid>
-                                </Canvas>
-
-                                <ContentPresenter Name="test" Content="{Binding}" Grid.ZIndex="2" />
-
-                            </Grid>
-                        </Viewbox>
-                        <Button Grid.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,-10,-10,0"  Height="50" Width="50" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0">
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Grid>
-                                        <Rectangle Fill="#009BAD"/>
-                                        <Path Stroke="#FFFFFFFF" StrokeThickness="4.0" StrokeLineJoin="Round" Fill="{x:Null}"
-                                                        Data="M 10,10 L 40,40" UseLayoutRounding="False" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" />
-                                        <Path Stroke="#FFFFFFFF" StrokeThickness="4.0" StrokeLineJoin="Round" Fill="{x:Null}"
-                                                        Data="M 40,10 L 10,40" UseLayoutRounding="False" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" />
-                                    </Grid>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding ElementName=grid, Path=DataContext.FermetureMedia}" CommandParameter="{Binding}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-
-                        <Button Grid.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,-10,50,0" Height="50" Width="50" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTablette}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Grid>
-                                        <Image Source="/Prototype1Table;component/Resources/TabletteCarre.png"/>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding EnvoiTablettes}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-
-                        <Button Grid.ZIndex="3" VerticalAlignment="Top" HorizontalAlignment="Right" Height="50" Width="50" Foreground="{x:Null}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                    <Setter Property="Margin" Value="0,-10,110,0"/>
-                                    <Style.Triggers>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTablette}" Value="False"/>
-                                                <Condition Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTbi}" Value="True"/>
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Margin" Value="0,-10,50,0"/>
-                                        </MultiDataTrigger>
-                                        <DataTrigger Binding="{Binding ElementName=theGrid, Path=DataContext.PresenceTbi}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Grid>
-                                        <Image Source="/Prototype1Table;component/Resources/TbiCarre.png"/>
-                                    </Grid>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding EnvoiTbi}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </my:ScatterView.ItemTemplate>
-        </my:ScatterView>
     </Grid>
 </Page>

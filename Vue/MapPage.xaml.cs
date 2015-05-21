@@ -35,7 +35,9 @@ namespace Vue
             this.arch = a;
             Document d = new Document("../../Resources/map.png");
             arch.DocumentCourant = d;
+
             initTouchManagement();
+
             loadCurrentPOI();
         }
 
@@ -59,12 +61,7 @@ namespace Vue
         public void finGetPOI(IAsyncResult R)
         {
             List<POICreationData> listePOIs = arch.DocumentCourant.POIs;
-            /*for (int i = 0; i < arch.DocumentCourant.POIs.ToArray().Length; i++)
-            {
-                Console.WriteLine("=============");
-                Console.WriteLine(arch.DocumentCourant.POIs.ToArray()[i]);
-            }*/
-                vue = new ConsultationVM(" ");
+            vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
 
             //Binding
@@ -73,6 +70,7 @@ namespace Vue
                 {
                     PoisItemControl.DataContext = vue;
                     ScatterMedias.DataContext = vue;
+                    
                     foreach (POICreationData poi in listePOIs)
                     {
                         //On initialise les Documents présents dans les caroussels
@@ -122,6 +120,11 @@ namespace Vue
         private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)System.Windows.Application.Current.MainWindow).Content = new MainMenuPage(this.arch);
+        }
+
+        private void mapGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine(e.OriginalSource);
         }
     }
 }
