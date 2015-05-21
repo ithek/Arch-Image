@@ -36,6 +36,8 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.prenomLabel = new System.Windows.Forms.Label();
             this.dateNaissanceLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // okButton
@@ -111,11 +113,22 @@
             this.dateNaissanceLabel.TabIndex = 7;
             this.dateNaissanceLabel.Text = "Date de naissance : ";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Vue.Properties.Resources.loading;
+            this.pictureBox1.Location = new System.Drawing.Point(354, 67);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
             // POICreationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(486, 262);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dateNaissanceLabel);
             this.Controls.Add(this.prenomLabel);
             this.Controls.Add(this.nameLabel);
@@ -126,6 +139,7 @@
             this.Controls.Add(this.okButton);
             this.Name = "POICreationForm";
             this.Text = "Ajout d\'un lien";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,6 +155,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label prenomLabel;
         private System.Windows.Forms.Label dateNaissanceLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 
 }

@@ -78,14 +78,17 @@ namespace Vue
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Personne personne = listePersonnes[this.listeBoxPersonnes.SelectedIndex];
+            if (listeBoxPersonnes.DataSource != null)
+            {
+                Personne personne = listePersonnes[this.listeBoxPersonnes.SelectedIndex];
 
-            this.nameLabel.Text = "Nom : " + personne.Nom;
-            this.prenomLabel.Text = "Prénom : " + personne.Prenom;
-            this.dateNaissanceLabel.Text = "Date de naissance : " + personne.DateNaissance;
+                this.nameLabel.Text = "Nom : " + personne.Nom;
+                this.prenomLabel.Text = "Prénom : " + personne.Prenom;
+                this.dateNaissanceLabel.Text = "Date de naissance : " + personne.DateNaissance;
 
-            data.IdPersonne = personne.Id;
-            data.Nom = personne.Nom;
+                data.IdPersonne = personne.Id;
+                data.Nom = personne.Nom;
+            }
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
@@ -95,8 +98,11 @@ namespace Vue
                 this.nameLabel.Text = "Nom : ";
                 this.prenomLabel.Text = "Prénom : ";
                 this.dateNaissanceLabel.Text = "Date de naissance : ";
+                this.listeBoxPersonnes.DataSource = null;
                 data.IdPersonne = null;
                 data.Nom = null;
+
+                this.pictureBox1.Visible = true;
 
                 rechercherPersonne_Delegate d = null;
                 d = new rechercherPersonne_Delegate(rechercherPersonne);
@@ -138,6 +144,7 @@ namespace Vue
             DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,        
                 (Action)delegate()         
                 {
+                    this.pictureBox1.Visible = false;
                     listeBoxPersonnes.DataSource = listeNoms;
                 }
                 );
