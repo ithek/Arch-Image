@@ -33,8 +33,10 @@ namespace Vue
             InitializeComponent();
 
             this.arch = a;
+            Document d = new Document("../../Resources/map.png");
+            arch.DocumentCourant = d;
             initTouchManagement();
-            //loadCurrentPOI();
+            loadCurrentPOI();
         }
 
         private ConsultationVM vue;
@@ -57,7 +59,12 @@ namespace Vue
         public void finGetPOI(IAsyncResult R)
         {
             List<POICreationData> listePOIs = arch.DocumentCourant.POIs;
-            vue = new ConsultationVM(" ");
+            /*for (int i = 0; i < arch.DocumentCourant.POIs.ToArray().Length; i++)
+            {
+                Console.WriteLine("=============");
+                Console.WriteLine(arch.DocumentCourant.POIs.ToArray()[i]);
+            }*/
+                vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
 
             //Binding
