@@ -80,7 +80,6 @@ namespace Vue
                         foreach (Document doc in listDoc)
                         {
                             String cMiniature = findMiniature(doc.CheminAcces);
-                            Console.WriteLine(cMiniature);
                             listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, "../../Resources/"+cMiniature));
                         }
 

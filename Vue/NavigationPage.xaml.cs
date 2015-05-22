@@ -473,7 +473,6 @@ namespace Vue
             {
                 if (this.vue.mediasOuverts.Count == 0)
                 {
-                    Console.WriteLine("=============ok============");
                     e.Handled = false;
                     return;
                 }
@@ -501,7 +500,6 @@ namespace Vue
                 //Créer un nouveau document en rappelant Sewelis pour connaitre les POI sur le doc.
                 Document d = new Document((Categorie)categorie, chemin, noLivre, noPage);
                 d.POIs = this.Archimage.SewelisAccess.getPOI(d);
-                Console.WriteLine(d.Categorie);
                 this.Archimage.Navigation(d);
 
                 this.UpdateUI();
