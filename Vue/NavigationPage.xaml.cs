@@ -68,8 +68,6 @@ namespace Vue
         {
             bool modeAuteur = this.Archimage.Utilisateur is Auteur;
 
-            this.SwitchModeButton.Visibility = modeAuteur ? Visibility.Visible : Visibility.Hidden;
-
             var mouseRightButtonUPListener = this;
             var mouseRightButtonDOWNListener = this.RectangleContainingBackgroundImage;
             var mouseMoveListener = this;
