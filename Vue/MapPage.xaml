@@ -98,7 +98,7 @@
         <!--Medias-->
         <my:ScatterView Name="ScatterMedias" 
                         ItemContainerStyle="{StaticResource ScatterViewItemStyleMedias}"
-                        Width="{Binding ElementName=theGrid, Path=Width}" Height="{Binding ElementName=theGrid, Path=Height}"
+                        Width="4000" Height="4000"
                         ItemsSource="{Binding mediasOuverts}">
             <my:ScatterView.ItemTemplate>
 
@@ -154,7 +154,7 @@
                                     </Grid>
                                 </Canvas>
 
-                                <ContentPresenter Name="test" Content="{Binding}" Grid.ZIndex="2" />
+                                <ContentPresenter Name="test" Content="{Binding}" Grid.ZIndex="2"/>
 
                             </Grid>
                         </Viewbox>
