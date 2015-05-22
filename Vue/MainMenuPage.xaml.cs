@@ -48,7 +48,7 @@ namespace Vue
         public void updateButtonVisibility()
         {
             //TODO le premier couillon qui voudrait plutôt faire ça par Binding comme j'en avais l'intention au début est le bienvenu.
-            this.FavorisButton.Visibility = (this.archimage.Utilisateur is Auteur) ? Visibility.Visible : Visibility.Hidden;
+            //this.FavorisButton.Visibility = (this.archimage.Utilisateur is Auteur) ? Visibility.Visible : Visibility.Hidden;
         }
 
 
@@ -57,24 +57,39 @@ namespace Vue
             MessageBox.Show("Not yet implemented :(");
         }
 
-        private void MapButton_Click(object sender, RoutedEventArgs e)
+        private void MapTile_Click(object sender, RoutedEventArgs e)
         {
             getMainWindow().Content = new MapPage(this.archimage);
         }
 
-        private void RMButton_Click(object sender, RoutedEventArgs e)
+        private void RMTile_Click(object sender, RoutedEventArgs e)
         {
             StartNavigation(Categorie.REGISTRE_MATRICULE);
         }
 
-        private void NMDButton_Click(object sender, RoutedEventArgs e)
+        private void TablesRMTile_Click(object sender, RoutedEventArgs e)
+        {
+            StartNavigation(Categorie.REGISTRE_MATRICULE);
+        }
+
+        private void NMDTile_Click(object sender, RoutedEventArgs e)
         {
             StartNavigation(Categorie.NAISSANCE_MARIAGE_DECES);
         }
 
-        private void RecensementButton_Click(object sender, RoutedEventArgs e)
+        private void TSATile_Click(object sender, RoutedEventArgs e)
+        {
+            StartNavigation(Categorie.TSA);
+        }
+
+        private void RecensementTile_Click(object sender, RoutedEventArgs e)
         {
             StartNavigation(Categorie.RECENSEMENT);
+        }
+
+        private void TablesDecenalesTile_Click(object sender, RoutedEventArgs e)
+        {
+            StartNavigation(Categorie.TABLES_DECENNALES);
         }
 
         private void StartNavigation(Categorie c)
@@ -96,17 +111,17 @@ namespace Vue
             }
         }
         
-        private void ConnexionButton_Click(object sender, RoutedEventArgs e)
+        private void ConnexionTile_Click(object sender, RoutedEventArgs e)
         {
             new ConnexionForm(this.archimage, this).Show();
         }
 
-        private void InscriptionButton_Click(object sender, RoutedEventArgs e)
+        private void InscriptionTile_Click(object sender, RoutedEventArgs e)
         {
             new InscriptionForm(this.archimage).Show();
         }
 
-        private void RestoreSessionButton_Click(object sender, RoutedEventArgs e)
+        private void RestoreSessionTile_Click(object sender, RoutedEventArgs e)
         {
             try
             {
