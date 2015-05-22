@@ -55,11 +55,13 @@ namespace Vue
         {
             InitializeComponent();
 
-            this.initTouchManagement();
-            
             this.Archimage = a;
 
             this.drawingRectangleForNewPOI = false;
+
+            this.vue = new ConsultationVM(" ");
+
+            this.initTouchManagement();            
 
             this.UpdateUI();
         }
@@ -89,7 +91,7 @@ namespace Vue
 
         private void initTouchManagement()
         {
-            ScreenTouchManager touchManager = new ScreenTouchManager(this.theGrid);
+            ScreenTouchManager touchManager = new ScreenTouchManager(this.theGrid, this.vue);
             this.RectangleContainingBackgroundImage.ManipulationStarting += touchManager.Image_ManipulationStarting;
             this.RectangleContainingBackgroundImage.ManipulationDelta += touchManager.Image_ManipulationDelta;
             this.DataContext = touchManager;
@@ -111,10 +113,9 @@ namespace Vue
             Archimage.getPOI();
         }
 
-        public void finGetPOI(IAsyncResult R)
+        public void findGetPOI(IAsyncResult R)
         {
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
-            vue = new ConsultationVM(" ");
             PoiModele poiMod = null;
 
             //Binding
@@ -158,7 +159,7 @@ namespace Vue
 
         private void loadCurrentPOI()
         {
-            vue = new ConsultationVM(" ");
+            vue.ListePois.Clear();
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
             //Initialisation
@@ -166,7 +167,7 @@ namespace Vue
             d = new getPOI_Delegate(getPOI);
 
             IAsyncResult R = null;
-            R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method          
+            R = d.BeginInvoke(new AsyncCallback(findGetPOI), null); //invoking the method          
         }
 
         private string findMiniature(string categorie)  //TODO clean
@@ -244,7 +245,7 @@ namespace Vue
                     break;
 
                 case Categorie.TABLES_DECENNALES :
-                    res = "Décès";
+                    res = "Tables décennales";
                     break;
 
                 case Categorie.TSA :
@@ -430,8 +431,10 @@ namespace Vue
         private void SwitchModeButton_Click(object sender, RoutedEventArgs e)
         {
             RectangleContainingBackgroundImage.IsManipulationEnabled = ! RectangleContainingBackgroundImage.IsManipulationEnabled;
-            this.UpdateSwitchModeButton();
+            this.UpdateSwitchModeButton();        
         }
+
+                    
 
         //Récupère le type des documents
         private int categoryName(String path)
@@ -504,6 +507,6 @@ namespace Vue
 
                 this.UpdateUI();
             }
-        }
+        }        
 	}
 }

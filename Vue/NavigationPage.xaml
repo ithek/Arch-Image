@@ -229,7 +229,7 @@
 
         </Canvas>
 
-        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>
+        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}"  Height="60" FontSize="14" Click="SwitchModeButton_Click"/>
         <Button x:Name="MenuButton" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="MenuButton_Click">
             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                 <Canvas Name="svg2" Width="512" Height="512">

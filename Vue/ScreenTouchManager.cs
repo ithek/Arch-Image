@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prototype1Table.VueModele;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,13 @@ namespace Vue
 
         private Grid ManipContainer;
 
-        public ScreenTouchManager(Grid theGrid)
+        private ConsultationVM consultationVM;
+
+        public ScreenTouchManager(Grid theGrid, ConsultationVM cVM)
         {
             this.ImageTransform = new MatrixTransform();
             this.ManipContainer = theGrid;
+            this.consultationVM = cVM;
         }
 
         public void Image_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
@@ -51,7 +55,32 @@ namespace Vue
             m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
             ImageTransform.Matrix = m;
 
+            updateAllPOISize(scale.X, scale.Y);
+
             e.Handled = false;
+        }
+
+        private void updateAllPOISize(double ratioWidth, double ratioHeight)
+        {
+            var vm = this.consultationVM;
+
+            
+            string TODO = "";//TODO
+            if (vm == null) MessageBox.Show("vm, ");
+            if (vm.ListePois == null) MessageBox.Show("vm.ListePois, ");
+            if (vm.ListePois.Count == null) MessageBox.Show( "vm.ListePois.Count, ");
+            if (vm.ListePois.ElementAt(0) == null) MessageBox.Show("vm.ListePois.ElementAt(0), ");
+            if (vm.ListePois.ElementAt(0).VueCourante == null)MessageBox.Show("vm.ListePois.ElementAt(0).VueCourante, ");
+            if (((PoiConsultationVM)vm.ListePois.ElementAt(0).VueCourante) == null) MessageBox.Show("((PoiConsultationVM)vm.ListePois.ElementAt(0).VueCourante), ");
+            
+         
+
+            for (int i = 0; i < vm.ListePois.Count; i++)
+            {
+                PoiConsultationVM poi = ((PoiConsultationVM)vm.ListePois.ElementAt(i).VueCourante);
+                poi.HeightPoi /= ratioHeight;
+                poi.WidthPoi /= ratioWidth;   
+            }
         }
     }
 }
