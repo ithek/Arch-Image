@@ -6,11 +6,37 @@
       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Background="#FF07203E"
+      Background="#FF0A0F44"
 	Title="MainMenuPage">
 
+    
 
     <Grid>
+        <Controls:Flyout x:Name="flyoutConnexion" Header="Connexion" Position="Right" Width="300" Theme="Accent">
+            <StackPanel Margin="10,10,10,10">
+                <TextBox Height="30" x:Name="identifiantConnexionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
+                <PasswordBox Height="30" x:Name="passwordConnexionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <Button Margin="0,0,5,0" Style="{DynamicResource AccentedSquareButtonStyle}" Click="okConnexionButton_Click" FontSize="15">Ok</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Click="annulerConnexionButton_Click" FontSize="15">Annuler</Button>       
+                </StackPanel>
+                <Label x:Name="connexionLabel" FontSize="15" Foreground="White"/>
+            </StackPanel>
+        </Controls:Flyout>
+
+        <Controls:Flyout x:Name="flyoutInscription" Header="Connexion" Position="Right" Width="300" Theme="Accent">
+            <StackPanel Margin="10,10,10,10">
+                <TextBox Height="30" x:Name="identifiantInscriptionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
+                <PasswordBox Height="30" x:Name="passwordInscriptionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
+                <TextBox Height="30" x:Name="emailTextBox" Controls:TextBoxHelper.Watermark="Email" FontSize="15" />
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <Button Margin="0,0,5,0" Style="{DynamicResource AccentedSquareButtonStyle}" Click="okInscriptionButton_Click" FontSize="15">Ok</Button>
+                    <Button Style="{DynamicResource SquareButtonStyle}" Click="annulerInscriptionButton_Click" FontSize="15">Annuler</Button>
+                </StackPanel>
+                <Label x:Name="inscriptionLabel" FontSize="15" Foreground="White"/>
+            </StackPanel>
+        </Controls:Flyout>
+
         <StackPanel>
             <Image Grid.ColumnSpan="4" Source="Resources/logo_archimage.png" VerticalAlignment="Top" Margin="0,50,0,0" HorizontalAlignment="Center" Width="400" />
         </StackPanel>    
@@ -82,8 +108,9 @@
                     Width="200" Height="100" 
                 />
 
-                <StackPanel Grid.Row="1" Grid.Column="3">
+                <StackPanel Grid.Row="2" Grid.Column="3">
                     <Controls:Tile
+                        x:Name="connexionTile"
                         Click="ConnexionTile_Click"
                         Title="Connexion" 
                         TiltFactor="2"
@@ -91,6 +118,7 @@
                     />
 
                     <Controls:Tile
+                        x:Name="inscriptionTile"
                         Click="InscriptionTile_Click"
                         Title="Inscription" 
                         TiltFactor="2"
@@ -100,7 +128,7 @@
 
                 <Controls:Tile
                     Click="RestoreSessionTile_Click"
-                    Grid.Row="2" Grid.Column="3"
+                    Grid.Row="1" Grid.Column="3"
                     Title="Restaurer la session" 
                     TiltFactor="2"
                     Width="200" Height="100" Background="#FF3676FF"

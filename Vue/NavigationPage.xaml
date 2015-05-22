@@ -7,22 +7,13 @@
       xmlns:vueModele="clr-namespace:Prototype1Table.VueModele;assembly=Prototype1Table"
       xmlns:vue="clr-namespace:Prototype1Table.Vue;assembly=Prototype1Table"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       mc:Ignorable="d" 
       d:DesignHeight="470" d:DesignWidth="645"
       x:Name="navPage"
 	  Title="NavigationPage">
 
     <Page.Resources>
-        <Style
-            x:Key="NavButtonStyle"
-            BasedOn="{StaticResource {x:Type Button}}"
-            TargetType="Button">
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect/>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
         <!-- Style pour les ScatterViewItem contenant les médias -->
         <Style x:Key="ScatterViewItemStyleMedias" TargetType="{x:Type my:ScatterViewItem}">
@@ -37,15 +28,87 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
     </Page.Resources>
     
-
+    
     
     <Grid
         Name="theGrid"
         Background="Black">
+        <Controls:Flyout Grid.ZIndex="4" x:Name="flyoutAnnotation" Header="Annotation" Position="Right" Width="800" Theme="Accent">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Margin="10,10,10,10">
+                    <TextBox Height="30" x:Name="nomRechercheTextBox" Controls:TextBoxHelper.Watermark="Nom à chercher" TextChanged="nomRechercheTextBox_TextChanged" FontSize="15" />
+                    <ListBox Width="auto" x:Name="listBoxNoms" FontSize="15" SelectionChanged="listBoxNoms_SelectionChanged"/>
+                    <Controls:ProgressRing Margin="0,20,0,0"  x:Name="progressRing" Foreground="#CCFFFFFF" />
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,10,10,10">
+                    <Label FontSize="15" Foreground="White" Content="Nom :"/>
+                    <Label FontSize="15" Foreground="White" Content="Prénom :"/>
+                    <Label FontSize="15" Foreground="White" Content="Initiale prénom :"/>
+                    <Label FontSize="15" Foreground="White" Content="Date de naissance :"/>
+                    <Label FontSize="15" Foreground="White" Content="Lieu de naissance :"/>
+                    <Label FontSize="15" Foreground="White" Content="Date de décès :"/>
+                    <Label FontSize="15" Foreground="White" Content="Lieu de décès :"/>
+                    <Label FontSize="15" Foreground="White" Content="Date du mariage :"/>
+                    <Label FontSize="15" Foreground="White" Content="Lieu du mariage :"/>
+                    <Label FontSize="15" Foreground="White" Content="Nom du conjoint :"/>
+                    <Label FontSize="15" Foreground="White" Content="Prénom du conjoint :"/>
+                    <Label FontSize="15" Foreground="White" Content="Nom du père :"/>
+                    <Label FontSize="15" Foreground="White" Content="Prénom du père :"/>
+                    <Label FontSize="15" Foreground="White" Content="Nom de la mère :"/>
+                    <Label FontSize="15" Foreground="White" Content="Prénom de la mère :"/>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <Button Margin="0,0,5,0" Style="{DynamicResource AccentedSquareButtonStyle}" Click="okAnnotationButton_Click" FontSize="15">Ok</Button>
+                        <Button Style="{DynamicResource SquareButtonStyle}" Click="annulerAnnotationButton_Click" FontSize="15">Annuler</Button>
+                    </StackPanel>
+                    <Label x:Name="annotationLabel" FontSize="15" Foreground="White"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" Margin="10,10,10,10">
+                    <TextBox Height="30" x:Name="nomTextBox" Controls:TextBoxHelper.Watermark="Nom" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="prenomTextBox" Controls:TextBoxHelper.Watermark="Prénom" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="initialeTextBox" Controls:TextBoxHelper.Watermark="Initiale prénom" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="dateNaissanceTextBox" Controls:TextBoxHelper.Watermark="Date de naissance" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="lieuNaissanceTextBox" Controls:TextBoxHelper.Watermark="Lieu de naissance" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="dateDecesTextBox" Controls:TextBoxHelper.Watermark="Date de décès" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="lieuDecesTextBox" Controls:TextBoxHelper.Watermark="Lieu de décès" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="dateMariageTextBox" Controls:TextBoxHelper.Watermark="Date du mariage" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="lieuMariageTextBox" Controls:TextBoxHelper.Watermark="Lieu du mariage" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="nomConjointTextBox" Controls:TextBoxHelper.Watermark="Nom du conjoint" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="prenomConjointTextBox" Controls:TextBoxHelper.Watermark="Prénom du conjoint" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="nomPereTextBox" Controls:TextBoxHelper.Watermark="Nom du père" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="prenomPereTextBox" Controls:TextBoxHelper.Watermark="Prénom du père" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="nomMereTextBox" Controls:TextBoxHelper.Watermark="Nom de la mère" FontSize="15" Visibility="Collapsed" />
+                    <TextBox Height="30" x:Name="prenomMereTextBox" Controls:TextBoxHelper.Watermark="Prénom de la mère" FontSize="15" Visibility="Collapsed" />
 
+                    <Label Height="30" x:Name="nomLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="prenomLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="initialeLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="dateNaissanceLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="lieuNaissanceLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="dateDecesLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="lieuDecesLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="dateMariageLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="lieuMariageLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="nomConjointLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="prenomConjointLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="nomPereLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="prenomPereLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="nomMereLabel" FontSize="15" Foreground="White" />
+                    <Label Height="30" x:Name="prenomMereLabel" FontSize="15" Foreground="White" />       
+                </StackPanel>
+            </Grid>
+        </Controls:Flyout>
+        
         <Canvas Name="RectangleContainingBackgroundImage"
                 IsManipulationEnabled="True"
                 RenderTransform="{Binding Path=ImageTransform}">
@@ -229,8 +292,8 @@
 
         </Canvas>
 
-        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>
-        <Button x:Name="MenuButton" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="MenuButton_Click">
+        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource SquareButtonStyle}" Click="SwitchModeButton_Click"/>
+        <Button x:Name="MenuButton" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource SquareButtonStyle}" Click="MenuButton_Click">
             <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                 <Canvas Name="svg2" Width="512" Height="512">
                     <Canvas.Resources/>
@@ -252,21 +315,21 @@
                 </Canvas>
             </Viewbox>
         </Button>
-        <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
-        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center" Style="{StaticResource NavButtonStyle}"/>
-        <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click" Style="{StaticResource NavButtonStyle}">
+        <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}"/>
+        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}"/>
+        <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}">
             <StackPanel>
                 <TextBlock Text="^" HorizontalAlignment="Center"/>
                 <TextBlock Name="PrevCategoryName" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="NextCategoryButton" Margin="0,0,0,53" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center" Style="{StaticResource NavButtonStyle}">
+        <Button x:Name="NextCategoryButton" Margin="0,0,0,53" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}">
             <StackPanel>
                 <TextBlock Name="NextCategoryName" HorizontalAlignment="Center"/>
                 <TextBlock Text="V" HorizontalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Slider Minimum="1" Height="27" Margin="0" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" Focusable="False" PreviewMouseUp="DocSlider_PreviewMouseUp" Thumb.DragCompleted="DocSlider_DragCompleted"/>
+        <Slider Style="{StaticResource MetroSlider}" Minimum="1" Height="15" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" Focusable="False" PreviewMouseUp="DocSlider_PreviewMouseUp" Thumb.DragCompleted="DocSlider_DragCompleted"/>
 
         <TextBlock x:Name="SliderInfoTextBlock" Background="#FFEEEEB5" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" TextAlignment="Center" Margin="0,0,0,32" FontWeight="Bold">
             <TextBlock.Effect>
