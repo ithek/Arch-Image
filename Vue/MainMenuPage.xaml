@@ -3,75 +3,109 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Background="Azure"
+      Background="#FF07203E"
 	Title="MainMenuPage">
-
-    <Page.Resources>
-        <Style
-            x:Key="MainButtonStyle"
-            BasedOn="{StaticResource {x:Type Button}}"
-            TargetType="Button">
-            <Setter Property="Width" Value="180"/>
-            <Setter Property="Height" Value="75"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style
-            x:Key="AccountButtonsStyle"
-            BasedOn="{StaticResource MainButtonStyle}"
-            TargetType="Button">
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-        </Style>
-    </Page.Resources>
 
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Image Grid.ColumnSpan="4" Source="Resources/logo_archimage.png" VerticalAlignment="Top" Margin="0,50,0,0" HorizontalAlignment="Center" Width="400" />
+        </StackPanel>    
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0" Grid.Column="2" Source="Resources/logo_archimage.png" VerticalAlignment="Top" Margin="0,50,0,0" />
-        <Button Grid.Row="1" Grid.Column="1" x:Name="MapButton" Click="MapButton_Click" Style="{StaticResource MainButtonStyle}">
-            <StackPanel>
-                <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </Button>
-        <Button Grid.Row="1" Grid.Column="2" x:Name="RMButton" Content="Registres matricules" Click="RMButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
-        <Button Grid.Row="1" Grid.Column="3" x:Name="RestoreSessionButton" Content="Restaurer la session" Click="RestoreSessionButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
-        <Button Grid.Row="2" Grid.Column="1" x:Name="NMDButton" Content="NMD" Click="NMDButton_Click" Style="{StaticResource MainButtonStyle}"/>
-        <Button Grid.Row="2" Grid.Column="2" x:Name="RecensementButton" Content="Recensement" Click="RecensementButton_Click" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Center"/>
-        <Button Grid.Row="2" Grid.Column="3" x:Name="ParametresButton" Content="Paramètres" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right"/>
+                <Controls:Tile
+                Click="MapTile_Click"
+                Grid.Row="0" Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Title="Carte" 
+                TiltFactor="2"
+                Width="824" Height="100" Foreground="Black">
+                    <StackPanel>
+                        <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Controls:Tile>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <Button x:Name="ConnexionButton" Margin="0,0,20,0" Content="Connexion" Click="ConnexionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
-            <Button x:Name="InscriptionButton" Content="Inscription" Click="InscriptionButton_Click" Style="{StaticResource AccountButtonsStyle}"/>
+                <Controls:Tile Grid.Row="1" Grid.Column="0"
+                    Click="RMTile_Click"
+                    Title="Registres Matricules" 
+                    TiltFactor="2"
+                    Width="200" Height="100" 
+                />
+
+                <Controls:Tile Grid.Row="2" Grid.Column="0"
+                    Click="TablesRMTile_Click"
+                    Title="Tables Registres Matricules" 
+                    TiltFactor="2"
+                    Width="200" Height="100" 
+                />
+
+                <Controls:Tile Grid.Row="1" Grid.Column="1"
+                    Click="RecensementTile_Click"
+                    Title="Recensement" 
+                    TiltFactor="2"
+                    Width="200" Height="100" 
+                />
+
+                <Controls:Tile Grid.Row="2" Grid.Column="1"
+                    Click="TablesDecenalesTile_Click"
+                    Title="Tables décennales" 
+                    TiltFactor="2"
+                    Width="200" Height="100" 
+                />
+
+                <Controls:Tile Grid.Row="1" Grid.Column="2"
+                    Click="NMDTile_Click"
+                    Title="Naissances Mariages Décès" 
+                    TiltFactor="2"
+                    Width="200" Height="100" 
+                />
+
+                <Controls:Tile Grid.Row="2" Grid.Column="2"
+                    Click="TSATile_Click"
+                    Title="TSA" 
+                    TiltFactor="2"
+                    Width="200" Height="100" 
+                />
+
+                <StackPanel Grid.Row="1" Grid.Column="3">
+                    <Controls:Tile
+                        Click="ConnexionTile_Click"
+                        Title="Connexion" 
+                        TiltFactor="2"
+                        Width="200" Height="47" Background="#FF7A777A" 
+                    />
+
+                    <Controls:Tile
+                        Click="InscriptionTile_Click"
+                        Title="Inscription" 
+                        TiltFactor="2"
+                        Width="200" Height="47" Background="#FF7A777A"
+                    />
+                </StackPanel>
+
+                <Controls:Tile
+                    Click="RestoreSessionTile_Click"
+                    Grid.Row="2" Grid.Column="3"
+                    Title="Restaurer la session" 
+                    TiltFactor="2"
+                    Width="200" Height="100" Background="#FF3676FF"
+                />
+            </Grid>
         </StackPanel>
-
-        <Button Grid.Row="3" Grid.Column="3" x:Name="FavorisButton" Content="Favoris" Click="Todo" Style="{StaticResource MainButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-
-
     </Grid>
-
 </Page>

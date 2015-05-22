@@ -27,10 +27,16 @@ namespace Vue
     /// </summary>
     public partial class MapPage : Page
     {
+        private const string SWITCH_BUTTON_TEXT_MANIP = "Utiliser points d'intérêts";
+        
+        private const string SWITCH_BUTTON_TEXT_POI = "Naviguer";
+
         private ArchImage arch;
         public MapPage(ArchImage a)
         {
             InitializeComponent();
+
+            UpdateSwitchModeButton();
 
             this.arch = a;
             Document d = new Document("../../Resources/map.png");
@@ -118,6 +124,7 @@ namespace Vue
             vue = new ConsultationVM(" ");
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
+            MapRectangle.DataContext = vue;
             //Initialisation
             getPOI_Delegate d = null;
             d = new getPOI_Delegate(getPOI);
@@ -131,13 +138,16 @@ namespace Vue
             ((MainWindow)System.Windows.Application.Current.MainWindow).Content = new MainMenuPage(this.arch);
         }
 
-        private void mapGrid_MouseDown(object sender, MouseButtonEventArgs e)
+        private void UpdateSwitchModeButton()
         {
-            if (e.OriginalSource.GetType() == typeof(System.Windows.Shapes.Path))
-            {
-                
-                //vue.fermerMedia(i);
-            }
+            this.SwitchModeButton.Content = MapRectangle.IsManipulationEnabled ?
+                SWITCH_BUTTON_TEXT_MANIP : SWITCH_BUTTON_TEXT_POI;
+        }
+
+        private void SwitchModeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MapRectangle.IsManipulationEnabled = !MapRectangle.IsManipulationEnabled;
+            this.UpdateSwitchModeButton();
         }
     }
 }
