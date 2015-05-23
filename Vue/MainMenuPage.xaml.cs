@@ -216,7 +216,7 @@ namespace Vue
 
         private void annulerInscriptionButton_Click(object sender, EventArgs e)
         {
-            flyoutConnexion.IsOpen = false;
+            flyoutInscription.IsOpen = false;
         }
     }
 }

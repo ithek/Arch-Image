@@ -24,7 +24,7 @@
             </StackPanel>
         </Controls:Flyout>
 
-        <Controls:Flyout x:Name="flyoutInscription" Header="Connexion" Position="Right" Width="300" Theme="Accent">
+        <Controls:Flyout x:Name="flyoutInscription" Header="Inscription" Position="Right" Width="300" Theme="Accent">
             <StackPanel Margin="10,10,10,10">
                 <TextBox Height="30" x:Name="identifiantInscriptionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
                 <PasswordBox Height="30" x:Name="passwordInscriptionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
