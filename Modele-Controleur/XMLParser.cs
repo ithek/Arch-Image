@@ -73,7 +73,8 @@ namespace Modele_Controleur
         {
             WebClient webClient = new WebClient();
             List<Personne> listePersonnes = new List<Personne>();
-            String nom = "", prenom = "", initiale = "", ddn = "", id = "", reponse = "", p;
+            String nom, prenom, initiale, anneeRM, numeroRM, ddn, lieuNaissance, dateDeces, lieuDeces, dateMariage, lieuMariage, nomConjoint, prenomConjoint, prenomPere, nomMere, prenomMere, id, reponse, p;
+            nom = prenom = initiale = anneeRM = numeroRM = ddn = lieuNaissance = dateDeces = lieuDeces = dateMariage = lieuMariage = nomConjoint = prenomConjoint = prenomPere = nomMere = prenomMere = id = reponse = "";
             motif = motif.ToLower();
             foreach (Tuple<string,string> tuple in listeTuplesPersonnes)
             {
@@ -97,11 +98,59 @@ namespace Modele_Controleur
                     if (nodes.Count > 0)
                         prenom = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
+                    nodes = doc.SelectNodes("//node()[@uri='anneeRegistreMatricule']");
+                    if (nodes.Count > 0)
+                        anneeRM = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='numeroRegistreMatricule']");
+                    if (nodes.Count > 0)
+                        numeroRM = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
                     nodes = doc.SelectNodes("//node()[@uri='dateNaissance']");
                     if (nodes.Count > 0)
                         ddn = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
 
-                    listePersonnes.Add(new Personne(nom, prenom, initiale, ddn, id));
+                    nodes = doc.SelectNodes("//node()[@uri='lieuNaissance']");
+                    if (nodes.Count > 0)
+                        lieuNaissance = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='dateDeces']");
+                    if (nodes.Count > 0)
+                        dateDeces = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='lieuDeces']");
+                    if (nodes.Count > 0)
+                        lieuDeces = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='dateMariage']");
+                    if (nodes.Count > 0)
+                        dateMariage = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='lieuMariage']");
+                    if (nodes.Count > 0)
+                        lieuMariage = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='nomConjoint']");
+                    if (nodes.Count > 0)
+                        nomConjoint = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='prenomConjoint']");
+                    if (nodes.Count > 0)
+                        prenomConjoint = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='prenomPere']");
+                    if (nodes.Count > 0)
+                        prenomPere = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='nomMere']");
+                    if (nodes.Count > 0)
+                        nomMere = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    nodes = doc.SelectNodes("//node()[@uri='prenomMere']");
+                    if (nodes.Count > 0)
+                        prenomMere = nodes[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.InnerText;
+
+                    listePersonnes.Add(new Personne(nom, prenom, initiale, anneeRM, numeroRM, ddn, lieuNaissance, dateDeces, lieuDeces, dateMariage, lieuMariage, nomConjoint, prenomConjoint, prenomPere, nomMere, prenomMere, id));
                 }
             }
             return listePersonnes;

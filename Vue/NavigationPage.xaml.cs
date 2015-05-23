@@ -52,6 +52,9 @@ namespace Vue
         private Timer timer;
         private int tootalsecs = 1;
 
+        private List<TextBox> listeTextBox;
+        private List<Label> listeLabel;
+
         private ArchImage Archimage
         {
             get;
@@ -61,6 +64,42 @@ namespace Vue
         public NavigationPage(ArchImage a)
         {
             InitializeComponent();
+
+            this.listeTextBox = new List<TextBox>();
+            this.listeTextBox.Add(nomTextBox);
+            this.listeTextBox.Add(prenomTextBox);
+            this.listeTextBox.Add(initialeTextBox);
+            this.listeTextBox.Add(anneeRMTextBox);
+            this.listeTextBox.Add(numeroRMTextBox);
+            this.listeTextBox.Add(dateNaissanceTextBox);
+            this.listeTextBox.Add(lieuNaissanceTextBox);
+            this.listeTextBox.Add(dateDecesTextBox);
+            this.listeTextBox.Add(lieuDecesTextBox);
+            this.listeTextBox.Add(dateMariageTextBox);
+            this.listeTextBox.Add(lieuMariageTextBox);
+            this.listeTextBox.Add(nomConjointTextBox);
+            this.listeTextBox.Add(prenomConjointTextBox);
+            this.listeTextBox.Add(prenomPereTextBox);
+            this.listeTextBox.Add(nomMereTextBox);
+            this.listeTextBox.Add(prenomMereTextBox);
+
+            this.listeLabel = new List<Label>();
+            this.listeLabel.Add(nomLabel);
+            this.listeLabel.Add(prenomLabel);
+            this.listeLabel.Add(initialeLabel);
+            this.listeLabel.Add(anneeRMLabel);
+            this.listeLabel.Add(numeroRMLabel);
+            this.listeLabel.Add(dateNaissanceLabel);
+            this.listeLabel.Add(lieuNaissanceLabel);
+            this.listeLabel.Add(dateDecesLabel);
+            this.listeLabel.Add(lieuDecesLabel);
+            this.listeLabel.Add(dateMariageLabel);
+            this.listeLabel.Add(lieuMariageLabel);
+            this.listeLabel.Add(nomConjointLabel);
+            this.listeLabel.Add(prenomConjointLabel);
+            this.listeLabel.Add(prenomPereLabel);
+            this.listeLabel.Add(nomMereLabel);
+            this.listeLabel.Add(prenomMereLabel);
 
             this.Archimage = a;
 
@@ -120,7 +159,7 @@ namespace Vue
             Archimage.getPOI();
         }
 
-        public void findGetPOI(IAsyncResult R)
+        public void finGetPOI(IAsyncResult R)
         {
             List<POICreationData> listePOIs = Archimage.DocumentCourant.POIs;
             PoiModele poiMod = null;
@@ -159,9 +198,7 @@ namespace Vue
                 {
                     // Alert Someone 
                 }
-            }
-            
-            
+            }           
         }
 
         private void loadCurrentPOI()
@@ -175,7 +212,7 @@ namespace Vue
             d = new getPOI_Delegate(getPOI);
 
             IAsyncResult R = null;
-            R = d.BeginInvoke(new AsyncCallback(findGetPOI), null); //invoking the method          
+            R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method          
         }
 
         private string findMiniature(string categorie)  //TODO clean
@@ -540,11 +577,25 @@ namespace Vue
             }
             else if (!this.nomTextBox.Text.Equals(""))
             {
-                string nom = this.nomTextBox.Text;
-                string prenom = this.prenomTextBox.Text;
-                string initiale = this.initialeTextBox.Text;
-                string ddn = this.dateNaissanceTextBox.Text;
-                Personne p = new Personne(nom, prenom, initiale, ddn);
+                String nom, prenom, initiale, anneeRM, numeroRM, ddn, lieuNaissance, dateDeces, lieuDeces, dateMariage, lieuMariage, nomConjoint, prenomConjoint, prenomPere, nomMere, prenomMere;
+                nom = this.nomTextBox.Text;
+                prenom = this.prenomTextBox.Text;
+                initiale = this.initialeTextBox.Text;
+                anneeRM = this.anneeRMTextBox.Text;
+                numeroRM = this.numeroRMTextBox.Text;
+                ddn = this.dateNaissanceTextBox.Text;
+                lieuNaissance = this.lieuNaissanceTextBox.Text;
+                dateDeces = this.dateDecesTextBox.Text;
+                lieuDeces = this.lieuDecesTextBox.Text;
+                dateMariage = this.dateMariageTextBox.Text;
+                lieuMariage = this.lieuMariageTextBox.Text;
+                nomConjoint = this.nomConjointTextBox.Text;
+                prenomConjoint = this.prenomConjointTextBox.Text;
+                prenomPere = this.prenomPereTextBox.Text;
+                nomMere = this.nomMereTextBox.Text;
+                prenomMere = this.prenomMereTextBox.Text;
+
+                Personne p = new Personne(nom, prenom, initiale, anneeRM, numeroRM, ddn, lieuNaissance, dateDeces, lieuDeces, dateMariage, lieuMariage, nomConjoint, prenomConjoint, prenomPere, nomMere, prenomMere);
 
                 this.poi.Personne = this.Archimage.SewelisAccess.ajouterPersonne(p);
 
@@ -571,7 +622,19 @@ namespace Vue
                 this.nomLabel.Content = personne.Nom;
                 this.prenomLabel.Content = personne.Prenom;
                 this.initialeLabel.Content = personne.Initiale;
+                this.anneeRMLabel.Content = personne.AnneeRegistreMatricule;
+                this.numeroRMLabel.Content = personne.NumeroRegistreMatricule;
                 this.dateNaissanceLabel.Content = personne.DateNaissance;
+                this.lieuNaissanceLabel.Content = personne.LieuNaissance;
+                this.dateDecesLabel.Content = personne.DateDeces;
+                this.lieuDecesLabel.Content = personne.LieuDeces;
+                this.dateMariageLabel.Content = personne.DateMariage ;
+                this.lieuMariageLabel.Content = personne.LieuMariage;
+                this.nomConjointLabel.Content = personne.NomConjoint;
+                this.prenomConjointLabel.Content = personne.PrenomConjoint;
+                this.prenomPereLabel.Content = personne.PrenomPere;
+                this.nomMereLabel.Content = personne.NomMere;
+                this.prenomMereLabel.Content = personne.PrenomMere;
 
                 poi.Personne = personne;
             }
@@ -586,10 +649,11 @@ namespace Vue
             tootalsecs = 1;
             countdownTimer();
 
-            this.nomTextBox.Text = "";
-            this.prenomTextBox.Text = "";
-            this.initialeTextBox.Text = "";
-            this.dateNaissanceTextBox.Text = "";
+            listeTextBox.ForEach(delegate(TextBox t)
+            {
+                t.Text = "";
+            });
+
             this.listBoxNoms.ItemsSource = null;
             poi.Personne = null;
 
@@ -691,7 +755,16 @@ namespace Vue
         {
             if(nomLabel.Visibility == Visibility.Hidden)
             {
-                nomTextBox.Visibility = Visibility.Collapsed;
+                listeTextBox.ForEach(delegate(TextBox t)
+                {
+                    t.Visibility = Visibility.Collapsed;
+                });listeLabel.ForEach(delegate(Label l)
+                {
+                    l.Visibility = Visibility.Visible;
+                });
+                
+                
+                /*nomTextBox.Visibility = Visibility.Collapsed;
                 prenomTextBox.Visibility = Visibility.Collapsed;
                 initialeTextBox.Visibility = Visibility.Collapsed;
                 dateNaissanceTextBox.Visibility = Visibility.Collapsed;
@@ -721,7 +794,7 @@ namespace Vue
                 nomPereLabel.Visibility = Visibility.Visible;
                 prenomPereLabel.Visibility = Visibility.Visible;
                 nomMereLabel.Visibility = Visibility.Visible;
-                prenomMereLabel.Visibility = Visibility.Visible;
+                prenomMereLabel.Visibility = Visibility.Visible;*/
             }
         }
         
@@ -729,7 +802,13 @@ namespace Vue
         {
             if (nomTextBox.Visibility == Visibility.Collapsed)
             {   
-                nomLabel.Visibility = Visibility.Hidden;
+                listeLabel.ForEach(delegate(Label l) {
+    		        l.Visibility = Visibility.Hidden;
+    	        });
+                listeTextBox.ForEach(delegate(TextBox t) {
+                    t.Visibility = Visibility.Visible;
+    	        });
+                /*nomLabel.Visibility = Visibility.Hidden;
                 prenomLabel.Visibility = Visibility.Hidden;
                 initialeLabel.Visibility = Visibility.Hidden;
                 dateNaissanceLabel.Visibility = Visibility.Hidden;
@@ -759,7 +838,7 @@ namespace Vue
                 nomPereTextBox.Visibility = Visibility.Visible;
                 prenomPereTextBox.Visibility = Visibility.Visible;
                 nomMereTextBox.Visibility = Visibility.Visible;
-                prenomMereTextBox.Visibility = Visibility.Visible;
+                prenomMereTextBox.Visibility = Visibility.Visible;*/
             
             }
         }

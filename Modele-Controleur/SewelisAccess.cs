@@ -108,9 +108,21 @@ namespace Modele_Controleur
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=nom&o=<Literal>" + p.Nom + "</Literal>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=prenom&o=<Literal>" + p.Prenom + "</Literal>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=initiale&o=<Literal>" + p.Initiale + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=anneeRegistreMatricule&o=<Literal>" + p.AnneeRegistreMatricule + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=numeroRegistreMatricule&o=<Literal>" + p.NumeroRegistreMatricule + "</Literal>");
             webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=dateNaissance&o=<Literal>" + p.DateNaissance + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=lieuNaissance&o=<Literal>" + p.LieuNaissance + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=dateDeces&o=<Literal>" + p.DateDeces + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=lieuDeces&o=<Literal>" + p.LieuDeces + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=prenomPere&o=<Literal>" + p.PrenomPere + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=nomMere&o=<Literal>" + p.NomMere + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=prenomMere&o=<Literal>" + p.PrenomMere + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=prenomConjoint&o=<Literal>" + p.PrenomConjoint + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=nomConjoint&o=<Literal>" + p.NomConjoint + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=dateMariage&o=<Literal>" + p.DateMariage + "</Literal>");
+            webClient.DownloadString(sewelisURL + "addTriple?userKey=123&storeId=1&s=" + idP + "&p=lieuMariage&o=<Literal>" + p.LieuMariage + "</Literal>");
 
-            return new Personne(p.Nom, p.Prenom, p.Initiale, p.DateNaissance, idP); 
+            return new Personne(p.Nom, p.Prenom, p.Initiale, p.AnneeRegistreMatricule, p.NumeroRegistreMatricule, p.DateNaissance, p.LieuNaissance, p.DateDeces, p.LieuDeces, p.DateMariage, p.LieuMariage, p.NomConjoint, p.PrenomConjoint, p.PrenomPere, p.NomMere, p.PrenomMere, idP); 
         }
 
         /**
@@ -120,8 +132,9 @@ namespace Modele_Controleur
         {
             WebClient webClient = new WebClient();
             string chemin = doc.CheminAcces.Replace(@"\", @"/");
+            //chemin = doc.CheminAcces.Replace(@"\\", @"/");
             if(chemin.StartsWith("../../"))
-                chemin = doc.CheminAcces.Substring(16, doc.CheminAcces.Length - 16);
+                chemin = chemin.Substring(16, chemin.Length - 16);
             string reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + chemin);
             return parser.getPOI(reponse);
         }
