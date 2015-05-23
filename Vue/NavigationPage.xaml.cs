@@ -21,6 +21,7 @@ using Commun;
 using Prototype1Table.Vue;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
+using System.Collections;
 
 
 namespace Vue
@@ -47,7 +48,7 @@ namespace Vue
 
         private List<Personne> listePersonnes;
         private POICreationData poi;
-        
+
         private ArchImage Archimage
         {
             get;
@@ -612,34 +613,6 @@ namespace Vue
         public void rechercherPersonne(string nom)
         {
             listePersonnes = this.Archimage.SewelisAccess.recherchePersonnes(nom);
-
-            DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-                (Action)delegate()
-                {
-                    List<String> listeNoms = new List<String>();
-
-                    if (listePersonnes != null)
-                    {
-                        foreach (Personne personne in listePersonnes)
-                        {
-                            listeNoms.Add(personne.Nom);
-                        }
-                        lock (listBoxNoms)
-                        {
-                            listBoxNoms.ItemsSource = listeNoms;
-                        }
-                    }
-                }
-                );
-            DispatcherOperationStatus status = op.Status;
-            while (status != DispatcherOperationStatus.Completed)
-            {
-                status = op.Wait(TimeSpan.FromMilliseconds(1000));
-                if (status == DispatcherOperationStatus.Aborted)
-                {
-                    // Alert Someone 
-                }
-            }
         }
 
         public void finRecherchePersonne(IAsyncResult R)
@@ -665,6 +638,8 @@ namespace Vue
                     {
                         listeNoms.Insert(0, "<Nouvelle personne>");
                         listBoxNoms.ItemsSource = listeNoms;
+                        HashSet<String> set = new HashSet<String>((IEnumerable<String>)listBoxNoms.ItemsSource);
+                        listBoxNoms.ItemsSource = set.ToList();
                     }
                 }
                 );

@@ -119,7 +119,9 @@ namespace Modele_Controleur
         public List<POICreationData> getPOI(Document doc)
         {
             WebClient webClient = new WebClient();
-            string chemin = doc.CheminAcces.Substring(16, doc.CheminAcces.Length - 16).Replace(@"\", @"/");
+            string chemin = doc.CheminAcces.Replace(@"\", @"/");
+            if(chemin.StartsWith("../../"))
+                chemin = doc.CheminAcces.Substring(16, doc.CheminAcces.Length - 16);
             string reponse = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + chemin);
             return parser.getPOI(reponse);
         }
