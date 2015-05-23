@@ -109,11 +109,13 @@ namespace Vue
         
         private void ConnexionTile_Click(object sender, RoutedEventArgs e)
         {
-            flyoutConnexion.IsOpen = true;
+            flyoutInscription.IsOpen = false;
+            flyoutConnexion.IsOpen = true;   
         }
 
         private void InscriptionTile_Click(object sender, RoutedEventArgs e)
         {
+            flyoutConnexion.IsOpen = false;
             flyoutInscription.IsOpen = true;
         }
 
