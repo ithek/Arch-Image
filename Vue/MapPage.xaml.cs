@@ -49,6 +49,8 @@ namespace Vue
 
         private ConsultationVM vue;
 
+        private ConsultationVM vueScatterView;
+
         public delegate void getPOI_Delegate();
 
         public void getPOI()
@@ -109,6 +111,46 @@ namespace Vue
             }
         }
 
+        public void finGetPOIDocOuvert()
+        {
+            Console.WriteLine("================");
+            vueScatterView = new ConsultationVM(" ");
+            foreach (POICreationData poiDocParent in arch.SewelisAccess.getPOI(arch.DocumentCourant))
+            {
+                List<Document> listeDoc = arch.SewelisAccess.getListDocs(poiDocParent);
+                PoiModele poiMod = null;
+
+                PoisItemControlScatterView.DataContext = vueScatterView;
+                ScatterMedias.DataContext = vueScatterView;
+                Console.WriteLine("DATA CONTEXT OK");
+                foreach (Document docPOI in listeDoc) {
+
+                    Console.WriteLine(docPOI.CheminAcces);
+                    List<POICreationData> listePOIs = arch.SewelisAccess.getPOI(docPOI);
+
+                    foreach (POICreationData poi in listePOIs)
+                    {
+                        Console.WriteLine(poi.Personne);
+                        //On initialise les Documents présents dans les caroussels
+                        List<MediaModele> listMedia = new List<MediaModele>();
+                        List<Document> listDoc = arch.SewelisAccess.getListDocs(poi);
+                        foreach (Document doc in listDoc)
+                        {
+                            String cMiniature = " "; //findMiniature(doc.CheminAcces);
+                            listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, "../../Resources/" + cMiniature));
+                        }
+
+                        poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.Id, poi.Nom);
+
+                        ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                        cont.fermeturePoi(); //Pour afficher les noms sur les POI
+                        vue.ListePois.Add(cont);
+                        PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
+                    }
+                }
+            }
+        }
+
         private string findMiniature(string path)
         {
             Regex myRegex1 = new System.Text.RegularExpressions.Regex(@"/[A-Z]*_[0-9]*\.JPG$");
@@ -130,7 +172,8 @@ namespace Vue
             d = new getPOI_Delegate(getPOI);
 
             IAsyncResult R = null;
-            R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method          
+            R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method
+            //finGetPOIDocOuvert(); //invoking the method
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
