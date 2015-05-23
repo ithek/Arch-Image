@@ -17,6 +17,8 @@ using Prototype1Table.VueModele;
 using Modele;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Vue
 {
@@ -49,12 +51,6 @@ namespace Vue
         {
             //TODO le premier couillon qui voudrait plutôt faire ça par Binding comme j'en avais l'intention au début est le bienvenu.
             //this.FavorisButton.Visibility = (this.archimage.Utilisateur is Auteur) ? Visibility.Visible : Visibility.Hidden;
-        }
-
-
-        private void Todo(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Not yet implemented :(");
         }
 
         private void MapTile_Click(object sender, RoutedEventArgs e)
@@ -113,12 +109,12 @@ namespace Vue
         
         private void ConnexionTile_Click(object sender, RoutedEventArgs e)
         {
-            new ConnexionForm(this.archimage, this).Show();
+            flyoutConnexion.IsOpen = true;
         }
 
         private void InscriptionTile_Click(object sender, RoutedEventArgs e)
         {
-            new InscriptionForm(this.archimage).Show();
+            flyoutInscription.IsOpen = true;
         }
 
         private void RestoreSessionTile_Click(object sender, RoutedEventArgs e)
@@ -152,6 +148,75 @@ namespace Vue
 
         private MainWindow getMainWindow() {
             return ((MainWindow)System.Windows.Application.Current.MainWindow);
+        }
+
+        private async void okConnexionButton_Click(object sender, EventArgs e)
+        {
+            if(identifiantConnexionTextBox.Text.Equals(""))
+            {
+                connexionLabel.Content = "Veuillez indiquer votre nom d'utilisateur.";
+            }
+            else if(passwordConnexionTextBox.Password.Equals(""))
+            {
+                connexionLabel.Content = "Veuillez indiquer votre mot de passe.";
+            }
+            else
+            {
+                EtatConnexion etat = this.archimage.MySQLAccess.connexion(identifiantConnexionTextBox.Text, passwordConnexionTextBox.Password);
+                if (etat == EtatConnexion.OK)
+                {
+                    this.archimage.Utilisateur = new Auteur();
+                    
+                    connexionTile.Visibility = Visibility.Hidden;
+                    inscriptionTile.Visibility = Visibility.Hidden;
+                    flyoutConnexion.IsOpen = false;
+                   
+                    await this.getMainWindow().ShowMessageAsync("Succès", "Vous êtes maintenant connecté et pouvez annoter les documents !");
+                }
+                else
+                {
+                    await this.getMainWindow().ShowMessageAsync("Erreur", "Impossible d'effectuer la connexion.");
+                }
+            }
+        }
+
+        private void annulerConnexionButton_Click(object sender, EventArgs e)
+        {
+            flyoutConnexion.IsOpen = false;
+        }
+
+        private async void okInscriptionButton_Click(object sender, EventArgs e)
+        {
+            if (identifiantInscriptionTextBox.Text.Equals(""))
+            {
+                inscriptionLabel.Content = "Veuillez indiquer votre nom d'utilisateur.";
+            }
+            else if (passwordInscriptionTextBox.Password.Equals(""))
+            {
+                inscriptionLabel.Content = "Veuillez indiquer votre mot de passe.";
+            }
+            else if (emailTextBox.Text.Equals(""))
+            {
+                inscriptionLabel.Content = "Veuillez indiquer votre email.";
+            }
+            else
+            {
+                EtatInscription etat = this.archimage.MySQLAccess.inscription(identifiantInscriptionTextBox.Text, passwordInscriptionTextBox.Password, emailTextBox.Text);
+                if (etat == EtatInscription.OK)
+                {
+                    flyoutInscription.IsOpen = false;
+                    await this.getMainWindow().ShowMessageAsync("Succès", "Vous êtes maintenant inscrit !");
+                }
+                else
+                {
+                    await this.getMainWindow().ShowMessageAsync("Erreur", "Impossible de créer le compte (identifiant déjà choisi ?).");
+                }
+            }
+        }
+
+        private void annulerInscriptionButton_Click(object sender, EventArgs e)
+        {
+            flyoutConnexion.IsOpen = false;
         }
     }
 }

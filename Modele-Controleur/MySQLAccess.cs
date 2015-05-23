@@ -60,13 +60,13 @@ namespace Modele_Controleur
             cmd.Parameters.AddWithValue("@pass", mdp);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Connection = connect;
-            MySqlDataReader login = cmd.ExecuteReader();
-            if (login.Read())
+            try
             {
+                MySqlDataReader login = cmd.ExecuteReader();
                 connect.Close();
                 return EtatInscription.OK;
             }
-            else
+            catch(Exception e)
             {
                 connect.Close();
                 return EtatInscription.ERREUR_MDP;
