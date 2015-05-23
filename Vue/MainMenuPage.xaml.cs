@@ -50,7 +50,9 @@ namespace Vue
         public void updateButtonVisibility()
         {
             //TODO le premier couillon qui voudrait plutôt faire ça par Binding comme j'en avais l'intention au début est le bienvenu.
-            //this.FavorisButton.Visibility = (this.archimage.Utilisateur is Auteur) ? Visibility.Visible : Visibility.Hidden;
+            var visibility = (this.archimage.Utilisateur is Auteur) ? Visibility.Hidden : Visibility.Visible;
+            connexionTile.Visibility = visibility;
+            inscriptionTile.Visibility = visibility;
         }
 
         private void MapTile_Click(object sender, RoutedEventArgs e)
@@ -109,11 +111,13 @@ namespace Vue
         
         private void ConnexionTile_Click(object sender, RoutedEventArgs e)
         {
-            flyoutConnexion.IsOpen = true;
+            flyoutInscription.IsOpen = false;
+            flyoutConnexion.IsOpen = true;   
         }
 
         private void InscriptionTile_Click(object sender, RoutedEventArgs e)
         {
+            flyoutConnexion.IsOpen = false;
             flyoutInscription.IsOpen = true;
         }
 
@@ -167,8 +171,7 @@ namespace Vue
                 {
                     this.archimage.Utilisateur = new Auteur();
                     
-                    connexionTile.Visibility = Visibility.Hidden;
-                    inscriptionTile.Visibility = Visibility.Hidden;
+                    
                     flyoutConnexion.IsOpen = false;
                    
                     await this.getMainWindow().ShowMessageAsync("Succès", "Vous êtes maintenant connecté et pouvez annoter les documents !");
@@ -178,6 +181,8 @@ namespace Vue
                     await this.getMainWindow().ShowMessageAsync("Erreur", "Impossible d'effectuer la connexion.");
                 }
             }
+
+            updateUI();
         }
 
         private void annulerConnexionButton_Click(object sender, EventArgs e)
