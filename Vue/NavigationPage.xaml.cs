@@ -482,11 +482,12 @@ namespace Vue
         //Fonction de remplacement d'image de fond lors d'un clic sur un apercu du caroussel
         private void newBackgroundButton_Click(object sender, MouseEventArgs e)
         {
+            e.Handled = true; 
             if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
             {
                 if (this.vue.mediasOuverts.Count == 0)
                 {
-                    e.Handled = false;
+                    // TODO was here before for unclear reasons, remove completely if useless : e.Handled = false;
                     return;
                 }
                    
