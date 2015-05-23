@@ -22,6 +22,7 @@ using Prototype1Table.Vue;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
 using System.Collections;
+using System.Timers;
 
 
 namespace Vue
@@ -48,6 +49,8 @@ namespace Vue
 
         private List<Personne> listePersonnes;
         private POICreationData poi;
+        private Timer timer;
+        private int tootalsecs = 1;
 
         private ArchImage Archimage
         {
@@ -580,6 +583,9 @@ namespace Vue
 
         private void nomRechercheTextBox_TextChanged(object sender, EventArgs e)
         {
+            tootalsecs = 1;
+            countdownTimer();
+
             this.nomTextBox.Text = "";
             this.prenomTextBox.Text = "";
             this.initialeTextBox.Text = "";
@@ -593,14 +599,12 @@ namespace Vue
                 {
                     progressRing.IsActive = true;
                 }
-
-                rechercherPersonne_Delegate d = new rechercherPersonne_Delegate(rechercherPersonne);
-
-                IAsyncResult R = null;
-                R = d.BeginInvoke(this.nomRechercheTextBox.Text, new AsyncCallback(finRecherchePersonne), null); //invoking the method
             }
             else
             {
+                if (timer != null)
+                    timer.Stop();
+
                 List<String> listeNoms = new List<String>();
                 listeNoms.Insert(0, "<Nouvelle personne>");
                 lock (listBoxNoms)
@@ -756,8 +760,51 @@ namespace Vue
                 prenomPereTextBox.Visibility = Visibility.Visible;
                 nomMereTextBox.Visibility = Visibility.Visible;
                 prenomMereTextBox.Visibility = Visibility.Visible;
-
+            
             }
-        }        
+        }
+
+        private void countdownTimer()
+        {
+            if (timer != null)
+                timer.Stop();
+
+            var startTime = DateTime.Now;
+
+            timer = new Timer() { Interval = 1000 };
+            timer.Elapsed += (obj, args) =>
+            {
+            if (tootalsecs==0)
+            {
+                timer.Stop();
+                DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (Action)delegate()
+                {
+                    if (!this.nomRechercheTextBox.Text.Equals(""))
+                    {
+                        rechercherPersonne_Delegate d = new rechercherPersonne_Delegate(rechercherPersonne);
+
+                        IAsyncResult R = null;
+                        R = d.BeginInvoke(this.nomRechercheTextBox.Text, new AsyncCallback(finRecherchePersonne), null); //invoking the method
+                    }
+                }
+                );
+                DispatcherOperationStatus status = op.Status;
+                while (status != DispatcherOperationStatus.Completed)
+                {
+                    status = op.Wait(TimeSpan.FromMilliseconds(1000));
+                    if (status == DispatcherOperationStatus.Aborted)
+                    {
+                        // Alert Someone 
+                    }
+                }
+            }
+            else
+            {
+                tootalsecs--;
+            }
+        };
+                timer.Start();
+        }      
 	}
 }
