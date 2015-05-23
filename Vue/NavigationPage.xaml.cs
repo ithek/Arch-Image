@@ -44,6 +44,9 @@ namespace Vue
         private Point rectanglePOIStart;
 
         private ConsultationVM vue;
+
+        private List<Personne> listePersonnes;
+        private POICreationData poi;
         
         private ArchImage Archimage
         {
@@ -357,7 +360,13 @@ namespace Vue
                 double left = ((rectanglePOIStart.X + rectanglePOIEnd.X) / 2);
                 double top = ((rectanglePOIStart.Y + rectanglePOIEnd.Y) / 2);
 
-                new POICreationForm(left, top, Archimage, this).Show();
+                this.Archimage.SewelisAccess.chargerListePersonnes();
+                List<String> listeNoms = new List<String>();
+                listeNoms.Insert(0, "<Nouvelle personne>");
+                listBoxNoms.ItemsSource = listeNoms;
+                poi = new POICreationData(left, top);
+                annotationLabel.Content = "";
+                flyoutAnnotation.IsOpen = true;
             }
         }
 
@@ -507,6 +516,271 @@ namespace Vue
                 this.Archimage.Navigation(d);
 
                 this.UpdateUI();
+            }
+        }
+
+        private void okAnnotationButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (poi.Personne != null)
+            {
+                creerPOI_Delegate d = new creerPOI_Delegate(creerPOI);
+
+                IAsyncResult R = null;
+                R = d.BeginInvoke(new AsyncCallback(finCreerPOI), null); //invoking the method
+                flyoutAnnotation.IsOpen = false;
+            }
+            else if(this.nomTextBox.Text.Equals(""))
+            {
+                annotationLabel.Content = "Veuillez indiquer au moins le nom.";
+            }
+            else if (!this.nomTextBox.Text.Equals(""))
+            {
+                string nom = this.nomTextBox.Text;
+                string prenom = this.prenomTextBox.Text;
+                string initiale = this.initialeTextBox.Text;
+                string ddn = this.dateNaissanceTextBox.Text;
+                Personne p = new Personne(nom, prenom, initiale, ddn);
+
+                this.poi.Personne = this.Archimage.SewelisAccess.ajouterPersonne(p);
+
+                creerPOI_Delegate d = new creerPOI_Delegate(creerPOI);
+
+                IAsyncResult R = null;
+                R = d.BeginInvoke(new AsyncCallback(finCreerPOI), null); //invoking the method
+
+                flyoutAnnotation.IsOpen = false;
+            }
+        }
+
+        private void annulerAnnotationButton_Click(object sender, RoutedEventArgs e)
+        {
+            flyoutAnnotation.IsOpen = false;
+        }
+
+        private void listBoxNoms_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            if (listBoxNoms.ItemsSource != null && listBoxNoms.SelectedIndex > 0)
+            {
+                switchOnLabel();
+                Personne personne = listePersonnes[listBoxNoms.SelectedIndex - 1];
+                this.nomLabel.Content = personne.Nom;
+                this.prenomLabel.Content = personne.Prenom;
+                this.initialeLabel.Content = personne.Initiale;
+                this.dateNaissanceLabel.Content = personne.DateNaissance;
+
+                poi.Personne = personne;
+            }
+            else if (listBoxNoms.SelectedIndex == 0)
+            {
+                switchOnTextBox();
+            }
+        }
+
+        private void nomRechercheTextBox_TextChanged(object sender, EventArgs e)
+        {
+            this.nomTextBox.Text = "";
+            this.prenomTextBox.Text = "";
+            this.initialeTextBox.Text = "";
+            this.dateNaissanceTextBox.Text = "";
+            this.listBoxNoms.ItemsSource = null;
+            poi.Personne = null;
+
+            if (!this.nomRechercheTextBox.Text.Equals(""))
+            {
+                lock (progressRing)
+                {
+                    progressRing.IsActive = true;
+                }
+
+                rechercherPersonne_Delegate d = new rechercherPersonne_Delegate(rechercherPersonne);
+
+                IAsyncResult R = null;
+                R = d.BeginInvoke(this.nomRechercheTextBox.Text, new AsyncCallback(finRecherchePersonne), null); //invoking the method
+            }
+            else
+            {
+                List<String> listeNoms = new List<String>();
+                listeNoms.Insert(0, "<Nouvelle personne>");
+                lock (listBoxNoms)
+                {
+                    listBoxNoms.ItemsSource = listeNoms;
+                }
+            }
+        }
+
+        public void rechercherPersonne(string nom)
+        {
+            listePersonnes = this.Archimage.SewelisAccess.recherchePersonnes(nom);
+
+            DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (Action)delegate()
+                {
+                    List<String> listeNoms = new List<String>();
+
+                    if (listePersonnes != null)
+                    {
+                        foreach (Personne personne in listePersonnes)
+                        {
+                            listeNoms.Add(personne.Nom);
+                        }
+                        lock (listBoxNoms)
+                        {
+                            listBoxNoms.ItemsSource = listeNoms;
+                        }
+                    }
+                }
+                );
+            DispatcherOperationStatus status = op.Status;
+            while (status != DispatcherOperationStatus.Completed)
+            {
+                status = op.Wait(TimeSpan.FromMilliseconds(1000));
+                if (status == DispatcherOperationStatus.Aborted)
+                {
+                    // Alert Someone 
+                }
+            }
+        }
+
+        public void finRecherchePersonne(IAsyncResult R)
+        {
+            List<String> listeNoms = new List<String>();
+
+            if (listePersonnes != null)
+            {
+                foreach (Personne personne in listePersonnes)
+                {
+                    listeNoms.Add(personne.Nom);
+                }
+            }
+
+            DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (Action)delegate()
+                {
+                    lock (progressRing)
+                    {
+                        progressRing.IsActive = false;
+                    }
+                    lock (listBoxNoms)
+                    {
+                        listeNoms.Insert(0, "<Nouvelle personne>");
+                        listBoxNoms.ItemsSource = listeNoms;
+                    }
+                }
+                );
+            DispatcherOperationStatus status = op.Status;
+            while (status != DispatcherOperationStatus.Completed)
+            {
+                status = op.Wait(TimeSpan.FromMilliseconds(1000));
+                if (status == DispatcherOperationStatus.Aborted)
+                {
+                    // Alert Someone 
+                }
+            }
+        }
+
+        public delegate void rechercherPersonne_Delegate(string s);
+
+
+        public void creerPOI()
+        {
+            this.Archimage.creerPOI(this.poi);
+        }
+
+        public void finCreerPOI(IAsyncResult R)
+        {
+            DispatcherOperation op = System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                (Action)delegate()
+                {
+                    this.UpdateUI();
+                }
+                );
+            DispatcherOperationStatus status = op.Status;
+            while (status != DispatcherOperationStatus.Completed)
+            {
+                status = op.Wait(TimeSpan.FromMilliseconds(1000));
+                if (status == DispatcherOperationStatus.Aborted)
+                {
+                    // Alert Someone 
+                }
+            }
+        }
+
+        public delegate void creerPOI_Delegate();
+
+        public void switchOnLabel()
+        {
+            if(nomLabel.Visibility == Visibility.Hidden)
+            {
+                nomTextBox.Visibility = Visibility.Collapsed;
+                prenomTextBox.Visibility = Visibility.Collapsed;
+                initialeTextBox.Visibility = Visibility.Collapsed;
+                dateNaissanceTextBox.Visibility = Visibility.Collapsed;
+                lieuNaissanceTextBox.Visibility = Visibility.Collapsed;
+                dateDecesTextBox.Visibility = Visibility.Collapsed;
+                lieuDecesTextBox.Visibility = Visibility.Collapsed;
+                dateMariageTextBox.Visibility = Visibility.Collapsed;
+                lieuMariageTextBox.Visibility = Visibility.Collapsed;
+                nomConjointTextBox.Visibility = Visibility.Collapsed;
+                prenomConjointTextBox.Visibility = Visibility.Collapsed;
+                nomPereTextBox.Visibility = Visibility.Collapsed;
+                prenomPereTextBox.Visibility = Visibility.Collapsed;
+                nomMereTextBox.Visibility = Visibility.Collapsed;
+                prenomMereTextBox.Visibility = Visibility.Collapsed;
+
+                nomLabel.Visibility = Visibility.Visible;
+                prenomLabel.Visibility = Visibility.Visible;
+                initialeLabel.Visibility = Visibility.Visible;
+                dateNaissanceLabel.Visibility = Visibility.Visible;
+                lieuNaissanceLabel.Visibility = Visibility.Visible;
+                dateDecesLabel.Visibility = Visibility.Visible;
+                lieuDecesLabel.Visibility = Visibility.Visible;
+                dateMariageLabel.Visibility = Visibility.Visible;
+                lieuMariageLabel.Visibility = Visibility.Visible;
+                nomConjointLabel.Visibility = Visibility.Visible;
+                prenomConjointLabel.Visibility = Visibility.Visible;
+                nomPereLabel.Visibility = Visibility.Visible;
+                prenomPereLabel.Visibility = Visibility.Visible;
+                nomMereLabel.Visibility = Visibility.Visible;
+                prenomMereLabel.Visibility = Visibility.Visible;
+            }
+        }
+        
+        public void switchOnTextBox()
+        {
+            if (nomTextBox.Visibility == Visibility.Collapsed)
+            {   
+                nomLabel.Visibility = Visibility.Hidden;
+                prenomLabel.Visibility = Visibility.Hidden;
+                initialeLabel.Visibility = Visibility.Hidden;
+                dateNaissanceLabel.Visibility = Visibility.Hidden;
+                lieuNaissanceLabel.Visibility = Visibility.Hidden;
+                dateDecesLabel.Visibility = Visibility.Hidden;
+                lieuDecesLabel.Visibility = Visibility.Hidden;
+                dateMariageLabel.Visibility = Visibility.Hidden;
+                lieuMariageLabel.Visibility = Visibility.Hidden;
+                nomConjointLabel.Visibility = Visibility.Hidden;
+                prenomConjointLabel.Visibility = Visibility.Hidden;
+                nomPereLabel.Visibility = Visibility.Hidden;
+                prenomPereLabel.Visibility = Visibility.Hidden;
+                nomMereLabel.Visibility = Visibility.Hidden;
+                prenomMereLabel.Visibility = Visibility.Hidden;
+
+                nomTextBox.Visibility = Visibility.Visible;
+                prenomTextBox.Visibility = Visibility.Visible;
+                initialeTextBox.Visibility = Visibility.Visible;
+                dateNaissanceTextBox.Visibility = Visibility.Visible;
+                lieuNaissanceTextBox.Visibility = Visibility.Visible;
+                dateDecesTextBox.Visibility = Visibility.Visible;
+                lieuDecesTextBox.Visibility = Visibility.Visible;
+                dateMariageTextBox.Visibility = Visibility.Visible;
+                lieuMariageTextBox.Visibility = Visibility.Visible;
+                nomConjointTextBox.Visibility = Visibility.Visible;
+                prenomConjointTextBox.Visibility = Visibility.Visible;
+                nomPereTextBox.Visibility = Visibility.Visible;
+                prenomPereTextBox.Visibility = Visibility.Visible;
+                nomMereTextBox.Visibility = Visibility.Visible;
+                prenomMereTextBox.Visibility = Visibility.Visible;
+
             }
         }        
 	}

@@ -42,7 +42,6 @@ namespace Vue
                 //Opens a file and serializes the object into it in binary format.
                 Stream stream = File.Open(ArchImage.PATH_TO_SESSION_SAVE, FileMode.Create);
                 BinaryFormatter formatter = new BinaryFormatter();
-
                 try
                 {
                     formatter.Serialize(stream, archimage.DocumentCourant);
