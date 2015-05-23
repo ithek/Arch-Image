@@ -18,7 +18,7 @@ namespace Prototype1Table.VueModele
         //La Vue-Modèle de la fenêtre principale
         private MainWindowVM mainWindow;
         //La modèle de vitrine de la vitrine ouverte
-        private VitrineModele modele;
+        public VitrineModele modele;
 
         //La liste des médias ouverts, on utilise une ObservableCollection pour profiter du refresh automatique de l'affichage
         public ObservableCollection<MediaVM> mediasOuverts { get; private set; }
