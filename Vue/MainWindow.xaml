@@ -5,5 +5,6 @@
         xmlns:Vue="clr-namespace:Vue" x:Class="Vue.MainWindow"
         EnableDWMDropShadow="True"
         ResizeMode="CanResizeWithGrip"
+        IgnoreTaskbarOnMaximize="True"
         Title="Archimage" Closed="MetroWindow_Closed" WindowState="Maximized" Icon="Resources/icon.png">
 </Controls:MetroWindow>
