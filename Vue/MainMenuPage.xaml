@@ -12,7 +12,15 @@
 
 
     <Grid>
-        <Controls:Flyout x:Name="flyoutConnexion" Header="Connexion" Position="Right" Width="300" Theme="Accent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Controls:Flyout Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" x:Name="flyoutConnexion" Header="Connexion" Position="Right" Width="300" Theme="Accent">
             <StackPanel Margin="10,10,10,10">
                 <TextBox Height="30" x:Name="identifiantConnexionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
                 <PasswordBox Height="30" x:Name="passwordConnexionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
@@ -24,7 +32,7 @@
             </StackPanel>
         </Controls:Flyout>
 
-        <Controls:Flyout x:Name="flyoutInscription" Header="Inscription" Position="Right" Width="300" Theme="Accent">
+        <Controls:Flyout Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  x:Name="flyoutInscription" Header="Inscription" Position="Right" Width="300" Theme="Accent">
             <StackPanel Margin="10,10,10,10">
                 <TextBox Height="30" x:Name="identifiantInscriptionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
                 <PasswordBox Height="30" x:Name="passwordInscriptionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
@@ -37,10 +45,10 @@
             </StackPanel>
         </Controls:Flyout>
 
-        <StackPanel>
-            <Image Grid.ColumnSpan="4" Source="Resources/logo_archimage.png" VerticalAlignment="Top" Margin="0,50,0,0" HorizontalAlignment="Center" Width="400" />
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,10,0,30">
+            <Image Source="Resources/logo_archimage.png" HorizontalAlignment="Center" Width="400" />
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -160,6 +168,12 @@
                     </Rectangle>
                 </Controls:Tile>
             </Grid>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <Image Margin="0,0,10,0"  Source="Resources/insa_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" />
+            <Image Margin="0,0,20,0" Source="Resources/atos_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="130" />
+            <Image Margin="0,0,10,0" Source="Resources/irisa_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="180" />
+            <Image Margin="0,0,0,20" Source="Resources/iv_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="120" />
         </StackPanel>
     </Grid>
 </Page>

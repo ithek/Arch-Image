@@ -196,6 +196,12 @@
   <ItemGroup>
     <Resource Include="Resources\backward.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\atos_logo.png" />
+    <Resource Include="Resources\insa_logo.png" />
+    <Resource Include="Resources\irisa_logo.png" />
+    <Resource Include="Resources\iv_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
