@@ -50,6 +50,17 @@ namespace Prototype1Table.VueModele
         private MediaVM mediaTablette;
         //Media ouvert sur les tbis
         private MediaVM mediaTbi;
+        //VIsibilité des POI
+        private System.Windows.Visibility _VisibilitePOI;
+        public System.Windows.Visibility VisibilitePOI
+        {
+            get { return this._VisibilitePOI; }
+            set
+            {
+                this._VisibilitePOI = value;
+                RaisePropertyChanged("VisibilitePOI");
+            }
+        }
 
         //Liste des POI de la vitrine ouverte
         private ObservableCollection<ConteneurPoiVM> listePois;
@@ -280,6 +291,7 @@ namespace Prototype1Table.VueModele
             VisibiliteCarte1 = System.Windows.Visibility.Visible;
             VisibiliteCarte2 = System.Windows.Visibility.Hidden;
             VisibiliteCarte3 = System.Windows.Visibility.Hidden;
+            VisibilitePOI = System.Windows.Visibility.Hidden;
             Ratio = 1;
 
             //On commence au niveau 1 donc on initialise l'indicateur en conséquence
@@ -315,6 +327,9 @@ namespace Prototype1Table.VueModele
             //On ne met que la premiere carte de visible
             VisibiliteCarte1 = System.Windows.Visibility.Visible;
             Ratio = 1;
+
+            //On met les POI invisibles (pour les POI contenus dans des pop-up)
+            VisibilitePOI = System.Windows.Visibility.Hidden;
 
             //On commence au niveau 1 donc on initialise l'indicateur en conséquence
             AffichageNiveau = new Uri("/Prototype1Table;component/Resources/niv1.png", UriKind.Relative);
@@ -442,6 +457,7 @@ namespace Prototype1Table.VueModele
         {
             //On ajoute le média à la liste des médias ouverts
             mediasOuverts.Add(m);
+            VisibilitePOI = System.Windows.Visibility.Visible;
             //On signale l'ouverture d'un nouveau média
             RaisePropertyChanged("mediasOuverts");
         }
@@ -451,6 +467,7 @@ namespace Prototype1Table.VueModele
         {
             //On ferme le média
             m.fermeture();
+            VisibilitePOI = System.Windows.Visibility.Hidden;
             //On le retire de la liste des médias ouverts
             mediasOuverts.Remove(m);
         }

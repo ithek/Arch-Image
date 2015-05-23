@@ -121,6 +121,7 @@ namespace Vue
                 PoiModele poiMod = null;
 
                 PoisItemControlScatterView.DataContext = vueScatterView;
+                CanvasMedias.DataContext = vue;
                 ScatterMedias.DataContext = vueScatterView;
                 Console.WriteLine("DATA CONTEXT OK");
                 foreach (Document docPOI in listeDoc) {
@@ -136,15 +137,15 @@ namespace Vue
                         List<Document> listDoc = arch.SewelisAccess.getListDocs(poi);
                         foreach (Document doc in listDoc)
                         {
-                            String cMiniature = " "; //findMiniature(doc.CheminAcces);
-                            listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, "../../Resources/" + cMiniature));
+                            String cMiniature = findMiniaturePOIonDoc(doc.Categorie.ToString());
+                            listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, cMiniature));
                         }
 
                         poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.Id, poi.Nom);
 
-                        ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
+                        ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vueScatterView);
                         cont.fermeturePoi(); //Pour afficher les noms sur les POI
-                        vue.ListePois.Add(cont);
+                        vueScatterView.ListePois.Add(cont);
                         PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
                     }
                 }
@@ -161,9 +162,32 @@ namespace Vue
             return myRegex2.Replace(pathAModif, "\\");
         }
 
+        private string findMiniaturePOIonDoc(string categorie)  //TODO clean
+        {
+            switch (categorie)
+            {
+                case "REGISTRE_MATRICULE":
+                    return "../../Resources/Miniatures/RM.png";
+                case "NAISSANCE_MARIAGE_DECES":
+                    return "../../Resources/Miniatures/NMD.png";
+                case "TABLE_REGISTRE_MATRICULE":
+                    return "../../Resources/Miniatures/TRM.png";
+                case "RECENSEMENT":
+                    return "../../Resources/Miniatures/REC.png";
+                case "TABLES_DECENNALES":
+                    return "../../Resources/Miniatures/TD.png";
+                case "TSA":
+                    return "../../Resources/Miniatures/TSA.png";
+                default:
+                    return "../../Resources/Miniatures/TSA.png";
+            }
+        }
+
         private void loadCurrentPOI()
         {
             vue = new ConsultationVM(" ");
+            vueScatterView = new ConsultationVM("");
+            
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
             MapRectangle.DataContext = vue;
@@ -173,7 +197,7 @@ namespace Vue
 
             IAsyncResult R = null;
             R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method
-            //finGetPOIDocOuvert(); //invoking the method
+            finGetPOIDocOuvert(); //invoking the method
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
@@ -191,6 +215,80 @@ namespace Vue
         {
             MapRectangle.IsManipulationEnabled = !MapRectangle.IsManipulationEnabled;
             this.UpdateSwitchModeButton();
+        }
+
+        //Récupère le type des documents
+        private int categoryName(String path)
+        {
+            Regex rMat = new System.Text.RegularExpressions.Regex("REGISTRES_MILITAIRES");
+            Regex nmd = new System.Text.RegularExpressions.Regex("NMD");
+            Regex tRMat = new System.Text.RegularExpressions.Regex("TABLES_RMM");
+            Regex recensement = new System.Text.RegularExpressions.Regex("RECENSEMENT");
+            Regex tDecen = new System.Text.RegularExpressions.Regex("TABLES_DECENNALES");
+            Regex tsa = new System.Text.RegularExpressions.Regex("TSA");
+
+            if (rMat.IsMatch(path))
+                return 0;
+            if (nmd.IsMatch(path))
+                return 1;
+            if (tRMat.IsMatch(path))
+                return 2;
+            if (recensement.IsMatch(path))
+                return 3;
+            if (tDecen.IsMatch(path))
+                return 4;
+            if (tsa.IsMatch(path))
+                return 5;
+            else
+                return -1;
+        }
+
+        //Remplace le caractère "/" par "\" pour les comparaisons de chemin d'accès
+        private string changeChar(string chaine)
+        {
+            Regex myRegex = new System.Text.RegularExpressions.Regex(@"/");
+            return myRegex.Replace(chaine, "\\"); //renvoi la chaine modifiée
+        }
+
+        private void newBackgroundButton_Click(object sender, MouseEventArgs e)
+        {
+            e.Handled = true;
+            if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
+            {
+                if (this.vue.mediasOuverts.Count == 0)
+                {
+                    // TODO was here before for unclear reasons, remove completely if useless : e.Handled = false;
+                    return;
+                }
+
+                MediaVM media = this.vueScatterView.mediasOuverts.ElementAt(0);
+
+                //Pour récupérer les types des documents.
+                String chemin = media.cheminMedia.OriginalString;
+                int categorie = categoryName(chemin);
+
+                //Pour récupérer le numéro de la page
+                String cheminLivre = System.IO.Path.GetDirectoryName(chemin);
+
+                //On remplace les / par des \
+                chemin = changeChar(chemin);
+                Console.WriteLine(chemin);
+
+                int noPage = System.IO.Directory.EnumerateFiles(cheminLivre).ToList().IndexOf(chemin) + 1;
+
+                //Pour récupérer le numéro du livre
+                String type = System.IO.Path.GetDirectoryName(cheminLivre);
+                cheminLivre = changeChar(cheminLivre);
+
+                int noLivre = System.IO.Directory.EnumerateDirectories(type).ToList().IndexOf(cheminLivre) + 1;
+
+                //Créer un nouveau document en rappelant Sewelis pour connaitre les POI sur le doc.
+                Document d = new Document((Categorie)categorie, chemin, noLivre, noPage);
+                d.POIs = this.arch.SewelisAccess.getPOI(d);
+                this.arch.Navigation(d);
+                Application.Current.MainWindow.Content = new NavigationPage(arch);
+
+            }
         }
     }
 }
