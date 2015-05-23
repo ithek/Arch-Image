@@ -162,7 +162,8 @@ namespace Vue
 
         private void loadCurrentPOI()
         {
-            vue.ListePois.Clear();
+            //vue.ListePois.Clear();
+            vue = new ConsultationVM(" ");
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
             //Initialisation
