@@ -5,6 +5,23 @@
         xmlns:Vue="clr-namespace:Vue" x:Class="Vue.MainWindow"
         EnableDWMDropShadow="True"
         ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
         IgnoreTaskbarOnMaximize="True"
+        ShowTitleBar="False"
+        WindowCloseButtonStyle="{DynamicResource WindowButtonStyle}"
+        WindowMaxButtonStyle="{DynamicResource WindowButtonStyle}"
+        WindowMinButtonStyle="{DynamicResource WindowButtonStyle}"
+      
         Title="Archimage" Closed="MetroWindow_Closed" WindowState="Maximized" Icon="Resources/icon.png">
+
+    <Window.Resources>
+        <Style x:Key="WindowButtonStyle"
+       TargetType="{x:Type Button}"
+       BasedOn="{StaticResource MetroBaseWindowButtonStyle}">
+            <Setter Property="Foreground"
+               Value="White" />
+            <Setter Property="Width"
+               Value="40" />
+        </Style>
+    </Window.Resources>
 </Controls:MetroWindow>

@@ -207,7 +207,7 @@ namespace Vue
 
         private void UpdateSwitchModeButton()
         {
-            this.SwitchModeButton.Content = MapRectangle.IsManipulationEnabled ?
+            this.SwitchModeButton.Title = MapRectangle.IsManipulationEnabled ?
                 SWITCH_BUTTON_TEXT_MANIP : SWITCH_BUTTON_TEXT_POI;
         }
 

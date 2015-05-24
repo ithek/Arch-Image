@@ -238,14 +238,14 @@ namespace Vue
 
         private void UpdateButtons()
         {
-            this.NextCategoryName.Text = GetDisplayableName(Archimage.GetNext(Archimage.DocumentCourant.Categorie));
-            this.PrevCategoryName.Text = GetDisplayableName(Archimage.GetPrev(Archimage.DocumentCourant.Categorie));
+            this.NextCategoryButton.Title = GetDisplayableName(Archimage.GetNext(Archimage.DocumentCourant.Categorie));
+            this.PreviousCategoryButton.Title = GetDisplayableName(Archimage.GetPrev(Archimage.DocumentCourant.Categorie));
             this.UpdateSwitchModeButton();
         }
 
         private void UpdateSwitchModeButton()
         {
-            this.SwitchModeButton.Content = RectangleContainingBackgroundImage.IsManipulationEnabled ?
+            this.SwitchModeButton.Title = RectangleContainingBackgroundImage.IsManipulationEnabled ?
                 SWITCH_BUTTON_TEXT_MANIP : SWITCH_BUTTON_TEXT_POI;
         }
 
@@ -278,19 +278,19 @@ namespace Vue
                     break;
 
                 case Categorie.RECENSEMENT:
-                    res = "Recensement";
+                    res = "REC";
                     break;
 
                 case Categorie.REGISTRE_MATRICULE :
-                    res = "Registres matricules";
+                    res = "TM";
                     break;
 
                 case Categorie.TABLE_REGISTRE_MATRICULE :
-                    res = "Tables RM";
+                    res = "TRM";
                     break;
 
                 case Categorie.TABLES_DECENNALES :
-                    res = "Tables décennales";
+                    res = "TD";
                     break;
 
                 case Categorie.TSA :

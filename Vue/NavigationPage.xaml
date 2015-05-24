@@ -11,6 +11,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="470" d:DesignWidth="645"
       x:Name="navPage"
+      Background="#FF2E2F34"
 	  Title="NavigationPage">
 
     <Page.Resources>
@@ -33,8 +34,7 @@
     
     
     <Grid
-        Name="theGrid"
-        Background="Black">
+        Name="theGrid">
         <Controls:Flyout Grid.ZIndex="4" x:Name="flyoutAnnotation" Header="Annotation" Position="Right" Width="800" Theme="Accent">
             <Grid>
                 <Grid.RowDefinitions>
@@ -295,49 +295,106 @@
 
         </Canvas>
 
-        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource SquareButtonStyle}" Click="SwitchModeButton_Click"/>
-        <Button x:Name="MenuButton" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource SquareButtonStyle}" Click="MenuButton_Click">
-            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-                <Canvas Name="svg2" Width="512" Height="512">
-                    <Canvas.Resources/>
-                    <!--Unknown tag: metadata-->
-                    <!--Unknown tag: sodipodi:namedview-->
-                    <Canvas Name="g3">
-                        <Canvas.RenderTransform>
-                            <TranslateTransform X="0" Y="448"/>
-                        </Canvas.RenderTransform>
-                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5" Fill="#FF000000" StrokeThickness="12" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
-                            <Path.Data>
-                                <PathGeometry Figures="m 16 256 240 -192 96 72 0 -32 48 0 0 72 96 80 -48 0 0 192 -120 0 0 -160 -96 0 0 160 -168 0 0 -192 z" FillRule="NonZero"/>
-                            </Path.Data>
-                            <Path.RenderTransform>
-                                <TranslateTransform X="0" Y="-448"/>
-                            </Path.RenderTransform>
-                        </Path>
-                    </Canvas>
-                </Canvas>
-            </Viewbox>
-        </Button>
-        <Button x:Name="PreviousDocButton" Content="&lt;" HorizontalAlignment="Left" Height="37" Margin="0" Width="45" Click="PreviousDocButton_Click" VerticalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}"/>
-        <Button x:Name="NextDocButton" Content="&gt;" HorizontalAlignment="Right" Margin="0" Width="45" Height="37"   Click="NextDocButton_Click" VerticalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}"/>
-        <Button x:Name="PreviousCategoryButton" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="PreviousCategoryButton_Click" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}">
-            <StackPanel>
-                <TextBlock Text="^" HorizontalAlignment="Center"/>
-                <TextBlock Name="PrevCategoryName" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </Button>
-        <Button x:Name="NextCategoryButton" Margin="0,0,0,53" VerticalAlignment="Bottom"  Click="NextCategoryButton_Click" HorizontalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}">
-            <StackPanel>
-                <TextBlock Name="NextCategoryName" HorizontalAlignment="Center"/>
-                <TextBlock Text="V" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </Button>
-        <Slider Style="{StaticResource MetroSlider}" Minimum="1" Height="15" Margin="0,0,0,10" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" Focusable="False" PreviewMouseUp="DocSlider_PreviewMouseUp" Thumb.DragCompleted="DocSlider_DragCompleted"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Controls:Tile
+                Margin="0"
+                x:Name="MenuButton"
+                Height="50" Width="50" Click="MenuButton_Click"
+                Grid.ColumnSpan="2"
+                TiltFactor="0"
+            
+            >
 
-        <TextBlock x:Name="SliderInfoTextBlock" Background="#FFEEEEB5" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" TextAlignment="Center" Margin="0,0,0,32" FontWeight="Bold">
-            <TextBlock.Effect>
-                <DropShadowEffect/>
-            </TextBlock.Effect>
+                <Rectangle Height="50" Width="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Resources/appbar.home.empty.png" Stretch="Uniform"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Controls:Tile>
+            
+            <Controls:Tile
+                Margin="5,0,0,0"
+                x:Name="SwitchModeButton"
+                Height="50" Width="200" Click="SwitchModeButton_Click"
+                Grid.ColumnSpan="2"
+                TiltFactor="0"
+                TitleFontSize="14"
+            >
+                <Rectangle Margin="160,0,0,0"  Height="40" Width="40">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Resources/appbar.refresh.png" Stretch="Uniform"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Controls:Tile>
+        </StackPanel>
+
+        <Controls:Tile
+            Margin="0"
+            x:Name="PreviousDocButton"
+            HorizontalAlignment="Left" Height="60" Width="60" Click="PreviousDocButton_Click" VerticalAlignment="Center"
+                    Grid.ColumnSpan="2"
+                    TiltFactor="2"
+                    Background="#FF3676FF"
+                >
+            <Rectangle Height="50" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/appbar.chevron.left.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Controls:Tile
+            x:Name="NextDocButton"
+            Margin="0"
+            HorizontalAlignment="Right" Height="60" Width="60" Click="NextDocButton_Click" VerticalAlignment="Center"
+                    Grid.ColumnSpan="2"
+                    TiltFactor="2"
+                    Background="#FF3676FF"
+                >
+            <Rectangle Height="50" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/appbar.chevron.right.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Controls:Tile>
+        
+        <Controls:Tile
+            Margin="0"
+            x:Name="PreviousCategoryButton"
+            HorizontalAlignment="Center" VerticalAlignment="Top" Height="60" Width="60" Click="PreviousCategoryButton_Click"
+            Grid.ColumnSpan="2"
+            TiltFactor="0"
+            Background="#FF3676FF"
+            TitleFontSize="8"
+        >
+            <Rectangle Height="50" Width="50">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/appbar.chevron.up.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Controls:Tile
+            Margin="0"
+            x:Name="NextCategoryButton"
+            HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="60" Click="NextCategoryButton_Click"
+            Grid.ColumnSpan="2"
+            TiltFactor="0"
+            Background="#FF3676FF"
+            TitleFontSize="8"
+        >
+            <Rectangle Height="50" Width="50" >
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/appbar.chevron.down.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Slider Style="{DynamicResource FlatSlider}" TickPlacement="Both" TickFrequency="1" Foreground="#FF3676FF"
+                Minimum="1" Height="30" Margin="0,0,0,65" VerticalAlignment="Bottom" Width="635" Name="DocSlider" IsSnapToTickEnabled="True" Focusable="False" PreviewMouseUp="DocSlider_PreviewMouseUp" Thumb.DragCompleted="DocSlider_DragCompleted"/>
+
+        <TextBlock x:Name="SliderInfoTextBlock" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" TextAlignment="Center" Margin="0,0,0,68" FontWeight="Bold">
+           
         </TextBlock>
         <Canvas>
             <Rectangle

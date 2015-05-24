@@ -6,9 +6,11 @@
       xmlns:my="clr-namespace:Microsoft.Surface.Presentation.Controls;assembly=Microsoft.Surface.Presentation"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:vueModele="clr-namespace:Prototype1Table.VueModele;assembly=Prototype1Table"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:vue="clr-namespace:Prototype1Table.Vue;assembly=Prototype1Table"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
+      Background="#FF2E2F34"
 	Title="MapPage">
 
     <Page.Resources>
@@ -82,29 +84,38 @@
             </Canvas.Background>
         </Canvas>
 
-        <Button x:Name="SwitchModeButton" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource NavButtonStyle}" Click="SwitchModeButton_Click"/>
-        <Button x:Name="MenuButton" Height="45" Width="45" Canvas.Left="1" Canvas.Top="1" HorizontalAlignment="Left" VerticalAlignment="Top" Click="MenuButton_Click">
-            <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-                <Canvas Name="svg2" Width="512" Height="512">
-                    <Canvas.Resources/>
-                    <!--Unknown tag: metadata-->
-                    <!--Unknown tag: sodipodi:namedview-->
-                    <Canvas Name="g3">
-                        <Canvas.RenderTransform>
-                            <TranslateTransform X="0" Y="448"/>
-                        </Canvas.RenderTransform>
-                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path5" Fill="#FF000000" StrokeThickness="12" Stroke="#FF000000" StrokeMiterLimit="4" StrokeLineJoin="Round" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat">
-                            <Path.Data>
-                                <PathGeometry Figures="m 16 256 240 -192 96 72 0 -32 48 0 0 72 96 80 -48 0 0 192 -120 0 0 -160 -96 0 0 160 -168 0 0 -192 z" FillRule="NonZero"/>
-                            </Path.Data>
-                            <Path.RenderTransform>
-                                <TranslateTransform X="0" Y="-448"/>
-                            </Path.RenderTransform>
-                        </Path>
-                    </Canvas>
-                </Canvas>
-            </Viewbox>
-        </Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Controls:Tile
+                Margin="0"
+                x:Name="MenuButton"
+                Height="50" Width="50" Click="MenuButton_Click"
+                Grid.ColumnSpan="2"
+                TiltFactor="0"
+            
+            >
+
+                <Rectangle Height="50" Width="50">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Resources/appbar.home.empty.png" Stretch="Uniform"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Controls:Tile>
+
+            <Controls:Tile
+                Margin="5,0,0,0"
+                x:Name="SwitchModeButton"
+                Height="50" Width="200" Click="SwitchModeButton_Click"
+                Grid.ColumnSpan="2"
+                TiltFactor="0"
+                TitleFontSize="14"
+            >
+                <Rectangle Margin="160,0,0,0"  Height="40" Width="40">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="Resources/appbar.refresh.png" Stretch="Uniform"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Controls:Tile>
+        </StackPanel>
 
         <Canvas IsManipulationEnabled="True"
                 RenderTransform="{Binding Path=ImageTransform}">
