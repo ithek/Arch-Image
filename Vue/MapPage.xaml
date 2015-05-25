@@ -122,12 +122,13 @@
             <Canvas Name ="CanvasMedias"
                     Visibility="{Binding VisibilitePOI}">
 
+                    
+
                 <!--Medias-->
                 <my:ScatterView Name="ScatterMedias" 
                             ItemContainerStyle="{StaticResource ScatterViewItemStyleMedias}"
                             Width="4000" Height="4000"
                             ItemsSource="{Binding mediasOuverts}">
-
                     <my:ScatterView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -136,9 +137,40 @@
                                         <Grid.Resources>
                                             <!--Images-->
                                             <DataTemplate DataType="{x:Type vueModele:ImageVM}">
-                                                <MediaElement Source="{Binding cheminMedia}" />
+                                                <Grid>
+                                                    <MediaElement Source="{Binding cheminMedia}" />
+                                                    <ItemsControl Name="PoisItemControlScatterView" ItemsSource="{Binding ListePois}" MouseDown="newBackgroundButton_Click">
+                                                        <ItemsControl.ItemContainerStyle>
+                                                            <Style>
+                                                                <Setter Property="FrameworkElement.DataContext" Value="{Binding RelativeSource={RelativeSource Self}}"/>
+                                                                <Setter Property="Canvas.Top" Value="{Binding Y, Mode=OneWay}"/>
+                                                                <Setter Property="Canvas.Left" Value="{Binding X, Mode=OneWay}"/>
+                                                            </Style>
+                                                        </ItemsControl.ItemContainerStyle>
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <Canvas />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Canvas>
+                                                                    <Canvas.Resources>
+                                                                        <DataTemplate DataType="{x:Type vueModele:CouronneVM}">
+                                                                            <vue:Couronne Margin="{Binding MargeCouronne, Mode=OneWay}"/>
+                                                                        </DataTemplate>
+                                                                        <DataTemplate DataType="{x:Type vueModele:PoiConsultationVM}">
+                                                                            <vue:Poi Margin="{Binding MargePoi, Mode=OneWay}"/>
+                                                                        </DataTemplate>
+                                                                    </Canvas.Resources>
+                                                                    <ContentControl Content="{Binding VueCourante}" />
+                                                                </Canvas>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </Grid>
                                             </DataTemplate>
-
+             
                                             <!--Videos-->
                                             <DataTemplate DataType="{x:Type vueModele:VideoVM}">
                                                 <vue:Video/>
@@ -265,39 +297,9 @@
                         </DataTemplate>
                     </my:ScatterView.ItemTemplate>
                 </my:ScatterView>
-
                 <!--Affichage des Pois sur les scatterView-->
 
-                <ItemsControl Name="PoisItemControlScatterView" ItemsSource="{Binding ListePois}" MouseDown="newBackgroundButton_Click">
-
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter Property="FrameworkElement.DataContext" Value="{Binding RelativeSource={RelativeSource Self}}"/>
-                            <Setter Property="Canvas.Top" Value="{Binding Y, Mode=OneWay}"/>
-                            <Setter Property="Canvas.Left" Value="{Binding X, Mode=OneWay}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Canvas>
-                                <Canvas.Resources>
-                                    <DataTemplate DataType="{x:Type vueModele:CouronneVM}">
-                                        <vue:Couronne Margin="{Binding MargeCouronne, Mode=OneWay}"/>
-                                    </DataTemplate>
-                                    <DataTemplate DataType="{x:Type vueModele:PoiConsultationVM}">
-                                        <vue:Poi Margin="{Binding MargePoi, Mode=OneWay}"/>
-                                    </DataTemplate>
-                                </Canvas.Resources>
-                                <ContentControl Content="{Binding VueCourante}" />
-                            </Canvas>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                
 
             </Canvas>
 

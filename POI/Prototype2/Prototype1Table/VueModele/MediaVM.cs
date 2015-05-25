@@ -7,6 +7,7 @@ using Modele;
 using System.Windows.Input;
 using System.Windows;
 using msvipConnexionDLL.implementations;
+using System.Collections.ObjectModel;
 
 namespace Prototype1Table.VueModele
 {
@@ -21,6 +22,19 @@ namespace Prototype1Table.VueModele
         public Point position { get; set; }
         public double orientation { get; set; }
 
+        //Liste des POI de la vitrine ouverte
+        private ObservableCollection<ConteneurPoiVM> listePois;
+        public ObservableCollection<ConteneurPoiVM> ListePois
+        {
+            get { return listePois; }
+        }
+
+        public ConsultationVM VueScatterView
+        {
+            get;
+            set;
+        }
+
         public Uri cheminMedia { get { return new Uri(modele.Chemin, UriKind.Relative); }}
 
         public bool ouvertTablette;
@@ -34,10 +48,25 @@ namespace Prototype1Table.VueModele
             modele = m;
             ouvertTablette = false;
             ouvertTbi = false;
-
+            listePois = c.ListePois;
             position = p;
             orientation = o;
             consultation = c;
+            EnvoiTbi = new RelaiCommande(new Action(envoiTbi));
+            EnvoiTablettes = new RelaiCommande(new Action(envoiTablettes));
+        }
+
+        public MediaVM(MediaModele m, Point p, double o, ConsultationVM c, ConsultationVM vueScatterView)
+        {
+            modele = m;
+            ouvertTablette = false;
+            ouvertTbi = false;
+            if(vueScatterView != null)
+                listePois = vueScatterView.ListePois;
+            position = p;
+            orientation = o;
+            consultation = c;
+            VueScatterView = vueScatterView;
             EnvoiTbi = new RelaiCommande(new Action(envoiTbi));
             EnvoiTablettes = new RelaiCommande(new Action(envoiTablettes));
         }
