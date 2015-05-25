@@ -115,6 +115,7 @@
     <Compile Include="VueModele\PoiCreationVM.cs" />
     <Compile Include="VueModele\VideoVM.cs" />
     <Compile Include="VueModele\VitrineVM.cs" />
+    <Compile Include="VueModele\ZoomManager.cs" />
     <Compile Include="Vue\Consultation.xaml.cs">
       <DependentUpon>Consultation.xaml</DependentUpon>
     </Compile>
