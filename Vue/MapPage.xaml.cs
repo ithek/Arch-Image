@@ -118,6 +118,7 @@ namespace Vue
         {
             Console.WriteLine("================");
             vueScatterView = new ConsultationVM(" ");
+            
             foreach (POICreationData poiDocParent in arch.SewelisAccess.getPOI(arch.DocumentCourant))
             {
                 List<Document> listeDoc = arch.SewelisAccess.getListDocs(poiDocParent);
@@ -143,9 +144,9 @@ namespace Vue
                             listMedia.Add(new MediaModele(Types.image, "../../Resources/" + doc.CheminAcces, cMiniature));
                         }
 
-                        poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.Id, poi.Nom);
+                        poiMod = new PoiModele((int)poi.posX, (int)poi.posY, listMedia, poi.Id, poi.Nom, docPOI.CheminAcces);
 
-                        ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vueScatterView);
+                        ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                         cont.fermeturePoi(); //Pour afficher les noms sur les POI
                         vueScatterView.ListePois.Add(cont);
                         PoiConsultationVM poiVMScatterView = new PoiConsultationVM(cont, poiMod, poi.Nom);
@@ -153,6 +154,7 @@ namespace Vue
                 }
             }
             poiVM.setConteneurScatterView(vueScatterView);
+            progressRing.IsActive = false;
         }
 
         private string findMiniature(string path)
@@ -197,6 +199,8 @@ namespace Vue
             //Initialisation
             getPOI_Delegate d = null;
             d = new getPOI_Delegate(getPOI);
+
+            progressRing.IsActive = true;
 
             IAsyncResult R = null;
             R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method
@@ -263,7 +267,7 @@ namespace Vue
                     return;
                 }
 
-                MediaVM media = this.vueScatterView.mediasOuverts.ElementAt(0);
+                MediaVM media = this.vue.mediaToOpen;
 
                 //Pour récupérer les types des documents.
                 String chemin = media.cheminMedia.OriginalString;

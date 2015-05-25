@@ -29,6 +29,13 @@ namespace Modele
         {
             get { return couronne; }
         }
+
+        public String CheminParent
+        {
+            get;
+            set;
+        }
+
         private int niveau;
         public int Niveau
         {
@@ -62,6 +69,16 @@ namespace Modele
             position = new Point(x, y); ;
             couronne = new CouronneModele(media);
             nom = name;
+        }
+
+        public PoiModele(int x, int y, List<MediaModele> media, string c, String name, String cheminParent)
+        {
+            chemin = c;
+            Niveau = 1;
+            position = new Point(x, y); ;
+            couronne = new CouronneModele(media);
+            nom = name;
+            CheminParent = cheminParent;
         }
 
         public void enregistrerPosition(double ratio)

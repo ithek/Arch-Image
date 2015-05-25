@@ -304,6 +304,6 @@
             </Canvas>
 
         </Canvas>
-
+        <Controls:ProgressRing VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="progressRing" Foreground="#CCFFFFFF" />
     </Grid>
 </Page>

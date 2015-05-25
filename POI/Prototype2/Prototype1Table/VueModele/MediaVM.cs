@@ -61,8 +61,16 @@ namespace Prototype1Table.VueModele
             modele = m;
             ouvertTablette = false;
             ouvertTbi = false;
+            listePois = new ObservableCollection<ConteneurPoiVM>();
             if(vueScatterView != null)
-                listePois = vueScatterView.ListePois;
+            {
+                foreach (ConteneurPoiVM poi in vueScatterView.ListePois)
+                {
+                    if (m.Chemin.EndsWith(poi.ModelePoi.CheminParent))
+                        listePois.Add(poi);
+                }
+            }
+                
             position = p;
             orientation = o;
             consultation = c;
