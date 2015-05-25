@@ -22,7 +22,13 @@ namespace Prototype1Table.VueModele
 
         //La liste des médias ouverts, on utilise une ObservableCollection pour profiter du refresh automatique de l'affichage
         public ObservableCollection<MediaVM> mediasOuverts { get; private set; }
-        
+
+        public MediaVM mediaToOpen
+        {
+            get;
+            set;
+        }
+
         //Presence de tablette
         private bool presenceTablette;
         public bool PresenceTablette
@@ -457,9 +463,16 @@ namespace Prototype1Table.VueModele
         {
             //On ajoute le média à la liste des médias ouverts
             mediasOuverts.Add(m);
+
+            if(m.cheminMedia.ToString().Contains("Archives_departementales"))
+            {
+                mediaToOpen = m;
+            }
+
             VisibilitePOI = System.Windows.Visibility.Visible;
             //On signale l'ouverture d'un nouveau média
             RaisePropertyChanged("mediasOuverts");
+            
         }
 
         // Fonction appelée lorsque l'on ferme un média
