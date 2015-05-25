@@ -77,9 +77,20 @@ namespace Vue
 
             for (int i = 0; i < vm.ListePois.Count; i++)
             {
-                PoiConsultationVM poi = ((PoiConsultationVM)vm.ListePois.ElementAt(i).VueCourante);
-                poi.HeightPoi /= ratioHeight;
-                poi.WidthPoi /= ratioWidth;   
+                var poi = vm.ListePois.ElementAt(i).VueCourante;
+                if (poi is PoiConsultationVM)
+                {
+                    //TODO tester si is POIConsultationVM ou CouronneVM(ou je ne sais quoi), caster en fonction et changer les attributs correspondants ? 
+                    PoiConsultationVM poiClosed = ((PoiConsultationVM)poi);
+                    poiClosed.HeightPoi /= ratioHeight;
+                    poiClosed.WidthPoi /= ratioWidth;
+                }
+                else if (poi is CouronneVM)
+                {
+                    CouronneVM poiOpened = ((CouronneVM)poi);
+                    poiOpened.WidthCouronne /= ratioWidth;
+                }
+                  
             }
         }
     }
