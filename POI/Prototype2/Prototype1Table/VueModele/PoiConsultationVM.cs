@@ -171,6 +171,9 @@ namespace Prototype1Table.VueModele
             HeightPoi = initialHeight * ratio;
             WidthPoi = initialWidth * ratio;
             MargePoi = initialMargePoi * ratio;
+
+            HeightPoi /= ZoomManager.zoomRatio;
+            WidthPoi  /= ZoomManager.zoomRatio;
                         
             _Nom = n;
 

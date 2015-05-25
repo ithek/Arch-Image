@@ -28,6 +28,7 @@ namespace Vue
             this.ImageTransform = new MatrixTransform();
             this.ManipContainer = theGrid;
             this.consultationVM = cVM;
+            ZoomManager.zoomRatio = 1;
         }
 
         public void Image_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
@@ -44,6 +45,10 @@ namespace Vue
             Vector scale = md.Scale;
 
             Matrix m = ImageTransform.Matrix;
+
+
+            ZoomManager.zoomRatio *= scale.X;
+
 
             // Find center of element and then transform to get current location of center
             FrameworkElement fe = e.Source as FrameworkElement;
@@ -77,9 +82,20 @@ namespace Vue
 
             for (int i = 0; i < vm.ListePois.Count; i++)
             {
-                PoiConsultationVM poi = ((PoiConsultationVM)vm.ListePois.ElementAt(i).VueCourante);
-                poi.HeightPoi /= ratioHeight;
-                poi.WidthPoi /= ratioWidth;   
+                var poi = vm.ListePois.ElementAt(i).VueCourante;
+                if (poi is PoiConsultationVM)
+                {
+                    //TODO tester si is POIConsultationVM ou CouronneVM(ou je ne sais quoi), caster en fonction et changer les attributs correspondants ? 
+                    PoiConsultationVM poiClosed = ((PoiConsultationVM)poi);
+                    poiClosed.HeightPoi /= ratioHeight;
+                    poiClosed.WidthPoi /= ratioWidth;
+                }
+                else if (poi is CouronneVM)
+                {
+                    CouronneVM poiOpened = ((CouronneVM)poi);
+                    poiOpened.WidthCouronne /= ratioWidth;
+                }
+                  
             }
         }
     }

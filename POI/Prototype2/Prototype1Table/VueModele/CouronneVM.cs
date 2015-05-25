@@ -105,6 +105,8 @@ namespace Prototype1Table.VueModele
             double ratio = c.getConsultationVM().Ratio;
             WidthCouronne = ratio * initialWidth;
             MargeCouronne = ratio * initialMarge;
+
+            WidthCouronne /= ZoomManager.zoomRatio;
         }
 
 
