@@ -8,9 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Background="#FF2E2F34"
 	Title="MainMenuPage">
-
-
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -48,130 +46,133 @@
         <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
             <Image Source="Resources/logo_archimage.png" HorizontalAlignment="Center" Width="400" />
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
 
-                <Controls:Tile
-                    Click="MapTile_Click"
-                    Grid.Row="0" Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Grid.RowSpan="2"
-                    Title="Carte" 
-                    TiltFactor="2"
-                    Width="246" Height="246" Foreground="Black">
-                    <StackPanel>
-                        <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Controls:Tile>
+        <Viewbox Margin="0,120,0,120" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Controls:Tile Grid.Row="0" Grid.Column="2"
-                    Click="RMTile_Click"
-                    Title="Registres Matricules" 
-                    TiltFactor="2"
-                    Width="120" Height="120" 
-                />
+                    <Controls:Tile
+                        Click="MapTile_Click"
+                        Grid.Row="0" Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.RowSpan="2"
+                        Title="Carte" 
+                        TiltFactor="2"
+                        Width="246" Height="246" Foreground="Black">
+                        <StackPanel>
+                            <Image Source="Resources/trans.png" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Controls:Tile>
 
-                <Controls:Tile Grid.Row="1" Grid.Column="2"
-                    Click="TablesRMTile_Click"
-                    Title="Tables Registres Matricules" 
-                    TiltFactor="2"
-                    Width="120" Height="120" 
-                />
+                    <Controls:Tile Grid.Row="0" Grid.Column="2"
+                        Click="RMTile_Click"
+                        Title="Registres Matricules" 
+                        TiltFactor="2"
+                        Width="120" Height="120" 
+                    />
 
-                <Controls:Tile Grid.Row="0" Grid.Column="3"
-                    Click="RecensementTile_Click"
-                    Title="Recensement" 
-                    TiltFactor="2"
-                    Width="120" Height="120" 
-                />
+                    <Controls:Tile Grid.Row="1" Grid.Column="2"
+                        Click="TablesRMTile_Click"
+                        Title="Tables Registres Matricules" 
+                        TiltFactor="2"
+                        Width="120" Height="120" 
+                    />
 
-                <Controls:Tile Grid.Row="1" Grid.Column="3"
-                    Click="TablesDecenalesTile_Click"
-                    Title="Tables décennales" 
-                    TiltFactor="2"
-                    Width="120" Height="120" 
-                />
+                    <Controls:Tile Grid.Row="0" Grid.Column="3"
+                        Click="RecensementTile_Click"
+                        Title="Recensement" 
+                        TiltFactor="2"
+                        Width="120" Height="120" 
+                    />
 
-                <Controls:Tile Grid.Row="2" Grid.Column="0"
-                    Grid.RowSpan="2"
-                    Click="NMDTile_Click"
-                    Title="Naissances Mariages Décès" 
-                    TiltFactor="2"
-                    Width="120" Height="120" 
-                />
+                    <Controls:Tile Grid.Row="1" Grid.Column="3"
+                        Click="TablesDecenalesTile_Click"
+                        Title="Tables décennales" 
+                        TiltFactor="2"
+                        Width="120" Height="120" 
+                    />
 
-                <Controls:Tile Grid.Row="2" Grid.Column="1"
-                    Grid.RowSpan="2"
-                    Click="TSATile_Click"
-                    Title="TSA" 
-                    TiltFactor="2"
-                    Width="120" Height="120" 
-                />
-                <Controls:Tile
-                    Grid.Row="3"
-                    Grid.Column="2"
-                    x:Name="connexionTile"
-                    Click="ConnexionTile_Click"
-                    Title="Connexion" 
-                    TiltFactor="2"
-                    Width="120" Height="57" Background="#FF7A777A"
-                    TitleFontSize="14"
-                >
-                    <Rectangle Margin="0,0,0,20" Height="40" Width="40">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="Resources/appbar.inbox.in.png" Stretch="Uniform"/>
-                        </Rectangle.Fill>                   
-                    </Rectangle>
-                </Controls:Tile>
+                    <Controls:Tile Grid.Row="2" Grid.Column="0"
+                        Grid.RowSpan="2"
+                        Click="NMDTile_Click"
+                        Title="Naissances Mariages Décès" 
+                        TiltFactor="2"
+                        Width="120" Height="120" 
+                    />
 
-                <Controls:Tile
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    x:Name="inscriptionTile"
-                    Click="InscriptionTile_Click"
-                    Title="Inscription" 
-                    TiltFactor="2"
-                    Width="120" Height="57" Background="#FF7A777A"
-                    TitleFontSize="14"
-                >
-                    <Rectangle Margin="0,0,0,20" Height="40" Width="40">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="Resources/appbar.add.png" Stretch="Uniform"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </Controls:Tile>
+                    <Controls:Tile Grid.Row="2" Grid.Column="1"
+                        Grid.RowSpan="2"
+                        Click="TSATile_Click"
+                        Title="TSA" 
+                        TiltFactor="2"
+                        Width="120" Height="120" 
+                    />
+                    <Controls:Tile
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        x:Name="connexionTile"
+                        Click="ConnexionTile_Click"
+                        Title="Connexion" 
+                        TiltFactor="2"
+                        Width="120" Height="57" Background="#FF7A777A"
+                        TitleFontSize="14"
+                    >
+                        <Rectangle Margin="0,0,0,20" Height="40" Width="40">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="Resources/appbar.inbox.in.png" Stretch="Uniform"/>
+                            </Rectangle.Fill>                   
+                        </Rectangle>
+                    </Controls:Tile>
+
+                    <Controls:Tile
+                        Grid.Row="3"
+                        Grid.Column="3"
+                        x:Name="inscriptionTile"
+                        Click="InscriptionTile_Click"
+                        Title="Inscription" 
+                        TiltFactor="2"
+                        Width="120" Height="57" Background="#FF7A777A"
+                        TitleFontSize="14"
+                    >
+                        <Rectangle Margin="0,0,0,20" Height="40" Width="40">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="Resources/appbar.add.png" Stretch="Uniform"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Controls:Tile>
 
 
-                <Controls:Tile
-                    Click="RestoreSessionTile_Click"
-                    Grid.Row="2" Grid.Column="2"
-                    Grid.ColumnSpan="2"
-                    Title="Restaurer la session" 
-                    TiltFactor="2"
-                    Width="246" Height="57" Background="#FF3676FF"
-                    TitleFontSize="14"
-                >
-                    <Rectangle Margin="0,0,0,20" Height="40" Width="40">
-                        <Rectangle.Fill>
-                            <ImageBrush ImageSource="Resources/appbar.undo.png" Stretch="Uniform"/>
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </Controls:Tile>
-            </Grid>
-        </StackPanel>
+                    <Controls:Tile
+                        Click="RestoreSessionTile_Click"
+                        Grid.Row="2" Grid.Column="2"
+                        Grid.ColumnSpan="2"
+                        Title="Restaurer la session" 
+                        TiltFactor="2"
+                        Width="246" Height="57" Background="#FF3676FF"
+                        TitleFontSize="14"
+                    >
+                        <Rectangle Margin="0,0,0,20" Height="40" Width="40">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="Resources/appbar.undo.png" Stretch="Uniform"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Controls:Tile>
+                </Grid>
+            </StackPanel>
+        </Viewbox>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
             <Image Margin="0,0,10,0"  Source="Resources/insa_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" />
             <Image Margin="0,0,20,0" Source="Resources/atos_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="130" />
