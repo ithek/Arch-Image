@@ -42,6 +42,8 @@ namespace Vue
             Document d = new Document("../../Resources/map.png");
             arch.DocumentCourant = d;
 
+            this.vue = new ConsultationVM(" ");
+
             initTouchManagement();
 
             loadCurrentPOI();

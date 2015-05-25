@@ -65,6 +65,20 @@ namespace Vue
         {
             InitializeComponent();
 
+            this.initForms();
+
+            this.Archimage = a;
+
+            this.drawingRectangleForNewPOI = false;
+
+            this.vue = new ConsultationVM(" ");
+            this.initTouchManagement();            
+
+            this.UpdateUI();
+        }
+
+        private void initForms() 
+        {
             this.listeTextBox = new List<TextBox>();
             this.listeTextBox.Add(nomTextBox);
             this.listeTextBox.Add(prenomTextBox);
@@ -100,16 +114,6 @@ namespace Vue
             this.listeLabel.Add(prenomPereLabel);
             this.listeLabel.Add(nomMereLabel);
             this.listeLabel.Add(prenomMereLabel);
-
-            this.Archimage = a;
-
-            this.drawingRectangleForNewPOI = false;
-
-            this.vue = new ConsultationVM(" ");
-
-            this.initTouchManagement();            
-
-            this.UpdateUI();
         }
 
         private void updateAuthorPrivileges()
@@ -447,7 +451,6 @@ namespace Vue
         private void OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
-            Console.WriteLine("Event Mouse Right button UP");//TODO
             this.endRectangle(e);
         }
 

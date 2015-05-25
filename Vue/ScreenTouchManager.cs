@@ -70,15 +70,6 @@ namespace Vue
             var vm = this.consultationVM;
 
             
-            string TODO = "";//TODO
-            if (vm == null) MessageBox.Show("vm, ");
-            if (vm.ListePois == null) MessageBox.Show("vm.ListePois, ");
-            if (vm.ListePois.Count == null) MessageBox.Show( "vm.ListePois.Count, ");
-            if (vm.ListePois.ElementAt(0) == null) MessageBox.Show("vm.ListePois.ElementAt(0), ");
-            if (vm.ListePois.ElementAt(0).VueCourante == null)MessageBox.Show("vm.ListePois.ElementAt(0).VueCourante, ");
-            if (((PoiConsultationVM)vm.ListePois.ElementAt(0).VueCourante) == null) MessageBox.Show("((PoiConsultationVM)vm.ListePois.ElementAt(0).VueCourante), ");
-            
-         
 
             for (int i = 0; i < vm.ListePois.Count; i++)
             {
