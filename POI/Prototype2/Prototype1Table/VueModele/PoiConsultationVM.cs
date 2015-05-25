@@ -182,6 +182,11 @@ namespace Prototype1Table.VueModele
             LancementCommande = new RelaiCommande(new Action(lancement));
         }
 
+        public void setConteneurScatterView(ConsultationVM vueScatterView)
+        {
+            conteneur.VueScatterView = vueScatterView;
+        }
+
         public void lancement()
         {
             conteneur.ouverturePoi();

@@ -305,7 +305,7 @@ namespace Prototype1Table.VueModele
             switch (modele.Type)
             {
                 case Types.image:
-                    couronneParent.ouvrirMedia(new ImageVM(modele, p, o,couronneParent.Conteneur.getConsultationVM()));
+                    couronneParent.ouvrirMedia(new ImageVM(modele, p, o,couronneParent.Conteneur.getConsultationVM(), couronneParent.Conteneur.VueScatterView));
                     break;
                 case Types.video:
                     couronneParent.ouvrirMedia(new VideoVM(modele, p, o,couronneParent.Conteneur.getConsultationVM()));

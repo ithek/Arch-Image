@@ -51,6 +51,8 @@ namespace Vue
 
         private ConsultationVM vueScatterView;
 
+        PoiConsultationVM poiVM;
+
         public delegate void getPOI_Delegate();
 
         public void getPOI()
@@ -96,7 +98,8 @@ namespace Vue
                         ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vue);
                         cont.fermeturePoi(); //Pour afficher les noms sur les POI
                         vue.ListePois.Add(cont);
-                        PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
+                        poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
+                        finGetPOIDocOuvert();
                     }
                 }
                 );
@@ -108,7 +111,7 @@ namespace Vue
                 {
                     // Alert Someone 
                 }
-            }
+            } 
         }
 
         public void finGetPOIDocOuvert()
@@ -120,9 +123,8 @@ namespace Vue
                 List<Document> listeDoc = arch.SewelisAccess.getListDocs(poiDocParent);
                 PoiModele poiMod = null;
 
-                PoisItemControlScatterView.DataContext = vueScatterView;
                 CanvasMedias.DataContext = vue;
-                ScatterMedias.DataContext = vueScatterView;
+
                 Console.WriteLine("DATA CONTEXT OK");
                 foreach (Document docPOI in listeDoc) {
 
@@ -146,10 +148,11 @@ namespace Vue
                         ConteneurPoiVM cont = new ConteneurPoiVM(poiMod, vueScatterView);
                         cont.fermeturePoi(); //Pour afficher les noms sur les POI
                         vueScatterView.ListePois.Add(cont);
-                        PoiConsultationVM poiVM = new PoiConsultationVM(cont, poiMod, poi.Nom);
+                        PoiConsultationVM poiVMScatterView = new PoiConsultationVM(cont, poiMod, poi.Nom);
                     }
                 }
             }
+            poiVM.setConteneurScatterView(vueScatterView);
         }
 
         private string findMiniature(string path)
@@ -197,7 +200,6 @@ namespace Vue
 
             IAsyncResult R = null;
             R = d.BeginInvoke(new AsyncCallback(finGetPOI), null); //invoking the method
-            finGetPOIDocOuvert(); //invoking the method
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)

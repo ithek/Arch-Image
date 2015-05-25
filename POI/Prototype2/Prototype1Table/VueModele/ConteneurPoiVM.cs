@@ -26,6 +26,12 @@ namespace Prototype1Table.VueModele
             return consultation;
         }
 
+        public ConsultationVM VueScatterView
+        {
+            get;
+            set;
+        }
+
         private int initialX;
         private double x;
         public double X
