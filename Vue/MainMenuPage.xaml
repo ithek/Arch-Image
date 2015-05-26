@@ -8,6 +8,23 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Background="#FF2E2F34"
 	Title="MainMenuPage">
+
+    <Page.Resources>
+        <Style
+                x:Key="AccSqButtonStyle"
+                BasedOn="{StaticResource AccentedSquareButtonStyle}"
+                TargetType="Button">
+            <Setter Property="Controls:ButtonHelper.PreserveTextCase"
+                Value="True" />
+        </Style>
+        <Style
+                x:Key="SqButtonStyle"
+                BasedOn="{StaticResource SquareButtonStyle}"
+                TargetType="Button">
+            <Setter Property="Controls:ButtonHelper.PreserveTextCase"
+                Value="True" />
+        </Style>
+    </Page.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -23,8 +40,8 @@
                 <TextBox Height="30" x:Name="identifiantConnexionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
                 <PasswordBox Height="30" x:Name="passwordConnexionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                    <Button Margin="0,0,5,0" Style="{DynamicResource AccentedSquareButtonStyle}" Click="okConnexionButton_Click" FontSize="15">Ok</Button>
-                    <Button Style="{DynamicResource SquareButtonStyle}" Click="annulerConnexionButton_Click" FontSize="15">Annuler</Button>
+                    <Button Margin="0,0,5,0" Style="{DynamicResource AccSqButtonStyle}" Click="okConnexionButton_Click" FontSize="15">Ok</Button>
+                    <Button Style="{DynamicResource SqButtonStyle}" Click="annulerConnexionButton_Click" FontSize="15">Annuler</Button>
                 </StackPanel>
                 <Label x:Name="connexionLabel" FontSize="15" Foreground="White"/>
             </StackPanel>
@@ -36,8 +53,8 @@
                 <PasswordBox Height="30" x:Name="passwordInscriptionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
                 <TextBox Height="30" x:Name="emailTextBox" Controls:TextBoxHelper.Watermark="Email" FontSize="15" />
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                    <Button Margin="0,0,5,0" Style="{DynamicResource AccentedSquareButtonStyle}" Click="okInscriptionButton_Click" FontSize="15">Ok</Button>
-                    <Button Style="{DynamicResource SquareButtonStyle}" Click="annulerInscriptionButton_Click" FontSize="15">Annuler</Button>
+                    <Button Margin="0,0,5,0" Style="{DynamicResource AccSqButtonStyle}" Click="okInscriptionButton_Click" FontSize="15">Ok</Button>
+                    <Button Style="{DynamicResource SqButtonStyle}" Click="annulerInscriptionButton_Click" FontSize="15">Annuler</Button>
                 </StackPanel>
                 <Label x:Name="inscriptionLabel" FontSize="15" Foreground="White"/>
             </StackPanel>
