@@ -28,7 +28,6 @@ namespace Prototype1Table.Vue
             InitializeComponent();
         }
 
-
         public void apercu_TapGesture(object sender, MouseEventArgs e)
         {
             //Point pRelatif = e.TouchDevice.GetTouchPoint(this).Position;
@@ -36,16 +35,26 @@ namespace Prototype1Table.Vue
             Point pAbs = e.GetPosition((System.Windows.IInputElement)this.Parent);
             //Point pRelatif = e.TouchDevice.GetTouchPoint(ScatterV).Position;
             //Point pAbs = e.TouchDevice.GetTouchPoint((System.Windows.IInputElement)this.Parent).Position;
+            ((VueModele.CouronneVM)(this.DataContext)).tapCouronneAction2(pRelatif, pAbs);
+        }
+
+        public void apercu_TapGesture(object sender, TouchEventArgs e)
+        {
+            //Point pRelatif = e.TouchDevice.GetTouchPoint(this).Position;
+            //Point pRelatif = e.GetPosition(ScatterV);
+            //Point pAbs = e.GetPosition((System.Windows.IInputElement)this.Parent);
+            Point pRelatif = e.TouchDevice.GetTouchPoint(ScatterV).Position;
+            Point pAbs = e.TouchDevice.GetTouchPoint((System.Windows.IInputElement)this.Parent).Position;
             ((VueModele.CouronneVM)(this.DataContext)).tapCouronneAction(pRelatif, pAbs);
         }
 
-        private void ScatterView_PreviewTouchUp(object sender, MouseButtonEventArgs e)
+        private void ScatterView_PreviewTouchUp(object sender, TouchEventArgs e)
         {
-            Point pAbs = e.GetPosition((System.Windows.IInputElement)this.Parent);
-            ((VueModele.CouronneVM)(this.DataContext)).upCouronneAction(pAbs, 90.0);
-            //Point pAbs = e.TouchDevice.GetTouchPoint((System.Windows.IInputElement)this.Parent).Position;
-            //double orientation = e.TouchDevice.GetOrientation((System.Windows.IInputElement)this.Parent);
-            //((VueModele.CouronneVM)(this.DataContext)).upCouronneAction(pAbs, orientation);
+            //Point pAbs = e.GetPosition((System.Windows.IInputElement)this.Parent);
+            //((VueModele.CouronneVM)(this.DataContext)).upCouronneAction(pAbs, 90.0);
+            Point pAbs = e.TouchDevice.GetTouchPoint((System.Windows.IInputElement)this.Parent).Position;
+            double orientation = e.TouchDevice.GetOrientation((System.Windows.IInputElement)this.Parent);
+            ((VueModele.CouronneVM)(this.DataContext)).upCouronneAction(pAbs, orientation);
         }
     }
 }

@@ -411,6 +411,31 @@ namespace Prototype1Table.VueModele
             }
         }
 
+        //gestion du Tap sur la couronne : transmission à l'apercu concerné
+        public void tapCouronneAction2(Point p, Point pAbs)
+        {
+            p.Offset(-tailleCouronne / 2, -tailleCouronne / 2);
+
+            double angle = ApercuVM.modulo(toDeg(Math.Atan2(p.Y, p.X)));
+
+
+
+            double seuil;
+
+            foreach (ApercuVM ap in apercus)
+            {
+                if (ap.visible)
+                {
+                    seuil = ApercuVM.toDeg(ap.demiLargeurAng);
+                    if ((ap.angle - seuil < angle) && (ap.angle + seuil > angle))
+                    {
+                        ap.tapApercuAction2(pAbs);
+                        break;
+                    }
+                }
+            }
+        }
+
         //gestion de TouchUp sur la couronne : transmission à l'apercu concerné
         public void upCouronneAction(Point p, double o)
         {
@@ -444,6 +469,12 @@ namespace Prototype1Table.VueModele
         {
             //commande transmise jusqu' a consultationVM
             conteneur.ouvrirMedia(m);
+        }
+
+        public void ouvrirMedia2(MediaVM m)
+        {
+            //commande transmise jusqu' a consultationVM
+            conteneur.ouvrirMedia2(m);
         }
 
     }
