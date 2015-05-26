@@ -28,9 +28,9 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -64,7 +64,7 @@
             <Image Source="Resources/logo_archimage.png" HorizontalAlignment="Center" Width="400" />
         </StackPanel>
 
-        <Viewbox Margin="0,120,0,120" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Viewbox Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
                 <Grid>
                     <Grid.RowDefinitions>
