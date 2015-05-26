@@ -141,6 +141,14 @@ namespace Vue
 
         private void initTouchManagement()
         {
+            var dc = RectangleContainingBackgroundImage.DataContext;
+            if (dc is ScreenTouchManager) // remove previous eventual listener
+            {
+                ScreenTouchManager oldListener = (ScreenTouchManager) dc;
+                this.RectangleContainingBackgroundImage.ManipulationStarting -= oldListener.Image_ManipulationStarting;
+                this.RectangleContainingBackgroundImage.ManipulationDelta -= oldListener.Image_ManipulationDelta;
+            }
+
             ScreenTouchManager touchManager = new ScreenTouchManager(this.theGrid, this.vue);
             this.RectangleContainingBackgroundImage.ManipulationStarting += touchManager.Image_ManipulationStarting;
             this.RectangleContainingBackgroundImage.ManipulationDelta += touchManager.Image_ManipulationDelta;
@@ -260,6 +268,8 @@ namespace Vue
             var img = new ImageBrush(source);
             img.Stretch = Stretch.Uniform;
             RectangleContainingBackgroundImage.Background = img;
+
+            initTouchManagement();//TODO decommenté = Zoom réinitialisé à chaque changement de doc, mais qui rendent les POI minuscules sur zoom
         }
         private void UpdateSlider()
         {
@@ -402,17 +412,29 @@ namespace Vue
 
 
                 //TODO corriger (peut-être) les valeurs
-                double left = ((rectanglePOIStart.X + rectanglePOIEnd.X) / 2);
-                double top = ((rectanglePOIStart.Y + rectanglePOIEnd.Y) / 2);
+                var poiPos = calculatePOIPos(rectanglePOIStart, rectanglePOIEnd);
 
                 this.Archimage.SewelisAccess.chargerListePersonnes();
                 List<String> listeNoms = new List<String>();
                 listeNoms.Insert(0, "<Nouvelle personne>");
                 listBoxNoms.ItemsSource = listeNoms;
-                poi = new POICreationData(left, top);
+                poi = new POICreationData(poiPos.X , poiPos.Y);
                 annotationLabel.Content = "";
                 flyoutAnnotation.IsOpen = true;
             }
+        }
+
+        /**
+         * Returns the center of the provided selection rectangle (0;0 being the top-left of the whole thing), considering current zoom and position
+         */
+        private Point calculatePOIPos(Point rectanglePOIStart, Point rectanglePOIEnd)
+        {
+            double relativeX = ((rectanglePOIStart.X + rectanglePOIEnd.X) / 2);
+            double relativeY = ((rectanglePOIStart.Y + rectanglePOIEnd.Y) / 2);
+
+            return new Point(ZoomManager.posX + (relativeX/ZoomManager.zoomRatio),
+                             ZoomManager.posY + (relativeY/ZoomManager.zoomRatio));
+            
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
