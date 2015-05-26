@@ -7,9 +7,10 @@
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
         IgnoreTaskbarOnMaximize="True"
+        MouseDown="Event"
         ShowTitleBar="False"
+        ShowMaxRestoreButton="False"
         WindowCloseButtonStyle="{DynamicResource WindowButtonStyle}"
-        WindowMaxButtonStyle="{DynamicResource WindowButtonStyle}"
         WindowMinButtonStyle="{DynamicResource WindowButtonStyle}"
         Title="Archimage" Closed="MetroWindow_Closed" WindowState="Maximized" Icon="Resources/icon.png">
 

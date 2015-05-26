@@ -54,5 +54,10 @@ namespace Vue
                 stream.Close();
             }
         }
+
+        private void Event(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
