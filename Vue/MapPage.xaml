@@ -120,9 +120,7 @@
         <Canvas IsManipulationEnabled="True"
                 RenderTransform="{Binding Path=ImageTransform}">
             <Canvas Name ="CanvasMedias"
-                    Visibility="{Binding VisibilitePOI}">
-
-                    
+                    Visibility="Visible">
 
                 <!--Medias-->
                 <my:ScatterView Name="ScatterMedias" 
