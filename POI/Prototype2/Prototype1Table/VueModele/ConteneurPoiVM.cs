@@ -111,6 +111,12 @@ namespace Prototype1Table.VueModele
         public void ouvrirMedia(MediaVM m)
         {
             consultation.ouvrirMedia(m);
+
+        }
+
+        public void ouvrirMedia2(MediaVM m)
+        {
+            consultation.ouvrirMedia2(m);
         }
 
         /*

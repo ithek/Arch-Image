@@ -529,13 +529,7 @@ namespace Vue
             e.Handled = true; 
             if (e.OriginalSource.GetType() == typeof(System.Windows.Controls.MediaElement))
             {
-                if (this.vue.mediasOuverts.Count == 0)
-                {
-                    // TODO was here before for unclear reasons, remove completely if useless : e.Handled = false;
-                    return;
-                }
-                   
-                MediaVM media = this.vue.mediasOuverts.ElementAt(0);
+                MediaVM media = this.vue.mediaToOpen;
 
                 //Pour récupérer les types des documents.
                 String chemin = media.cheminMedia.OriginalString;

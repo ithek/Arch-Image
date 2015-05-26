@@ -175,9 +175,8 @@
             </Button>
 
             <!--Aperçus-->
-            <s:ScatterView Name="ScatterV" Height="{Binding tailleCouronne}" Width="{Binding tailleCouronne}" ItemContainerStyle="{StaticResource ScatterViewItemStyle}" ItemsSource="{Binding apercus}"
-                           MouseDown="apercu_TapGesture"/>
-                           <!--s:TouchExtensions.PreviewTapGesture="apercu_TapGesture" PreviewTouchUp="ScatterView_PreviewTouchUp"/>-->
+            <s:ScatterView Name="ScatterV" Height="{Binding tailleCouronne}" Width="{Binding tailleCouronne}" ItemContainerStyle="{StaticResource ScatterViewItemStyle}" ItemsSource="{Binding apercus}"                   
+                MouseDown="apercu_TapGesture" s:TouchExtensions.PreviewTapGesture="apercu_TapGesture" PreviewTouchUp="ScatterView_PreviewTouchUp"/>
         </Grid>
     </Viewbox>
 </Grid>

@@ -254,6 +254,19 @@ namespace Prototype1Table.VueModele
             ouvertureMedia(p, o);
         }
 
+        public void tapApercuAction2(Point p1)
+        {
+            Random r = new Random();
+            //pour le faire apparaitre n'importe où :
+            Point p = new Point(r.Next(200, 1720), r.Next(200, 880));
+
+            //pour le faire apparaître près du point de contact :
+            //p.Offset(r.Next(-200,200), r.Next(-200,200));
+
+            double o = r.Next(0, 360);
+            ouvertureMedia2(p, o);
+        }
+
 
        //gestion du comportement à effectuer au relachement de l'apercu
         public void relacheApercuAction(Point p, double o)
@@ -313,6 +326,19 @@ namespace Prototype1Table.VueModele
                 case Types.diaporama:
                     couronneParent.ouvrirMedia(new DiaporamaVM(modele, p, o, couronneParent.Conteneur.getConsultationVM()));
                     break;
+                default:
+                    break;
+            }
+        }
+
+        public void ouvertureMedia2(Point p, double o)
+        {
+            switch (modele.Type)
+            {
+                case Types.image:
+                    couronneParent.ouvrirMedia2(new ImageVM(modele, p, o, couronneParent.Conteneur.getConsultationVM(), couronneParent.Conteneur.VueScatterView));
+                    break;
+              
                 default:
                     break;
             }

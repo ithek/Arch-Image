@@ -475,6 +475,11 @@ namespace Prototype1Table.VueModele
             
         }
 
+        public void ouvrirMedia2(MediaVM m)
+        {
+            mediaToOpen = m;
+        }
+
         // Fonction appelée lorsque l'on ferme un média
         public void fermerMedia(MediaVM m)
         {
