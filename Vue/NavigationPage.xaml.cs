@@ -141,6 +141,15 @@ namespace Vue
 
         private void initTouchManagement()
         {
+            var dc = RectangleContainingBackgroundImage.DataContext;
+
+            if (dc is ScreenTouchManager)
+            {
+                ScreenTouchManager oldListener = (ScreenTouchManager)dc;
+                this.RectangleContainingBackgroundImage.ManipulationStarting -= oldListener.Image_ManipulationStarting;
+                this.RectangleContainingBackgroundImage.ManipulationDelta -= oldListener.Image_ManipulationDelta;
+            }
+            
             ScreenTouchManager touchManager = new ScreenTouchManager(this.theGrid, this.vue);
             this.RectangleContainingBackgroundImage.ManipulationStarting += touchManager.Image_ManipulationStarting;
             this.RectangleContainingBackgroundImage.ManipulationDelta += touchManager.Image_ManipulationDelta;
@@ -260,6 +269,8 @@ namespace Vue
             var img = new ImageBrush(source);
             img.Stretch = Stretch.Uniform;
             RectangleContainingBackgroundImage.Background = img;
+
+            initTouchManagement();
         }
         private void UpdateSlider()
         {
@@ -286,7 +297,7 @@ namespace Vue
                     break;
 
                 case Categorie.REGISTRE_MATRICULE :
-                    res = "TM";
+                    res = "RM";
                     break;
 
                 case Categorie.TABLE_REGISTRE_MATRICULE :

@@ -52,7 +52,13 @@ namespace Vue
 
             // Find center of element and then transform to get current location of center
             FrameworkElement fe = e.Source as FrameworkElement;
-            Point center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
+            Point center;
+
+            if (scale.X > 1)
+                center = e.ManipulationOrigin;
+            else
+                center = new Point(fe.ActualWidth / 2, fe.ActualHeight / 2);
+            
             center = m.Transform(center);
 
             // Update matrix to reflect translation

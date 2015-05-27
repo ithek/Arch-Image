@@ -37,7 +37,7 @@ namespace Vue
 
         private void MetroWindow_Closed(object sender, EventArgs e)
         {
-            if (archimage.DocumentCourant != null)
+            if (archimage.DocumentCourant != null && !archimage.DocumentCourant.CheminAcces.Contains("map.png"))
             {
                 //Opens a file and serializes the object into it in binary format.
                 Stream stream = File.Open(ArchImage.PATH_TO_SESSION_SAVE, FileMode.Create);
