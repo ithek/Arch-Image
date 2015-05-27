@@ -192,9 +192,9 @@
         </Viewbox>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
             <Image Margin="0,0,10,0"  Source="Resources/insa_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="200" />
-            <Image Margin="0,0,20,20" Source="Resources/iv_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="120" />
             <Image Margin="0,0,20,0" Source="Resources/atos_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="130" />
-            <Image Margin="0,0,0,0" Source="Resources/irisa_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="180" />
+            <Image Margin="0,0,10,0" Source="Resources/irisa_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="180" />
+            <Image Margin="0,0,0,20" Source="Resources/iv_logo.png" VerticalAlignment="Top" HorizontalAlignment="Center" Width="120" />
         </StackPanel>
     </Grid>
 </Page>

@@ -82,7 +82,6 @@ namespace Vue
                 {
                     PoisItemControl.DataContext = vue;
                     ScatterMedias.DataContext = vue;
-                    MapRectangle.DataContext = vue;
                     
                     foreach (POICreationData poi in listePOIs)
                     {
@@ -197,7 +196,6 @@ namespace Vue
             
             PoisItemControl.DataContext = vue;
             ScatterMedias.DataContext = vue;
-            MapRectangle.DataContext = vue;
             //Initialisation
             getPOI_Delegate d = null;
             d = new getPOI_Delegate(getPOI);

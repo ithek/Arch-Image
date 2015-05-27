@@ -142,14 +142,13 @@ namespace Vue
         private void initTouchManagement()
         {
             var dc = RectangleContainingBackgroundImage.DataContext;
-
-            if (dc is ScreenTouchManager)
+            if (dc is ScreenTouchManager) // remove previous eventual listener
             {
-                ScreenTouchManager oldListener = (ScreenTouchManager)dc;
+                ScreenTouchManager oldListener = (ScreenTouchManager) dc;
                 this.RectangleContainingBackgroundImage.ManipulationStarting -= oldListener.Image_ManipulationStarting;
                 this.RectangleContainingBackgroundImage.ManipulationDelta -= oldListener.Image_ManipulationDelta;
             }
-            
+
             ScreenTouchManager touchManager = new ScreenTouchManager(this.theGrid, this.vue);
             this.RectangleContainingBackgroundImage.ManipulationStarting += touchManager.Image_ManipulationStarting;
             this.RectangleContainingBackgroundImage.ManipulationDelta += touchManager.Image_ManipulationDelta;
@@ -270,7 +269,7 @@ namespace Vue
             img.Stretch = Stretch.Uniform;
             RectangleContainingBackgroundImage.Background = img;
 
-            initTouchManagement();
+            initTouchManagement();//TODO decommenté = Zoom réinitialisé à chaque changement de doc, mais qui rendent les POI minuscules sur zoom
         }
         private void UpdateSlider()
         {
@@ -297,7 +296,7 @@ namespace Vue
                     break;
 
                 case Categorie.REGISTRE_MATRICULE :
-                    res = "RM";
+                    res = "TM";
                     break;
 
                 case Categorie.TABLE_REGISTRE_MATRICULE :
@@ -423,7 +422,9 @@ namespace Vue
                 List<String> listeNoms = new List<String>();
                 listeNoms.Insert(0, "<Nouvelle personne>");
                 listBoxNoms.ItemsSource = listeNoms;
+
                 poi = new POICreationData(correctedX, correctedY);
+
                 annotationLabel.Content = "";
                 flyoutAnnotation.IsOpen = true;
             }
