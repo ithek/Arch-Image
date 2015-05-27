@@ -416,11 +416,14 @@ namespace Vue
                 double left = ((rectanglePOIStart.X + rectanglePOIEnd.X) / 2);
                 double top = ((rectanglePOIStart.Y + rectanglePOIEnd.Y) / 2);
 
+                double correctedX = (left - ZoomManager.posX);
+                double correctedY = (top - ZoomManager.posY);
+
                 this.Archimage.SewelisAccess.chargerListePersonnes();
                 List<String> listeNoms = new List<String>();
                 listeNoms.Insert(0, "<Nouvelle personne>");
                 listBoxNoms.ItemsSource = listeNoms;
-                poi = new POICreationData(left, top);
+                poi = new POICreationData(correctedX, correctedY);
                 annotationLabel.Content = "";
                 flyoutAnnotation.IsOpen = true;
             }

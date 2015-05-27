@@ -29,6 +29,7 @@ namespace Vue
             this.ManipContainer = theGrid;
             this.consultationVM = cVM;
             ZoomManager.zoomRatio = 1;
+            ZoomManager.posX = ZoomManager.posY = 0;
         }
 
         public void Image_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
@@ -48,6 +49,9 @@ namespace Vue
 
 
             ZoomManager.zoomRatio *= scale.X;
+
+            ZoomManager.posX += trans.X;
+            ZoomManager.posY += trans.Y;
 
 
             // Find center of element and then transform to get current location of center
