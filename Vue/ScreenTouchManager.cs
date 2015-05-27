@@ -28,8 +28,7 @@ namespace Vue
             this.ImageTransform = new MatrixTransform();
             this.ManipContainer = theGrid;
             this.consultationVM = cVM;
-            ZoomManager.zoomRatio = 1;
-            ZoomManager.posX = ZoomManager.posY = 0;
+            ZoomManager.matriceTransformation = ImageTransform.Matrix;
         }
 
         public void Image_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
@@ -45,12 +44,9 @@ namespace Vue
             Vector trans = md.Translation;
             Vector scale = md.Scale;
 
-            Matrix m = ImageTransform.Matrix;
-
-
-            ZoomManager.zoomRatio *= scale.X;
-            ZoomManager.posX += trans.X;
-            ZoomManager.posY += trans.Y;
+            Matrix m = ImageTransform.Matrix; 
+            Matrix baseMatrix = m;
+            baseMatrix.Invert();
 
             // Find center of element and then transform to get current location of center
             FrameworkElement fe = e.Source as FrameworkElement;
@@ -71,6 +67,10 @@ namespace Vue
             // Update matrix to reflect translation
             m.Translate(trans.X, trans.Y);
             m.ScaleAt(scale.X, scale.Y, center.X, center.Y);
+            
+            Matrix transfo = Matrix.Multiply(baseMatrix, m);
+            ZoomManager.matriceTransformation = Matrix.Multiply(ZoomManager.matriceTransformation, transfo);
+
             ImageTransform.Matrix = m;
 
             updateAllPOISize(scale.X, scale.Y);

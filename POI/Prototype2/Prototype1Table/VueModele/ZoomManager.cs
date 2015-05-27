@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
 
 namespace Prototype1Table.VueModele
 {
     public class ZoomManager
     {
-        public static double zoomRatio = 1;
-
-        public static double posX = 0;
-
-        public static double posY = 0;
+        public static Matrix matriceTransformation;
     }
 }

@@ -415,15 +415,16 @@ namespace Vue
                 double left = ((rectanglePOIStart.X + rectanglePOIEnd.X) / 2);
                 double top = ((rectanglePOIStart.Y + rectanglePOIEnd.Y) / 2);
 
-                double correctedX = (left - ZoomManager.posX);
-                double correctedY = (top - ZoomManager.posY);
+                Matrix mat = ZoomManager.matriceTransformation;
+                mat.Invert();
+                Point point = mat.Transform(new Point(left, top));
 
                 this.Archimage.SewelisAccess.chargerListePersonnes();
                 List<String> listeNoms = new List<String>();
                 listeNoms.Insert(0, "<Nouvelle personne>");
                 listBoxNoms.ItemsSource = listeNoms;
 
-                poi = new POICreationData(correctedX, correctedY);
+                poi = new POICreationData(point.X, point.Y);
 
                 annotationLabel.Content = "";
                 flyoutAnnotation.IsOpen = true;

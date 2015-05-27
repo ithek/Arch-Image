@@ -45,7 +45,7 @@ namespace Modele_Controleur
                 if (value != null)
                 {
                     personne = value;
-                    Nom = personne.Prenom + " " + personne.Nom;
+                    Nom = personne.Nom + " " + personne.Prenom;
                 }
             }
         }
