@@ -19,6 +19,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using System.Diagnostics;
 
 namespace Vue
 {
@@ -67,7 +68,7 @@ namespace Vue
 
         private void TablesRMTile_Click(object sender, RoutedEventArgs e)
         {
-            StartNavigation(Categorie.REGISTRE_MATRICULE);
+            StartNavigation(Categorie.TABLE_REGISTRE_MATRICULE);
         }
 
         private void NMDTile_Click(object sender, RoutedEventArgs e)
@@ -112,13 +113,18 @@ namespace Vue
         private void ConnexionTile_Click(object sender, RoutedEventArgs e)
         {
             flyoutInscription.IsOpen = false;
-            flyoutConnexion.IsOpen = true;   
+            flyoutConnexion.IsOpen = true;
+            identifiantConnexionTextBox.Focus();
+            System.Diagnostics.Process.Start("osk.exe");  
         }
 
         private void InscriptionTile_Click(object sender, RoutedEventArgs e)
         {
             flyoutConnexion.IsOpen = false;
             flyoutInscription.IsOpen = true;
+            identifiantInscriptionTextBox.Focus();
+            System.Diagnostics.Process.Start("osk.exe"); 
+            
         }
 
         private void RestoreSessionTile_Click(object sender, RoutedEventArgs e)
@@ -170,8 +176,7 @@ namespace Vue
                 if (etat == EtatConnexion.OK)
                 {
                     this.archimage.Utilisateur = new Auteur();
-                    
-                    
+
                     flyoutConnexion.IsOpen = false;
                    
                     await this.getMainWindow().ShowMessageAsync("Succès", "Vous êtes maintenant connecté et pouvez annoter les documents !");
@@ -222,6 +227,13 @@ namespace Vue
         private void annulerInscriptionButton_Click(object sender, EventArgs e)
         {
             flyoutInscription.IsOpen = false;
+        }
+
+        private void ClosedEvent(object sender, RoutedEventArgs e)
+        {
+            var procs = Process.GetProcessesByName("osk");
+            if (procs.Length != 0)
+                procs[0].Kill();
         }
     }
 }

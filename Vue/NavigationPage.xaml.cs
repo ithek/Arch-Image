@@ -296,7 +296,7 @@ namespace Vue
                     break;
 
                 case Categorie.REGISTRE_MATRICULE :
-                    res = "TM";
+                    res = "RM";
                     break;
 
                 case Categorie.TABLE_REGISTRE_MATRICULE :
@@ -428,6 +428,8 @@ namespace Vue
 
                 annotationLabel.Content = "";
                 flyoutAnnotation.IsOpen = true;
+                System.Diagnostics.Process.Start("osk.exe");
+                nomRechercheTextBox.Focus();
             }
         }
 
@@ -832,6 +834,13 @@ namespace Vue
             }
         };
                 timer.Start();
+        }
+
+        private void ClosedEvent(object sender, RoutedEventArgs e)
+        {
+            var procs = Process.GetProcessesByName("osk");
+            if (procs.Length != 0)
+                procs[0].Kill();
         }      
 	}
 }

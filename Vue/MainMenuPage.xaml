@@ -35,7 +35,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Controls:Flyout Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" x:Name="flyoutConnexion" Header="Connexion" Position="Right" Width="300" Theme="Accent">
+        <Controls:Flyout ClosingFinished="ClosedEvent" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" x:Name="flyoutConnexion" Header="Connexion" Position="Right" Width="300" Theme="Accent">
             <StackPanel Margin="10,10,10,10">
                 <TextBox Height="30" x:Name="identifiantConnexionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
                 <PasswordBox Height="30" x:Name="passwordConnexionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />
@@ -47,7 +47,7 @@
             </StackPanel>
         </Controls:Flyout>
 
-        <Controls:Flyout Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  x:Name="flyoutInscription" Header="Inscription" Position="Right" Width="300" Theme="Accent">
+        <Controls:Flyout ClosingFinished="ClosedEvent" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"  x:Name="flyoutInscription" Header="Inscription" Position="Right" Width="300" Theme="Accent">
             <StackPanel Margin="10,10,10,10">
                 <TextBox Height="30" x:Name="identifiantInscriptionTextBox" Controls:TextBoxHelper.Watermark="Nom d'utilisateur" FontSize="15" />
                 <PasswordBox Height="30" x:Name="passwordInscriptionTextBox" PasswordChar="*" Controls:TextBoxHelper.Watermark="Mot de passe" FontSize="15" />

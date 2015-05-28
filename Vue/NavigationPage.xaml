@@ -50,7 +50,7 @@
     
     <Grid
         Name="theGrid">
-        <Controls:Flyout Grid.ZIndex="4" x:Name="flyoutAnnotation" Header="Annotation" Position="Right" Width="800" Theme="Accent">
+        <Controls:Flyout ClosingFinished="ClosedEvent" Grid.ZIndex="4" x:Name="flyoutAnnotation" Header="Annotation" Position="Right" Width="800" Theme="Accent">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
