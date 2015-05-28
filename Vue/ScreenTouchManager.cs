@@ -29,6 +29,7 @@ namespace Vue
             this.ManipContainer = theGrid;
             this.consultationVM = cVM;
             ZoomManager.matriceTransformation = ImageTransform.Matrix;
+            ZoomManager.zoomRatio = 1;
         }
 
         public void Image_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
@@ -43,6 +44,8 @@ namespace Vue
             ManipulationDelta md = e.DeltaManipulation;
             Vector trans = md.Translation;
             Vector scale = md.Scale;
+
+            ZoomManager.zoomRatio *= scale.X;
 
             Matrix m = ImageTransform.Matrix; 
             Matrix baseMatrix = m;

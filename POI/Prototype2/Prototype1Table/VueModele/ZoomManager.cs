@@ -9,5 +9,6 @@ namespace Prototype1Table.VueModele
     public class ZoomManager
     {
         public static Matrix matriceTransformation;
+        public static double zoomRatio = 1;
     }
 }
