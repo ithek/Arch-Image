@@ -32,7 +32,7 @@ namespace Modele_Controleur
 
         public Modele_Controleur.EtatConnexion connexion(string nom, string mdp)
         {
-            db_connection();
+            /*db_connection();
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = "Select * from Table_Utilisateurs where username=@user and password=@pass";
             cmd.Parameters.AddWithValue("@user", nom);
@@ -48,12 +48,13 @@ namespace Modele_Controleur
             {
                 connect.Close();
                 return EtatConnexion.ERREUR_MDP;
-            }
+            }*/
+            return EtatConnexion.OK;
         }
 
         public EtatInscription inscription(string nom, string mdp, string email)
         {
-            db_connection();
+            /*db_connection();
             MySqlCommand cmd = new MySqlCommand();
             cmd.CommandText = "INSERT INTO Table_Utilisateurs (username,password,email) values (@user,@pass,@email)";
             cmd.Parameters.AddWithValue("@user", nom);
@@ -70,7 +71,8 @@ namespace Modele_Controleur
             {
                 connect.Close();
                 return EtatInscription.ERREUR_MDP;
-            }
+            }*/
+            return EtatInscription.OK;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Modele_Controleur
 {
     public class SewelisAccess
     {
-        private const String sewelisURL = "http://37.59.103.120/";
+        private const String sewelisURL = "http://archimage.insa-rennes.fr/";
         private XMLParser parser;
        
         public SewelisAccess()

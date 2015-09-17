@@ -10,9 +10,9 @@ namespace Modele_Controleur
 {
     public class XMLParser
     {
-        private const String sewelisURL = "http://37.59.103.120/";
+        private const String sewelisURL = "http://archimage.insa-rennes.fr/";
         private List<Tuple<string, string>> listeTuplesPersonnes = new List<Tuple<string, string>>();
-        
+
 
         public bool baseExiste(String reponse)
         {
@@ -35,7 +35,7 @@ namespace Modele_Controleur
         }
 
         public List<POICreationData> getPOI(String reponse)
-        {         
+        {
             WebClient webClient = new WebClient();
             List<POICreationData> listePois = new List<POICreationData>();
             XmlDocument doc = new XmlDocument();
@@ -49,12 +49,12 @@ namespace Modele_Controleur
                 XmlNodeList nodesPOI;
                 String poiURL;
                 poiURL = node.ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value;
-                String reponsePOI = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + poiURL);      
-                    
+                String reponsePOI = webClient.DownloadString(sewelisURL + "uriDescription?userKey=123&storeId=1&uri=" + poiURL);
+
                 XmlDocument docPOI = new XmlDocument();
                 doc.LoadXml(reponsePOI);
 
-                nodesPOI = doc.SelectNodes("//node()[@uri='X']");             
+                nodesPOI = doc.SelectNodes("//node()[@uri='X']");
                 x = Double.Parse(nodesPOI[0].ParentNode.NextSibling.FirstChild.FirstChild.FirstChild.Attributes["uri"].Value);
 
                 nodesPOI = doc.SelectNodes("//node()[@uri='Y']");
@@ -76,7 +76,7 @@ namespace Modele_Controleur
             String nom, prenom, initiale, anneeRM, numeroRM, ddn, lieuNaissance, dateDeces, lieuDeces, dateMariage, lieuMariage, nomConjoint, prenomConjoint, prenomPere, nomMere, prenomMere, id, reponse, p;
             nom = prenom = initiale = anneeRM = numeroRM = ddn = lieuNaissance = dateDeces = lieuDeces = dateMariage = lieuMariage = nomConjoint = prenomConjoint = prenomPere = nomMere = prenomMere = id = reponse = "";
             motif = motif.ToLower();
-            foreach (Tuple<string,string> tuple in listeTuplesPersonnes)
+            foreach (Tuple<string, string> tuple in listeTuplesPersonnes)
             {
                 p = tuple.Item1;
                 if (p.StartsWith(motif))
@@ -166,11 +166,11 @@ namespace Modele_Controleur
                 string nom = node.InnerText.ToLower();
                 string id = node.NextSibling.InnerText;
 
-                if(!nom.Equals("stele") && !nom.Equals("monument aux morts"))
+                if (!nom.Equals("stele") && !nom.Equals("monument aux morts"))
                     listeTuplesPersonnes.Add(new Tuple<string, string>(nom, id));
             }
         }
-        
+
 
         public string getIdPersonne(String reponse)
         {
